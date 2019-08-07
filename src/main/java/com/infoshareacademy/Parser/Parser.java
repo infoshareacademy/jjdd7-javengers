@@ -12,17 +12,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Parser {
 
     public static void main(String[] args) {
-        ParserTest parserTest = null;
-        parseFile("/home/andrzej/javengers/jjdd7-javengers/src/main/resources/drinks.json", parserTest);
+
+        ParserTest parserTest = new ParserTest();
+
+        parseFile("/home/andrzejszypulski/javengers/jjdd7-javengers/src/main/resources/drinks.json", ParserTest.class);
+
+        //System.out.println(parserTest.getStrDrink());
 
     }
     //z pliku ujebalem poczatkowa i koncowa klamre bo mi sie parser wykrzaczal - moze mozna to jakos obejsc??
     //Czy ma zwracac voida czy jednak jakiegos returna??
-    public static void parseFile(String parsedFilePath, Object outputObject) {
-        outputObject = null;
+    public static <T>Object parseFile(String parsedFilePath, Class<T> classToCampare) {
+
+
+        T outputObject = null;
+
         ObjectMapper mapper = new ObjectMapper();
         try {
-            outputObject = mapper.readValue(new File(parsedFilePath), ParserTest.class);
+            outputObject = mapper.readValue(new File(parsedFilePath), classToCampare);
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -31,6 +38,7 @@ public class Parser {
             e.printStackTrace();
         }
         System.out.println(outputObject);
+    return outputObject;
     }
 
 
