@@ -23,7 +23,7 @@ class MenuService {
                         "\nWhat do you want to do with these drink\n");
                 printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
-                chooseDrinkListMenuOption(choice, name);
+                chooseDrinkListMenuOption(choice,name);
                 break;
             case 2:
                 System.out.println("Enter category to find: ");
@@ -32,7 +32,7 @@ class MenuService {
                         "\nWhat do you want to do with these drink\n");
                 printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
-                chooseDrinkListMenuOption(choice, name);
+                chooseDrinkListMenuOption(choice,name);
                 break;
             case 3:
                 System.out.println("Enter ingredient to find: ");
@@ -40,7 +40,7 @@ class MenuService {
                 System.out.println("There will be a method which search" + name + "from drink list by ingredient");
                 printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
-                chooseDrinkListMenuOption(choice, name);
+                chooseDrinkListMenuOption(choice,name);
                 break;
             case 4:
                 System.out.println("There will be a method which print all drink names from drink list");
@@ -68,10 +68,10 @@ class MenuService {
     void printMenuForDrinksList() {
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to get recipe" +
-                "\nEnter 2 to add drink to favourites" +
-                "\nEnter 3 to remove drink from favourites" +
-                "\nEnter 4 to add your drink to drink list" +
-                "\nEnter 5 to remove drink from drink list" +
+                "\nEnter 2 to add drink to drink list" +
+                "\nEnter 3 to remove drink from drink list" +
+                "\nEnter 4 to add your drink to favourites" +
+                "\nEnter 5 to remove drink from favourites" +
                 "\nEnter 6 to back to main menu" +
                 "\nEnter 7 to exit\n");
     }
