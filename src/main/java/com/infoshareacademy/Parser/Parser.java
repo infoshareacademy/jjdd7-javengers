@@ -13,13 +13,17 @@ public class Parser {
 
     public static void main(String[] args) {
 
-        ParserTest parserTest = new ParserTest();
+        //ParserTest parserTest = new ParserTest();
 
-        parseFile("/home/andrzejszypulski/javengers/jjdd7-javengers/src/main/resources/drinks.json", ParserTest.class);
+        //parseFile("/home/andrzejszypulski/javengers/jjdd7-javengers/src/main/resources/drinks.json", ParserTest.class);
+
+        parseFile("/home/andrzej/javengers/jjdd7-javengers/src/main/resources/drinks.json", ArrayParserTest.class);
 
         //System.out.println(parserTest.getStrDrink());
+        System.out.println();
 
     }
+
     //z pliku ujebalem poczatkowa i koncowa klamre bo mi sie parser wykrzaczal - moze mozna to jakos obejsc??
     //Czy ma zwracac voida czy jednak jakiegos returna??
     public static <T>Object parseFile(String parsedFilePath, Class<T> classToCampare) {
