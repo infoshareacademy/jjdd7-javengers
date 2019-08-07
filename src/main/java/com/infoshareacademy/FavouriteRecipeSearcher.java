@@ -8,7 +8,7 @@ public class FavouriteRecipeSearcher {
     List<RecipeDTO> favouritesRecipeList = new ArrayList<>();
 
 
-    public List<RecipeDTO> addRecipeToFaourites (){
+    public List<RecipeDTO> addRecipeToFavourites (){
         return null;
     }
 
