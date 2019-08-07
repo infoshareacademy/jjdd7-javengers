@@ -1,6 +1,6 @@
 package com.infoshareacademy;
 
-class MenuPrinter {
+class MenuService {
 
     void printEntryMenu() {
         System.out.println("================ MENU ================" +
@@ -12,44 +12,55 @@ class MenuPrinter {
                 "\nEnter 6 to exit\n");
     }
 
-    void mainMenuService(int choice) {
-        String nameOfDrink;
+    void chooseMainMenuOption(int choice) {
+        String name;
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
             case 1:
                 System.out.println("Enter name to find: ");
-                nameOfDrink = choiceReader.choiceMaker();
-                System.out.println("There will be a method which search " + nameOfDrink + " from drink list by name");
+                name = choiceReader.makeChoice();
+                System.out.println("There will be a method which search " + name + " from drink list by name" +
+                        "\nWhat do you want to do with these drink\n");
+                printMenuForDrinksList();
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice, name);
                 break;
             case 2:
                 System.out.println("Enter category to find: ");
-                nameOfDrink = choiceReader.choiceMaker();
-                System.out.println("There will be a method which search " + nameOfDrink + " from drink list by category");
+                name = choiceReader.makeChoice();
+                System.out.println("There will be a method which search " + name + " from drink list by category" +
+                        "\nWhat do you want to do with these drink\n");
+                printMenuForDrinksList();
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice, name);
                 break;
             case 3:
                 System.out.println("Enter ingredient to find: ");
-                nameOfDrink = choiceReader.choiceMaker();
-                System.out.println("There will be a method which search " + nameOfDrink + " from drink list by ingredient");
+                name = choiceReader.makeChoice();
+                System.out.println("There will be a method which search" + name + "from drink list by ingredient");
+                printMenuForDrinksList();
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice, name);
                 break;
             case 4:
                 System.out.println("There will be a method which print all drink names from drink list");
                 printMenuForDrinksList();
-                choice = choiceReader.choiceMaker(7);
-                menuForDrinkListService(choice);
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice);
                 break;
             case 5:
                 System.out.println("There will be a method which print all drink names from drink list");
                 printMenuForFavourites();
-                choice = choiceReader.choiceMaker(4);
-                menuForFavouritesService(choice);
+                choice = choiceReader.makeMenuChoice();
+                chooseFavouritesMenuOption(choice);
                 break;
             case 6:
                 break;
             default:
                 System.out.println("wrong choice, type one more time");
                 printEntryMenu();
-                choice = choiceReader.choiceMaker(6);
-                mainMenuService(choice);
+                choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
                 break;
         }
     }
@@ -65,45 +76,83 @@ class MenuPrinter {
                 "\nEnter 7 to exit\n");
     }
 
-    void menuForDrinkListService(int choice) {
+    void chooseDrinkListMenuOption(int choice) {
         String nameOfDrink;
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
             case 1:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be used the method to print out " + nameOfDrink + " drink recipe");
                 break;
             case 2:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be used the methods to get and print list of available categories," +
                         " \nchoose or add category and to add " + nameOfDrink + " to drink list based on categories");
                 break;
             case 3:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be used the method to remove " + nameOfDrink + " from drink list");
                 break;
             case 4:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be used the method to add " + nameOfDrink + " to favourite");
                 break;
             case 5:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be used the method to remove " + nameOfDrink + " from favourites");
                 break;
             case 6:
                 printEntryMenu();
-                choice = choiceReader.choiceMaker(6);
-                mainMenuService(choice);
+                choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
                 break;
             case 7:
                 break;
             default:
                 System.out.println("wrong choice");
+                printMenuForDrinksList();
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice);
+                break;
+        }
+    }
+
+    void chooseDrinkListMenuOption(int choice, String drinkName) {
+        ChoiceReader choiceReader = new ChoiceReader();
+        switch (choice) {
+            case 1:
+                System.out.println("There will be used the method to print out " + drinkName + " drink recipe");
+                break;
+            case 2:
+                System.out.println("There will be used the methods to get and print list of available categories," +
+                        " \nchoose or add category and to add " + drinkName + " to drink list based on categories");
+                break;
+            case 3:
+                System.out.println("There will be used the method to remove " + drinkName + " from drink list");
+                break;
+            case 4:
+                System.out.println("There will be used the method to add " + drinkName + " to favourite");
+                break;
+            case 5:
+                System.out.println("There will be used the method to remove " + drinkName + " from favourites");
+                break;
+            case 6:
+                printEntryMenu();
+                choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
+                break;
+            case 7:
+                break;
+            default:
+                System.out.println("wrong choice");
+                printMenuForDrinksList();
+                choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice);
                 break;
         }
     }
@@ -116,29 +165,32 @@ class MenuPrinter {
                 "\nEnter 4 to exit\n");
     }
 
-    void menuForFavouritesService(int choice) {
+    void chooseFavouritesMenuOption(int choice) {
         String nameOfDrink;
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
             case 1:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be method to add" + nameOfDrink + " to favourites");
                 break;
             case 2:
                 System.out.println("Enter drink name");
-                nameOfDrink = choiceReader.choiceMaker();
+                nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be method to remove" + nameOfDrink + " from favourites");
                 break;
             case 3:
                 printEntryMenu();
-                choice = choiceReader.choiceMaker(6);
-                mainMenuService(choice);
+                choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
                 break;
             case 4:
                 break;
             default:
                 System.out.println("wrong choice");
+                printMenuForFavourites();
+                choice = choiceReader.makeMenuChoice();
+                chooseFavouritesMenuOption(choice);
                 break;
         }
     }

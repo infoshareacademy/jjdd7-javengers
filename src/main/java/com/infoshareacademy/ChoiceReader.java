@@ -1,28 +1,29 @@
 package com.infoshareacademy;
 
-import java.util.InputMismatchException;
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.util.Scanner;
 
 class ChoiceReader {
-    private int yourChoice;
-    private String yourChoiceName;
     private Scanner scanner = new Scanner(System.in);
 
+    int makeMenuChoice() {
+        int userChoice = 0;
+        String choiceFromMenu;
+        System.out.println("Provide a number: ");
+        choiceFromMenu = scanner.nextLine();
 
-    int choiceMaker(int numberOfChoices) {
-        try {
-            yourChoice = scanner.nextInt();
-        } catch (InputMismatchException e) {
+        if (NumberUtils.isNumber(choiceFromMenu)) {
+            userChoice = Integer.parseInt(choiceFromMenu);
+        } else {
+            System.out.println("Invalid choice, type one more time");
+            makeMenuChoice();
         }
-        return yourChoice;
+
+        return userChoice;
     }
 
-    String choiceMaker() {
-        try {
-            yourChoiceName = scanner.nextLine();
-        } catch (InputMismatchException e) {
-        }
-        return yourChoiceName;
+    String makeChoice() {
+        return scanner.nextLine();
     }
-
 }
