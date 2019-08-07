@@ -8,11 +8,11 @@ public class FavouriteRecipeSearcher {
     List<RecipeDTO> favouritesRecipeList = new ArrayList<>();
 
 
-    public List<RecipeDTO> addRecipeToFavourites (){
+    public List<RecipeDTO> addRecipeToFavourites(List<RecipeDTO> favouritesRecipeList, String name) {
         return null;
     }
 
-    public List<RecipeDTO> deleteRecipeFromFavourites(){
+    public List<RecipeDTO> deleteRecipeFromFavourites(List<RecipeDTO> favouritesRecipeList, String name) {
         return null;
     }
 
@@ -23,8 +23,5 @@ public class FavouriteRecipeSearcher {
     public List<RecipeDTO> getFavouritesRecipeList() {
         return favouritesRecipeList;
     }
-
-
-
 
 }

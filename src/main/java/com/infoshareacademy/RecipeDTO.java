@@ -9,18 +9,16 @@ public class RecipeDTO {
     private String instruction;
     private String recipeCategory;
     private String glassType;
-    private String measureType;
     private Date modificationDate;
-    Map<String,String> ingredients;
+    Map<String, String> ingredients;
 
 
-    public RecipeDTO(int id, String name, String instruction, String recipeCategory, String glassType, String measureType, Date modificationDate) {
+    public RecipeDTO(int id, String name, String instruction, String recipeCategory, String glassType, Date modificationDate) {
         this.id = id;
         this.name = name;
-        this.instruction=instruction;
-        this.recipeCategory =recipeCategory;
+        this.instruction = instruction;
+        this.recipeCategory = recipeCategory;
         this.glassType = glassType;
-        this.measureType = measureType;
         this.modificationDate = modificationDate;
     }
 
@@ -62,14 +60,6 @@ public class RecipeDTO {
 
     public void setGlassType(String glassType) {
         this.glassType = glassType;
-    }
-
-    public String getMeasureType() {
-        return measureType;
-    }
-
-    public void setMeasureType(String measureType) {
-        this.measureType = measureType;
     }
 
     public Date getModificationDate() {
