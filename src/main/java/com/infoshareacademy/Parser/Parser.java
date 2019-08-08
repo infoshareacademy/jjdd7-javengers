@@ -17,7 +17,7 @@ public class Parser {
 
         //parseFile("/home/andrzejszypulski/javengers/jjdd7-javengers/src/main/resources/drinks.json", ParserTest.class);
 
-        parseFile("/home/andrzej/javengers/jjdd7-javengers/src/main/resources/drinks.json", ArrayParserTest.class);
+        parseFile("/home/andrzejszypulski/javengers/jjdd7-javengers/src/main/resources/drinks.json", ArrayParserTest.class);
 
         //System.out.println(parserTest.getStrDrink());
         System.out.println();

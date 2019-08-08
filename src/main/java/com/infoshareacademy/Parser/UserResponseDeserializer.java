@@ -1,4 +1,5 @@
-/*
+
+
 package com.infoshareacademy.Parser;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -21,7 +22,7 @@ import java.util.regex.Pattern;
 
 import java.util.Map;
 
-public class UsersResponseDeserializer extends JsonDeserializer<UsersResponse> {
+class UsersResponseDeserializer extends JsonDeserializer<UsersResponse> {
 
     private Pattern propertyPattern = Pattern.compile("^part(\\d+)\\.(.+)$");
 
@@ -59,4 +60,5 @@ public class UsersResponseDeserializer extends JsonDeserializer<UsersResponse> {
 
         return response;
     }
-}*/
+}
+

@@ -2,6 +2,7 @@ package com.infoshareacademy.Parser;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Map;
 
@@ -16,7 +17,8 @@ public class ParserTest {
 
     private String strDrink;
 
-    //@JsonDeserialize(using = UsersResponseDeserializer.class)
+    @JsonDeserialize(using = UsersResponseDeserializer.class)
+
     Map <String,String> ingredients;
 
     public String getId() {
