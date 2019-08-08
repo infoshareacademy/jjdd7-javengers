@@ -17,7 +17,7 @@ public class ParserTest {
 
     private String strDrink;
 
-    @JsonDeserialize(using = UsersResponseDeserializer.class)
+    @JsonDeserialize(using = MapperStringStringDeserializer.class)
 
     Map <String,String> ingredients;
 
