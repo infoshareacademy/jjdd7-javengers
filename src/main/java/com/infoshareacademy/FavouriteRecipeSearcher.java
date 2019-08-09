@@ -15,11 +15,11 @@ public class FavouriteRecipeSearcher {
     }
 
     public List<RecipeDTO> addRecipeToFavourites(List<RecipeDTO> favouritesRecipeList, String name) {
-        throw new NotImplementedException("This is method not implemented yet");
+        throw new NotImplementedException("Not implemented yet");
     }
 
     public List<RecipeDTO> deleteRecipeFromFavourites(List<RecipeDTO> favouritesRecipeList, String name) {
-        throw new NotImplementedException("This is method not implemented yet");
+        throw new NotImplementedException("Not implemented yet");
     }
 
     public List<RecipeDTO> getFavouritesRecipeList() {
