@@ -1,4 +1,7 @@
 package com.infoshareacademy;
+
+import org.apache.commons.lang3.NotImplementedException;
+
 import java.util.List;
 
 
@@ -8,33 +11,31 @@ public class RecipeManager {
     List<String> categoriesList;
 
 
-    public String printAllNamesFromRecipe(List<RecipeDTO> recipesList, String name) {
-        return null;
-    }
+    public void printAllNamesFromRecipe(List<RecipeDTO> recipesList, String name) {
+
+        throw new NotImplementedException("Not implemented yet");    }
 
 
     public List<RecipeDTO> findRecipeByName(List<RecipeDTO> recipesList, String name) {
-
-        return null;
+        throw new NotImplementedException("Not implemented yet");
     }
 
-
     public List<RecipeDTO> findRecipeByIngredients(List<RecipeDTO> recipesList, String ingredientName) {
-
-        return null;
+        throw new NotImplementedException("This is method not implemented yet");
     }
 
     public List<RecipeDTO> findRecipeByCategory(List<RecipeDTO> recipesList, String recipeCategory) {
-
-        return null;
+        throw new NotImplementedException("This is method not implemented yet");
     }
+
 
     public List<RecipeDTO> addRecipeToList(List<RecipeDTO> recipesList, String name) {
-        return null;
+        throw new NotImplementedException("This is method not implemented yet");
     }
 
+
     public List<RecipeDTO> deleteRecipeFromList(List<RecipeDTO> recipesList, String name) {
-        return null;
+        throw new NotImplementedException("This is method not implemented yet");
     }
 
 
@@ -54,6 +55,5 @@ public class RecipeManager {
     public List<String> getCategoriesList() {
         return categoriesList;
     }
-
 
 }

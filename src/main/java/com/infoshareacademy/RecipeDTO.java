@@ -13,15 +13,6 @@ public class RecipeDTO {
     Map<String, String> ingredients;
 
 
-    public RecipeDTO(int id, String name, String instruction, String recipeCategory, String glassType, Date modificationDate) {
-        this.id = id;
-        this.name = name;
-        this.instruction = instruction;
-        this.recipeCategory = recipeCategory;
-        this.glassType = glassType;
-        this.modificationDate = modificationDate;
-    }
-
     public int getId() {
         return id;
     }
