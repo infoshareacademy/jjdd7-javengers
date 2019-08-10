@@ -5,53 +5,52 @@ package com.infoshareacademy.Parser;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-class MapperStringStringDeserializer extends JsonDeserializer<MapperStringString> {
 
-    private Pattern propertyIngredientPattern = Pattern.compile("^strIngredient[0-9]+$");
-    private Pattern propertyMeasurePattern = Pattern.compile("^Measure[0-9]+$");
-
+class MapperStringStringDeserializer extends JsonDeserializer<ParserTest> {
 
     @Override
-    public MapperStringString deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        String ingredientName = null;
-        String ingredientMeasure = null;
+    public ParserTest deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+
         Map<String, String> ingredients = new HashMap<>();
-        while (p.currentToken() != null) {
-            switch (p.currentToken()) {
-                case FIELD_NAME:
-                    String ingredient = p.getText();
-                    Matcher matcher = propertyIngredientPattern.matcher(ingredient);
-                    if (matcher.matches()) {
-                        ingredientName = (matcher.group(1));
-                        //ingredientMeasure = matcher.group(2);
-                    }
-                    break;
-                case VALUE_STRING:
-                    if (ingredientName != null && ingredientMeasure != null) {
-                        String ingredientValue = ingredients.computeIfAbsent(ingredientName, k -> new HashMap<>());
-                        ingredientValue.put(ingredientMeasure, p.getValueAsString());
-                        ingredientName = null;
-                        ingredientMeasure = null;
-                    }
-                    break;
-                default:
-                    break;
+
+        ParserTest parserTest = new ParserTest();
+        JsonNode tree = p.readValueAsTree();
+
+        //errors as String array, if any more errors found later --> add to errors
+        String[] errors = {"null"};
+
+        for (int index = 1; index < 16; index++) {
+
+            index = (char) index;
+
+
+            for (String error : errors) {
+
+                String trim = tree.get("strIngredient" + index).asText().trim();
+
+                if (!trim.equals(error) && !trim.isEmpty()){
+
+                    ingredients.put(tree.get("strIngredient" + index).asText().trim(), tree.get("strMeasure" + index).asText().trim());
+
+                }
             }
-            p.nextToken();
         }
 
-        MapperStringString response = new MapperStringString();
-        response.setIngredients(ingredients);
+        //add all needed
+        parserTest.setId(tree.get("idDrink").asText());
+        parserTest.setStrDrink(tree.get("strDrink").asText());
+        parserTest.setIngredients(ingredients);
 
-        return response;
+
+        return parserTest;
     }
 }
 

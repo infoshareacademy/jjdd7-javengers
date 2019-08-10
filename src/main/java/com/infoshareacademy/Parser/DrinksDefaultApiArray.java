@@ -2,10 +2,13 @@ package com.infoshareacademy.Parser;
 
 import java.util.ArrayList;
 
-public class ArrayParserTest {
+public class DrinksDefaultApiArray {
 
+    //class Field
     private ArrayList<ParserTest> drinks;
 
+    //getters & setters
+    //if used for other text file need to change the line below!!
     public ArrayList<ParserTest> getDrinks() {
         return drinks;
     }
@@ -16,8 +19,8 @@ public class ArrayParserTest {
 
     @Override
     public String toString() {
-        return "ParserTest{" +
-                "drinks='" + drinks + '\''  +
+        return "ArrayParserTest{" +
+                "drinks='" + drinks + '\'' +
                 '}';
     }
 }
