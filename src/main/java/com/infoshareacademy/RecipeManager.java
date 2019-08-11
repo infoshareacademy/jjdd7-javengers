@@ -1,15 +1,15 @@
 package com.infoshareacademy;
-
+import Parser.RecipeDTO;
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class RecipeManager {
 
-    List<RecipeDTO> recipesList;
     List<String> categoriesList;
-
+    List<RecipeDTO> recipesList;
 
     public List<RecipeDTO> findRecipeByName(List<RecipeDTO> recipesList, String name) {
         throw new NotImplementedException( "Not implemented yet" );
