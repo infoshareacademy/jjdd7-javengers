@@ -2,19 +2,29 @@ package com.infoshareacademy;
 
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.List;
+import java.util.Set;
 
 
 public class RecipeManager {
 
     private List<RecipeDTO> recipesList;
-    private List<String> categoriesList;
+    private HashSet<String> categoriesList = new HashSet<>();
     private Parser parser = new Parser();
 
     public List<RecipeDTO>  createRecipesList(){
         recipesList = ((DrinksDefaultApiArray) parser.parseFile("drinks.json", DrinksDefaultApiArray.class)).getDrinks();
         return recipesList;
+    }
+
+    public HashSet<String> createCategoriesList(List<RecipeDTO> recipesList){
+        for (RecipeDTO recipe:recipesList
+             ) {
+            categoriesList.add(recipe.getRecipeCategory());
+        }
+        return categoriesList;
     }
 
     public List<RecipeDTO> findRecipeByName(List<RecipeDTO> recipesList, String name) {
@@ -44,7 +54,7 @@ public class RecipeManager {
         this.recipesList = recipesList;
     }
 
-    public void setCategoriesList(List<String> categoriesList) {
+    public void setCategoriesList(HashSet<String> categoriesList) {
         this.categoriesList = categoriesList;
     }
 
@@ -53,7 +63,7 @@ public class RecipeManager {
         return recipesList;
     }
 
-    public List<String> getCategoriesList() {
+    public HashSet<String> getCategoriesList() {
         return categoriesList;
     }
 
