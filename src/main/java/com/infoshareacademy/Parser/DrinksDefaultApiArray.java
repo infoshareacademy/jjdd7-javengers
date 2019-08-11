@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class DrinksDefaultApiArray {
 
     //class Field
-    private ArrayList<ParserTest> drinks;
+    private ArrayList<RecipeDTO> drinks;
 
     //getters & setters
     //if used for other text file need to change the line below!!
-    public ArrayList<ParserTest> getDrinks() {
+    public ArrayList<RecipeDTO> getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(ArrayList<ParserTest> drinks) {
+    public void setDrinks(ArrayList<RecipeDTO> drinks) {
         this.drinks = drinks;
     }
 

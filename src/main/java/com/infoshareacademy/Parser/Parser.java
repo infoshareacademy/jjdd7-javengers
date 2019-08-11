@@ -1,19 +1,17 @@
 package com.infoshareacademy.Parser;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.IOException;
 
 public class Parser {
 
     public static void main(String[] args) {
-        parseFile("/home/andrzej/javengers/jjdd7-javengers/src/main/resources/drinks.json", DrinksDefaultApiArray.class);
+        parseFile("/home/kzarychta/Desktop/java-course/jjdd7-javengers/src/main/resources/drinks.json", DrinksDefaultApiArray.class);
     }
-
 
     public static <T>Object parseFile(String jsonFilePath, Class<T> classToCampare) {
 
