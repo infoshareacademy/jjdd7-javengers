@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import java.util.HashSet;
 import java.util.List;
 
 class MenuManager {
@@ -8,25 +9,26 @@ class MenuManager {
     private FavouriteRecipeSearcher favouriteRecipeSearcher =  new FavouriteRecipeSearcher();
     private ListsPrinter listsPrinter =  new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
-    List<RecipeDTO> recipeDTOList = recipeManager.createRecipesList();
-    List<RecipeDTO>favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
-    List<String>categoryList = recipeManager.getCategoriesList();
+    private List<RecipeDTO> recipeDTOList = recipeManager.createRecipesList();
+    private List<RecipeDTO>favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
+    private HashSet<String> categoryList = recipeManager.createCategoriesList(recipeDTOList);
+
+    // there is no screen clear
 
     void chooseMainMenuOption(int choice) {
         String userChoice;
         switch (choice) {
             case 1:
-                System.out.println("Enter name to find drink: ");
+                System.out.println("\nEnter name to find drink: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be a method which search " + userChoice+ " from drink list by name" +
                         "\nWhat do you want to do with these drink\n");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
-                chooseDrinkListMenuOption(choice,userChoice);
                 break;
             case 2:
                 listsPrinter.printCategory(categoryList);
-                System.out.println("Enter category to find recipes: ");
+                System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be a method which search " + userChoice + " from drink list by category" +
                         "\nWhat do you want to do with these drink\n");
@@ -35,7 +37,7 @@ class MenuManager {
                 chooseDrinkListMenuOption(choice,userChoice);
                 break;
             case 3:
-                System.out.println("Enter ingredient to find: ");
+                System.out.println("\nEnter ingredient to find: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be a method which search" + userChoice + "from drink list by ingredient");
                 menuPrinter.printMenuForDrinksList();
@@ -50,7 +52,7 @@ class MenuManager {
                         " \nchoose or add category and to add " + userChoice + " to drink list based on categories");
                 break;
             case 5:
-                System.out.println("Enter drink name to remove from recipe list");
+                System.out.println("\nEnter drink name to remove from recipe list");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be used the method to remove " + userChoice + " from drink list");
                 break;
@@ -69,7 +71,7 @@ class MenuManager {
             case 8:
                 break;
             default:
-                System.out.println("wrong choice, type one more time");
+                System.out.println("\nwrong choice, type one more time");
                 menuPrinter.printEntryMenu();
                 choice = choiceReader.makeMenuChoice();
                 chooseMainMenuOption(choice);
@@ -83,12 +85,13 @@ class MenuManager {
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
             case 1:
-                System.out.println("Enter drink name to remove from drink list");
+                System.out.println("\nEnter drink name to remove from drink list");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be used the method to remove " + userChoice + " from drink list");
+
                 break;
             case 2:
-                System.out.println("Enter drink name to add to favourites");
+                System.out.println("\nEnter drink name to add to favourites");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("There will be used the method to add " + userChoice + " to favourite");
                 break;
@@ -100,7 +103,7 @@ class MenuManager {
             case 4:
                 break;
             default:
-                System.out.println("wrong choice");
+                System.out.println("\nwrong choice");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
                 chooseDrinkListMenuOption(choice);
@@ -125,7 +128,7 @@ class MenuManager {
             case 4:
                 break;
             default:
-                System.out.println("wrong choice");
+                System.out.println("\nwrong choice");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
                 chooseDrinkListMenuOption(choice);
@@ -138,12 +141,12 @@ class MenuManager {
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
             case 1:
-                System.out.println("Enter drink name");
+                System.out.println("\nEnter drink name");
                 nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be method to add" + nameOfDrink + " to favourites");
                 break;
             case 2:
-                System.out.println("Enter drink name");
+                System.out.println("\nEnter drink name");
                 nameOfDrink = choiceReader.makeChoice();
                 System.out.println("There will be method to remove" + nameOfDrink + " from favourites");
                 break;
@@ -155,7 +158,7 @@ class MenuManager {
             case 4:
                 break;
             default:
-                System.out.println("wrong choice");
+                System.out.println("\nwrong choice");
                 menuPrinter.printMenuForFavourites();
                 choice = choiceReader.makeMenuChoice();
                 chooseFavouritesMenuOption(choice);

@@ -1,29 +1,38 @@
 package com.infoshareacademy;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.*;
 
 public class ListsPrinter {
 
-    void printCategory(List<String> categoryList){
-        Iterator<String> categoriesIterator = categoryList.iterator();
-        while(categoriesIterator.hasNext()) {
-            System.out.println(categoriesIterator.next());
+    void printCategory(HashSet<String> recipeList){
+        Iterator iterator = recipeList.iterator();
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORIES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+        while (iterator.hasNext()) {
+            System.out.println("\t\t\t\t\t\t\t" + iterator.next());
         }
     }
 
     void printAllRecipes(List<RecipeDTO> recipeList){
         for (RecipeDTO recipe:recipeList
         ) {
-            System.out.println(recipe.getName());
-            System.out.println(recipe.getInstruction());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t" + recipe.getName() +"\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORY <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t" + recipe.getRecipeCategory() +"\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> RECIPE - INSTRUCTION <<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            String instruction = recipe.getInstruction();
+            String wrappedInstruction = WordUtils.wrap(instruction,77);
+            System.out.println(wrappedInstruction);
+            System.out.println();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> INGREDIENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             Map<String,String> ingredients = recipe.getIngredients();
             Set<Map.Entry<String,String>> hashSet=ingredients.entrySet();
             for(Map.Entry entry:hashSet ) {
                 System.out.println(entry.getKey()+ "\t\t"+ entry.getValue());
             }
+            System.out.println();
         }
     }
 }
