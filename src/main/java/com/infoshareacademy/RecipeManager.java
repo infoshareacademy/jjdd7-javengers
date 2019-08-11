@@ -3,13 +3,19 @@ package com.infoshareacademy;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
+import java.util.List;
 
 
 public class RecipeManager {
 
-    List<RecipeDTO> recipesList;
-    List<String> categoriesList;
+    private List<RecipeDTO> recipesList;
+    private List<String> categoriesList;
+    private Parser parser = new Parser();
 
+    public List<RecipeDTO>  createRecipesList(){
+        recipesList = ((DrinksDefaultApiArray) parser.parseFile("drinks.json", DrinksDefaultApiArray.class)).getDrinks();
+        return recipesList;
+    }
 
     public List<RecipeDTO> findRecipeByName(List<RecipeDTO> recipesList, String name) {
         throw new NotImplementedException( "Not implemented yet" );

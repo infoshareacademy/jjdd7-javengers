@@ -1,4 +1,4 @@
-package com.infoshareacademy.Parser;
+package com.infoshareacademy;
 
 import java.util.ArrayList;
 

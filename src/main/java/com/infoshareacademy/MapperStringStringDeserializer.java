@@ -1,6 +1,6 @@
 
 
-package com.infoshareacademy.Parser;
+package com.infoshareacademy;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

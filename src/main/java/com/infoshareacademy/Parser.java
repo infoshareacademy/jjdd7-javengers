@@ -1,4 +1,4 @@
-package com.infoshareacademy.Parser;
+package com.infoshareacademy;
 
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Parser {
@@ -24,6 +26,7 @@ public class Parser {
         try {
 
             outputObject = mapper.readValue(new File(jsonFilePath), classToCampare);
+      //      outputObject = mapper.readValue(new File(jsonFilePath), mapper.getTypeFactory().constructCollectionType(ArrayList.class, RecipeDTO.class));
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
