@@ -10,9 +10,6 @@ public class FavouriteRecipeSearcher {
 
     List<RecipeDTO> favouritesRecipeList = new ArrayList<>();
 
-    public FavouriteRecipeSearcher(List<RecipeDTO> favouritesRecipeList) {
-        this.favouritesRecipeList = favouritesRecipeList;
-    }
 
     public List<RecipeDTO> addRecipeToFavourites(List<RecipeDTO> favouritesRecipeList, String name) {
         throw new NotImplementedException("Not implemented yet");
