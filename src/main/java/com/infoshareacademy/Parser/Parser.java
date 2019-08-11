@@ -10,11 +10,10 @@ import java.io.IOException;
 public class Parser {
 
     public static void main(String[] args) {
-        parseFile("/home/kzarychta/Desktop/java-course/jjdd7-javengers/src/main/resources/drinks.json", DrinksDefaultApiArray.class);
+        parseFile("/home/andrzej/javengers/jjdd7-javengers/src/main/resources/drinks.json", DrinksDefaultApiArray.class);
     }
 
     public static <T>Object parseFile(String jsonFilePath, Class<T> classToCampare) {
-
 
         T outputObject = null;
 
@@ -31,6 +30,4 @@ public class Parser {
         System.out.println(outputObject);
     return outputObject;
     }
-
-
 }

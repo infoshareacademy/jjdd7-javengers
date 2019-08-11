@@ -33,7 +33,6 @@ public class RecipeDTO {
     //had to create a new map object to fill it with @JsonDeserialize
     private Map<String, String> ingredients = new HashMap<>();
 
-
     /// here goes each setter and getter
 
     public int getId() {

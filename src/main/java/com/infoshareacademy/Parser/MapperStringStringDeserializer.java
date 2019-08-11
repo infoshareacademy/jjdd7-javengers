@@ -29,7 +29,6 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
 
             index = (char) index;
 
-
             for (String error : errors) {
 
                 String trim = tree.get("strIngredient" + index).asText().trim();
@@ -37,7 +36,6 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
                 if (!trim.equals(error) && !trim.isEmpty()){
 
                     ingredients.put(tree.get("strIngredient" + index).asText().trim(), tree.get("strMeasure" + index).asText().trim());
-
                 }
             }
         }
@@ -50,10 +48,6 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
         recipeDTO.setGlassType(tree.get("strGlass").asText());
         recipeDTO.setModificationDate(tree.get("dateModified").asText());
         recipeDTO.setIngredients(ingredients);
-
-
-
-
         return recipeDTO;
     }
 }
