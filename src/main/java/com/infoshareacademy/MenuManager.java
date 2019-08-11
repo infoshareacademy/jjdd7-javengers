@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import java.io.IOException;
 import java.util.List;
 
 class MenuManager {
@@ -12,7 +13,7 @@ class MenuManager {
     List<RecipeDTO>favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
     List<String>categoryList = recipeManager.getCategoriesList();
 
-    void chooseMainMenuOption(int choice) {
+    void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
         switch (choice) {
             case 1:
@@ -78,7 +79,7 @@ class MenuManager {
     }
 
 
-    private void chooseDrinkListMenuOption(int choice) {
+    private void chooseDrinkListMenuOption(int choice) throws IOException {
         String userChoice;
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
@@ -108,7 +109,7 @@ class MenuManager {
         }
     }
 
-    private void chooseDrinkListMenuOption(int choice, String userChoice) {
+    private void chooseDrinkListMenuOption(int choice, String userChoice) throws IOException {
         switch (choice) {
             case 1:
                 System.out.println("There will be used the method to remove " + userChoice + " from drink list");
@@ -133,7 +134,7 @@ class MenuManager {
         }
     }
 
-    private void chooseFavouritesMenuOption(int choice) {
+    private void chooseFavouritesMenuOption(int choice) throws IOException {
         String nameOfDrink;
         ChoiceReader choiceReader = new ChoiceReader();
         switch (choice) {
