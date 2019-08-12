@@ -161,7 +161,6 @@ class MenuManager {
         menuPrinter.printMenuForDrinksList();
         int choice = choiceReader.makeMenuChoice();
         chooseDrinkListMenuOption(choice, userChoice);
-        ;
     }
 
     private void printMenuForDrinkService() throws IOException {
