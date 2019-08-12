@@ -7,16 +7,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.HashMap;
 import java.util.Map;
 
-//substract needed "fields" from @JsonIgnoreProperties below:
-@JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR", "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic",  "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS", "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
+@JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR", "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic", "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS", "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = MapperStringStringDeserializer.class)
 
-// classes for parser need to be pojo classes --> add geter and setter for each field!!
 public class RecipeDTO {
 
-    /// here goes each needed class field
-
-    //if name of fields in class differs from the one in the file to be parsed
     @JsonProperty("idDrink")
     private int id;
     @JsonProperty("strDrink")
@@ -30,10 +25,7 @@ public class RecipeDTO {
     @JsonProperty("dateModified")
     private String modificationDate;
 
-    //had to create a new map object to fill it with @JsonDeserialize
     private Map<String, String> ingredients = new HashMap<>();
-
-    /// here goes each setter and getter
 
     public int getId() {
         return id;
@@ -90,8 +82,6 @@ public class RecipeDTO {
     public void setIngredients(Map<String, String> ingredients) {
         this.ingredients = ingredients;
     }
-
-    //override to string with alt+x after class is ready
 
     @Override
     public String toString() {

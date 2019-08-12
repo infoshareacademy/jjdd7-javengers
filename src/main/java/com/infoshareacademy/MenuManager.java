@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class MenuManager {
     private RecipeManager recipeManager = new RecipeManager();
@@ -12,7 +13,7 @@ class MenuManager {
     private MenuPrinter menuPrinter = new MenuPrinter();
     private List<RecipeDTO> recipeDTOList = recipeManager.createRecipesList();
     private List<RecipeDTO>favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
-    private HashSet<String> categoryList = recipeManager.createCategoriesList(recipeDTOList);
+    private Set<String> categoryList = recipeManager.createCategoriesList(recipeDTOList);
 
     // there is no screen clear
 
@@ -26,6 +27,7 @@ class MenuManager {
                         "\nWhat do you want to do with these drink\n");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
+                chooseDrinkListMenuOption(choice,userChoice);
                 break;
             case 2:
                 listsPrinter.printCategory(categoryList);
@@ -117,7 +119,6 @@ class MenuManager {
                 System.out.println("There will be used the method to remove " + userChoice + " from drink list");
                 break;
             case 2:
-                userChoice = choiceReader.makeChoice();
                 System.out.println("There will be used the method to add " + userChoice + " to favourite");
                 break;
             case 3:

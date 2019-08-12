@@ -4,14 +4,12 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.List;
 import java.util.Set;
-
 
 public class RecipeManager {
 
     private List<RecipeDTO> recipesList;
-    private HashSet<String> categoriesList = new HashSet<>();
+    private Set<String> categoriesList = new HashSet<>();
     private Parser parser = new Parser();
 
     public List<RecipeDTO> createRecipesList() {
@@ -19,7 +17,7 @@ public class RecipeManager {
         return recipesList;
     }
 
-    public HashSet<String> createCategoriesList(List<RecipeDTO> recipesList) {
+    public Set<String> createCategoriesList(List<RecipeDTO> recipesList) {
         for (RecipeDTO recipe : recipesList) {
             categoriesList.add(recipe.getRecipeCategory());
         }
@@ -38,16 +36,13 @@ public class RecipeManager {
         throw new NotImplementedException("Not implemented yet");
     }
 
-
     public List<RecipeDTO> addRecipeToList(List<RecipeDTO> recipesList, RecipeDTO recipeDTO) {
         throw new NotImplementedException("Not implemented yet");
     }
 
-
     public List<RecipeDTO> deleteRecipeFromList(List<RecipeDTO> recipesList, String name) {
         throw new NotImplementedException("Not implemented yet");
     }
-
 
     public void setRecipesList(List<RecipeDTO> recipesList) {
         this.recipesList = recipesList;
@@ -57,12 +52,11 @@ public class RecipeManager {
         this.categoriesList = categoriesList;
     }
 
-
     public List<RecipeDTO> getRecipesList() {
         return recipesList;
     }
 
-    public HashSet<String> getCategoriesList() {
+    public Set<String> getCategoriesList() {
         return categoriesList;
     }
 

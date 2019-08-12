@@ -4,11 +4,8 @@ import java.util.ArrayList;
 
 public class DrinksDefaultApiArray {
 
-    //class Field
     private ArrayList<RecipeDTO> drinks;
 
-    //getters & setters
-    //if used for other text file need to change the line below!!
     public ArrayList<RecipeDTO> getDrinks() {
         return drinks;
     }
