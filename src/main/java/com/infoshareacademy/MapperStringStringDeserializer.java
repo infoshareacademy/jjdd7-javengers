@@ -1,6 +1,6 @@
 
 
-package com.infoshareacademy.Parser;
+package com.infoshareacademy;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -22,7 +22,6 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
         RecipeDTO recipeDTO = new RecipeDTO();
         JsonNode tree = p.readValueAsTree();
 
-        //errors as String array, if any more errors found later --> add to errors
         String[] errors = {"null"};
 
         for (int index = 1; index < 16; index++) {
@@ -33,14 +32,13 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
 
                 String trim = tree.get("strIngredient" + index).asText().trim();
 
-                if (!trim.equals(error) && !trim.isEmpty()){
+                if (!trim.equals(error) && !trim.isEmpty()) {
 
                     ingredients.put(tree.get("strIngredient" + index).asText().trim(), tree.get("strMeasure" + index).asText().trim());
                 }
             }
         }
 
-        //add all needed
         recipeDTO.setId(tree.get("idDrink").asInt());
         recipeDTO.setName(tree.get("strDrink").asText());
         recipeDTO.setInstruction(tree.get("strInstructions").asText());

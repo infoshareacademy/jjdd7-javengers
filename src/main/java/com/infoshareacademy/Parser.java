@@ -1,5 +1,4 @@
-package com.infoshareacademy.Parser;
-
+package com.infoshareacademy;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -8,14 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
-
 public class Parser {
 
     public static void main(String[] args) {
         parseFile("drinks.json", DrinksDefaultApiArray.class);
     }
 
-    public static <T>Object parseFile(String jsonFilePath, Class<T> classToCampare) {
+    public static <T> Object parseFile(String jsonFilePath, Class<T> classToCampare) {
 
         T outputObject = null;
 
@@ -31,10 +29,7 @@ public class Parser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    return outputObject;
+        return outputObject;
     }
-
-
 }
 
