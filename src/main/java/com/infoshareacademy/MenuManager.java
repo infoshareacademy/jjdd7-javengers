@@ -31,8 +31,7 @@ class MenuManager {
                 listsPrinter.printCategory(categoryList);
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("There will be a method which search " + userChoice + " from drink list by category" +
-                        "\nWhat do you want to do with these drink\n");
+                System.out.println("There will be a method which will print out the list of all drinks from " + userChoice + " category\n");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
                 chooseDrinkListMenuOption(choice,userChoice);
@@ -40,22 +39,22 @@ class MenuManager {
             case 3:
                 System.out.println("\nEnter ingredient to find: ");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("There will be a method which search" + userChoice + "from drink list by ingredient");
+                System.out.println("There will be a method which will print out all drinks that contain " + userChoice + " ingredient");
                 menuPrinter.printMenuForDrinksList();
                 choice = choiceReader.makeMenuChoice();
                 chooseDrinkListMenuOption(choice,userChoice);
                 break;
             case 4:
-                System.out.println("There are available categories, choose category or enter a new category");
+                System.out.println("Choose available category or enter a new category, \nto which your new recipe will be added");
                 listsPrinter.printCategory(categoryList);
                 userChoice = choiceReader.makeChoice();
-                System.out.println("There will be used the methods to get and print list of available categories," +
+                System.out.println("There will be methods used to get and print list of available categories," +
                         " \nchoose or add category and to add " + userChoice + " to drink list based on categories");
                 break;
             case 5:
                 System.out.println("\nEnter drink name to remove from recipe list");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("There will be used the method to remove " + userChoice + " from drink list");
+                System.out.println("There will be method to remove " + userChoice + " from drink list");
                 break;
             case 6:
                 listsPrinter.printAllRecipes(recipeDTOList);
@@ -72,7 +71,7 @@ class MenuManager {
             case 8:
                 break;
             default:
-                System.out.println("\nwrong choice, type one more time");
+                System.out.println("\n wrong choice, type one more time");
                 menuPrinter.printEntryMenu();
                 choice = choiceReader.makeMenuChoice();
                 chooseMainMenuOption(choice);

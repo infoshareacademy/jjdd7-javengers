@@ -14,39 +14,38 @@ public class RecipeManager {
     private HashSet<String> categoriesList = new HashSet<>();
     private Parser parser = new Parser();
 
-    public List<RecipeDTO>  createRecipesList(){
+    public List<RecipeDTO> createRecipesList() {
         recipesList = ((DrinksDefaultApiArray) parser.parseFile("drinks.json", DrinksDefaultApiArray.class)).getDrinks();
         return recipesList;
     }
 
-    public HashSet<String> createCategoriesList(List<RecipeDTO> recipesList){
-        for (RecipeDTO recipe:recipesList
-             ) {
+    public HashSet<String> createCategoriesList(List<RecipeDTO> recipesList) {
+        for (RecipeDTO recipe : recipesList) {
             categoriesList.add(recipe.getRecipeCategory());
         }
         return categoriesList;
     }
 
     public List<RecipeDTO> findRecipeByName(List<RecipeDTO> recipesList, String name) {
-        throw new NotImplementedException( "Not implemented yet" );
+        throw new NotImplementedException("Not implemented yet");
     }
 
     public List<RecipeDTO> findRecipeByIngredients(List<RecipeDTO> recipesList, String ingredientName) {
-        throw new NotImplementedException( "Not implemented yet" );
+        throw new NotImplementedException("Not implemented yet");
     }
 
     public List<RecipeDTO> findRecipeByCategory(List<RecipeDTO> recipesList, String recipeCategory) {
-        throw new NotImplementedException( "Not implemented yet" );
+        throw new NotImplementedException("Not implemented yet");
     }
 
 
     public List<RecipeDTO> addRecipeToList(List<RecipeDTO> recipesList, RecipeDTO recipeDTO) {
-        throw new NotImplementedException( "Not implemented yet" );
+        throw new NotImplementedException("Not implemented yet");
     }
 
 
     public List<RecipeDTO> deleteRecipeFromList(List<RecipeDTO> recipesList, String name) {
-        throw new NotImplementedException( "Not implemented yet" );
+        throw new NotImplementedException("Not implemented yet");
     }
 
 
