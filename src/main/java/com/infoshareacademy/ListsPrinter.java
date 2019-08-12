@@ -10,7 +10,7 @@ public class ListsPrinter {
         Iterator iterator = recipeList.iterator();
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORIES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
         while (iterator.hasNext()) {
-            System.out.println("\t\t\t\t\t" + iterator.next());
+            System.out.println("\t\t\t\t" + iterator.next());
         }
     }
 
