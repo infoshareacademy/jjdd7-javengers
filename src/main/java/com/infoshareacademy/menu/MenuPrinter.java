@@ -1,11 +1,11 @@
-package com.infoshareacademy;
+package com.infoshareacademy.menu;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class MenuPrinter {
 
-    void printEntryMenu() throws IOException {
+    public void printEntryMenu() throws IOException {
         System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
         System.out.println("================ MENU ================" +
                 "\nEnter 1 to search drink by name" +

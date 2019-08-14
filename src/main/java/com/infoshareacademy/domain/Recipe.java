@@ -1,16 +1,17 @@
-package com.infoshareacademy;
+package com.infoshareacademy.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.infoshareacademy.RecipeListDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR", "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic", "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS", "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
-@JsonDeserialize(using = MapperStringStringDeserializer.class)
+@JsonDeserialize(using = RecipeListDeserializer.class)
 
-public class RecipeDTO {
+public class Recipe {
 
     @JsonProperty("idDrink")
     private int id;
@@ -85,7 +86,7 @@ public class RecipeDTO {
 
     @Override
     public String toString() {
-        return "RecipeDTO{" +
+        return "Recipe{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", instruction='" + instruction + '\'' +
