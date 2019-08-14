@@ -13,7 +13,7 @@ class ChoiceReader {
         System.out.println("Provide a number: ");
         choiceFromMenu = scanner.nextLine();
 
-        if (NumberUtils.isNumber(choiceFromMenu)) {
+        if (NumberUtils.isCreatable(choiceFromMenu)) {
             userChoice = Integer.parseInt(choiceFromMenu);
         } else {
             System.out.println("Invalid choice, type one more time");
