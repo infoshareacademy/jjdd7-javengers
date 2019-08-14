@@ -1,7 +1,8 @@
 package com.infoshareacademy.menu;
 
 import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.text.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 
 import java.util.Iterator;
 import java.util.List;

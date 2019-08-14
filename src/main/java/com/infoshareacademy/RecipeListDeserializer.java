@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MapperStringStringDeserializer extends JsonDeserializer<Recipe> {
+public class RecipeListDeserializer extends JsonDeserializer<Recipe> {
 
     @Override
     public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

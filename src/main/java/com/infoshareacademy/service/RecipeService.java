@@ -1,7 +1,6 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.DrinksDefaultApiArray;
-import com.infoshareacademy.Parser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
@@ -16,8 +15,9 @@ public class RecipeService {
     private Set<String> categoriesList = recipeRepository.getCategoriesList();
 
     public List<Recipe> createRecipesList() {
-        Parser parser = new Parser();
-        recipesList = ((DrinksDefaultApiArray) parser.parseFile("drinks.json", DrinksDefaultApiArray.class)).getDrinks();
+        DataParseService parser = new DataParseService();
+        recipesList = (List<Recipe>) parser.parseFile("drinks.json", new TypeReference<List<Recipe>>() {
+        },"drinks");
         return recipesList;
     }
 
