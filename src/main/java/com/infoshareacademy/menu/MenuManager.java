@@ -1,20 +1,24 @@
-package com.infoshareacademy;
+package com.infoshareacademy.menu;
+
+import com.infoshareacademy.service.FavouriteService;
+import com.infoshareacademy.service.RecipeService;
+import com.infoshareacademy.domain.Recipe;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-class MenuManager {
-    private RecipeManager recipeManager = new RecipeManager();
+public class MenuManager {
+    private RecipeService recipeManager = new RecipeService();
     private ChoiceReader choiceReader = new ChoiceReader();
-    private FavouriteRecipeSearcher favouriteRecipeSearcher = new FavouriteRecipeSearcher();
+    private FavouriteService favouriteRecipeSearcher = new FavouriteService();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
-    private List<RecipeDTO> recipeDTOList = recipeManager.createRecipesList();
-    private List<RecipeDTO> favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
-    private Set<String> categoryList = recipeManager.createCategoriesList(recipeDTOList);
+    private List<Recipe> recipeList = recipeManager.createRecipesList();
+    private List<Recipe> favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
+    private Set<String> categoryList = recipeManager.createCategoriesList(recipeList);
 
-    void chooseMainMenuOption(int choice) throws IOException {
+    public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
         switch (choice) {
             case 1:
@@ -54,7 +58,7 @@ class MenuManager {
                 printMainMenuService();
                 break;
             case 6:
-                listsPrinter.printAllRecipes(recipeDTOList);
+                listsPrinter.printAllRecipes(recipeList);
                 printMenuForDrinkService();
                 break;
             case 7:

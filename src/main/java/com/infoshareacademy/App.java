@@ -1,5 +1,9 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.menu.ChoiceReader;
+import com.infoshareacademy.menu.MenuManager;
+import com.infoshareacademy.menu.MenuPrinter;
+
 import java.io.IOException;
 
 public class App {

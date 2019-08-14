@@ -6,20 +6,21 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.infoshareacademy.domain.Recipe;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 
-class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
+public class MapperStringStringDeserializer extends JsonDeserializer<Recipe> {
 
     @Override
-    public RecipeDTO deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
         Map<String, String> ingredients = new HashMap<>();
 
-        RecipeDTO recipeDTO = new RecipeDTO();
+        Recipe recipe = new Recipe();
         JsonNode tree = p.readValueAsTree();
 
         String[] errors = {"null"};
@@ -39,14 +40,14 @@ class MapperStringStringDeserializer extends JsonDeserializer<RecipeDTO> {
             }
         }
 
-        recipeDTO.setId(tree.get("idDrink").asInt());
-        recipeDTO.setName(tree.get("strDrink").asText());
-        recipeDTO.setInstruction(tree.get("strInstructions").asText());
-        recipeDTO.setRecipeCategory(tree.get("strCategory").asText());
-        recipeDTO.setGlassType(tree.get("strGlass").asText());
-        recipeDTO.setModificationDate(tree.get("dateModified").asText());
-        recipeDTO.setIngredients(ingredients);
-        return recipeDTO;
+        recipe.setId(tree.get("idDrink").asInt());
+        recipe.setName(tree.get("strDrink").asText());
+        recipe.setInstruction(tree.get("strInstructions").asText());
+        recipe.setRecipeCategory(tree.get("strCategory").asText());
+        recipe.setGlassType(tree.get("strGlass").asText());
+        recipe.setModificationDate(tree.get("dateModified").asText());
+        recipe.setIngredients(ingredients);
+        return recipe;
     }
 }
 

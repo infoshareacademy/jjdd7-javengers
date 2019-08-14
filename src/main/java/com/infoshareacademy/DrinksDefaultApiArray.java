@@ -1,16 +1,18 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.domain.Recipe;
+
 import java.util.ArrayList;
 
 public class DrinksDefaultApiArray {
 
-    private ArrayList<RecipeDTO> drinks;
+    private ArrayList<Recipe> drinks;
 
-    public ArrayList<RecipeDTO> getDrinks() {
+    public ArrayList<Recipe> getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(ArrayList<RecipeDTO> drinks) {
+    public void setDrinks(ArrayList<Recipe> drinks) {
         this.drinks = drinks;
     }
 
