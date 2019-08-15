@@ -5,8 +5,10 @@ import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class RecipeService {
 
@@ -37,7 +39,14 @@ public class RecipeService {
     }
 
     public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, String recipeCategory) {
-        throw new NotImplementedException("Not implemented yet");
+        //throw new NotImplementedException("Not implemented yet");
+
+            return
+                recipesList.stream()
+                .filter(r -> r.getRecipeCategory().equals(recipeCategory)
+                ).collect(Collectors.toList());
+
+
     }
 
     public List<Recipe> addRecipeToList(List<Recipe> recipesList, Recipe recipe) {

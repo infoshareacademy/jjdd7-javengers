@@ -33,9 +33,10 @@ public class MenuManager {
                 listsPrinter.printCategory(categoryList);
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be a method which will print out the list of all drinks from " + userChoice + " category\n");
+                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeList,userChoice));
+                //System.out.println("\nThere will be a method which will print out the list of all drinks from " + userChoice + " category\n");
                 printMenuForDrinkService(userChoice);
-                printMainMenuService();
+                //printMainMenuService();
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");

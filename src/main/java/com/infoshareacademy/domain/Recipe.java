@@ -52,9 +52,7 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public String getRecipeCategory() {
-        return recipeCategory;
-    }
+    public String getRecipeCategory() { return recipeCategory; }
 
     public void setRecipeCategory(String recipeCategory) {
         this.recipeCategory = recipeCategory;
