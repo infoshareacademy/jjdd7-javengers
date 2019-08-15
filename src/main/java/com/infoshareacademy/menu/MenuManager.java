@@ -33,25 +33,12 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 2:
-                boolean contains=false;
-                do {
-                    listsPrinter.printCategory(categoryList);
-                    System.out.println("\nEnter category to find recipes (or many categories divided by a colon ','): ");
-                    userChoice = choiceReader.makeChoice();
-                    userChoiceArrayList = Arrays.asList(userChoice.split(","));
-                    for(String userSingleChoice : userChoiceArrayList){
-                        if(categoryList.contains(userSingleChoice)){
-                            contains = true;
-                        }
-                    }
-                    if (!contains){
-                        System.out.println("No such category / categories");
-                    }
-                } while(!contains);
+                listsPrinter.printCategory(categoryList);
+                userChoiceArrayList = choiceReader.userListMenuChoice(categoryList, "category");
                 for (String userSingleChoice: userChoiceArrayList){
                     listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeList, userSingleChoice));
                 }
-                printMenuForDrinkService(userChoice);
+                printMenuForDrinkService(userChoiceArrayList.toString());
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");
