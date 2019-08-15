@@ -40,11 +40,10 @@ public class RecipeService {
 
     public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, String recipeCategory) {
         //throw new NotImplementedException("Not implemented yet");
-
             return
-                recipesList.stream()
-                .filter(r -> r.getRecipeCategory().equals(recipeCategory)
-                ).collect(Collectors.toList());
+                    recipesList.stream()
+                    .filter(r -> r.getRecipeCategory().equals(recipeCategory.trim()))
+                            .collect(Collectors.toList());
 
 
     }

@@ -5,6 +5,8 @@ import com.infoshareacademy.service.RecipeService;
 import com.infoshareacademy.domain.Recipe;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ public class MenuManager {
 
     public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
+        List<String> userChoiceArrayList = new ArrayList<>();
         switch (choice) {
             case 1:
                 System.out.println("\nEnter name to find drink: ");
@@ -30,13 +33,25 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 2:
-                listsPrinter.printCategory(categoryList);
-                System.out.println("\nEnter category to find recipes: ");
-                userChoice = choiceReader.makeChoice();
-                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeList,userChoice));
-                //System.out.println("\nThere will be a method which will print out the list of all drinks from " + userChoice + " category\n");
+                boolean contains=false;
+                do {
+                    listsPrinter.printCategory(categoryList);
+                    System.out.println("\nEnter category to find recipes (or many categories divided by a colon ','): ");
+                    userChoice = choiceReader.makeChoice();
+                    userChoiceArrayList = Arrays.asList(userChoice.split(","));
+                    for(String userSingleChoice : userChoiceArrayList){
+                        if(categoryList.contains(userSingleChoice)){
+                            contains = true;
+                        }
+                    }
+                    if (!contains){
+                        System.out.println("No such category / categories");
+                    }
+                } while(!contains);
+                for (String userSingleChoice: userChoiceArrayList){
+                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeList, userSingleChoice));
+                }
                 printMenuForDrinkService(userChoice);
-                //printMainMenuService();
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");
