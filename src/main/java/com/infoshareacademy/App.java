@@ -1,27 +1,19 @@
 package com.infoshareacademy;
 
-import Parser.DrinksDefaultApiArray;
-import Parser.Parser;
+import com.infoshareacademy.menu.ChoiceReader;
+import com.infoshareacademy.menu.MenuManager;
+import com.infoshareacademy.menu.MenuPrinter;
 
-import java.lang.reflect.Array;
+import java.io.IOException;
 
 public class App {
-    public static void main(String[] args) {
-
-
-        System.out.println( "\t\tWelcome to Drinkopedia!\t\t\n" );
-        MenuService menuService = new MenuService();
+    public static void main(String[] args) throws IOException {
+        System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
+        MenuManager menuManager = new MenuManager();
         ChoiceReader choiceReader = new ChoiceReader();
-        menuService.printEntryMenu();
+        MenuPrinter menuPrinter = new MenuPrinter();
+        menuPrinter.printEntryMenu();
         int choice = choiceReader.makeMenuChoice();
-        menuService.chooseMainMenuOption( choice );
-
-
+        menuManager.chooseMainMenuOption(choice);
     }
-
-
-
 }
-
-
-
