@@ -1,8 +1,6 @@
 package com.infoshareacademy.menu;
 
-
 import com.infoshareacademy.service.RecipeService;
-
 import java.io.IOException;
 
 
@@ -11,6 +9,7 @@ public class MenuManager {
     private ChoiceReader choiceReader = new ChoiceReader();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
+
 
     public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
@@ -37,6 +36,7 @@ public class MenuManager {
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out all drinks that contain "
                         + userChoice + " ingredient\n");
+
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
@@ -47,6 +47,7 @@ public class MenuManager {
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be method used to  add" + userChoice
                         + " to drink list based on categories\n");
+
                 printMainMenuService();
                 break;
             case 5:

@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class DataParseService {
 
+
     public static <T> Object parseFile(String jsonFilePath, TypeReference<T> classToCampare, String upperNodeName) {
 
         T outputObject = null;
