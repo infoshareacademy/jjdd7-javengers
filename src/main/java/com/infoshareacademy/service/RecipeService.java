@@ -86,11 +86,4 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    /*public List<Recipe> getRecipesList() {
-        return RecipeRepository.getRecipesList();
-    }
-
-    public List<Recipe> getFavouriteRecipesList() {
-        return favouriteRecipesList;
-    }*/
 }
