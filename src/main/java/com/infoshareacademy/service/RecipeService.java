@@ -6,7 +6,6 @@ import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RecipeService {
 
@@ -59,6 +58,7 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
+
     public void addRecipeToList(Recipe recipe) {
         if (!RECIPES_LIST.contains(recipe)) {
             RECIPES_LIST.add(recipe);
@@ -86,11 +86,4 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    /*public List<Recipe> getRecipesList() {
-        return RecipeRepository.getRecipesList();
-    }
-
-    public List<Recipe> getFavouriteRecipesList() {
-        return favouriteRecipesList;
-    }*/
 }
