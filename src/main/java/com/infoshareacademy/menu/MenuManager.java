@@ -1,19 +1,16 @@
 package com.infoshareacademy.menu;
 
-import com.infoshareacademy.domain.Recipe;
+
 import com.infoshareacademy.service.RecipeService;
 
 import java.io.IOException;
-import java.util.List;
+
 
 public class MenuManager {
     private RecipeService recipeManager = new RecipeService();
     private ChoiceReader choiceReader = new ChoiceReader();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
-    private List<Recipe> recipeList = recipeManager.loadRecipesList();
-    private List<Recipe> favouritesList = recipeManager.loadFavouritesList();
-    private List<String> categoryList = recipeManager.loadCategoriesList();
 
     public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
@@ -27,7 +24,7 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 2:
-                listsPrinter.printCategory(categoryList);
+                listsPrinter.printCategory(recipeManager.loadCategoriesList());
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out the list of all drinks from "
@@ -44,7 +41,7 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 4:
-                listsPrinter.printCategory(categoryList);
+                listsPrinter.printCategory(recipeManager.loadCategoriesList());
                 System.out.println("\nChoose available category or enter a new category, \n" +
                         "to which your new recipe will be added\n");
                 userChoice = choiceReader.makeChoice();
@@ -59,11 +56,11 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 6:
-                listsPrinter.printAllRecipes(recipeList);
+                listsPrinter.printAllRecipes(recipeManager.loadRecipesList());
                 printMenuForDrinkService();
                 break;
             case 7:
-                listsPrinter.printAllRecipes(favouritesList);
+                listsPrinter.printAllRecipes(recipeManager.loadFavouritesList());
                 printMenuForFavouritesService();
                 break;
             case 8:

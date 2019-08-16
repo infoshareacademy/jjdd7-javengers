@@ -10,35 +10,36 @@ import java.util.stream.Collectors;
 
 public class RecipeService {
 
-    private List<Recipe> recipesList = RecipeRepository.getRecipesList();
-    private List<Recipe> favouriteRecipesList = RecipeRepository.getFavouritesRecipeList();
-    private List<String> categoryList = RecipeRepository.getCategoriesList();
-
     public List<Recipe> loadRecipesList() {
-        DataParseService parser = new DataParseService();
-        recipesList.addAll((List<Recipe>) parser.parseFile("drinks.json",
-                new TypeReference<List<Recipe>>() {
-                }, "drinks"));
-        return recipesList;
+        if(RecipeRepository.getRecipesList().isEmpty()){
+            DataParseService parser = new DataParseService();
+            RecipeRepository.getRecipesList().addAll((List<Recipe>) parser.parseFile("drinks.json",
+                    new TypeReference<List<Recipe>>() {
+                    }, "drinks"));
+        }
+        return RecipeRepository.getRecipesList();
     }
 
     public List<Recipe> loadFavouritesList() {
         DataParseService parser = new DataParseService();
-        favouriteRecipesList.addAll((List<Recipe>) parser.parseFile("favourites.json",
+        RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) parser.parseFile("favourites.json",
                 new TypeReference<List<Recipe>>() {
                 }, "drinks"));
-        return favouriteRecipesList;
+        return RecipeRepository.getFavouritesRecipeList();
     }
 
     public List<String> loadCategoriesList() {
-        for (Recipe recipe:recipesList
+        if(RecipeRepository.getRecipesList().isEmpty()){
+            loadRecipesList();
+        }
+        for (Recipe recipe:RecipeRepository.getRecipesList()
              ) {
             String category =recipe.getRecipeCategory();
-            if (!categoryList.contains(category)){
-                categoryList.add(category);
+            if (!RecipeRepository.getCategoriesList().contains(category)){
+                RecipeRepository.getCategoriesList().add(category);
             }
         }
-        return categoryList;
+        return RecipeRepository.getCategoriesList();
     }
 
 
@@ -55,16 +56,16 @@ public class RecipeService {
     }
 
     public void addRecipeToList(Recipe recipe) {
-        if (!recipesList.contains(recipe)) {
-            recipesList.add(recipe);
+        if (!RecipeRepository.getRecipesList().contains(recipe)) {
+            RecipeRepository.getRecipesList().add(recipe);
         }
     }
 
     public void deleteRecipeFromList(String name) {
-        for (Recipe recipe : recipesList
+        for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             if (recipe.getName().equals(name)) {
-                recipesList.remove(recipe);
+                RecipeRepository.getRecipesList().remove(recipe);
             }
         }
     }
@@ -81,11 +82,11 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    public List<Recipe> getRecipesList() {
-        return recipesList;
+    /*public List<Recipe> getRecipesList() {
+        return RecipeRepository.getRecipesList();
     }
 
     public List<Recipe> getFavouriteRecipesList() {
         return favouriteRecipesList;
-    }
+    }*/
 }
