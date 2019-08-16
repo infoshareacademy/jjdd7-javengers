@@ -12,6 +12,7 @@ import java.util.Map;
         "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic",
         "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
         "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
+
 @JsonDeserialize(using = RecipeListDeserializer.class)
 
 public class Recipe {

@@ -46,7 +46,6 @@ public class RecipeService {
         return CATEGORIES_LIST;
     }
 
-
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
         throw new NotImplementedException("Not implemented yet");
     }
@@ -85,5 +84,5 @@ public class RecipeService {
     public List<Recipe> deleteRecipeFromFavourites(List<Recipe> favouritesRecipeList, String name) {
         throw new NotImplementedException("Not implemented yet");
     }
-
 }
+
