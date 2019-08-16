@@ -1,22 +1,14 @@
 package com.infoshareacademy.menu;
 
-import com.infoshareacademy.service.FavouriteService;
 import com.infoshareacademy.service.RecipeService;
-import com.infoshareacademy.domain.Recipe;
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
+
 
 public class MenuManager {
     private RecipeService recipeManager = new RecipeService();
     private ChoiceReader choiceReader = new ChoiceReader();
-    private FavouriteService favouriteRecipeSearcher = new FavouriteService();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
-    private List<Recipe> recipeList = recipeManager.createRecipesList();
-    private List<Recipe> favouritesList = favouriteRecipeSearcher.getFavouritesRecipeList();
-    private Set<String> categoryList = recipeManager.createCategoriesList(recipeList);
 
     public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
@@ -30,25 +22,29 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 2:
-                listsPrinter.printCategory(categoryList);
+                listsPrinter.printCategory(recipeManager.loadCategoriesList());
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be a method which will print out the list of all drinks from " + userChoice + " category\n");
+                System.out.println("\nThere will be a method which will print out the list of all drinks from "
+                        + userChoice + " category\n");
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be a method which will print out all drinks that contain " + userChoice + " ingredient\n");
+                System.out.println("\nThere will be a method which will print out all drinks that contain "
+                        + userChoice + " ingredient\n");
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
             case 4:
-                listsPrinter.printCategory(categoryList);
-                System.out.println("\nChoose available category or enter a new category, \nto which your new recipe will be added\n");
+                listsPrinter.printCategory(recipeManager.loadCategoriesList());
+                System.out.println("\nChoose available category or enter a new category, \n" +
+                        "to which your new recipe will be added\n");
                 userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be method used to  add" + userChoice + " to drink list based on categories\n");
+                System.out.println("\nThere will be method used to  add" + userChoice
+                        + " to drink list based on categories\n");
                 printMainMenuService();
                 break;
             case 5:
@@ -58,11 +54,11 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 6:
-                listsPrinter.printAllRecipes(recipeList);
+                listsPrinter.printAllRecipes(recipeManager.loadRecipesList());
                 printMenuForDrinkService();
                 break;
             case 7:
-                listsPrinter.printAllRecipes(favouritesList);
+                listsPrinter.printAllRecipes(recipeManager.loadFavouritesList());
                 printMenuForFavouritesService();
                 break;
             case 8:

@@ -35,7 +35,8 @@ public class RecipeListDeserializer extends JsonDeserializer<Recipe> {
 
                 if (!trim.equals(error) && !trim.isEmpty()) {
 
-                    ingredients.put(tree.get("strIngredient" + index).asText().trim(), tree.get("strMeasure" + index).asText().trim());
+                    ingredients.put(tree.get("strIngredient" + index).asText().trim(),
+                            tree.get("strMeasure" + index).asText().trim());
                 }
             }
         }
