@@ -22,7 +22,7 @@ public class MenuPrinter {
                 "=======================================");
     }
 
-    void printMenuForDrinksList() throws IOException {
+    void printMenuForDrinksList(){
 
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to remove drink from drink list" +
@@ -32,7 +32,7 @@ public class MenuPrinter {
                 "==========================================");
     }
 
-    void printMenuForFavourites() throws IOException {
+    void printMenuForFavourites(){
 
         System.out.println("============ YOUR FAVOURITES =============" +
                 "\nEnter 1 to add drink to favourites" +

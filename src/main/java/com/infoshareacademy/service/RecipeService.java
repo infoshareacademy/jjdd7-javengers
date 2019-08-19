@@ -5,6 +5,8 @@ import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,7 @@ public class RecipeService {
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
         }
+        RECIPES_LIST.sort(Comparator.comparing(Recipe::getName));
         return RECIPES_LIST;
     }
 
@@ -43,6 +46,7 @@ public class RecipeService {
                 CATEGORIES_LIST.add(category);
             }
         }
+        
         return CATEGORIES_LIST;
     }
 
@@ -57,10 +61,19 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, String recipeCategory) {
-        return recipesList.stream()
-                    .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(recipeCategory.toLowerCase().trim()))
-                            .collect(Collectors.toList());
+    public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, List<String> userChoiceArrayList) {
+        List<Recipe> outputList = new ArrayList<>();
+        for (String userSingleChoice: userChoiceArrayList) {
+            outputList.addAll(recipesList.stream()
+                    .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
+                    .collect(Collectors.toList()));
+        }
+        return outputList;
+
+
+        /*return recipesList.stream()
+                    .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(user.toLowerCase().trim()))
+                            .collect(Collectors.toList());*/
     }
 
 

@@ -18,7 +18,7 @@ public class MenuManager {
 
     public void chooseMainMenuOption(int choice) throws IOException, InterruptedException {
         String userChoice;
-        List<String> userChoiceArrayList = new ArrayList<>();
+        List<String> userChoiceArrayList;
         switch (choice) {
             case 1:
                 System.out.println("\nEnter name to find drink: ");
@@ -30,9 +30,7 @@ public class MenuManager {
             case 2:
                 listsPrinter.printCategory(recipeManager.loadCategoriesList());
                 userChoiceArrayList = choiceReader.userListMenuChoice(recipeManager.loadCategoriesList(), "category");
-                for (String userSingleChoice: userChoiceArrayList){
-                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeManager.loadRecipesList(), userSingleChoice));
-                }
+                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeManager.loadRecipesList(), userChoiceArrayList));
                 printMenuForDrinkService(userChoiceArrayList.toString());
 
                 break;

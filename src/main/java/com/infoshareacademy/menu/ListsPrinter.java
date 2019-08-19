@@ -3,10 +3,9 @@ package com.infoshareacademy.menu;
 import com.github.freva.asciitable.AsciiTable;
 import com.github.freva.asciitable.Column;
 import com.infoshareacademy.domain.Recipe;
-import com.infoshareacademy.service.ClearScreenService;
 import org.apache.commons.text.WordUtils;
 
-import java.io.IOException;
+
 import java.util.*;
 
 import static com.github.freva.asciitable.HorizontalAlign.CENTER;
@@ -14,8 +13,7 @@ import static com.github.freva.asciitable.HorizontalAlign.CENTER;
 
 public class ListsPrinter {
 
-    public void printCategory(List<String> recipeList) throws IOException, InterruptedException{
-
+    public void printCategory(List<String> recipeList) {
 
         Iterator iterator = recipeList.iterator();
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORIES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -24,14 +22,9 @@ public class ListsPrinter {
         }
     }
 
-    public void printAllRecipes(List<Recipe> recipeList/*, int beginningIndex, int endingIndex*/) throws IOException, InterruptedException{
-        ClearScreenService.clearScreen();
-
-        recipeList.sort(Comparator.comparing(Recipe::getName));
-        /*List<Recipe> sublistRecipes = recipeList.subList(beginningIndex,endingIndex);*/
+    public void printAllRecipes(List<Recipe> recipeList/*, int beginningIndex, int endingIndex*/) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
-
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
                 new Column().header("   DRINK NAME   ").headerAlign(CENTER).dataAlign(CENTER).with(recipe -> recipe.getName()),
                 new Column().header("    CATEGORY    ").headerAlign(CENTER).dataAlign(CENTER).with(recipe -> recipe.getRecipeCategory()),

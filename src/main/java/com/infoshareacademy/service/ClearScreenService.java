@@ -1,7 +1,5 @@
 package com.infoshareacademy.service;
 
-import java.io.IOException;
-
 public class ClearScreenService {
 
     public static void clearScreen() {
