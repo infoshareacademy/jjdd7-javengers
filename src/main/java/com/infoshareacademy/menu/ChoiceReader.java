@@ -29,7 +29,7 @@ public class ChoiceReader {
     }
 
 
-    public List<String> userListMenuChoice(Set<String> categoryList, String listName) {
+    public List<String> userListMenuChoice(List<String> categoryList, String listName) {
 
         List<String> outputArrayList = new ArrayList<>();
         Set<String> categoryListToLower = new HashSet<>();
