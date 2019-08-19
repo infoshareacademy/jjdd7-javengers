@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import com.infoshareacademy.menu.ChoiceReader;
 import com.infoshareacademy.menu.MenuManager;
 import com.infoshareacademy.menu.MenuPrinter;
+import com.infoshareacademy.properties.ConfigLoader;
 
 import java.io.IOException;
 
@@ -15,5 +16,8 @@ public class App {
         menuPrinter.printEntryMenu();
         int choice = choiceReader.makeMenuChoice();
         menuManager.chooseMainMenuOption(choice);
+
+        ConfigLoader configLoader = new ConfigLoader();
+        configLoader.loadAppConfig();
     }
 }
