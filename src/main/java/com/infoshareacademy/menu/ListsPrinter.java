@@ -1,8 +1,7 @@
 package com.infoshareacademy.menu;
 
 import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.lang3.text.WordUtils;
-
+import org.apache.commons.text.WordUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Set;
 
 public class ListsPrinter {
 
-    public void printCategory(Set<String> recipeList) {
+    public void printCategory(List<String> recipeList) {
         Iterator iterator = recipeList.iterator();
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORIES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
         while (iterator.hasNext()) {
