@@ -7,7 +7,7 @@ import com.infoshareacademy.menu.MenuPrinter;
 import java.io.IOException;
 
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
         MenuManager menuManager = new MenuManager();
         ChoiceReader choiceReader = new ChoiceReader();

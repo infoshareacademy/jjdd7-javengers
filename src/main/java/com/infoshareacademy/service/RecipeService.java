@@ -48,7 +48,9 @@ public class RecipeService {
 
 
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
-        throw new NotImplementedException("Not implemented yet");
+        return recipesList.stream()
+                .filter(r -> r.getName().toLowerCase().trim().equals(name.toLowerCase().trim()))
+                .collect(Collectors.toList());
     }
 
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, String ingredientName) {
