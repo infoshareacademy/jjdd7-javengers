@@ -36,6 +36,60 @@ public class ListsPrinter {
             for (Map.Entry entry : hashSet) {
                 System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
             }
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ALCOHOLIC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getAlcoholic()+ "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getGlassType()+ "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("Modification date: "+recipe.getModificationDate());
+            System.out.println("\n\n");
+        }
+    }
+   /* public void printListView(Map<Integer,Recipe> recipeListMap) {
+        for (Recipe recipe : recipeListMap
+        ) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getName() + "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORY <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getRecipeCategory() + "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> RECIPE - INSTRUCTION <<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            String instruction = recipe.getInstruction();
+            String wrappedInstruction = WordUtils.wrap(instruction, 77);
+            System.out.println(wrappedInstruction);
+            System.out.println();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> INGREDIENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            Map<String, String> ingredients = recipe.getIngredients();
+            Set<Map.Entry<String, String>> hashSet = ingredients.entrySet();
+            for (Map.Entry entry : hashSet) {
+                System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
+            }
+            System.out.println("\n\n");
+        }
+    }*/
+    public void printRecipe(Recipe recipe) {
+        {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getName() + "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORY <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getRecipeCategory() + "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> RECIPE - INSTRUCTION <<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            String instruction = recipe.getInstruction();
+            String wrappedInstruction = WordUtils.wrap(instruction, 77);
+            System.out.println(wrappedInstruction);
+            System.out.println();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> INGREDIENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            Map<String, String> ingredients = recipe.getIngredients();
+            Set<Map.Entry<String, String>> hashSet = ingredients.entrySet();
+            for (Map.Entry entry : hashSet) {
+                System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
+            }
+            System.out.println();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ALCOHOLIC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getAlcoholic()+ "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getGlassType()+ "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("Modification date: "+recipe.getModificationDate());
             System.out.println("\n\n");
         }
     }

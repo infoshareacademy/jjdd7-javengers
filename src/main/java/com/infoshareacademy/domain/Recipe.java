@@ -9,27 +9,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR",
-        "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic",
+        "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA",
         "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
         "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = RecipeListDeserializer.class)
 
 public class Recipe {
 
-    @JsonProperty("idDrink")
+
     private int id;
-    @JsonProperty("strDrink")
+
     private String name;
-    @JsonProperty("strInstructions")
+
     private String instruction;
-    @JsonProperty("strCategory")
+
     private String recipeCategory;
-    @JsonProperty("strGlass")
+
     private String glassType;
-    @JsonProperty("dateModified")
+
     private String modificationDate;
 
+    private String alcoholic;
+
     private Map<String, String> ingredients = new HashMap<>();
+
 
     public int getId() {
         return id;
@@ -85,18 +88,11 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", instruction='" + instruction + '\'' +
-                ", recipeCategory='" + recipeCategory + '\'' +
-                ", glassType='" + glassType + '\'' +
-                ", modificationDate='" + modificationDate + '\'' +
-                ", ingredients=" + ingredients +
-                '}';
-    }
+    public String getAlcoholic() { return alcoholic; }
+
+    public void setAlcoholic(String alcoholic) { this.alcoholic = alcoholic; }
+
+
 }
 
 
