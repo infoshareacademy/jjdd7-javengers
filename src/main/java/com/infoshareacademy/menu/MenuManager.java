@@ -1,6 +1,7 @@
 package com.infoshareacademy.menu;
 
 import com.infoshareacademy.service.RecipeService;
+
 import java.io.IOException;
 
 
@@ -42,9 +43,7 @@ public class MenuManager {
                 listsPrinter.printCategory(recipeManager.loadCategoriesList());
                 System.out.println("\nChoose available category or enter a new category, \n" +
                         "to which your new recipe will be added\n");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be method used to  add" + userChoice
-                        + " to drink list based on categories\n");
+                recipeManager.addRecipeToList(choiceReader.createNewRecipe());
                 printMainMenuService();
                 break;
             case 5:

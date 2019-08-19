@@ -58,11 +58,11 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-
     public void addRecipeToList(Recipe recipe) {
         if (!RECIPES_LIST.contains(recipe)) {
             RECIPES_LIST.add(recipe);
         }
+        DataParseToJsonService.parseJsonToFile(RECIPES_LIST,"newDrinkList.json");
     }
 
     public void deleteRecipeFromList(String name) {
