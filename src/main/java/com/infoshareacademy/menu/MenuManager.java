@@ -1,11 +1,7 @@
 package com.infoshareacademy.menu;
 
-import com.infoshareacademy.domain.Recipe;
-import com.infoshareacademy.service.ClearScreenService;
 import com.infoshareacademy.service.RecipeService;
 import java.io.IOException;
-
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -29,7 +25,7 @@ public class MenuManager {
                 break;
             case 2:
                 listsPrinter.printCategory(recipeManager.loadCategoriesList());
-                userChoiceArrayList = choiceReader.userListMenuChoice(recipeManager.loadCategoriesList(), "category");
+                userChoiceArrayList = choiceReader.userInputForListsCheck(recipeManager.loadCategoriesList(), "category");
                 listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeManager.loadRecipesList(), userChoiceArrayList));
                 printMenuForDrinkService(userChoiceArrayList.toString());
 

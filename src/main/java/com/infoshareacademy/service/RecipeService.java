@@ -63,17 +63,14 @@ public class RecipeService {
 
     public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();
+
         for (String userSingleChoice: userChoiceArrayList) {
             outputList.addAll(recipesList.stream()
                     .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
                     .collect(Collectors.toList()));
         }
-        return outputList;
+        return outputList.stream().distinct().collect(Collectors.toList());
 
-
-        /*return recipesList.stream()
-                    .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(user.toLowerCase().trim()))
-                            .collect(Collectors.toList());*/
     }
 
 
