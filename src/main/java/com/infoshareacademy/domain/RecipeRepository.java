@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RecipeRepository {
     private static List<Recipe> recipesList = new ArrayList<>();
-    private static List<String> categoriesList = new ArrayList<>();
+    private static List<String> categoriesList = new ArrayList<>(); // to remove
     private static List<Recipe> favouritesRecipeList = new ArrayList<>();
 
     private RecipeRepository() {
