@@ -1,8 +1,7 @@
 package com.infoshareacademy.menu;
 
 import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.lang3.text.WordUtils;
-
+import org.apache.commons.text.WordUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Set;
 
 public class ListsPrinter {
 
-    public void printCategory(Set<String> recipeList) {
+    public void printCategory(List<String> recipeList) {
         Iterator iterator = recipeList.iterator();
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORIES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
         while (iterator.hasNext()) {
@@ -19,7 +18,7 @@ public class ListsPrinter {
         }
     }
 
-    public void printOneRecipes(List<Recipe> recipeList) {
+    public void printAllRecipes(List<Recipe> recipeList) {
         for (Recipe recipe : recipeList
         ) {
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -38,14 +37,6 @@ public class ListsPrinter {
                 System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
             }
             System.out.println("\n\n");
-        }
-    }
-
-    public void printAllRecipes(List<Recipe> recipeList) {
-        int count =1;
-        for (Recipe recipe : recipeList) {
-            System.out.println( count + ". " + recipe.getName() + "|"+ recipe.getRecipeCategory()+ "|" + recipe.getAlcoholicOrNot()+ "\n");
-            count++;
         }
     }
 }
