@@ -9,42 +9,21 @@ import java.util.List;
 
 public class RecipeService {
 
-    public static final List<String> CATEGORIES_LIST = RecipeRepository.getCategoriesList();
-    public static final List<Recipe> RECIPES_LIST = RecipeRepository.getRecipesList();
-    public static final List<Recipe> FAVOURITES_RECIPE_LIST = RecipeRepository.getFavouritesRecipeList();
-
-    public List<Recipe> loadRecipesList() {
-        if (RECIPES_LIST.isEmpty()) {
-            DataParseService parser = new DataParseService();
-            RECIPES_LIST.addAll((List<Recipe>) parser.parseFile("drinks.json",
+    public void loadRecipesList() {
+        if (RecipeRepository.getRecipesList().isEmpty()) {
+            RecipeRepository.getRecipesList().addAll((List<Recipe>) DataParseService.parseFile("drinks.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
         }
-        return RECIPES_LIST;
     }
 
-    public List<Recipe> loadFavouritesList() {
-        DataParseService parser = new DataParseService();
-        FAVOURITES_RECIPE_LIST.addAll((List<Recipe>) parser.parseFile("favourites.json",
-                new TypeReference<List<Recipe>>() {
-                }, "drinks"));
-        return FAVOURITES_RECIPE_LIST;
-    }
-
-    public List<String> loadCategoriesList() {
-        if (RECIPES_LIST.isEmpty()) {
-            loadRecipesList();
+    public void loadFavouritesList() {
+        if (RecipeRepository.getFavouritesRecipeList().isEmpty()) {
+            RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) DataParseService.parseFile("favourites.json",
+                    new TypeReference<List<Recipe>>() {
+                    }, "drinks"));
         }
-        for (Recipe recipe : RECIPES_LIST
-        ) {
-            String category = recipe.getRecipeCategory();
-            if (!CATEGORIES_LIST.contains(category)) {
-                CATEGORIES_LIST.add(category);
-            }
-        }
-        return CATEGORIES_LIST;
     }
-
 
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
         throw new NotImplementedException("Not implemented yet");
@@ -59,19 +38,20 @@ public class RecipeService {
     }
 
     public void addRecipeToList(Recipe recipe) {
-        if (!RECIPES_LIST.contains(recipe)) {
-            RECIPES_LIST.add(recipe);
+        if (!RecipeRepository.getRecipesList().contains(recipe)) {
+            RecipeRepository.getRecipesList().add(recipe);
         }
-        DataParseToJsonService.parseJsonToFile(RECIPES_LIST,"newDrinkList.json");
+        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); // have to change to "drinks.json"
     }
 
     public void deleteRecipeFromList(String name) {
-        for (Recipe recipe : RECIPES_LIST
+        for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             if (recipe.getName().equals(name)) {
-                RECIPES_LIST.remove(recipe);
+                RecipeRepository.getRecipesList().remove(recipe);
             }
         }
+        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); // have to change to "drinks.json"
     }
 
     public void editRecipeList(Recipe drinkRecipe, String name) {
@@ -85,5 +65,4 @@ public class RecipeService {
     public List<Recipe> deleteRecipeFromFavourites(List<Recipe> favouritesRecipeList, String name) {
         throw new NotImplementedException("Not implemented yet");
     }
-
 }

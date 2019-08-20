@@ -11,13 +11,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR",
-        "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA", "strAlcoholic",
+        "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA",
         "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
         "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = RecipeListDeserializer.class)
 @JsonSerialize(using = RecipeListSerializer.class)
 
 public class Recipe {
+
 
     @JsonProperty("idDrink")
     private int id;
@@ -27,6 +28,8 @@ public class Recipe {
     private String instruction;
     @JsonProperty("strCategory")
     private String recipeCategory;
+    @JsonProperty("strAlcoholic")
+    private String drinkType;
     @JsonProperty("strGlass")
     private String glassType;
     @JsonProperty("dateModified")
@@ -66,6 +69,14 @@ public class Recipe {
         this.recipeCategory = recipeCategory;
     }
 
+    public String getDrinkType() {
+        return drinkType;
+    }
+
+    public void setDrinkType(String drinkType) {
+        this.drinkType = drinkType;
+    }
+
     public String getGlassType() {
         return glassType;
     }
@@ -97,11 +108,13 @@ public class Recipe {
                 ", name='" + name + '\'' +
                 ", instruction='" + instruction + '\'' +
                 ", recipeCategory='" + recipeCategory + '\'' +
+                ", drinkType='" + drinkType + '\'' +
                 ", glassType='" + glassType + '\'' +
                 ", modificationDate='" + modificationDate + '\'' +
                 ", ingredients=" + ingredients +
                 '}';
     }
 }
+
 
 
