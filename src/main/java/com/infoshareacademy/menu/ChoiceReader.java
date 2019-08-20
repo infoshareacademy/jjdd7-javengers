@@ -26,4 +26,24 @@ public class ChoiceReader {
     String makeChoice() {
         return scanner.nextLine();
     }
+
+    public boolean confirmMature() {
+        String ageChoice;
+        String choiceSave;
+        String actualDate = null;
+
+        System.out.println("Do you have 18 years? ");
+        ageChoice = scanner.nextLine();
+        if ("yes".equals(ageChoice.toLowerCase())) {
+            System.out.println("Do you want to save your age?");
+            choiceSave = scanner.nextLine();
+            if ("yes".equals(choiceSave.toLowerCase())) {
+
+
+
+            }
+            return true;
+        }
+        return false;
+    }
 }

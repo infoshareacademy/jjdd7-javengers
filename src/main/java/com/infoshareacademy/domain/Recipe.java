@@ -3,7 +3,7 @@ package com.infoshareacademy.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.infoshareacademy.MapperStringStringDeserializer.RecipeListDeserializer;
+import com.infoshareacademy.RecipeListDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
