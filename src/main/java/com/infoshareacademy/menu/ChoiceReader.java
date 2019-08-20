@@ -48,11 +48,15 @@ public class ChoiceReader {
             while(!categoryListToLower.contains(userSingleChoice.toLowerCase().trim())) {
                 System.out.println(userSingleChoice + " is not a valid "+listName+". Please input the correct one or hit enter to remove wrongly typed "+listName);
                 userSingleChoice = scanner.nextLine();
-                if (userSingleChoice.equals("")){
+                if (userSingleChoice.isEmpty()){
+                    break;
+                }
+                else if (userSingleChoice.trim().equals(
+                                "0"+categoryList.get(categoryList.indexOf(userSingleChoice)))){
                     break;
                 }
             }
-            if (userSingleChoice.equals("")) {
+            if (userSingleChoice.isEmpty()) {
                 outputArrayList.remove(userSingleChoice);
             } else {
                 outputArrayList.add(userSingleChoice);
