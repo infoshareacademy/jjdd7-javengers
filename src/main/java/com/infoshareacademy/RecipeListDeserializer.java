@@ -45,6 +45,7 @@ public class RecipeListDeserializer extends JsonDeserializer<Recipe> {
         recipe.setName(tree.get("strDrink").asText());
         recipe.setInstruction(tree.get("strInstructions").asText());
         recipe.setRecipeCategory(tree.get("strCategory").asText());
+        recipe.setDrinkType(tree.get("strAlcoholic").asText());
         recipe.setGlassType(tree.get("strGlass").asText());
         recipe.setAlcoholicOrNot(tree.get("strAlcoholic").asText());
         recipe.setModificationDate(tree.get("dateModified").asText());
