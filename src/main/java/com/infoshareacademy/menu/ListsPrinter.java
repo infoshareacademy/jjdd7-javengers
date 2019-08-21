@@ -2,11 +2,14 @@ package com.infoshareacademy.menu;
 
 import com.github.freva.asciitable.AsciiTable;
 import com.github.freva.asciitable.Column;
+import com.github.freva.asciitable.ColumnData;
+import com.github.freva.asciitable.HorizontalAlign;
 import com.infoshareacademy.domain.Recipe;
 import org.apache.commons.text.WordUtils;
 
 
 import java.util.*;
+import java.util.function.Function;
 
 import static com.github.freva.asciitable.HorizontalAlign.CENTER;
 
@@ -17,25 +20,24 @@ public class ListsPrinter {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, categoryList, Arrays.asList(
-                new Column().header("    LIST No     ").headerAlign(CENTER).dataAlign(CENTER).with(category -> "0"+ categoryList.indexOf(category)),
-                new Column().header("    CATEGORY    ").headerAlign(CENTER).dataAlign(CENTER).with(category-> categoryList.get(categoryList.indexOf(category))))));
+                createColumnString("    LIST No     ",category -> "0"+ categoryList.indexOf(category)),
+                createColumnString("    CATEGORY    ",category-> categoryList.get(categoryList.indexOf(category))))));
     }
 
     public void printAllRecipes(List<Recipe> recipeList/*, int beginningIndex, int endingIndex*/) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
-                new Column().header("    LIST No     ").headerAlign(CENTER).dataAlign(CENTER).with(recipe -> "0"+ recipeList.indexOf(recipe)),
-                new Column().header("   DRINK NAME   ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getName),
-                new Column().header("    CATEGORY    ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getRecipeCategory),
-                new Column().header("      TYPE      ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getDrinkType))));
-
+                createColumn("    LIST No     ",recipe -> "0"+ recipeList.indexOf(recipe)),
+                createColumn("   DRINK NAME   ",Recipe::getName),
+                createColumn("    CATEGORY    ",Recipe::getRecipeCategory),
+                createColumn("      TYPE      ",Recipe::getDrinkType))));
     }
 
     public void printRecipe(List<Recipe> recipeList) {
 
             for (Recipe recipe:recipeList) {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ID <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ID <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipeList.indexOf(recipe) + "\n");
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getName() + "\n");
@@ -63,4 +65,21 @@ public class ListsPrinter {
             }
 
     }
+
+    private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
+        return new Column()
+                .header(name)
+                .headerAlign(HorizontalAlign.CENTER)
+                .dataAlign(HorizontalAlign.CENTER)
+                .with(functionReference);
+    }
+
+    private ColumnData<String> createColumnString(String name, Function<String, String> functionReference) {
+        return new Column()
+                .header(name)
+                .headerAlign(HorizontalAlign.CENTER)
+                .dataAlign(HorizontalAlign.CENTER)
+                .with(functionReference);
+    }
+
 }
