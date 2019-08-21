@@ -19,7 +19,7 @@ public class MenuManager {
                 System.out.println("\nEnter name to find drink: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which search " + userChoice + " from drink list by name" +
-                        "\nWhat do you want to do with these drink\n");
+                    "\nWhat do you want to do with these drink\n");
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
@@ -28,7 +28,7 @@ public class MenuManager {
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out the list of all drinks from "
-                        + userChoice + " category\n");
+                    + userChoice + " category\n");
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
@@ -36,17 +36,17 @@ public class MenuManager {
                 System.out.println("\nEnter ingredient to find: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out all drinks that contain "
-                        + userChoice + " ingredient\n");
+                    + userChoice + " ingredient\n");
                 printMenuForDrinkService(userChoice);
                 printMainMenuService();
                 break;
             case 4:
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("\nChoose available category or enter a new category, \n" +
-                        "to which your new recipe will be added\n");
+                    "to which your new recipe will be added\n");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be method used to  add" + userChoice
-                        + " to drink list based on categories\n");
+                    + " to drink list based on categories\n");
                 printMainMenuService();
                 break;
             case 5:
