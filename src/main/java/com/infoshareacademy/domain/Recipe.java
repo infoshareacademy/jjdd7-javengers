@@ -24,7 +24,13 @@ public class Recipe {
     private String instruction;
 
     private String recipeCategory;
+<<<<<<< HEAD
 
+=======
+    @JsonProperty("strAlcoholic")
+    private String drinkType;
+    @JsonProperty("strGlass")
+>>>>>>> 2913ca4584ca45c10232f5c7065369d58d106255
     private String glassType;
 
     private String modificationDate;
@@ -64,6 +70,14 @@ public class Recipe {
         this.recipeCategory = recipeCategory;
     }
 
+    public String getDrinkType() {
+        return drinkType;
+    }
+
+    public void setDrinkType(String drinkType) {
+        this.drinkType = drinkType;
+    }
+
     public String getGlassType() {
         return glassType;
     }
@@ -88,11 +102,27 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+<<<<<<< HEAD
     public String getAlcoholic() { return alcoholic; }
 
     public void setAlcoholic(String alcoholic) { this.alcoholic = alcoholic; }
 
 
+=======
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", instruction='" + instruction + '\'' +
+                ", recipeCategory='" + recipeCategory + '\'' +
+                ", drinkType='" + drinkType + '\'' +
+                ", glassType='" + glassType + '\'' +
+                ", modificationDate='" + modificationDate + '\'' +
+                ", ingredients=" + ingredients +
+                '}';
+    }
+>>>>>>> 2913ca4584ca45c10232f5c7065369d58d106255
 }
 
 
