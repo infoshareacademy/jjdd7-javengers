@@ -49,7 +49,7 @@ public class RecipeListDeserializer extends JsonDeserializer<Recipe> {
         recipe.setGlassType(tree.get("strGlass").asText());
         recipe.setModificationDate(tree.get("dateModified").asText());
         recipe.setIngredients(ingredients);
-        recipe.setAlcoholic(tree.get("strAlcoholic").asText());
+        recipe.setDrinkType(tree.get("strAlcoholic").asText());
         return recipe;
     }
 }

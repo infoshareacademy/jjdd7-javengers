@@ -21,15 +21,15 @@ public class MenuManager {
             case 1:
                 System.out.println("\nEnter name to find drink: ");
                 userChoice = choiceReader.makeChoice();
-                listsPrinter.printRecipe(recipeManager.findRecipeByName(recipeManager.loadRecipesList(),userChoice));
+                listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository.getRecipesList(),userChoice));
                 printMenuForDrinkService(userChoice);
 
                 break;
             case 2:
 
-                listsPrinter.printCategory(recipeManager.loadCategoriesList());
-                userChoiceArrayList = choiceReader.userInputForListsCheck(recipeManager.loadCategoriesList(), "category");
-                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(recipeManager.loadRecipesList(), userChoiceArrayList));
+                listsPrinter.printCategory(RecipeRepository.getCategoriesList());
+                userChoiceArrayList = choiceReader.userInputForListsCheck(RecipeRepository.getCategoriesList(), "category");
+                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository.getRecipesList(), userChoiceArrayList));
                 printMenuForDrinkService(userChoiceArrayList.toString());
 
                 break;

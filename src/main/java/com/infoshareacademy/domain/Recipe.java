@@ -24,21 +24,14 @@ public class Recipe {
     private String instruction;
 
     private String recipeCategory;
-<<<<<<< HEAD
 
-=======
-    @JsonProperty("strAlcoholic")
     private String drinkType;
-    @JsonProperty("strGlass")
->>>>>>> 2913ca4584ca45c10232f5c7065369d58d106255
+
     private String glassType;
 
     private String modificationDate;
 
-    private String alcoholic;
-
     private Map<String, String> ingredients = new HashMap<>();
-
 
     public int getId() {
         return id;
@@ -102,13 +95,6 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-<<<<<<< HEAD
-    public String getAlcoholic() { return alcoholic; }
-
-    public void setAlcoholic(String alcoholic) { this.alcoholic = alcoholic; }
-
-
-=======
     @Override
     public String toString() {
         return "Recipe{" +
@@ -122,7 +108,7 @@ public class Recipe {
                 ", ingredients=" + ingredients +
                 '}';
     }
->>>>>>> 2913ca4584ca45c10232f5c7065369d58d106255
+
 }
 
 

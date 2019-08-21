@@ -28,7 +28,7 @@ public class ListsPrinter {
                 new Column().header("    LIST No     ").headerAlign(CENTER).dataAlign(CENTER).with(recipe -> "0"+ recipeList.indexOf(recipe)),
                 new Column().header("   DRINK NAME   ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getName),
                 new Column().header("    CATEGORY    ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getRecipeCategory),
-                new Column().header("      TYPE      ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getAlcoholic))));
+                new Column().header("      TYPE      ").headerAlign(CENTER).dataAlign(CENTER).with(Recipe::getDrinkType))));
 
     }
 
@@ -54,7 +54,7 @@ public class ListsPrinter {
                 }
                 System.out.println();
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ALCOHOLIC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-                System.out.println("\t\t\t\t" + recipe.getAlcoholic() + "\n");
+                System.out.println("\t\t\t\t" + recipe.getDrinkType() + "\n");
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getGlassType() + "\n");
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");

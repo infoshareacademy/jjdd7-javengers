@@ -50,8 +50,8 @@ public class ChoiceReader {
             while (!inputListToLower.contains(userSingleChoice.toLowerCase().trim())) {
                 if (userSingleChoice.trim().substring(0, 1).equals("0")
                         && userSingleChoice.trim().matches("[0-9]+")
-                        && Integer.parseInt(userSingleChoice.substring(1)) < inputList.size()) {
-                    userSingleChoice = inputList.get(Integer.parseInt(userSingleChoice.substring(1)));
+                        && Integer.parseInt(userSingleChoice.trim().substring(1)) < inputList.size()) {
+                    userSingleChoice = inputList.get(Integer.parseInt(userSingleChoice.trim().substring(1)));
                     break;
                 }
                 System.out.println(userSingleChoice + " is not a valid " + listName +

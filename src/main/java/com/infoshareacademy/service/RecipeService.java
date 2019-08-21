@@ -29,6 +29,18 @@ public class RecipeService {
         }
     }
 
+    public void loadCategoriesList() {
+
+        for (Recipe recipe : RecipeRepository.getRecipesList()
+        ) {
+            String category = recipe.getRecipeCategory();
+            if (!RecipeRepository.getCategoriesList().contains(category)) {
+                RecipeRepository.getCategoriesList().add(category);
+            }
+        }
+    }
+
+
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
         return recipesList.stream()
                 .filter(r -> r.getName().toLowerCase().trim().equals(name.toLowerCase().trim()))
