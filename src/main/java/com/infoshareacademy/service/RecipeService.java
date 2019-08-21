@@ -41,7 +41,7 @@ public class RecipeService {
         if (!RecipeRepository.getRecipesList().contains(recipe)) {
             RecipeRepository.getRecipesList().add(recipe);
         }
-        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); // have to change to "drinks.json"
+        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); //TODO have to change to "drinks.json"
     }
 
     public void deleteRecipeFromList(String name) {
@@ -51,7 +51,7 @@ public class RecipeService {
                 RecipeRepository.getRecipesList().remove(recipe);
             }
         }
-        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); // have to change to "drinks.json"
+        DataParseToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(),"newDrinkList.json"); //TODO have to change to "drinks.json"
     }
 
     public void editRecipeList(Recipe drinkRecipe, String name) {

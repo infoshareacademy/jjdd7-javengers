@@ -10,14 +10,14 @@ import java.util.List;
 
 public class DataParseToJsonService {
 
-    public static <T> Object parseJsonToFile(List<T> recipesList, String jsonFilePath) {
+    public static <T> Object parseJsonToFile(T obj, String jsonFilePath) { //TODO create jsonNode
 
         T outputObject = null;
 
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writeValue(new File(jsonFilePath), recipesList); //just for test, change to update drinks.json!
+            mapper.writeValue(new File(jsonFilePath), obj);
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {

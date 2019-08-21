@@ -25,15 +25,11 @@ public class RecipeListSerializer extends JsonSerializer<Recipe> {
         jsonGenerator.writeStringField("strAlcoholic", recipe.getDrinkType());
         jsonGenerator.writeStringField("strGlass", recipe.getGlassType());
         jsonGenerator.writeStringField("dateModified", recipe.getModificationDate());
-
-        // there can be serialize to format: all ingredients then its measure
-
-        for (int index = 1; index < 16; index++) {
-            index = (char) index;
-            for (Map.Entry<String, String> ingredientsMap : ingredients.entrySet()) {
-                jsonGenerator.writeStringField("strIngredient" + index, ingredientsMap.getKey());
-                jsonGenerator.writeStringField("strMeasure" + index, ingredientsMap.getValue());
-            }
+        int ingredientNumber = 1;
+        int measureNumber = 1;
+        for (Map.Entry<String, String> ingredientsMap : ingredients.entrySet()) {
+            jsonGenerator.writeStringField("strIngredient" + ingredientNumber++, ingredientsMap.getKey());
+            jsonGenerator.writeStringField("strMeasure" + measureNumber++, ingredientsMap.getValue());
         }
         jsonGenerator.writeEndObject();
     }

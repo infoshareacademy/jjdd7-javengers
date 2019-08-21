@@ -5,7 +5,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Scanner;
 
 public class ChoiceReader {
-    Scanner scanner = new Scanner(System.in);
+    public Scanner scanner = new Scanner(System.in);
 
     public int makeMenuChoice() {
         int userChoice = 0;
