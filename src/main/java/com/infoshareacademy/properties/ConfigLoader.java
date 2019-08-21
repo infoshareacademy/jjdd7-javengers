@@ -9,14 +9,14 @@ public class ConfigLoader {
 
 
     public static final String RECIPE_SORT_TYPE_KEY = "recipe.sort.type";
-    public static final String MODIFICATION_DATE_FORMAT_KEY = "date.format";
+    public static final String DATE_FORMAT_KEY = "date.format";
     public static final String ADULT_ACCESS_SESSION_KEY = "adult.access.session.duration";
 
     private Properties prop = null;
 
     public void loadAppConfig() {
         AppConfig.recipeSortType = getProperty(ConfigLoader.RECIPE_SORT_TYPE_KEY, "ASC");
-        AppConfig.recipeModificationDate = getProperty(ConfigLoader.MODIFICATION_DATE_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
+        AppConfig.dateFormat = getProperty(ConfigLoader.DATE_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
         AppConfig.adultAccessSession = getProperty(ConfigLoader.ADULT_ACCESS_SESSION_KEY, "180");
     }
 

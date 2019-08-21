@@ -1,6 +1,8 @@
 package com.infoshareacademy.menu;
 
+import com.infoshareacademy.domain.RecipeRepository;
 import com.infoshareacademy.service.RecipeService;
+
 import java.io.IOException;
 
 
@@ -22,7 +24,7 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 2:
-                listsPrinter.printCategory(recipeManager.loadCategoriesList());
+                listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("\nEnter category to find recipes: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out the list of all drinks from "
@@ -39,7 +41,7 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 4:
-                listsPrinter.printCategory(recipeManager.loadCategoriesList());
+                listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("\nChoose available category or enter a new category, \n" +
                         "to which your new recipe will be added\n");
                 userChoice = choiceReader.makeChoice();
@@ -54,11 +56,11 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 6:
-                listsPrinter.printAllRecipes(recipeManager.loadRecipesList());
+                listsPrinter.printAllRecipes(RecipeRepository.getRecipesList());
                 printMenuForDrinkService();
                 break;
             case 7:
-                listsPrinter.printAllRecipes(recipeManager.loadFavouritesList());
+                listsPrinter.printAllRecipes(RecipeRepository.getFavouritesRecipeList());
                 printMenuForFavouritesService();
                 break;
             case 8:
