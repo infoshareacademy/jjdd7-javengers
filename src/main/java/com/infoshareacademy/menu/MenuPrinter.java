@@ -1,11 +1,14 @@
 package com.infoshareacademy.menu;
 
+import com.infoshareacademy.service.ClearScreenService;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class MenuPrinter {
 
     public void printEntryMenu() throws IOException {
+
         System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
         System.out.println("================ MENU ================" +
                 "\nEnter 1 to search drink by name" +
@@ -19,7 +22,8 @@ public class MenuPrinter {
                 "=======================================");
     }
 
-    void printMenuForDrinksList() throws IOException {
+    void printMenuForDrinksList(){
+
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to remove drink from drink list" +
                 "\nEnter 2 to add your drink to favourites" +
@@ -28,7 +32,8 @@ public class MenuPrinter {
                 "==========================================");
     }
 
-    void printMenuForFavourites() throws IOException {
+    void printMenuForFavourites(){
+
         System.out.println("============ YOUR FAVOURITES =============" +
                 "\nEnter 1 to add drink to favourites" +
                 "\nEnter 2 to remove drink from favourites" +

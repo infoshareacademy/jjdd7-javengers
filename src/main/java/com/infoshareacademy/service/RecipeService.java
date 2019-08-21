@@ -5,7 +5,10 @@ import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecipeService {
 
@@ -14,6 +17,7 @@ public class RecipeService {
             RecipeRepository.getRecipesList().addAll((List<Recipe>) DataParseService.parseFile("drinks.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
+            RecipeRepository.getRecipesList().sort(Comparator.comparing(Recipe::getName));
         }
     }
 
@@ -25,16 +29,38 @@ public class RecipeService {
         }
     }
 
+    public void loadCategoriesList() {
+
+        for (Recipe recipe : RecipeRepository.getRecipesList()
+        ) {
+            String category = recipe.getRecipeCategory();
+            if (!RecipeRepository.getCategoriesList().contains(category)) {
+                RecipeRepository.getCategoriesList().add(category);
+            }
+        }
+    }
+
+
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
-        throw new NotImplementedException("Not implemented yet");
+        return recipesList.stream()
+                .filter(r -> r.getName().toLowerCase().trim().equals(name.toLowerCase().trim()))
+                .collect(Collectors.toList());
     }
 
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, String ingredientName) {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, String recipeCategory) {
-        throw new NotImplementedException("Not implemented yet");
+    public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, List<String> userChoiceArrayList) {
+        List<Recipe> outputList = new ArrayList<>();
+
+        for (String userSingleChoice: userChoiceArrayList) {
+            outputList.addAll(recipesList.stream()
+                    .filter(r -> r.getRecipeCategory().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
+                    .collect(Collectors.toList()));
+        }
+        return outputList.stream().distinct().collect(Collectors.toList());
+
     }
 
     public void addRecipeToList(Recipe recipe) {

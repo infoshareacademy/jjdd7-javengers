@@ -16,19 +16,19 @@ import java.util.Map;
 
 public class Recipe {
 
-    @JsonProperty("idDrink")
+
     private int id;
-    @JsonProperty("strDrink")
+
     private String name;
-    @JsonProperty("strInstructions")
+
     private String instruction;
-    @JsonProperty("strCategory")
+
     private String recipeCategory;
-    @JsonProperty("strAlcoholic")
+
     private String drinkType;
-    @JsonProperty("strGlass")
+
     private String glassType;
-    @JsonProperty("dateModified")
+
     private String modificationDate;
 
     private Map<String, String> ingredients = new HashMap<>();
@@ -57,9 +57,7 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public String getRecipeCategory() {
-        return recipeCategory;
-    }
+    public String getRecipeCategory() { return recipeCategory; }
 
     public void setRecipeCategory(String recipeCategory) {
         this.recipeCategory = recipeCategory;
@@ -110,6 +108,7 @@ public class Recipe {
                 ", ingredients=" + ingredients +
                 '}';
     }
+
 }
 
 
