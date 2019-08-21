@@ -41,10 +41,16 @@ public class RecipeService {
     }
 
 
-    public List<Recipe> findRecipeByName(List<Recipe> recipesList, String name) {
-        return recipesList.stream()
-                .filter(r -> r.getName().toLowerCase().trim().equals(name.toLowerCase().trim()))
-                .collect(Collectors.toList());
+    public List<Recipe> findRecipeByName(List<Recipe> recipesList, List<String> userChoiceArrayList) {
+        List<Recipe> outputList = new ArrayList<>();
+
+        for (String userSingleChoice: userChoiceArrayList) {
+            outputList.addAll(recipesList.stream()
+                    .filter(r -> r.getName().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
+                    .collect(Collectors.toList()));
+        }
+        return outputList.stream().distinct().collect(Collectors.toList());
+
     }
 
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, String ingredientName) {

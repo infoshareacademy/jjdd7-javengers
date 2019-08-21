@@ -20,10 +20,9 @@ public class MenuManager {
         switch (choice) {
             case 1:
                 System.out.println("\nEnter name to find drink: ");
-                userChoice = choiceReader.makeChoice();
-                listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository.getRecipesList(),userChoice));
-                printMenuForDrinkService(userChoice);
-
+                userChoiceArrayList = choiceReader.userInputForDrinkNameCheck(RecipeRepository.getRecipesList(),"puste");
+                listsPrinter.printAllRecipes(recipeManager.findRecipeByName(RecipeRepository.getRecipesList(),userChoiceArrayList));
+                printMenuForDrinkService(userChoiceArrayList.toString());
                 break;
             case 2:
 
@@ -31,7 +30,6 @@ public class MenuManager {
                 userChoiceArrayList = choiceReader.userInputForListsCheck(RecipeRepository.getCategoriesList(), "category");
                 listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository.getRecipesList(), userChoiceArrayList));
                 printMenuForDrinkService(userChoiceArrayList.toString());
-
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");

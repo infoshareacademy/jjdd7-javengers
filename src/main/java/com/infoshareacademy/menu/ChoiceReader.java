@@ -1,8 +1,10 @@
 package com.infoshareacademy.menu;
 
+import com.infoshareacademy.domain.Recipe;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ChoiceReader {
     private Scanner scanner = new Scanner(System.in);
@@ -69,6 +71,30 @@ public class ChoiceReader {
                 outputList.add(userSingleChoice);
             }
             listIterator.set(userSingleChoice);
+        }
+        return outputList;
+    }
+
+
+    public List<String> userInputForDrinkNameCheck(List<Recipe> inputList, String listName) {
+
+        List<String> outputList = new ArrayList<>();
+        Set<String> inputListToLower = new HashSet<>();
+
+        for (Recipe singleRecipe : inputList) {
+            inputListToLower.add(singleRecipe.getName().toLowerCase().trim());
+        }
+        while (outputList.isEmpty()) {
+            System.out.println("\nEnter a drink name (or at least 3 characters to find matching recipe ");
+            String userSingleChoice = (scanner.nextLine().trim().toLowerCase());
+            if (userSingleChoice.length() >= 3) {
+                outputList = inputListToLower.stream().filter(recipeName -> recipeName.contains(userSingleChoice)).collect(Collectors.toList());
+            } else if (userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))){
+                outputList.add(userSingleChoice);
+            }
+            else {
+                System.out.println("No such input");
+            }
         }
         return outputList;
     }
