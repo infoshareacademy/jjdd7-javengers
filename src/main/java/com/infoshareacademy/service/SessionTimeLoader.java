@@ -1,21 +1,23 @@
 package com.infoshareacademy.service;
 
+import java.time.LocalDateTime;
+
 public class SessionTimeLoader {
 
-    private String previousSessionStartTime;
+    private LocalDateTime previousSessionStartTime;
 
     public SessionTimeLoader() {
     }
 
-    public SessionTimeLoader(String previousSessionStartTime) {
+    public SessionTimeLoader(LocalDateTime previousSessionStartTime) {
         this.previousSessionStartTime = previousSessionStartTime;
     }
 
-    public String getPreviousSessionStartTime() {
+    public LocalDateTime getPreviousSessionStartTime() {
         return previousSessionStartTime;
     }
 
-    public void setPreviousSessionStartTime(String previousSessionStartTime) {
+    public void setPreviousSessionStartTime(LocalDateTime previousSessionStartTime) {
         this.previousSessionStartTime = previousSessionStartTime;
     }
 }

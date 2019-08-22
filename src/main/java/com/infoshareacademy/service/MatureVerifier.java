@@ -14,13 +14,14 @@ public class MatureVerifier {
     private static SessionTimeLoader createActualDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         LocalDateTime localDateTime = LocalDateTime.now();
-        return new SessionTimeLoader().setPreviousSessionStartTime();
+        return new SessionTimeLoader(localDateTime);
     }
 
     public static boolean isAlreadyCheckedAndMature() {
       SessionTimeLoader sessionTimeLoader = DataParseService
               .parseFile("test.json", SessionTimeLoader.class);
-      return sessionTimeLoader != null &&  sessionTimeLoader.getPreviousSessionStartTime()
+
+      return sessionTimeLoader != null &&  sessionTimeLoader.getPreviousSessionStartTime().isBefore((new LocalDateTime())-sessionTimeLoader.getPreviousSessionStartTime());
     }
 
     public static void setMature() {
