@@ -12,6 +12,7 @@ import java.io.IOException;
 public class App {
 
   public static void main(String[] args) throws IOException {
+/*
     System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
     MenuManager menuManager = new MenuManager();
     ChoiceReader choiceReader = new ChoiceReader();
@@ -22,9 +23,10 @@ public class App {
     RecipeService recipeService = new RecipeService();
     recipeService.loadRecipesList();
     recipeService.loadFavouritesList();
+*/
 
     new ConfigLoader().loadAppConfig();
-    MatureVerifier.verifyDate();
-
+    MatureVerifier.printInitialDate();
+    MatureVerifier.getTimeBetweenSessions();
   }
 }

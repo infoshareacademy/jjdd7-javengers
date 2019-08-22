@@ -1,55 +1,60 @@
 package com.infoshareacademy.menu;
 
 
+import com.infoshareacademy.properties.AppConfig;
+import com.infoshareacademy.service.MatureVerifier;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.time.LocalDateTime;
-import java.util.Scanner;
-
 public class ChoiceReader {
-    private Scanner scanner = new Scanner(System.in);
+
+  private Scanner scanner = new Scanner(System.in);
+  private static String DATE_FORMATTER = AppConfig.dateFormat;
 
 
-    public int makeMenuChoice() {
-        int userChoice = 0;
-        String choiceFromMenu;
-        System.out.println("Provide a number: ");
-        choiceFromMenu = scanner.nextLine();
 
-        if (NumberUtils.isCreatable(choiceFromMenu)) {
-            userChoice = Integer.parseInt(choiceFromMenu);
-        } else {
-            System.out.println("Invalid choice, type one more time");
-            makeMenuChoice();
-        }
+  public int makeMenuChoice() {
+    int userChoice = 0;
+    String choiceFromMenu;
+    System.out.println("Provide a number: ");
+    choiceFromMenu = scanner.nextLine();
 
-        return userChoice;
+    if (NumberUtils.isCreatable(choiceFromMenu)) {
+      userChoice = Integer.parseInt(choiceFromMenu);
+    } else {
+      System.out.println("Invalid choice, type one more time");
+      makeMenuChoice();
     }
 
-    String makeChoice() {
-        return scanner.nextLine();
+    return userChoice;
+  }
+
+  String makeChoice() {
+    return scanner.nextLine();
+  }
+
+  public boolean confirmMature() {
+    String ageChoice;
+    String choiceSave;
+    String actualDate = null;
+
+    //Alcoholic
+    System.out.println("Do you have 18 years? ");
+    ageChoice = scanner.nextLine();
+    if ("yes".equals(ageChoice.toLowerCase())) {
+      System.out.println("Do you want to save your age?");
+      choiceSave = scanner.nextLine();
+      if ("yes".equals(choiceSave.toLowerCase())) {
+        MatureVerifier.readDateTimetoJson();
+      }
+      return true;
     }
-
-
-    public boolean confirmMature() {
-        String ageChoice;
-        String choiceSave;
-        String actualDate = null;
-
-        //Alcoholic
-        System.out.println("Do you have 18 years? ");
-        ageChoice = scanner.nextLine();
-        if ("yes".equals(ageChoice.toLowerCase())) {
-            System.out.println("Do you want to save your age?");
-            choiceSave = scanner.nextLine();
-            if ("yes".equals(choiceSave.toLowerCase())) {
-               // actualDate = formatActualDate();
-            }
-            return true;
-        }
-        return false;
-    }
-
+    return false;
+  }
 }
+
 
 

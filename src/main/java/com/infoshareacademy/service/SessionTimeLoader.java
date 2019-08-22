@@ -1,5 +1,7 @@
 package com.infoshareacademy.service;
 
+import java.time.LocalDateTime;
+
 public class SessionTimeLoader {
 
     private String previousSessionStartTime;
