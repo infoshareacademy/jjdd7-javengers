@@ -8,6 +8,8 @@ import com.infoshareacademy.domain.Recipe;
 import org.apache.commons.text.WordUtils;
 
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
 
@@ -65,6 +67,17 @@ public class ListsPrinter {
             }
 
     }
+
+
+
+    public void printImage() throws IOException {
+        System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
+    }
+
+
+
+
+
 
     private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
         return new Column()
