@@ -26,7 +26,8 @@ public class App {
 */
 
     new ConfigLoader().loadAppConfig();
-    MatureVerifier.printInitialDate();
-    MatureVerifier.getTimeBetweenSessions();
+  //  MatureVerifier.printConfirmMature();
+//    System.out.println(MatureVerifier.getDateBetweenSessions());
+
   }
 }

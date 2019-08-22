@@ -3,10 +3,9 @@ package com.infoshareacademy.menu;
 
 import com.infoshareacademy.properties.AppConfig;
 import com.infoshareacademy.service.MatureVerifier;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Scanner;
+
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class ChoiceReader {
@@ -37,18 +36,20 @@ public class ChoiceReader {
   }
 
   public boolean confirmMature() {
+
+    if (MatureVerifier.isAlreadyCheckedAndMature()) {
+      return  true;
+    }
     String ageChoice;
     String choiceSave;
-    String actualDate = null;
 
-    //Alcoholic
     System.out.println("Do you have 18 years? ");
     ageChoice = scanner.nextLine();
     if ("yes".equals(ageChoice.toLowerCase())) {
       System.out.println("Do you want to save your age?");
       choiceSave = scanner.nextLine();
       if ("yes".equals(choiceSave.toLowerCase())) {
-        MatureVerifier.readDateTimetoJson();
+        MatureVerifier.setMature();
       }
       return true;
     }
