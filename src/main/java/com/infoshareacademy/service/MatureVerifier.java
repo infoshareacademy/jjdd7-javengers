@@ -14,7 +14,7 @@ public class MatureVerifier {
     private static SessionTimeLoader createActualDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         LocalDateTime localDateTime = LocalDateTime.now();
-        return new SessionTimeLoader().setPreviousSessionStartTime(localDateTime);
+        return new SessionTimeLoader().setPreviousSessionStartTime();
     }
 
     public static boolean isAlreadyCheckedAndMature() {
