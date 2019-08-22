@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataParseToJsonService {
 
@@ -17,7 +18,11 @@ public class DataParseToJsonService {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            mapper.writeValue(new File(jsonFilePath), obj);
+
+            Map<String, Object> drinks = new HashMap<>();
+            drinks.put("drinks", obj);
+
+            mapper.writeValue(new File(jsonFilePath), drinks);
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {

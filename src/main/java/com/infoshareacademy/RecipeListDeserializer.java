@@ -15,31 +15,37 @@ import java.util.Map;
 
 public class RecipeListDeserializer extends JsonDeserializer<Recipe> {
 
-    @Override
-    public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        @Override
+        public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
-        Map<String, String> ingredients = new HashMap<>();
+            Map<String, String> ingredients = new HashMap<>();
 
-        Recipe recipe = new Recipe();
-        JsonNode tree = p.readValueAsTree();
+            Recipe recipe = new Recipe();
+            JsonNode tree = p.readValueAsTree();
 
-        String[] errors = {"null"};
+            String[] errors = {"null"};
 
-        for (int index = 1; index < 16; index++) {
+            for (int index = 1; index < 16; index++) {
 
-            index = (char) index;
+                index = (char) index;
 
-            for (String error : errors) {
+                JsonNode ingredientNode = tree.get("strIngredient" + index);
 
-                String trim = tree.get("strIngredient" + index).asText().trim();
+                if(ingredientNode == null){
+                    break;
+                }
 
-                if (!trim.equals(error) && !trim.isEmpty()) {
+                String trim = ingredientNode.asText().trim();
 
-                    ingredients.put(tree.get("strIngredient" + index).asText().trim(),
-                            tree.get("strMeasure" + index).asText().trim());
+                for (String error : errors) {
+
+                    if (!trim.equals(error) && !trim.isEmpty()) {
+
+                        ingredients.put(tree.get("strIngredient" + index).asText().trim(),
+                                tree.get("strMeasure" + index).asText().trim());
+                    }
                 }
             }
-        }
 
         recipe.setId(tree.get("idDrink").asInt());
         recipe.setName(tree.get("strDrink").asText());
