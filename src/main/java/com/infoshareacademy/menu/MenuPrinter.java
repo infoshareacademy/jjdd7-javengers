@@ -15,7 +15,7 @@ public class MenuPrinter {
                 "\nEnter 2 to search drink by category" +
                 "\nEnter 3 to search drink by ingredient" +
                 "\nEnter 4 to add drink to drink list" +
-                "\nEnter 5 to remove drink from drink list" +
+                //"\nEnter 5 to remove drink from drink list" +
                 "\nEnter 6 to get list of drinks" +
                 "\nEnter 7 to get your favourites" +
                 "\nEnter 8 to exit\n" +

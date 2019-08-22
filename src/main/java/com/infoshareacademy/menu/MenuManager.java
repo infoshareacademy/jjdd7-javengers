@@ -17,7 +17,7 @@ public class MenuManager {
 
 
     public void chooseMainMenuOption(int choice) throws IOException, InterruptedException {
-        Boolean otherNumericMenuOption;
+
         String userChoice;
         List<String> userChoiceArrayList;
         switch (choice) {
@@ -29,9 +29,12 @@ public class MenuManager {
                     numericMenuChoices(userChoiceArrayList.get(0));
                 }
                  else{
+                    //inputMenuChoices
                      ClearScreenService.cleanConsole();
                      listsPrinter.printAllRecipes(recipeManager.findRecipeByName(RecipeRepository
                              .getRecipesList(),userChoiceArrayList));
+                    userChoiceArrayList = choiceReader.userInputForFinalPickFromList(RecipeRepository
+                            .getRecipesList(),userChoiceArrayList),"puste");
                  }
 
                 break;
@@ -45,8 +48,11 @@ public class MenuManager {
                     numericMenuChoices(userChoiceArrayList.get(0));
                 }
                 else {
+                    //inputMenuChoices
                     ClearScreenService.cleanConsole();
-                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository.getRecipesList(), userChoiceArrayList));
+                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository
+                            .getRecipesList(), userChoiceArrayList));
+
                 }
 
                 break;
@@ -79,10 +85,10 @@ public class MenuManager {
                 listsPrinter.printAllRecipes(RecipeRepository.getRecipesList());
                 printMenuForDrinkService();
                 break;
-            case 7:
+            /*case 7:
                 listsPrinter.printAllRecipes(RecipeRepository.getFavouritesRecipeList());
                 printMenuForFavouritesService();
-                break;
+                break;*/
             case 8:
                 break;
             default:
