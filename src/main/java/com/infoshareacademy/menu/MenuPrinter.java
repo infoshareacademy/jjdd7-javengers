@@ -22,15 +22,37 @@ public class MenuPrinter {
                 "=======================================");
     }
 
-    void printMenuForDrinksList(){
+    void printMenuForDrinksByName(){
 
         System.out.println("=========== DRINKS LIST MENU ===========" +
-                "\nEnter 1 to remove drink from drink list" +
-                "\nEnter 2 to add your drink to favourites" +
-                "\nEnter 3 to back to main menu" +
-                "\nEnter 4 to exit\n" +
-                "==========================================");
+                "\nEnter 1 to go back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nOr enter a drink name (or at least 3 characters to find matching recipe):" +
+                "\n==========================================");
     }
+
+
+    void printMenuForDrinksByList(String listName){
+
+        System.out.println("=========== DRINKS LIST MENU ===========" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit\n" +
+                "\nOr enter List No or " + listName + " name(or more than one List No or " + listName +
+                        " divided by a colon ',') to find recipes: " +
+                "\n==========================================");
+    }
+
+    void printMenuForPickingARecipe(){
+
+        System.out.println("=========== DRINKS LIST MENU ===========" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit\n" +
+                "\nOr enter List No or Drink name to see a recipe: " +
+                "\n==========================================");
+    }
+
+
+
 
     void printMenuForFavourites(){
 

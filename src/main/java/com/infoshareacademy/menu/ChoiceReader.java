@@ -20,7 +20,7 @@ public class ChoiceReader {
         System.out.println("Provide a number: ");
         choiceFromMenu = scanner.nextLine();
 
-        if (NumberUtils.isCreatable(choiceFromMenu)) {
+        if (NumberUtils.isCreatable(choiceFromMenu) && Integer.parseInt(choiceFromMenu)<9 && Integer.parseInt(choiceFromMenu)>0) {
             userChoice = Integer.parseInt(choiceFromMenu);
         } else {
             System.out.println("Invalid choice, type one more time");
@@ -37,14 +37,21 @@ public class ChoiceReader {
         Set<String> inputListToLower = new HashSet<>();
         String userSingleChoice = "";
 
-
         for (String singleString : inputList) {
             inputListToLower.add(singleString.toLowerCase().trim());
         }
 
-        System.out.println("\nEnter List No or " + listName + " name(or more than one List No or " + listName +
-                " divided by a colon ',') to find recipes: ");
         List<String> userChoiceList = Arrays.asList(scanner.nextLine().split(","));
+
+        if (userChoiceList.get(0).equals("1")){
+            outputList.add(userSingleChoice);
+            return outputList;
+
+        }
+        if (userChoiceList.get(0).equals("2")) {
+            outputList.add(userSingleChoice);
+            return outputList;
+        }
 
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
@@ -63,7 +70,6 @@ public class ChoiceReader {
                 if (userSingleChoice.isEmpty()) {
                     break;
                 }
-
             }
             if (userSingleChoice.isEmpty()) {
                 outputList.remove(userSingleChoice);
@@ -78,23 +84,34 @@ public class ChoiceReader {
 
     public List<String> userInputForDrinkNameCheck(List<Recipe> inputList, String listName) {
 
+
+
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
 
         for (Recipe singleRecipe : inputList) {
             inputListToLower.add(singleRecipe.getName().toLowerCase().trim());
         }
+
         while (outputList.isEmpty()) {
-            System.out.println("\nEnter a drink name (or at least 3 characters to find matching recipe ");
+            //System.out.println("\nEnter a drink name (or at least 3 characters to find matching recipe ");
             String userSingleChoice = (scanner.nextLine().trim().toLowerCase());
+            if (userSingleChoice.equals("1")){
+                outputList.add(userSingleChoice);
+                break;
+            }
+            if (userSingleChoice.equals("2")){
+                outputList.add(userSingleChoice);
+                break;
+            }
             if (userSingleChoice.length() >= 3) {
                 outputList = inputListToLower.stream().filter(recipeName -> recipeName.contains(userSingleChoice)).collect(Collectors.toList());
-            } else if (userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))){
+            }
+            if (userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))){
                 outputList.add(userSingleChoice);
             }
-            else {
-                System.out.println("No such input");
-            }
+            else  {System.out.println("No such input");}
+
         }
         return outputList;
     }

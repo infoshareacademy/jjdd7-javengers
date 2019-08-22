@@ -1,6 +1,7 @@
 package com.infoshareacademy.menu;
 
 import com.infoshareacademy.domain.RecipeRepository;
+import com.infoshareacademy.service.ClearScreenService;
 import com.infoshareacademy.service.RecipeService;
 
 import java.io.IOException;
@@ -14,24 +15,43 @@ public class MenuManager {
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
 
+
     public void chooseMainMenuOption(int choice) throws IOException, InterruptedException {
+        Boolean otherNumericMenuOption;
         String userChoice;
         List<String> userChoiceArrayList;
         switch (choice) {
             case 1:
-                System.out.println("\nEnter name to find drink: ");
+                ClearScreenService.cleanConsole();
+                printMenuForDrinkNameInput();
                 userChoiceArrayList = choiceReader.userInputForDrinkNameCheck(RecipeRepository.getRecipesList(),"puste");
-                listsPrinter.printAllRecipes(recipeManager.findRecipeByName(RecipeRepository.getRecipesList(),userChoiceArrayList));
-                printMenuForDrinkService(userChoiceArrayList.toString());
+                if(userChoiceArrayList.size()==1 && userChoiceArrayList.get(0).matches("[0-9]+")){
+                    numericMenuChoices(userChoiceArrayList.get(0));
+                }
+                 else{
+                     ClearScreenService.cleanConsole();
+                     listsPrinter.printAllRecipes(recipeManager.findRecipeByName(RecipeRepository
+                             .getRecipesList(),userChoiceArrayList));
+                 }
+
                 break;
             case 2:
-
+                ClearScreenService.cleanConsole();
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
+                menuPrinter.printMenuForDrinksByList("category");
                 userChoiceArrayList = choiceReader.userInputForListsCheck(RecipeRepository.getCategoriesList(), "category");
-                listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository.getRecipesList(), userChoiceArrayList));
-                printMenuForDrinkService(userChoiceArrayList.toString());
+                //rozpatrzenie przypadkow
+                if(userChoiceArrayList.size()==1 && userChoiceArrayList.get(0).matches("[0-9]+")){
+                    numericMenuChoices(userChoiceArrayList.get(0));
+                }
+                else {
+                    ClearScreenService.cleanConsole();
+                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository.getRecipesList(), userChoiceArrayList));
+                }
+
                 break;
             case 3:
+                ClearScreenService.cleanConsole();
                 System.out.println("\nEnter ingredient to find: ");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be a method which will print out all drinks that contain "
@@ -55,6 +75,7 @@ public class MenuManager {
                 printMainMenuService();
                 break;
             case 6:
+                ClearScreenService.cleanConsole();
                 listsPrinter.printAllRecipes(RecipeRepository.getRecipesList());
                 printMenuForDrinkService();
                 break;
@@ -159,13 +180,13 @@ public class MenuManager {
     }
 
     private void printMenuForDrinkService(String userChoice) throws IOException, InterruptedException {
-        menuPrinter.printMenuForDrinksList();
+        menuPrinter.printMenuForDrinksByList("kuku");
         int choice = choiceReader.makeMenuChoice();
         chooseDrinkListMenuOption(choice, userChoice);
     }
 
     private void printMenuForDrinkService() throws IOException, InterruptedException {
-        menuPrinter.printMenuForDrinksList();
+        menuPrinter.printMenuForDrinksByList("dupa");
         int choice = choiceReader.makeMenuChoice();
         chooseDrinkListMenuOption(choice);
     }
@@ -175,4 +196,24 @@ public class MenuManager {
         int choice = choiceReader.makeMenuChoice();
         chooseFavouritesMenuOption(choice);
     }
+
+    private void printMenuForDrinkNameInput () throws IOException, InterruptedException {
+        menuPrinter.printMenuForDrinksByName();
+
+    }
+
+
+
+
+    private void numericMenuChoices (String menuChoice) throws IOException, InterruptedException {
+        if (menuChoice.equals("1")){
+            menuPrinter.printEntryMenu();
+            int choice = choiceReader.makeMenuChoice();
+            chooseMainMenuOption(choice);
+        }
+
+        else if (menuChoice.equals("2"))
+            System.exit(0);
+    }
+
 }
