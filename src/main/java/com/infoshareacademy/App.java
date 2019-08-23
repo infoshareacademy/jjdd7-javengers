@@ -17,6 +17,7 @@ public class App {
     RecipeService recipeService = new RecipeService();
     recipeService.loadRecipesList();
     recipeService.loadCategoriesList();
+    recipeService.loadIngredientsList();
     recipeService.loadFavouritesList();
     System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
     MenuManager menuManager = new MenuManager();

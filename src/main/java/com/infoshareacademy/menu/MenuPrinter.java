@@ -61,7 +61,6 @@ public class MenuPrinter {
                 "\nEnter 2 to remove drink from favourites" +
                 "\nEnter 3 to back to main menu" +
                 "\nEnter 4 to exit" +
-
                 "\n==========================================");
     }
 
@@ -72,7 +71,6 @@ public class MenuPrinter {
                 "\nEnter 2 to exit" +
                 "\nEnter 3 to delete a recipe from Drinkopedia\"" +
                 "\nEnter 4 to add/remove drink to favourites" +
-                "\nOr enter List No or Drink name to see a recipe: " +
                 "\n==========================================");
     }
 

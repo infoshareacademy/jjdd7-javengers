@@ -30,7 +30,7 @@ public class RecipeService {
     }
 
     public void loadCategoriesList() {
-
+        RecipeRepository.getCategoriesList().clear();
         for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             String category = recipe.getRecipeCategory();
@@ -39,6 +39,21 @@ public class RecipeService {
             }
         }
     }
+
+    public void loadIngredientsList() {
+        RecipeRepository.getIngredientsList().clear();
+        List<String> tempList = new ArrayList<>();
+        for (Recipe recipe : RecipeRepository.getRecipesList()) {
+            tempList.addAll(recipe.getIngredients().keySet());
+            }
+        RecipeRepository.getIngredientsList()
+                .addAll(tempList.stream()
+                        .map(ingredient -> ingredient.toLowerCase())
+                        .distinct()
+                        .sorted()
+                        .collect(Collectors.toList()));
+    }
+
 
 
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, List<String> userChoiceArrayList) {

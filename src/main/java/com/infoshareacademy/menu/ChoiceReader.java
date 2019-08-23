@@ -31,17 +31,20 @@ public class ChoiceReader {
 
     public List<String> userInputForListsCheck(List<String> inputList) {
 
-        //jest bug jak pomylona pierwsza nazwa drinka i wciskamy enter!! wylazi pusta lista
-
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
         String userSingleChoice = "";
+        List<String> userChoiceList = new ArrayList<>();
 
         for (String singleString : inputList) {
             inputListToLower.add(singleString.toLowerCase().trim());
         }
 
-        List<String> userChoiceList = Arrays.asList(scanner.nextLine().split(","));
+        while (userChoiceList.isEmpty()) {
+            System.out.println(userChoiceList.toString());
+            userChoiceList = Arrays.asList(scanner.nextLine().split(","));
+        }
+
         System.out.println(userChoiceList.toString());
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
@@ -50,13 +53,10 @@ public class ChoiceReader {
                 if (userSingleChoice.isEmpty()) {
                     break;
                 }
-                if (userSingleChoice.equals("1")){
+                if (userSingleChoice.trim().length()==1 && userSingleChoice.trim().matches("[1-2]")) {
                     return Collections.singletonList(userSingleChoice);
                 }
-                if (userSingleChoice.equals("2")) {
-                    return Collections.singletonList(userSingleChoice);
-                }
-                if (userSingleChoice.trim().substring(0, 1).equals("0")
+                else if (userSingleChoice.trim().length()>1 && userSingleChoice.trim().substring(0, 1).equals("0")
                         && userSingleChoice.trim().matches("[0-9]+")
                         && Integer.parseInt(userSingleChoice.trim().substring(1)) < inputList.size()) {
                     userSingleChoice = inputList.get(Integer.parseInt(userSingleChoice.trim().substring(1)));
@@ -65,7 +65,6 @@ public class ChoiceReader {
                 System.out.println(userSingleChoice + "is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
                 userSingleChoice = scanner.nextLine();
             }
-
             if (userSingleChoice.isEmpty()) {
                 outputList.remove(userSingleChoice);
             } else {
@@ -88,11 +87,7 @@ public class ChoiceReader {
 
         while (outputList.isEmpty()) {
             String userSingleChoice = (scanner.nextLine().trim().toLowerCase());
-            if (userSingleChoice.equals("1")) {
-                outputList.add(userSingleChoice);
-                break;
-            }
-            if (userSingleChoice.equals("2")) {
+            if (userSingleChoice.trim().length()==1 && userSingleChoice.trim().matches("[1-2]")) {
                 outputList.add(userSingleChoice);
                 break;
             }
@@ -112,17 +107,15 @@ public class ChoiceReader {
 
     public List<String> userInputForFinalPickFromList(List<Recipe> inputList) {
 
+        //jest bug jak wciskam 0
         String userSingleChoice = scanner.nextLine().toLowerCase().trim();
         String outputString="";
 
         while (outputString.isEmpty()) {
-            if (userSingleChoice.equals("1")) {
+            if (userSingleChoice.trim().length()==1 && userSingleChoice.trim().matches("[1-2]")) {
                 return Collections.singletonList(userSingleChoice);
             }
-            if (userSingleChoice.equals("2")) {
-                return Collections.singletonList(userSingleChoice);
-            }
-            if (userSingleChoice.trim().substring(0, 1).equals("0")
+            else if (userSingleChoice.trim().length()>1 && userSingleChoice.trim().substring(0, 1).equals("0")
                     && userSingleChoice.trim().matches("[0-9]+")
                     && Integer.parseInt(userSingleChoice.trim().substring(1)) < inputList.size()) {
 

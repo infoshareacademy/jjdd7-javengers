@@ -46,7 +46,6 @@ public class MenuManager {
                         List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
                         numericMenuChoices(userChoiceFinal.get(0), recipeManager.findRecipeByName(RecipeRepository
                                 .getRecipesList(), userChoiceMidle));
-
                     }
                 }
 
@@ -81,12 +80,31 @@ public class MenuManager {
                 break;
             case 3:
                 ClearScreenService.cleanConsole();
-                System.out.println("\nEnter ingredient to find: ");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be a method which will print out all drinks that contain "
-                        + userChoice + " ingredient\n");
-                printMenuForDrinkService(userChoice);
-                printMainMenuService();
+                listsPrinter.printCategory(RecipeRepository.getIngredientsList());
+                menuPrinter.printMenuForDrinksByList("ingredient");
+                userChoiceSecond = choiceReader.userInputForListsCheck(RecipeRepository.getIngredientsList());
+                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]+")) {
+                    numericMenuChoices(userChoiceSecond.get(0));
+                } else {
+                    //toTO
+                    ClearScreenService.cleanConsole();
+                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository
+                            .getRecipesList(), userChoiceSecond));
+                    menuPrinter.printMenuForPickingARecipe();
+                    List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByCategory(RecipeRepository
+                            .getRecipesList(), userChoiceSecond));
+                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
+                        numericMenuChoices(userChoiceMidle.get(0));
+                    } else {
+                        ClearScreenService.cleanConsole();
+                        listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
+                                .getRecipesList(), userChoiceMidle));
+                        menuPrinter.printMenuForRecipeView();
+                        List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
+                        numericMenuChoices(userChoiceFinal.get(0), recipeManager.findRecipeByName(RecipeRepository
+                                .getRecipesList(), userChoiceMidle));
+                    }
+                }
                 break;
             case 4:
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
@@ -245,6 +263,7 @@ public class MenuManager {
 
 
     private void numericMenuChoices(String menuChoice) throws IOException, InterruptedException {
+        ClearScreenService.cleanConsole();
         if (menuChoice.equals("1")) {
             menuPrinter.printEntryMenu();
             int choice = choiceReader.makeMenuChoice();
@@ -255,6 +274,7 @@ public class MenuManager {
     }
 
     private void numericMenuChoices(String menuChoice, List<Recipe> recipe) throws IOException, InterruptedException {
+        ClearScreenService.cleanConsole();
         if (menuChoice.equals("1")) {
             menuPrinter.printEntryMenu();
             int choice = choiceReader.makeMenuChoice();
