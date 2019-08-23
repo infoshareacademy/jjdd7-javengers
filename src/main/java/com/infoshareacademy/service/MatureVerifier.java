@@ -2,41 +2,32 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.properties.AppConfig;
 
+import java.io.File;
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class MatureVerifier {
 
-    private static String DATE_FORMATTER = AppConfig.dateFormat;
+
     private static String ADULTS_SESSION_TIME = AppConfig.adultAccessSession;
 
 
-    private static SessionTimeLoader createActualDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-        LocalDateTime localDateTime = LocalDateTime.now();
-        return new SessionTimeLoader(localDateTime);
-    }
+
 
     public static boolean isAlreadyCheckedAndMature() {
-      SessionTimeLoader sessionTimeLoader = DataParseService
-              .parseFile("test.json", SessionTimeLoader.class);
-
-      return sessionTimeLoader != null &&  sessionTimeLoader.getPreviousSessionStartTime().isBefore((new LocalDateTime())-sessionTimeLoader.getPreviousSessionStartTime());
+        if (new File("test.json").exists()) {
+            SessionTimeDTO sessionTimeDTO = DataParseService
+                    .parseFile("test.json", SessionTimeDTO.class);
+            Duration duration = Duration.between(sessionTimeDTO.getPreviousSessionStartTime(), LocalDateTime.now());
+            Long adultSession = Long.parseLong(ADULTS_SESSION_TIME);
+            return sessionTimeDTO != null && duration.toSeconds() < adultSession;
+        }
+        return false;
     }
 
     public static void setMature() {
-        DataParseToJsonService.parseJsonToFile(createActualDateTime(), "test.json");
+        SessionTimeDTO sessionTimeDTO =new SessionTimeDTO();
+        sessionTimeDTO.setPreviousSessionStartTime(LocalDateTime.now());
+        DataParseToJsonService.parseJsonToFile(sessionTimeDTO , "test.json");
     }
-
-  /*public static void printConfirmMature(){
-    Long adultSessionAccessTime = Long.parseLong(ADULTS_SESSION_TIME);
-    ChoiceReader choiceReader = new ChoiceReader();
-    if((getDateBetweenSessions() > adultSessionAccessTime) && (choiceReader.confirmMature() == true)){
-      choiceReader.confirmMature();
-    }
-    else{
-      System.out.println("Pokaż widok ");
-    }*/
 }
-
-

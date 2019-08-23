@@ -26,7 +26,7 @@ public class App {
 */
 
     new ConfigLoader().loadAppConfig();
-  //  MatureVerifier.printConfirmMature();
+   new ChoiceReader().confirmMature();
 //    System.out.println(MatureVerifier.getDateBetweenSessions());
 
   }
