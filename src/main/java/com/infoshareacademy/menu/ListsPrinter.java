@@ -26,7 +26,7 @@ public class ListsPrinter {
                 createColumnString("    CATEGORY    ",category-> categoryList.get(categoryList.indexOf(category))))));
     }
 
-    public void printAllRecipes(List<Recipe> recipeList/*, int beginningIndex, int endingIndex*/) {
+    public void printAllRecipes(List<Recipe> recipeList) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
@@ -34,6 +34,8 @@ public class ListsPrinter {
                 createColumn("   DRINK NAME   ",Recipe::getName),
                 createColumn("    CATEGORY    ",Recipe::getRecipeCategory),
                 createColumn("      TYPE      ",Recipe::getDrinkType))));
+                createColumn("   INGREDIENTS  ",recipe -> (recipe.getIngredients().keySet().toString()));
+
     }
 
     public void printRecipe(List<Recipe> recipeList) {

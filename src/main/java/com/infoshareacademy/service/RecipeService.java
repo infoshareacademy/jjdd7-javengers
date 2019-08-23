@@ -6,6 +6,7 @@ import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,7 +49,7 @@ public class RecipeService {
             }
         RecipeRepository.getIngredientsList()
                 .addAll(tempList.stream()
-                        .map(ingredient -> ingredient.toLowerCase())
+                        .map(String::toLowerCase)
                         .distinct()
                         .sorted()
                         .collect(Collectors.toList()));
@@ -68,9 +69,42 @@ public class RecipeService {
 
     }
 
-    public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, String ingredientName) {
-        throw new NotImplementedException("Not implemented yet");
+    public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
+
+        List<Recipe> outputList = new ArrayList<>();
+        /*List<String> userChoyceArrayListToLower = new ArrayList<>();
+        for(Recipe recipe : recipesList){
+            for (String s : recipe.getIngredients().keySet()) {
+                String s1 = s.trim().toLowerCase();
+            }
+            //System.out.println(recipe.getIngredients().keySet());
+        }*/
+
+
+        //userChoiceArrayList.add("milk");
+
+        //for (String userSingleChoice: userChoiceArrayList) {
+        outputList = (recipesList.stream()
+                .filter(r ->
+                        (userChoiceArrayList.stream()
+                                .allMatch(
+                                        ingredient ->
+                                                (r.getIngredients()
+                                                        .keySet()).toString().toLowerCase().contains(ingredient.trim())))))
+                .collect(Collectors.toList());
+
+        for (Recipe recipe : outputList) {
+            System.out.println(recipe.getIngredients().keySet());
+
+        }
+            return outputList.stream().distinct().collect(Collectors.toList());
     }
+
+
+
+
+
+
 
     public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();

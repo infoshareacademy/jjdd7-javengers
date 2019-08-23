@@ -88,10 +88,10 @@ public class MenuManager {
                 } else {
                     //toTO
                     ClearScreenService.cleanConsole();
-                    listsPrinter.printAllRecipes(recipeManager.findRecipeByCategory(RecipeRepository
+                    listsPrinter.printAllRecipes(recipeManager.findRecipeByIngredients(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
                     menuPrinter.printMenuForPickingARecipe();
-                    List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByCategory(RecipeRepository
+                    List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByIngredients(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
                     if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
                         numericMenuChoices(userChoiceMidle.get(0));
