@@ -27,7 +27,7 @@ public class MenuManager {
                 listsPrinter.printImage();
                 menuPrinter.printMenuForDrinksByName();
                 userChoiceSecond = choiceReader.userInputForDrinkNameCheck(RecipeRepository.getRecipesList());
-                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]+")) {
+                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]")) {
                     numericMenuChoices(userChoiceSecond.get(0));
                 } else {
                     ClearScreenService.cleanConsole();
@@ -36,7 +36,7 @@ public class MenuManager {
                     menuPrinter.printMenuForPickingARecipe();
                     List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByName(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
-                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
+                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]")) {
                         numericMenuChoices(userChoiceMidle.get(0));
                     } else {
                         ClearScreenService.cleanConsole();
@@ -55,7 +55,7 @@ public class MenuManager {
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 menuPrinter.printMenuForDrinksByList("category");
                 userChoiceSecond = choiceReader.userInputForListsCheck(RecipeRepository.getCategoriesList());
-                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]+")) {
+                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]")) {
                     numericMenuChoices(userChoiceSecond.get(0));
                 } else {
                     ClearScreenService.cleanConsole();
@@ -64,7 +64,7 @@ public class MenuManager {
                     menuPrinter.printMenuForPickingARecipe();
                     List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByCategory(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
-                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
+                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]")) {
                         numericMenuChoices(userChoiceMidle.get(0));
                     } else {
                         ClearScreenService.cleanConsole();
@@ -83,17 +83,17 @@ public class MenuManager {
                 listsPrinter.printCategory(RecipeRepository.getIngredientsList());
                 menuPrinter.printMenuForDrinksByList("ingredient");
                 userChoiceSecond = choiceReader.userInputForListsCheck(RecipeRepository.getIngredientsList());
-                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]+")) {
+                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]")) {
                     numericMenuChoices(userChoiceSecond.get(0));
                 } else {
-                    //toTO
+                    //toDO
                     ClearScreenService.cleanConsole();
                     listsPrinter.printAllRecipes(recipeManager.findRecipeByIngredients(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
                     menuPrinter.printMenuForPickingARecipe();
                     List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(recipeManager.findRecipeByIngredients(RecipeRepository
                             .getRecipesList(), userChoiceSecond));
-                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
+                    if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]")) {
                         numericMenuChoices(userChoiceMidle.get(0));
                     } else {
                         ClearScreenService.cleanConsole();
@@ -107,6 +107,7 @@ public class MenuManager {
                 }
                 break;
             case 4:
+                ClearScreenService.cleanConsole();
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("\nChoose available category or enter a new category, \n" +
                         "to which your new recipe will be added\n");
@@ -115,34 +116,35 @@ public class MenuManager {
                         + " to drink list based on categories\n");
                 printMainMenuService();
                 break;
-            case 5:
+            /*case 5: - to do wywalenia ale moze jeszcze sie przydac w favouritach w drzewku nizej
                 System.out.println("\nEnter drink name to remove from recipe list");
                 userChoice = choiceReader.makeChoice();
                 System.out.println("\nThere will be method to remove " + userChoice + " from drink list\n");
                 printMainMenuService();
-                break;
-            case 6:
+                break;*/
+            case 5:
                 ClearScreenService.cleanConsole();
                 listsPrinter.printAllRecipes(RecipeRepository.getRecipesList());
                 menuPrinter.printMenuForPickingARecipe();
-                List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(RecipeRepository.getRecipesList());
-                if (userChoiceMidle.size() == 1 && userChoiceMidle.get(0).matches("[0-9]+")) {
-                    numericMenuChoices(userChoiceMidle.get(0));
+                /*List<String> userChoiceMidle byl wczesniej*/
+                userChoiceSecond = choiceReader.userInputForFinalPickFromList(RecipeRepository.getRecipesList());
+                if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]")) {
+                    numericMenuChoices(userChoiceSecond.get(0));
                 } else {
                     ClearScreenService.cleanConsole();
                     listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
-                            .getRecipesList(), userChoiceMidle));
+                            .getRecipesList(), userChoiceSecond));
                     menuPrinter.printMenuForRecipeView();
                     List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
-                    numericMenuChoices(userChoiceFinal.get(0), recipeManager.findRecipeByName(RecipeRepository
-                            .getRecipesList(), userChoiceMidle));
+                    numericMenuChoices(userChoiceFinal.get(0));
                 }
                 break;
-            /*case 7:
+            case 6:
+                //toDO
                 listsPrinter.printAllRecipes(RecipeRepository.getFavouritesRecipeList());
                 printMenuForFavouritesService();
-                break;*/
-            case 8:
+                break;
+            case 7:
                 break;
             default:
                 System.out.println("\n wrong choice, type one more time");
@@ -151,57 +153,7 @@ public class MenuManager {
         }
     }
 
-
-    private void chooseDrinkListMenuOption(int choice) throws IOException, InterruptedException {
-        String userChoice;
-        ChoiceReader choiceReader = new ChoiceReader();
-        switch (choice) {
-            case 1:
-                System.out.println("\nEnter drink name to remove from drink list");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be used the method to remove " + userChoice + " from drink list\n");
-                printMainMenuService();
-                break;
-            case 2:
-                System.out.println("\nEnter drink name to add to favourites");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("There will be used the method to add " + userChoice + " to favourite\n");
-                printMainMenuService();
-                break;
-            case 3:
-                printMainMenuService();
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("\nwrong choice");
-                printMenuForDrinkService();
-                break;
-        }
-    }
-
-    private void chooseDrinkListMenuOption(int choice, String userChoice) throws IOException, InterruptedException {
-        switch (choice) {
-            case 1:
-                System.out.println("\nThere will be used the method to remove " + userChoice + " from drink list\n");
-                printMainMenuService();
-                break;
-            case 2:
-                System.out.println("\nThere will be used the method to add " + userChoice + " to favourite\n");
-                printMainMenuService();
-                break;
-            case 3:
-                printMainMenuService();
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("\nwrong choice");
-                printMenuForDrinkService();
-                break;
-        }
-    }
-
+    //do zaorania
     private void chooseFavouritesMenuOption(int choice) throws IOException, InterruptedException {
         String nameOfDrink;
         ChoiceReader choiceReader = new ChoiceReader();
@@ -238,55 +190,46 @@ public class MenuManager {
         chooseMainMenuOption(choice);
     }
 
-    private void printMenuForDrinkService(String userChoice) throws IOException, InterruptedException {
-        menuPrinter.printMenuForDrinksByList("kuku");
-        int choice = choiceReader.makeMenuChoice();
-        chooseDrinkListMenuOption(choice, userChoice);
-    }
-
-    private void printMenuForDrinkService() throws IOException, InterruptedException {
-        menuPrinter.printMenuForDrinksByList("dupa");
-        int choice = choiceReader.makeMenuChoice();
-        chooseDrinkListMenuOption(choice);
-    }
-
+    //do zaorania
     private void printMenuForFavouritesService() throws IOException, InterruptedException {
         menuPrinter.printMenuForFavourites();
         int choice = choiceReader.makeMenuChoice();
         chooseFavouritesMenuOption(choice);
     }
 
-    private void printMenuForDrinkNameInput() throws IOException, InterruptedException {
-        menuPrinter.printMenuForDrinksByName();
-
-    }
-
 
     private void numericMenuChoices(String menuChoice) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
-        if (menuChoice.equals("1")) {
-            menuPrinter.printEntryMenu();
-            int choice = choiceReader.makeMenuChoice();
-            chooseMainMenuOption(choice);
-        } else if (menuChoice.equals("2")) {
-            System.exit(0);
+        switch (menuChoice) {
+            case "1":
+                menuPrinter.printEntryMenu();
+                int choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
+                break;
+            case "2":
+                System.exit(0);
+
         }
     }
 
-    private void numericMenuChoices(String menuChoice, List<Recipe> recipe) throws IOException, InterruptedException {
+    private void numericMenuChoices(String menuChoice, List<Recipe> recipe) throws
+            IOException, InterruptedException {
         ClearScreenService.cleanConsole();
-        if (menuChoice.equals("1")) {
-            menuPrinter.printEntryMenu();
-            int choice = choiceReader.makeMenuChoice();
-            chooseMainMenuOption(choice);
-        } else if (menuChoice.equals("2")) {
-            System.exit(0);
-        } else if (menuChoice.equals("3")) {
-            //miejsce na delete from Drinkopedia
-            System.exit(0);
-        } else if (menuChoice.equals("4")) {
-            //miejsce na add/remove from Favourites
-            System.exit(0);
+        switch (menuChoice) {
+            case "1":
+                menuPrinter.printEntryMenu();
+                int choice = choiceReader.makeMenuChoice();
+                chooseMainMenuOption(choice);
+                break;
+            case "2":
+                System.exit(0);
+            case "3":
+                //miejsce na delete from Drinkopedia
+                System.exit(0);
+            case "4":
+                //miejsce na add/remove from Favourites
+                System.exit(0);
         }
     }
 }
+

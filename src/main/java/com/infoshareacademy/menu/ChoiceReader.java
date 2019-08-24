@@ -31,6 +31,8 @@ public class ChoiceReader {
 
     public List<String> userInputForListsCheck(List<String> inputList) {
 
+        //jest bug jak wciskam enter
+
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
         String userSingleChoice = "";
@@ -41,11 +43,11 @@ public class ChoiceReader {
         }
 
         while (userChoiceList.isEmpty()) {
-            System.out.println(userChoiceList.toString());
+            System.out.println("#sprawdzanie choice readera przed scannerem: " + userChoiceList.toString());
             userChoiceList = Arrays.asList(scanner.nextLine().split(","));
         }
 
-        System.out.println(userChoiceList.toString());
+        System.out.println("#sprawdzanie choice readera po scannerze: " + userChoiceList.toString());
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
             userSingleChoice = listIterator.next();
@@ -94,9 +96,10 @@ public class ChoiceReader {
             if (userSingleChoice.length() >= 3) {
                 outputList = inputListToLower.stream().filter(recipeName -> recipeName.contains(userSingleChoice)).collect(Collectors.toList());
             }
-            if (userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
+            else if(userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
                 outputList.add(userSingleChoice);
-            } else {
+            }
+            else {
                 System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");
             }
 
@@ -107,7 +110,6 @@ public class ChoiceReader {
 
     public List<String> userInputForFinalPickFromList(List<Recipe> inputList) {
 
-        //jest bug jak wciskam 0
         String userSingleChoice = scanner.nextLine().toLowerCase().trim();
         String outputString="";
 
@@ -127,11 +129,13 @@ public class ChoiceReader {
                 outputString = userSingleChoice;
                 break;
             }
-            System.out.println(userSingleChoice + "Invalid input. Please proceed with DRINKS LIST MENU valid options");
+            System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");
             userSingleChoice = scanner.nextLine();
             }
         return Collections.singletonList(outputString);
     }
+
+
 
     public List<String> userInputForRecipeView(){
         String userSingleChoice = scanner.nextLine();

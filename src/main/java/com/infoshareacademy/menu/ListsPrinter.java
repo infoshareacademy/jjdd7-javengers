@@ -33,8 +33,9 @@ public class ListsPrinter {
                 createColumn("    LIST No     ",recipe -> "0"+ recipeList.indexOf(recipe)),
                 createColumn("   DRINK NAME   ",Recipe::getName),
                 createColumn("    CATEGORY    ",Recipe::getRecipeCategory),
-                createColumn("      TYPE      ",Recipe::getDrinkType))));
-                createColumn("   INGREDIENTS  ",recipe -> (recipe.getIngredients().keySet().toString()));
+                createColumn("      TYPE      ",Recipe::getDrinkType)))
+                /* tutaj jeszcze rozkminiam, nie kasowac komenta!
+                ,createColumn("   INGREDIENTS  ",recipe -> String.valueOf((recipe.getIngredients().keySet())))*/);
 
     }
 
@@ -59,7 +60,7 @@ public class ListsPrinter {
                     System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
                 }
                 System.out.println();
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ALCOHOLIC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getDrinkType() + "\n");
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getGlassType() + "\n");
@@ -75,10 +76,6 @@ public class ListsPrinter {
     public void printImage() throws IOException {
         System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
     }
-
-
-
-
 
 
     private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
