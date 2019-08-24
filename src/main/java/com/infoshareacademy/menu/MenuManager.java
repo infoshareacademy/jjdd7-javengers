@@ -49,8 +49,10 @@ public class MenuManager {
                 break;
             case 3:
                 ClearScreenService.cleanConsole();
+
                 listsPrinter.printCategory(RecipeRepository.getIngredientsList());
                 menuPrinter.printMenuForDrinksByList("ingredient");
+                             
                 userChoiceSecond = choiceReader.userInputForListsCheck(RecipeRepository.getIngredientsList());
                 if (userChoiceSecond.size() == 1 && userChoiceSecond.get(0).matches("[0-9]")) {
                     numericMenuChoicesMiddle(userChoiceSecond.get(0));
@@ -114,6 +116,21 @@ public class MenuManager {
         chooseMainMenuOption(choice);
     }
 
+
+
+    private void recipeByNameMenuViewActions(List<String> userChoiceFromUpperMenu) throws IOException, InterruptedException {
+        ClearScreenService.cleanConsole();
+        listsPrinter.printImage();
+        menuPrinter.printMenuForDrinksByName();
+        userChoiceFromUpperMenu = choiceReader.userInputForDrinkNameCheck(RecipeRepository.getRecipesList());
+        if (userChoiceFromUpperMenu.size() == 1 && userChoiceFromUpperMenu.get(0).matches("[0-9]")) {
+            numericMenuChoicesMiddle(userChoiceFromUpperMenu.get(0));
+        } else {
+            middleMenuViewActions(recipeManager.findRecipeByName(RecipeRepository.getRecipesList(), userChoiceFromUpperMenu));
+        }
+    }
+
+
     private void middleMenuViewActions(List<Recipe> listToLook ) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
         listsPrinter.printAllRecipes(listToLook);
@@ -142,6 +159,8 @@ public class MenuManager {
         numericMenuChoicesLowest(userChoiceFinal.get(0), recipeManager.findRecipeByName(RecipeRepository
                 .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook);
     }
+
+
 
     private void numericMenuChoicesUnderTop(String menuChoice) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
