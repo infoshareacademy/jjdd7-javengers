@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RecipeAddAndEditManager {
-    private UserChoice userChoice = new UserChoice();
+    private ChoiceReader userChoice = new ChoiceReader();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private Scanner scanner = new Scanner(System.in);
     private int startIDNumber = 18000;
@@ -24,7 +24,7 @@ public class RecipeAddAndEditManager {
         recipe.setId(startIDNumber);
         startIDNumber++;
         //TODO take method to print categories from ListPrinter
-        recipe.setRecipeCategory(loadRecipeAttributes());
+        recipe.setRecipeCategory(loadCategory(loadRecipeAttributes()));
         System.out.println("Enter name of recipe:");
         recipe.setName(loadRecipeName());
         System.out.println("Enter recipe instruction:");
@@ -39,10 +39,19 @@ public class RecipeAddAndEditManager {
     }
 
     String loadRecipeAttributes() {
-        String userInput = scanner.nextLine().trim();
+        String userInput = scanner.nextLine().toLowerCase().trim();
         while (userInput.length() < 2) {
             System.out.println("Your input is to short, type it one more time");
-            userInput = scanner.nextLine().trim();
+            userInput = scanner.nextLine().toLowerCase().trim();
+        }
+        return userInput;
+    }
+
+    String loadCategory(String userInput){
+        for (String category: RecipeRepository.getCategoriesList()){
+            if (category.toLowerCase().equals(userInput)){
+                return category;
+            }
         }
         return userInput;
     }
@@ -60,7 +69,7 @@ public class RecipeAddAndEditManager {
         String name = loadRecipeAttributes();
         while (!checkNameIsOnRecipeList(name)) {
             System.out.println("This recipe name is already on all recipe list, enter new name: ");
-            name = scanner.nextLine();
+            name = scanner.nextLine().trim();
         }
         return name;
     }
@@ -118,7 +127,6 @@ public class RecipeAddAndEditManager {
             oneIngredient = getIngredientWithMeasure();
             ingredients.putIfAbsent(oneIngredient[0].trim(), oneIngredient[1].trim());
         } while (userInput.equals("y") && ingredients.size() < maximumIngredientsNumber); //prevent to add more then 15 ingredients
-        System.out.println(ingredients);
         return ingredients;
     }
 
@@ -214,16 +222,6 @@ public class RecipeAddAndEditManager {
         return editedAttributes;
     }
 
-    boolean isRecipeOnRecipesList(String name) {
-        for (Recipe recipe : RecipeRepository.getRecipesList()
-        ) {
-            if (recipe.getName().equals(name)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     private Recipe getRecipeFromList(String name) {
         Recipe drinkRecipe = null;
         for (Recipe recipe : RecipeRepository.getRecipesList()
@@ -293,6 +291,4 @@ public class RecipeAddAndEditManager {
         System.out.println(ingredientsWithIndex);
         return ingredientsWithIndex;
     }
-
-
 }

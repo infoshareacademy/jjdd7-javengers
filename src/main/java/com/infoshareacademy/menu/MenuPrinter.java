@@ -6,35 +6,65 @@ import java.nio.charset.StandardCharsets;
 public class MenuPrinter {
 
     public void printEntryMenu() throws IOException {
+
         System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
         System.out.println("================ MENU ================" +
                 "\nEnter 1 to search drink by name" +
                 "\nEnter 2 to search drink by category" +
                 "\nEnter 3 to search drink by ingredient" +
                 "\nEnter 4 to add drink to drink list" +
-                "\nEnter 5 to remove drink from drink list" +
-                "\nEnter 6 to get list of drinks" +
-                "\nEnter 7 to get your favourites" +
-                "\nEnter 8 to exit\n" +
-                "=======================================");
+                "\nEnter 5 to get list of all drinks" +
+                "\nEnter 6 to get your favourites list favourites" +
+                "\nEnter 7 to exit" +
+                "\n=======================================");
     }
 
-    void printMenuForDrinksList() throws IOException {
+    void printMenuForDrinksByName() {
+
         System.out.println("=========== DRINKS LIST MENU ===========" +
-                "\nEnter 1 to remove drink from drink list" +
-                "\nEnter 2 to add your drink to favourites" +
-                "\nEnter 3 to edit recipe" +
-                "\nEnter 4 to back to main menu" +
-                "\nEnter 5 to exit\n" +
-                "==========================================");
+                "\nEnter 1 to go back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nOr enter a drink name (or at least 3 characters to find matching recipe):" +
+                "\n==========================================");
     }
 
-    void printMenuForFavourites() throws IOException {
+
+    void printMenuForDrinksByList(String listName) {
+
+        System.out.println("=========== DRINKS LIST MENU ===========" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nOr enter List No or " + listName + " name(or more than one List No or " + listName +
+                " divided by a colon ',') to find recipes: " +
+                "\n==========================================");
+    }
+
+    void printMenuForPickingARecipe() {
+
+        System.out.println("=========== DRINKS LIST MENU ===========" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nOr enter List No or Drink name to see a recipe: " +
+                "\n==========================================");
+    }
+
+    void printMenuForFavourites() {
+
         System.out.println("============ YOUR FAVOURITES =============" +
                 "\nEnter 1 to add drink to favourites" +
                 "\nEnter 2 to remove drink from favourites" +
                 "\nEnter 3 to back to main menu" +
-                "\nEnter 4 to exit\n" +
-                "==========================================");
+                "\nEnter 4 to exit" +
+                "\n==========================================");
+    }
+
+    void printMenuForRecipeView() {
+
+        System.out.println("=========== DRINKS LIST MENU ===========" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nEnter 3 to delete a recipe from Drinkopedia\"" +
+                "\nEnter 4 to add/remove drink to favourites" +
+                "\n==========================================");
     }
 }
