@@ -31,7 +31,6 @@ public class ChoiceReader {
 
     public List<String> userInputForListsCheck(List<String> inputList) {
 
-        //jest bug jak wciskam enter
 
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
@@ -42,12 +41,11 @@ public class ChoiceReader {
             inputListToLower.add(singleString.toLowerCase().trim());
         }
 
-        while (userChoiceList.isEmpty()) {
-            System.out.println("#sprawdzanie choice readera przed scannerem: " + userChoiceList.toString());
-            userChoiceList = Arrays.asList(scanner.nextLine().split(","));
-        }
-
-        System.out.println("#sprawdzanie choice readera po scannerze: " + userChoiceList.toString());
+        /*while (userSingleChoice.isEmpty()) {
+            System.out.println("#sprawdzanie choice readera przed scannerem: " + userChoiceList.toString());;*/
+        userSingleChoice = (scanner.nextLine());
+        userChoiceList = Arrays.asList(userSingleChoice.split(","));
+        /*System.out.println("#sprawdzanie choice readera po scannerze: " + userChoiceList.toString());*/
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
             userSingleChoice = listIterator.next();
@@ -62,6 +60,7 @@ public class ChoiceReader {
                         && userSingleChoice.trim().matches("[0-9]+")
                         && Integer.parseInt(userSingleChoice.trim().substring(1)) < inputList.size()) {
                     userSingleChoice = inputList.get(Integer.parseInt(userSingleChoice.trim().substring(1)));
+                    System.out.println("sprawdzenie co wychodzi z numerykow: " + userSingleChoice);
                     break;
                 }
                 System.out.println(userSingleChoice + "is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
@@ -93,10 +92,10 @@ public class ChoiceReader {
                 outputList.add(userSingleChoice);
                 break;
             }
-            if (userSingleChoice.length() >= 3) {
+            if (userSingleChoice.length() >= 2) {
                 outputList = inputListToLower.stream().filter(recipeName -> recipeName.contains(userSingleChoice)).collect(Collectors.toList());
             }
-            else if(userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
+            else if(inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
                 outputList.add(userSingleChoice);
             }
             else {

@@ -193,44 +193,15 @@ public class MenuManager {
                 }
                 break;
             case 7:
+                exitFromMenu();
                 break;
             default:
                 System.out.println("\n wrong choice, type one more time");
                 printMainMenuService();
-
         }
     }
 
-    //do zaorania
-    private void chooseFavouritesMenuOption(int choice) throws IOException, InterruptedException {
-        String nameOfDrink;
-        ChoiceReader choiceReader = new ChoiceReader();
-        switch (choice) {
-            case 1:
-                System.out.println("\nEnter drink name");
-                nameOfDrink = choiceReader.makeChoice();
-                System.out.println("There will be method to add" + nameOfDrink + " to favourites\n");
-                printMainMenuService();
-                break;
-            case 2:
-                System.out.println("\nEnter drink name");
-                nameOfDrink = choiceReader.makeChoice();
-                System.out.println("There will be method to remove" + nameOfDrink + " from favourites\n");
-                printMainMenuService();
-                break;
-            case 3:
-                printMainMenuService();
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("\nwrong choice");
-                menuPrinter.printMenuForFavourites();
-                choice = choiceReader.makeMenuChoice();
-                chooseFavouritesMenuOption(choice);
-                break;
-        }
-    }
+
 
     private void printMainMenuService() throws IOException, InterruptedException {
         menuPrinter.printEntryMenu();
@@ -242,8 +213,42 @@ public class MenuManager {
     private void printMenuForFavouritesService() throws IOException, InterruptedException {
         menuPrinter.printMenuForFavourites();
         int choice = choiceReader.makeMenuChoice();
-        chooseFavouritesMenuOption(choice);
+        //chooseFavouritesMenuOption(choice);
     }
+
+    private void lowestMenuViewActions(List<String> userChoiceMidle) throws IOException, InterruptedException {
+        ClearScreenService.cleanConsole();
+        listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
+                .getRecipesList(), userChoiceMidle));
+        if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName()
+                .equals(recipeManager.findRecipeByName(RecipeRepository
+                        .getRecipesList(), userChoiceMidle).get(0).getName()))) {
+            menuPrinter.printMenuForRecipeView("remove");
+        }
+        else {
+            menuPrinter.printMenuForRecipeView("add");
+        }
+        List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
+        numericMenuChoices(userChoiceFinal.get(0), recipeManager.findRecipeByName(RecipeRepository
+                .getRecipesList(), userChoiceMidle).get(0).getName());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     private void numericMenuChoices(String menuChoice) throws IOException, InterruptedException {
@@ -255,15 +260,7 @@ public class MenuManager {
                 chooseMainMenuOption(choice);
                 break;
             case "2":
-                ClearScreenService.cleanConsole();
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.out.println("Miejsce na Twoja Reklame ");
-                System.exit(0);
-
+                exitFromMenu();
         }
     }
 
@@ -288,7 +285,7 @@ public class MenuManager {
                 System.exit(0);
             case "3":
                 //miejsce na delete from Drinkopedia
-                System.exit(0);
+                exitFromMenu();
             case "4":
                 ClearScreenService.cleanConsole();
                 recipeManager.addOrRemoveRecipeToFavourites(recipe);
@@ -298,5 +295,19 @@ public class MenuManager {
                 break;
         }
     }
+
+    private void exitFromMenu() {ClearScreenService.cleanConsole();
+        System.out.println("Miejsce na Twoja Reklame ");
+        System.out.println("Miejsce na Twoja Reklame ");
+        System.out.println("Miejsce na Twoja Reklame ");
+        System.out.println("Miejsce na Twoja Reklame ");
+        System.out.println("Miejsce na Twoja Reklame ");
+        System.out.println("Miejsce na Twoja Reklame ");
+        //wyparsowanie listy drinow
+        //wyparsowanie listy ulubionych
+        System.exit(0);
+
+    }
+
 }
 

@@ -80,21 +80,20 @@ public class RecipeService {
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();
         List<String> userChoyceArrayListToLower = new ArrayList<>();
-        for(Recipe recipe : recipesList){
-           /* for (String s : recipe.getIngredients().keySet()) {
-                String s1 = s.trim().toLowerCase();
-            }*/
-            System.out.println(recipe.getName() + "  " + recipe.getIngredients().keySet());
-        }
-        //userChoiceArrayList.add("milk");
-        //for (String userSingleChoice: userChoiceArrayList) {
+
+        System.out.println(" wejsce do outputa w find recipe by ingredients" + userChoiceArrayList.toString());
+
         outputList = (recipesList.stream()
                 .filter(r ->
                         (userChoiceArrayList.stream()
                                 .allMatch(
                                         ingredient ->
-                                                (r.getIngredients()
-                                                        .keySet()).toString().toLowerCase().contains(ingredient.trim())))))
+                                                (" "+(r.getIngredients()
+                                                        .keySet()))
+                                                        .toLowerCase()
+                                                        .replace(","," ")
+                                                        .concat(" ")
+                                                        .contains(" "+ingredient.trim()+" ")))))
                 .collect(Collectors.toList());
 
         for (Recipe recipe : outputList) {
