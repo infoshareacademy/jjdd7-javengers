@@ -56,20 +56,20 @@ public class MenuPrinter {
     void printMenuForFavourites(){
 
         System.out.println("============ YOUR FAVOURITES =============" +
-                "\nEnter 1 to add drink to favourites" +
-                "\nEnter 2 to remove drink from favourites" +
-                "\nEnter 3 to back to main menu" +
-                "\nEnter 4 to exit" +
+                "\nEnter 1 to back to main menu" +
+                "\nEnter 2 to exit" +
+                "\nEnter 3 [not implemented] toremove a drink from favourites list" +
+                "\nOr enter List No or Drink name to see a recipe: " +
                 "\n==========================================");
     }
 
-    void printMenuForRecipeView(){
+    void printMenuForRecipeView(String addOrRemove){
 
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to back to main menu" +
                 "\nEnter 2 to exit" +
                 "\nEnter 3 to delete a recipe from Drinkopedia\"" +
-                "\nEnter 4 to add/remove drink to favourites" +
+                "\nEnter 4 to "+ addOrRemove+" drink to favourites" +
                 "\n==========================================");
     }
 
