@@ -9,19 +9,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataParseToJsonService {
+public class DataConvertToJsonService {
 
-    public static <T> Object parseJsonToFile(T obj, String jsonFilePath) { //TODO create jsonNode
+    public static <T> Object parseJsonToFile(T obj, String jsonFilePath) {
 
         T outputObject = null;
 
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-
             Map<String, Object> drinks = new HashMap<>();
             drinks.put("drinks", obj);
-
             mapper.writeValue(new File(jsonFilePath), drinks);
         } catch (JsonGenerationException e) {
             e.printStackTrace();

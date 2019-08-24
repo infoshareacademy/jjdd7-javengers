@@ -23,8 +23,9 @@ public class MenuPrinter {
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to remove drink from drink list" +
                 "\nEnter 2 to add your drink to favourites" +
-                "\nEnter 3 to back to main menu" +
-                "\nEnter 4 to exit\n" +
+                "\nEnter 3 to edit recipe" +
+                "\nEnter 4 to back to main menu" +
+                "\nEnter 5 to exit\n" +
                 "==========================================");
     }
 

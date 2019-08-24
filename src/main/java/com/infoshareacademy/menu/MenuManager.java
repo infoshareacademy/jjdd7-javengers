@@ -8,16 +8,17 @@ import java.io.IOException;
 
 public class MenuManager {
     private RecipeService recipeService = new RecipeService();
-    private ChoiceReader choiceReader = new ChoiceReader();
+    private RecipeAddAndEditManager recipeAddAndEditManager = new RecipeAddAndEditManager();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
+    private UserChoice userChoice = new UserChoice();
 
     public void chooseMainMenuOption(int choice) throws IOException {
         String userChoice;
         switch (choice) {
             case 1:
                 System.out.println("\nEnter name to find drink: ");
-                userChoice = choiceReader.makeChoice();
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("\nThere will be a method which search " + userChoice + " from drink list by name" +
                         "\nWhat do you want to do with these drink\n");
                 printMenuForDrinkService(userChoice);
@@ -26,7 +27,7 @@ public class MenuManager {
             case 2:
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("\nEnter category to find recipes: ");
-                userChoice = choiceReader.makeChoice();
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("\nThere will be a method which will print out the list of all drinks from "
                         + userChoice + " category\n");
                 printMenuForDrinkService(userChoice);
@@ -34,7 +35,7 @@ public class MenuManager {
                 break;
             case 3:
                 System.out.println("\nEnter ingredient to find: ");
-                userChoice = choiceReader.makeChoice();
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("\nThere will be a method which will print out all drinks that contain "
                         + userChoice + " ingredient\n");
                 printMenuForDrinkService(userChoice);
@@ -43,14 +44,14 @@ public class MenuManager {
             case 4:
                 listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                 System.out.println("Enter category of recipe from list or specify your own: ");
-                RecipeAddition recipeAddition = new RecipeAddition();
-                recipeService.addRecipeToList(recipeAddition.createNewRecipe());
+                UserChoice recipeAddition = new UserChoice();
+                recipeService.addRecipeToList(recipeAddAndEditManager.createNewRecipe());
                 printMainMenuService();
                 break;
             case 5:
                 System.out.println("\nEnter drink name to remove from recipe list");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be method to remove " + userChoice + " from drink list\n");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                recipeService.deleteRecipeFromList(userChoice);
                 printMainMenuService();
                 break;
             case 6:
@@ -73,24 +74,34 @@ public class MenuManager {
 
     private void chooseDrinkListMenuOption(int choice) throws IOException {
         String userChoice;
-        ChoiceReader choiceReader = new ChoiceReader();
+        RecipeAddAndEditManager recipeAddAndEditManager = new RecipeAddAndEditManager();
         switch (choice) {
             case 1:
-                System.out.println("\nEnter drink name to remove from drink list");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be used the method to remove " + userChoice + " from drink list\n");
+                System.out.println("\nEnter drink name to remove from recipe list");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                recipeService.deleteRecipeFromList(userChoice);
                 printMainMenuService();
                 break;
             case 2:
                 System.out.println("\nEnter drink name to add to favourites");
-                userChoice = choiceReader.makeChoice();
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("There will be used the method to add " + userChoice + " to favourite\n");
                 printMainMenuService();
                 break;
             case 3:
+                System.out.println("Which recipe do you want to edit, enter name: ");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                while (recipeAddAndEditManager.isRecipeOnRecipesList(userChoice)){
+                    System.out.println("There is no recipe with these name, type one more time");
+                    userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                }
+                recipeService.editRecipe(recipeAddAndEditManager.editRecipe(userChoice),userChoice, recipeAddAndEditManager.getLocalDateTime());
                 printMainMenuService();
                 break;
             case 4:
+                printMainMenuService();
+                break;
+            case 5:
                 break;
             default:
                 System.out.println("\nwrong choice");
@@ -102,17 +113,31 @@ public class MenuManager {
     private void chooseDrinkListMenuOption(int choice, String userChoice) throws IOException {
         switch (choice) {
             case 1:
-                System.out.println("\nThere will be used the method to remove " + userChoice + " from drink list\n");
+                System.out.println("\nEnter drink name to remove from recipe list");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                recipeService.deleteRecipeFromList(userChoice);
                 printMainMenuService();
                 break;
             case 2:
-                System.out.println("\nThere will be used the method to add " + userChoice + " to favourite\n");
+                System.out.println("\nEnter drink name to add to favourites");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                System.out.println("There will be used the method to add " + userChoice + " to favourite\n");
                 printMainMenuService();
                 break;
             case 3:
+                System.out.println("Which recipe do you want to edit, enter name: ");
+                userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                while (recipeAddAndEditManager.isRecipeOnRecipesList(userChoice)){
+                    System.out.println("There is no recipe with these name, type one more time");
+                    userChoice = recipeAddAndEditManager.loadRecipeAttributes();
+                }
+                recipeService.editRecipe(recipeAddAndEditManager.editRecipe(userChoice),userChoice, recipeAddAndEditManager.getLocalDateTime());
                 printMainMenuService();
                 break;
             case 4:
+                printMainMenuService();
+                break;
+            case 5:
                 break;
             default:
                 System.out.println("\nwrong choice");
@@ -123,17 +148,17 @@ public class MenuManager {
 
     private void chooseFavouritesMenuOption(int choice) throws IOException {
         String nameOfDrink;
-        ChoiceReader choiceReader = new ChoiceReader();
+        RecipeAddAndEditManager recipeAddAndEditManager = new RecipeAddAndEditManager();
         switch (choice) {
             case 1:
                 System.out.println("\nEnter drink name");
-                nameOfDrink = choiceReader.makeChoice();
+                nameOfDrink = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("There will be method to add" + nameOfDrink + " to favourites\n");
                 printMainMenuService();
                 break;
             case 2:
                 System.out.println("\nEnter drink name");
-                nameOfDrink = choiceReader.makeChoice();
+                nameOfDrink = recipeAddAndEditManager.loadRecipeAttributes();
                 System.out.println("There will be method to remove" + nameOfDrink + " from favourites\n");
                 printMainMenuService();
                 break;
@@ -145,7 +170,7 @@ public class MenuManager {
             default:
                 System.out.println("\nwrong choice");
                 menuPrinter.printMenuForFavourites();
-                choice = choiceReader.makeMenuChoice();
+                choice = userChoice.makeMenuChoice();
                 chooseFavouritesMenuOption(choice);
                 break;
         }
@@ -153,25 +178,25 @@ public class MenuManager {
 
     private void printMainMenuService() throws IOException {
         menuPrinter.printEntryMenu();
-        int choice = choiceReader.makeMenuChoice();
+        int choice = userChoice.makeMenuChoice();
         chooseMainMenuOption(choice);
     }
 
-    private void printMenuForDrinkService(String userChoice) throws IOException {
+    private void printMenuForDrinkService(String userInput) throws IOException {
         menuPrinter.printMenuForDrinksList();
-        int choice = choiceReader.makeMenuChoice();
-        chooseDrinkListMenuOption(choice, userChoice);
+        int choice = userChoice.makeMenuChoice();
+        chooseDrinkListMenuOption(choice, userInput);
     }
 
     private void printMenuForDrinkService() throws IOException {
         menuPrinter.printMenuForDrinksList();
-        int choice = choiceReader.makeMenuChoice();
+        int choice = userChoice.makeMenuChoice();
         chooseDrinkListMenuOption(choice);
     }
 
     private void printMenuForFavouritesService() throws IOException {
         menuPrinter.printMenuForFavourites();
-        int choice = choiceReader.makeMenuChoice();
+        int choice = userChoice.makeMenuChoice();
         chooseFavouritesMenuOption(choice);
     }
 }

@@ -1,9 +1,9 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.menu.ChoiceReader;
+import com.infoshareacademy.menu.RecipeAddAndEditManager;
 import com.infoshareacademy.menu.MenuManager;
 import com.infoshareacademy.menu.MenuPrinter;
-import com.infoshareacademy.properties.ConfigLoader;
+import com.infoshareacademy.menu.UserChoice;
 import com.infoshareacademy.service.RecipeService;
 
 import java.io.IOException;
@@ -16,10 +16,10 @@ public class App {
         recipeService.loadFavouritesList();
         System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
         MenuManager menuManager = new MenuManager();
-        ChoiceReader choiceReader = new ChoiceReader();
         MenuPrinter menuPrinter = new MenuPrinter();
         menuPrinter.printEntryMenu();
-        int choice = choiceReader.makeMenuChoice();
+        UserChoice userChoice = new UserChoice();
+        int choice = userChoice.makeMenuChoice();
         menuManager.chooseMainMenuOption(choice);
     }
 }

@@ -30,6 +30,10 @@ public class ListsPrinter {
             String wrappedInstruction = WordUtils.wrap(instruction, 77);
             System.out.println(wrappedInstruction);
             System.out.println();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK TYPE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getDrinkType() + "\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GLASS TYPE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println("\t\t\t\t" + recipe.getGlassType() + "\n");
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> INGREDIENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             Map<String, String> ingredients = recipe.getIngredients();
             Set<Map.Entry<String, String>> hashSet = ingredients.entrySet();
@@ -37,6 +41,14 @@ public class ListsPrinter {
                 System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
             }
             System.out.println("\n\n");
+        }
+    }
+
+    public void printIngredients(Map<Integer, Map<String, String>> ingredientsWithIndex) {
+        for (Map.Entry<Integer, Map<String, String>> ingredientNumber : ingredientsWithIndex.entrySet()) {
+            for (Map.Entry<String, String> ingredients : ingredientNumber.getValue().entrySet()) {
+                System.out.println(ingredientNumber.getKey() + ". " + ingredients.getKey() + " " + ingredients.getValue());
+            }
         }
     }
 }

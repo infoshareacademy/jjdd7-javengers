@@ -1,4 +1,4 @@
-package com.infoshareacademy;
+package com.infoshareacademy.mappers;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
