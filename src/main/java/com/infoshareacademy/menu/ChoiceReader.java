@@ -13,6 +13,7 @@ public class ChoiceReader {
         return scanner.nextLine();
     }
 
+
     public int makeMenuChoice() {
         int userChoice = 0;
         String choiceFromMenu;
@@ -30,8 +31,6 @@ public class ChoiceReader {
 
 
     public List<String> userInputForListsCheck(List<String> inputList) {
-
-
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
         String userSingleChoice = "";
@@ -41,11 +40,8 @@ public class ChoiceReader {
             inputListToLower.add(singleString.toLowerCase().trim());
         }
 
-        /*while (userSingleChoice.isEmpty()) {
-            System.out.println("#sprawdzanie choice readera przed scannerem: " + userChoiceList.toString());;*/
         userSingleChoice = (scanner.nextLine());
         userChoiceList = Arrays.asList(userSingleChoice.split(","));
-        /*System.out.println("#sprawdzanie choice readera po scannerze: " + userChoiceList.toString());*/
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
             userSingleChoice = listIterator.next();
@@ -145,7 +141,6 @@ public class ChoiceReader {
                 System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");
                 userInputForRecipeView();
             }
-
         return Collections.singletonList(userSingleChoice);
     }
 

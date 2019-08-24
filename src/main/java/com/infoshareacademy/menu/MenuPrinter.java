@@ -68,8 +68,9 @@ public class MenuPrinter {
         System.out.println("=========== DRINKS LIST MENU ===========" +
                 "\nEnter 1 to back to main menu" +
                 "\nEnter 2 to exit" +
-                "\nEnter 3 to delete a recipe from Drinkopedia\"" +
+                "\nEnter 3 to go upper in the menu" +
                 "\nEnter 4 to "+ addOrRemove+" drink to favourites" +
+                "\nEnter 5 to delete a recipe from Drinkopedia" +
                 "\n==========================================");
     }
 
