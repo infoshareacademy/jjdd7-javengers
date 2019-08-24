@@ -8,6 +8,8 @@ import com.infoshareacademy.domain.Recipe;
 import org.apache.commons.text.WordUtils;
 
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
 
@@ -24,14 +26,17 @@ public class ListsPrinter {
                 createColumnString("    CATEGORY    ",category-> categoryList.get(categoryList.indexOf(category))))));
     }
 
-    public void printAllRecipes(List<Recipe> recipeList/*, int beginningIndex, int endingIndex*/) {
+    public void printAllRecipes(List<Recipe> recipeList) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
                 createColumn("    LIST No     ",recipe -> "0"+ recipeList.indexOf(recipe)),
                 createColumn("   DRINK NAME   ",Recipe::getName),
                 createColumn("    CATEGORY    ",Recipe::getRecipeCategory),
-                createColumn("      TYPE      ",Recipe::getDrinkType))));
+                createColumn("      TYPE      ",Recipe::getDrinkType)))
+                /* tutaj jeszcze rozkminiam, nie kasowac komenta!
+                ,createColumn("   INGREDIENTS  ",recipe -> String.valueOf((recipe.getIngredients().keySet())))*/);
+
     }
 
     public void printRecipe(List<Recipe> recipeList) {
@@ -55,7 +60,7 @@ public class ListsPrinter {
                     System.out.println(String.format("%-15s\t\t\t\t%-20s", entry.getKey(), entry.getValue()));
                 }
                 System.out.println();
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ALCOHOLIC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getDrinkType() + "\n");
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
                 System.out.println("\t\t\t\t" + recipe.getGlassType() + "\n");
@@ -65,6 +70,13 @@ public class ListsPrinter {
             }
 
     }
+
+
+
+    public void printImage() throws IOException {
+        System.out.println(GraphicContentFromFile.getGraphic("graphic.txt", StandardCharsets.US_ASCII));
+    }
+
 
     private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
         return new Column()
