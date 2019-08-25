@@ -58,7 +58,7 @@ public class ChoiceReader {
                     /*System.out.println("sprawdzenie co wychodzi z numerykow: " + userSingleChoice);*/
                     break;
                 }
-                System.out.println(userSingleChoice + "is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
+                System.out.println(userSingleChoice + " is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
                 userSingleChoice = scanner.nextLine();
             }
             if (userSingleChoice.isEmpty()) {

@@ -30,7 +30,6 @@ public class MenuPrinter {
                  ("============================= DRINKS LIST MENU =============================" +
                 "\nEnter 1 to go back to main menu" +
                 "\nEnter 2 to exit" +
-                "\nEnter 3 to go upper in the menu" +
                 "\nOr enter a drink name (or at least 3 characters to find matching recipe):" +
                 "\n============================================================================");
     }
@@ -42,7 +41,6 @@ public class MenuPrinter {
                  ("============================= DRINKS LIST MENU =============================" +
                 "\nEnter 1 to back to main menu" +
                 "\nEnter 2 to exit" +
-                "\nEnter 3 to go upper in the menu" +
                 "\nOr enter List No or " + listName + " name(or more than one List No or " + listName +
                         " divided by a colon ',') to find recipes: " +
                 "\n============================================================================");
