@@ -116,6 +116,8 @@ public class RecipeService {
             System.out.println("These recipe is already on list of all recipes");
         }
         DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
+        loadCategoriesList();
+        loadIngredientsList();
     }
 
     public void deleteRecipeFromList(String name) {
@@ -132,9 +134,10 @@ public class RecipeService {
         if (!isRecipeOnList){
             System.out.println("There is no recipe with these name on list of all recipes");
         }
-
         RecipeRepository.getRecipesList().remove(recipeToDelete);
         DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
+        loadCategoriesList();
+        loadIngredientsList();
     }
 
     public void editRecipe(Map<String, Map<String, String>> editedRecipe, String name, String newDate) {
@@ -145,31 +148,24 @@ public class RecipeService {
                 recipeToEdit = recipe;
             }
         }
-
         for (Map.Entry<String, Map<String, String>> recipeAttributes : editedRecipe.entrySet()) {
             assert recipeToEdit != null;
             if (recipeAttributes.getKey().equals(recipeToEdit.getName())) {
                 recipeToEdit.setName(recipeAttributes.getValue().get("name"));
             }
-
             if (recipeAttributes.getKey().equals(recipeToEdit.getInstruction())) {
                 recipeToEdit.setInstruction(recipeAttributes.getValue().get("instruction"));
             }
-
             if (recipeAttributes.getKey().equals(recipeToEdit.getGlassType())) {
                 recipeToEdit.setGlassType(recipeAttributes.getValue().get("glassType"));
             }
-
             if (recipeAttributes.getKey().equals(recipeToEdit.getDrinkType())) {
                 recipeToEdit.setDrinkType(recipeAttributes.getValue().get("drinkType"));
             }
-
             if (recipeAttributes.getKey().equals(recipeToEdit.getRecipeCategory())) {
                 recipeToEdit.setRecipeCategory(recipeAttributes.getValue().get("category"));
             }
-
             Map<String, String> newIngredients = new HashMap<>();
-
             Map<String, String> ingredientsOfRecipeToEdit = recipeToEdit.getIngredients();
             for (Map.Entry<String, String> editedIngredients : ingredientsOfRecipeToEdit.entrySet()) {
                 if (recipeAttributes.getKey().equals(editedIngredients.getKey())) {
@@ -180,13 +176,14 @@ public class RecipeService {
                     newIngredients.put(editedIngredients.getKey(), editedIngredients.getValue());
                 }
             }
-
-            System.out.println(newIngredients);
             recipeToEdit.setIngredients(newIngredients);
             recipeToEdit.setModificationDate(newDate);
             DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
+            loadCategoriesList();
+            loadIngredientsList();
         }
     }
+
     public List<Recipe> addRecipeToFavourites(List<Recipe> favouritesRecipeList, String name) {
         throw new NotImplementedException("Not implemented yet");
 //        DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "favourites.json");
