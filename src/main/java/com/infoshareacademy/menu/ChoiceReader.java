@@ -26,10 +26,8 @@ public class ChoiceReader {
             System.out.println("Invalid choice, type one more time");
             makeMenuChoice();
         }
-
         return userChoice;
     }
-
 
     public List<String> userInputForListsCheck(List<String> inputList) {
         List<String> outputList = new ArrayList<>();
@@ -76,7 +74,6 @@ public class ChoiceReader {
         return outputList;
     }
 
-
     public List<String> userInputForDrinkNameCheck(List<Recipe> inputList) {
 
         List<String> outputList = new ArrayList<>();
@@ -103,7 +100,6 @@ public class ChoiceReader {
         }
         return outputList;
     }
-
 
     public List<String> userInputForFinalPickFromList(List<Recipe> inputList) {
         String userSingleChoice = scanner.nextLine().toLowerCase().trim();
@@ -140,5 +136,4 @@ public class ChoiceReader {
         }
         return Collections.singletonList(userSingleChoice);
     }
-
 }

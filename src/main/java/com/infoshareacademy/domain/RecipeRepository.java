@@ -20,7 +20,9 @@ public class RecipeRepository {
         return categoriesList;
     }
 
-    public static List<String> getIngredientsList() { return ingredientsList; }
+    public static List<String> getIngredientsList() {
+        return ingredientsList;
+    }
 
     public static List<Recipe> getFavouritesRecipeList() {
         return favouritesRecipeList;

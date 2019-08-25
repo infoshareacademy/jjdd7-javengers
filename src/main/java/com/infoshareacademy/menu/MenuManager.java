@@ -6,9 +6,6 @@ import com.infoshareacademy.service.ClearScreenService;
 import com.infoshareacademy.service.RecipeService;
 
 import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -17,12 +14,11 @@ public class MenuManager {
     private ChoiceReader choiceReader = new ChoiceReader();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private MenuPrinter menuPrinter = new MenuPrinter();
+    private RecipeAddAndEditManager recipeAddition = new RecipeAddAndEditManager();
 
 
     public void chooseMainMenuOption(int choice) throws IOException, InterruptedException {
 
-        String userChoice;
-        List<String> userChoiceSecond1 = new ArrayList<>();
         switch (choice) {
             case 1:
                 recipeByNameMenuViewActions();
@@ -35,12 +31,7 @@ public class MenuManager {
                 break;
             case 4:
                 ClearScreenService.cleanConsole();
-                listsPrinter.printCategory(RecipeRepository.getCategoriesList());
-                System.out.println("\nChoose available category or enter a new category, \n" +
-                        "to which your new recipe will be added\n");
-                userChoice = choiceReader.makeChoice();
-                System.out.println("\nThere will be method used to  add" + userChoice
-                        + " to drink list based on categories\n");
+                recipeManager.addRecipeToList(recipeAddition.createNewRecipe());
                 printMainMenuService();
                 break;
             case 5:
@@ -166,11 +157,11 @@ public class MenuManager {
         switch (menuChoice) {
             case "1":
                 menuPrinter.printEntryMenu();
-                int choice = choiceReader.makeMenuChoice();
-                chooseMainMenuOption(choice);
-                break;
+                printMainMenuService();
             case "2":
                 exitFromMenu();
+            case "3":
+                printMainMenuService();
         }
     }
 
@@ -197,6 +188,12 @@ public class MenuManager {
                     recipeByIngredientViewActions();
                     break;
                 }
+                if (upperMenuName.equals("favourites")) {
+                    printMainMenuService();
+                }
+                if (upperMenuName.equals("all drinks")) {
+                    printMainMenuService();
+                }
         }
     }
 
@@ -219,11 +216,14 @@ public class MenuManager {
                 recipeManager.addOrRemoveRecipeToFavourites(recipe);
                 middleMenuViewActions(listToLook, upperMenuName);
             case "5":
-                // tu bedzie metoda usuwania
-                //
+                recipeManager.deleteRecipeFromList(recipeAddition.loadRecipeName(recipe));
+                middleMenuViewActions(listToLook, upperMenuName);
+                break;
             case "6":
-                // tu bedzie metoda edycji
-                //
+                String date = recipeAddition.getLocalDateTime();
+                String name = recipeAddition.loadRecipeName(recipe);
+                recipeManager.editRecipe(recipeAddition.editRecipe(name),name,date);
+                middleMenuViewActions(listToLook, upperMenuName);
         }
     }
 
@@ -242,4 +242,3 @@ public class MenuManager {
     }
 
 }
-
