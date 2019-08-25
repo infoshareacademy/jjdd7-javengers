@@ -217,10 +217,10 @@ public class MenuManager {
             case "4":
                 ClearScreenService.cleanConsole();
                 recipeManager.addOrRemoveRecipeToFavourites(recipe);
-                menuPrinter.printEntryMenu();
-                choice = choiceReader.makeMenuChoice();
-                chooseMainMenuOption(choice);
-                break;
+                middleMenuViewActions(listToLook, upperMenuName);
+            case "5":
+                // tu bedzie metoda edycji
+                //
         }
     }
 
