@@ -5,6 +5,7 @@ import com.infoshareacademy.domain.RecipeRepository;
 import com.infoshareacademy.service.ClearScreenService;
 import com.infoshareacademy.service.RecipeService;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -146,13 +147,15 @@ public class MenuManager {
 
   private void lowestMenuViewActions(List<String> userChoiceFromUpperMenu, List<Recipe> listToLook,
       String upperMenuName) throws IOException, InterruptedException {
+
+    List<String> userChoiceFinal;
     ClearScreenService.cleanConsole();
     if ((recipeManager.findRecipeByName(RecipeRepository
         .getRecipesList(), userChoiceFromUpperMenu).get(0).getDrinkType().equals("Alcoholic"))
         || (recipeManager
         .findRecipeByName(RecipeRepository.getRecipesList(), userChoiceFromUpperMenu).get(0)
         .getDrinkType().equals("Optional alcohol"))) {
-      if (choiceReader.confirmMature() == true) {
+      if (choiceReader.confirmMature()) {
         listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
             .getRecipesList(), userChoiceFromUpperMenu));
         if (RecipeRepository.getFavouritesRecipeList().stream()
@@ -163,35 +166,18 @@ public class MenuManager {
         } else {
           menuPrinter.printMenuForRecipeView("add");
         }
-        List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
-        numericMenuChoicesLowest(userChoiceFinal.get(0),
-            recipeManager.findRecipeByName(RecipeRepository
-                .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
-            upperMenuName);
-      } else {
-        List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
-        numericMenuChoicesLowest("3",
-            recipeManager.findRecipeByName(RecipeRepository
-                .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
-            upperMenuName);
+        userChoiceFinal = choiceReader.userInputForRecipeView();
       }
 
-    } else {
-      listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
-          .getRecipesList(), userChoiceFromUpperMenu));
-      if (RecipeRepository.getFavouritesRecipeList().stream()
-          .anyMatch(recipe -> recipe.getName()
-              .equals(recipeManager.findRecipeByName(RecipeRepository
-                  .getRecipesList(), userChoiceFromUpperMenu).get(0).getName()))) {
-        menuPrinter.printMenuForRecipeView("remove");
-      } else {
-        menuPrinter.printMenuForRecipeView("add");
+      else{
+        userChoiceFinal = Collections.singletonList("3");
       }
-      List<String> userChoiceFinal = choiceReader.userInputForRecipeView();
+
       numericMenuChoicesLowest(userChoiceFinal.get(0),
-          recipeManager.findRecipeByName(RecipeRepository
-              .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
-          upperMenuName);
+              recipeManager.findRecipeByName(RecipeRepository
+                      .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
+              upperMenuName);
+
 
     }
 
