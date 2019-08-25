@@ -81,7 +81,11 @@ public class RecipeService {
         List<Recipe> outputList = new ArrayList<>();
         List<String> userChoyceArrayListToLower = new ArrayList<>();
 
-        System.out.println(" wejsce do outputa w find recipe by ingredients" + userChoiceArrayList.toString());
+        /*System.out.println(" wejsce do outputa w find recipe by ingredients" + userChoiceArrayList.toString());
+
+        for (Recipe recipe : recipesList){
+            System.out.println(recipe.getName() + recipe.getIngredients().keySet());
+        }*/
 
         outputList = (recipesList.stream()
                 .filter(r ->
@@ -89,18 +93,19 @@ public class RecipeService {
                                 .allMatch(
                                         ingredient ->
                                                 (" "+(r.getIngredients()
-                                                        .keySet()))
-                                                        .toLowerCase()
+                                                        .keySet())+" ")
+                                                        .toString()
                                                         .replace(","," ")
                                                         .concat(" ")
+                                                        .toLowerCase()
                                                         .contains(" "+ingredient.trim()+" ")))))
                 .collect(Collectors.toList());
 
-        for (Recipe recipe : outputList) {
+        /*for (Recipe recipe : outputList) {
             System.out.println("test co wychodzi z findRecipeByIngredients");
             System.out.println(recipe.getName() + "  " + recipe.getIngredients().keySet());
 
-        }
+        }*/
         return outputList.stream().distinct().collect(Collectors.toList());
     }
 
