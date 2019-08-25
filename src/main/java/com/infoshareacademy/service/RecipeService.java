@@ -5,10 +5,7 @@ import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RecipeService {
@@ -55,8 +52,6 @@ public class RecipeService {
                         .collect(Collectors.toList()));
     }
 
-
-
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();
 
@@ -68,42 +63,6 @@ public class RecipeService {
         return outputList.stream().distinct().collect(Collectors.toList());
 
     }
-
-    public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
-
-        List<Recipe> outputList = new ArrayList<>();
-        /*List<String> userChoyceArrayListToLower = new ArrayList<>();
-        for(Recipe recipe : recipesList){
-            for (String s : recipe.getIngredients().keySet()) {
-                String s1 = s.trim().toLowerCase();
-            }
-            //System.out.println(recipe.getIngredients().keySet());
-        }*/
-
-
-        //userChoiceArrayList.add("milk");
-
-        //for (String userSingleChoice: userChoiceArrayList) {
-        outputList = (recipesList.stream()
-                .filter(r ->
-                        (userChoiceArrayList.stream()
-                                .allMatch(
-                                        ingredient ->
-                                                (r.getIngredients()
-                                                        .keySet()).toString().toLowerCase().contains(ingredient.trim())))))
-                .collect(Collectors.toList());
-
-        for (Recipe recipe : outputList) {
-            System.out.println(recipe.getIngredients().keySet());
-
-        }
-            return outputList.stream().distinct().collect(Collectors.toList());
-    }
-
-
-
-
-
 
 
     public List<Recipe> findRecipeByCategory(List<Recipe> recipesList, List<String> userChoiceArrayList) {
@@ -118,6 +77,38 @@ public class RecipeService {
 
     }
 
+    public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
+        List<Recipe> outputList = new ArrayList<>();
+        List<String> userChoyceArrayListToLower = new ArrayList<>();
+
+        /*System.out.println(" wejsce do outputa w find recipe by ingredients" + userChoiceArrayList.toString());
+
+        for (Recipe recipe : recipesList){
+            System.out.println(recipe.getName() + recipe.getIngredients().keySet());
+        }*/
+
+        outputList = (recipesList.stream()
+                .filter(r ->
+                        (userChoiceArrayList.stream()
+                                .allMatch(
+                                        ingredient ->
+                                                (" "+(r.getIngredients()
+                                                        .keySet())+" ")
+                                                        .toString()
+                                                        .replace(","," ")
+                                                        .concat(" ")
+                                                        .toLowerCase()
+                                                        .contains(" "+ingredient.trim()+" ")))))
+                .collect(Collectors.toList());
+
+        for (Recipe recipe : outputList) {
+            System.out.println("test co wychodzi z findRecipeByIngredients");
+            System.out.println(recipe.getName() + "  " + recipe.getIngredients().keySet());
+
+        }
+        return outputList.stream().distinct().collect(Collectors.toList());
+    }
+
     public void addRecipeToList(Recipe recipe) {
         throw new NotImplementedException("Not implemented yet");
     }
@@ -130,11 +121,18 @@ public class RecipeService {
         throw new NotImplementedException("Not implemented yet");
     }
 
-    public List<Recipe> addRecipeToFavourites(List<Recipe> favouritesRecipeList, String name) {
-        throw new NotImplementedException("Not implemented yet");
+    public void addOrRemoveRecipeToFavourites(String recipeName) {
+        if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName().equals(recipeName))) {
+            List<Recipe> recipeToDelete = findRecipeByName(RecipeRepository
+                    .getFavouritesRecipeList(), Collections.singletonList(recipeName));
+            RecipeRepository.getFavouritesRecipeList().remove(recipeToDelete.get(0));
+    }
+        else {
+            List<Recipe> recipeToDelete =  findRecipeByName(RecipeRepository
+                    .getRecipesList(), Collections.singletonList(recipeName));
+            RecipeRepository.getFavouritesRecipeList().add(recipeToDelete.get(0));
+        }
     }
 
-    public List<Recipe> deleteRecipeFromFavourites(List<Recipe> favouritesRecipeList, String name) {
-        throw new NotImplementedException("Not implemented yet");
-    }
+
 }
