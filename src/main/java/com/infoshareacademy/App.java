@@ -18,7 +18,6 @@ public class App {
         recipeService.loadCategoriesList();
         recipeService.loadIngredientsList();
         recipeService.loadFavouritesList();
-        System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
         MenuManager menuManager = new MenuManager();
         ChoiceReader choiceReader = new ChoiceReader();
         MenuPrinter menuPrinter = new MenuPrinter();
