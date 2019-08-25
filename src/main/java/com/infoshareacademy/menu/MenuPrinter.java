@@ -80,6 +80,7 @@ public class MenuPrinter {
                 "\nEnter 3 to go upper in the menu" +
                 "\nEnter 4 to "+ addOrRemove+" drink to favourites" +
                 "\nEnter 5 to delete a recipe from Drinkopedia" +
+                "\nEnter 6 to edit a recipe " +
                 "\n============================================================================");
     }
 

@@ -219,6 +219,9 @@ public class MenuManager {
                 recipeManager.addOrRemoveRecipeToFavourites(recipe);
                 middleMenuViewActions(listToLook, upperMenuName);
             case "5":
+                // tu bedzie metoda usuwania
+                //
+            case "6":
                 // tu bedzie metoda edycji
                 //
         }

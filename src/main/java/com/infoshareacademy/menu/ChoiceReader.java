@@ -127,7 +127,7 @@ public class ChoiceReader {
 
     public List<String> userInputForRecipeView() {
         String userSingleChoice = scanner.nextLine();
-        if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-5]")) {
+        if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-6]")) {
             return Collections.singletonList(userSingleChoice);
         } else {
             System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");
