@@ -18,6 +18,7 @@ class RecipeAddAndEditManager {
     private ListsPrinter listsPrinter = new ListsPrinter();
     private Scanner scanner = new Scanner(System.in);
     private int startIDNumber = 18000;
+    private int maxIngredientsAmount = 15;
 
     Recipe createNewRecipe() {
         Recipe recipe = new Recipe();
@@ -35,7 +36,7 @@ class RecipeAddAndEditManager {
         recipe.setGlassType(loadRecipeAttributes());
         System.out.println("To choose drink type enter number of drinkType from list:");
         recipe.setDrinkType(getDrinkType());
-        recipe.setIngredients(getListOfIngredients());
+        recipe.setIngredients(getListOfIngredients(maxIngredientsAmount));
         recipe.setModificationDate(getLocalDateTime());
         return recipe;
     }
@@ -116,13 +117,12 @@ class RecipeAddAndEditManager {
         return drinkType;
     }
 
-    private Map<String, String> getListOfIngredients() {
+    private Map<String, String> getListOfIngredients(int maxIngredientsNumber) {
         Map<String, String> ingredients = new HashMap<>();
         System.out.println("Enter ingredient and its measure\nInput format: ingredient measure");
         String[] oneIngredient = getIngredientWithMeasure();
         ingredients.putIfAbsent(oneIngredient[0].trim(), oneIngredient[1].trim());
         String userInput;
-        int maximumIngredientsNumber = 15;
         do {
             System.out.println("do you want to add next ingredient?\nenter: y / n");
             userInput = scanner.nextLine().toLowerCase().trim();
@@ -136,7 +136,7 @@ class RecipeAddAndEditManager {
             System.out.println("Enter ingredient and its measure\nInput format: ingredient measure");
             oneIngredient = getIngredientWithMeasure();
             ingredients.putIfAbsent(oneIngredient[0].trim(), oneIngredient[1].trim());
-        } while (userInput.equals("y") && ingredients.size() < maximumIngredientsNumber); //prevent to add more then 15 ingredients
+        } while (userInput.equals("y") && ingredients.size() < maxIngredientsNumber);
         return ingredients;
     }
 
@@ -224,11 +224,10 @@ class RecipeAddAndEditManager {
                 break;
             }
             System.out.println("What do you want to edit?\n");
-            System.out.println("1. Name\n2. Instruction\n3. Category\n4. Drink type\n5. Type of glass\n6. Ingredients");
+            System.out.println("1. Name\n2. Instruction\n3. Category\n4. Drink type\n5. Type of glass\n6. Ingredients\7. Exit");
             System.out.println("\nEnter number");
             userInput = scanner.nextLine().trim();
         } while (userChoice.equals("y"));
-        System.out.println(editedAttributes);
         return editedAttributes;
     }
 
@@ -275,7 +274,18 @@ class RecipeAddAndEditManager {
             }
             --ingredientSize;
         }
-        //TODO create a method to add ingredients to existing/edited  to reach max 15 ingredients
+
+        System.out.println("Do you want to add an ingredient? Enter y / n");
+        String userInput1 = validateUserInput(scanner.nextLine().toLowerCase().trim());
+
+        if (userInput1.equals("y")) {
+            Map<String, String> additionalIngredients = getListOfIngredients(maxIngredientsAmount - ingredientSize);
+            for (Map.Entry<String, String> ingrediens : additionalIngredients.entrySet()) {
+                Map<String, String> additionalIng = new HashMap<>();
+                additionalIng.put(ingrediens.getKey(), ingrediens.getValue());
+                editedIngredients.put("@#$%^&", additionalIng);
+            }
+        }
         return editedIngredients;
     }
 
@@ -303,7 +313,6 @@ class RecipeAddAndEditManager {
             recipeIngredients.put(ingredientNumber.getKey(), ingredientNumber.getValue());
             ingredientsWithIndex.put(index++, recipeIngredients);
         }
-        System.out.println(ingredientsWithIndex);
         return ingredientsWithIndex;
     }
 }
