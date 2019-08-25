@@ -118,6 +118,7 @@ public class RecipeService {
         DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
         loadCategoriesList();
         loadIngredientsList();
+
     }
 
     public void deleteRecipeFromList(String name) {
@@ -153,6 +154,7 @@ public class RecipeService {
             if (recipeAttributes.getKey().equals(recipeToEdit.getName())) {
                 recipeToEdit.setName(recipeAttributes.getValue().get("name"));
             }
+
             if (recipeAttributes.getKey().equals(recipeToEdit.getInstruction())) {
                 recipeToEdit.setInstruction(recipeAttributes.getValue().get("instruction"));
             }
@@ -166,6 +168,7 @@ public class RecipeService {
                 recipeToEdit.setRecipeCategory(recipeAttributes.getValue().get("category"));
             }
             Map<String, String> newIngredients = new HashMap<>();
+
             Map<String, String> ingredientsOfRecipeToEdit = recipeToEdit.getIngredients();
             for (Map.Entry<String, String> editedIngredients : ingredientsOfRecipeToEdit.entrySet()) {
                 if (recipeAttributes.getKey().equals(editedIngredients.getKey())) {
@@ -183,12 +186,7 @@ public class RecipeService {
             loadIngredientsList();
         }
     }
-
-    public List<Recipe> addRecipeToFavourites(List<Recipe> favouritesRecipeList, String name) {
-        throw new NotImplementedException("Not implemented yet");
-//        DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "favourites.json");
-    }
-
+  
     public void addOrRemoveRecipeToFavourites(String recipeName) {
         if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName().equals(recipeName))) {
             List<Recipe> recipeToDelete = findRecipeByName(RecipeRepository
@@ -199,6 +197,6 @@ public class RecipeService {
                     .getRecipesList(), Collections.singletonList(recipeName));
             RecipeRepository.getFavouritesRecipeList().add(recipeToDelete.get(0));
         }
-        DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "favourites.json");
+        DataConvertToJsonService.parseJsonToFile(RecipeRepository.getFavouritesRecipeList(), "favourites.json");
     }
 }
