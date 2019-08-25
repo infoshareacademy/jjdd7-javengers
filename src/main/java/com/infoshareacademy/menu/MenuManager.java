@@ -51,6 +51,8 @@ public class MenuManager {
 
     //tu jest bug ze dwa razy cos tam trzeba robic
     private void printMainMenuService() throws IOException, InterruptedException {
+        ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu");
         menuPrinter.printEntryMenu();
         int choice = choiceReader.makeMenuChoice();
         chooseMainMenuOption(choice);
@@ -58,18 +60,20 @@ public class MenuManager {
 
     private void recipeByNameMenuViewActions() throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu","by name");
         listsPrinter.printImage();
         menuPrinter.printMenuForDrinksByName();
         List<String> userChoiceFromUpperMenu = choiceReader.userInputForDrinkNameCheck(RecipeRepository.getRecipesList());
         if (userChoiceFromUpperMenu.size() == 1 && userChoiceFromUpperMenu.get(0).matches("[0-9]")) {
             numericMenuChoicesUnderTop(userChoiceFromUpperMenu.get(0));
         } else {
-            middleMenuViewActions((recipeManager.findRecipeByName(RecipeRepository.getRecipesList(), userChoiceFromUpperMenu)), "byName");
+            middleMenuViewActions((recipeManager.findRecipeByName(RecipeRepository.getRecipesList(), userChoiceFromUpperMenu)), "name");
         }
     }
 
     private void recipeByCategoryViewActions() throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu","category");
         listsPrinter.printCategory(RecipeRepository.getCategoriesList());
         menuPrinter.printMenuForDrinksByList("category");
         List<String> userChoiceFromUpperMenu = choiceReader.userInputForListsCheck(RecipeRepository.getCategoriesList());
@@ -83,6 +87,7 @@ public class MenuManager {
 
     private void recipeByIngredientViewActions() throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu","ingredient");
         listsPrinter.printCategory(RecipeRepository.getIngredientsList());
         menuPrinter.printMenuForDrinksByList("ingredient");
         List<String> userChoiceFromUpperMenu = choiceReader.userInputForListsCheck(RecipeRepository.getIngredientsList());
@@ -98,6 +103,7 @@ public class MenuManager {
 
     private void recipeByRecipeListViewActions() throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu","all drinks");
         listsPrinter.printAllRecipes(RecipeRepository.getRecipesList());
         menuPrinter.printMenuForPickingARecipe();
         List<String> userChoiceFromUpperMenu = choiceReader.userInputForFinalPickFromList(RecipeRepository.getRecipesList());
@@ -111,6 +117,7 @@ public class MenuManager {
 
     private void recipeByFavouritesListViewActions() throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu","favourites");
         listsPrinter.printAllRecipes(RecipeRepository.getFavouritesRecipeList());
         menuPrinter.printMenuForFavourites();
         List<String> userChoiceFromUpperMenu = choiceReader.userInputForFinalPickFromList(RecipeRepository.getFavouritesRecipeList());
@@ -124,6 +131,7 @@ public class MenuManager {
 
     private void middleMenuViewActions(List<Recipe> listToLook, String upperMenuName) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu", upperMenuName, upperMenuName+" - limited by pick");
         listsPrinter.printAllRecipes(listToLook);
         menuPrinter.printMenuForPickingARecipe();
         List<String> userChoiceMidle = choiceReader.userInputForFinalPickFromList(listToLook);
@@ -137,6 +145,7 @@ public class MenuManager {
 
     private void lowestMenuViewActions(List<String> userChoiceFromUpperMenu, List<Recipe> listToLook, String upperMenuName) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        menuPrinter.printBreadcrumb("main menu", upperMenuName, upperMenuName+" - limited by pick", "recipe name: "+ userChoiceFromUpperMenu.get(0));
         listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
                 .getRecipesList(), userChoiceFromUpperMenu));
         if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName()
@@ -176,7 +185,7 @@ public class MenuManager {
             case "2":
                 exitFromMenu();
             case "3":
-                if (upperMenuName.equals("byName")) {
+                if (upperMenuName.equals("name")) {
                     recipeByNameMenuViewActions();
                     break;
                 }
@@ -229,15 +238,7 @@ public class MenuManager {
 
     private void exitFromMenu() {
         ClearScreenService.cleanConsole();
-        ClearScreenService.cleanConsole();
-        System.out.println("Miejsce na Twoja Reklame ");
-        System.out.println("Miejsce na Twoja Reklame ");
-        System.out.println("Miejsce na Twoja Reklame ");
-        System.out.println("Miejsce na Twoja Reklame ");
-        System.out.println("Miejsce na Twoja Reklame ");
-        System.out.println("Miejsce na Twoja Reklame ");
-        //wyparsowanie listy drinow
-        //wyparsowanie listy ulubionych
+        menuPrinter.endview();
         System.exit(0);
     }
 

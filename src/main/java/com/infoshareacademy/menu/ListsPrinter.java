@@ -21,14 +21,16 @@ public class ListsPrinter {
     public void printCategory(List<String> categoryList) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
-        System.out.println(AsciiTable.getTable(borderStyle, categoryList, Arrays.asList(
-                createColumnString("    LIST No     ", category -> "0" + categoryList.indexOf(category)),
-                createColumnString("    CATEGORY    ", category -> categoryList.get(categoryList.indexOf(category))))));
+        System.out.println();
+        System.out.println(""+AsciiTable.getTable(borderStyle, categoryList, Arrays.asList(
+                createColumnString("             LIST No              ", category -> "0" + categoryList.indexOf(category)),
+                createColumnString("             CATEGORY             ", category -> categoryList.get(categoryList.indexOf(category))))));
     }
 
     public void printAllRecipes(List<Recipe> recipeList) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
+        System.out.println();
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
                 createColumn("    LIST No     ", recipe -> "0" + recipeList.indexOf(recipe)),
                 createColumn("   DRINK NAME   ", Recipe::getName),
@@ -40,7 +42,7 @@ public class ListsPrinter {
     }
 
     public void printRecipe(List<Recipe> recipeList) {
-
+        System.out.println();
         for (Recipe recipe : recipeList) {
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             System.out.println("\t\t\t\t" + recipe.getName() + "\n");

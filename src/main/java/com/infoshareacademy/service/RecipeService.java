@@ -55,13 +55,12 @@ public class RecipeService {
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();
 
-        for (String userSingleChoice: userChoiceArrayList) {
+        for (String userSingleChoice : userChoiceArrayList) {
             outputList.addAll(recipesList.stream()
                     .filter(r -> r.getName().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
                     .collect(Collectors.toList()));
         }
         return outputList.stream().distinct().collect(Collectors.toList());
-
     }
 
 
@@ -74,7 +73,6 @@ public class RecipeService {
                     .collect(Collectors.toList()));
         }
         return outputList.stream().distinct().collect(Collectors.toList());
-
     }
 
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
@@ -125,7 +123,7 @@ public class RecipeService {
                 isRecipeOnList = true;
             }
         }
-        if (!isRecipeOnList){
+        if (!isRecipeOnList) {
             System.out.println("There is no recipe with these name on list of all recipes");
         }
         RecipeRepository.getRecipesList().remove(recipeToDelete);
@@ -179,7 +177,7 @@ public class RecipeService {
             loadIngredientsList();
         }
     }
-  
+
     public void addOrRemoveRecipeToFavourites(String recipeName) {
         if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName().equals(recipeName))) {
             List<Recipe> recipeToDelete = findRecipeByName(RecipeRepository
