@@ -26,6 +26,7 @@ public class ChoiceReader {
             System.out.println("Invalid choice, type one more time");
             makeMenuChoice();
         }
+
         return userChoice;
     }
 
@@ -60,6 +61,10 @@ public class ChoiceReader {
                 }
                 System.out.println(userSingleChoice + " is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
                 userSingleChoice = scanner.nextLine();
+                if (userSingleChoice.isEmpty()) {
+                    break;
+                }
+
             }
             if (userSingleChoice.isEmpty()) {
                 outputList.remove(userSingleChoice);
