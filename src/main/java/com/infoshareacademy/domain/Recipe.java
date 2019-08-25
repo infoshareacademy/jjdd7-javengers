@@ -28,8 +28,6 @@ public class Recipe {
     private String drinkType;
     @JsonProperty("strGlass")
     private String glassType;
-    @JsonProperty("strAlcoholic")
-    private String alcoholicOrNot;
     @JsonProperty("dateModified")
     private String modificationDate;
 
@@ -99,15 +97,6 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-
-    public String getAlcoholicOrNot() {
-        return alcoholicOrNot;
-    }
-
-    public void setAlcoholicOrNot(String alcoholicOrNot) {
-        this.alcoholicOrNot = alcoholicOrNot;
-    }
-
     @Override
     public String toString() {
         return "Recipe{" +
@@ -117,7 +106,6 @@ public class Recipe {
                 ", recipeCategory='" + recipeCategory + '\'' +
                 ", drinkType='" + drinkType + '\'' +
                 ", glassType='" + glassType + '\'' +
-                ", alcoholicOrNot='" + alcoholicOrNot + '\'' +
                 ", modificationDate='" + modificationDate + '\'' +
                 ", ingredients=" + ingredients +
                 '}';
