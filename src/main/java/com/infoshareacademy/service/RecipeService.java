@@ -167,10 +167,6 @@ public class RecipeService {
                 recipeToEdit.setGlassType(recipeAttributes.getValue().get("glassType"));
             }
 
-            if (recipeAttributes.getKey().equals(recipeToEdit.getGlassType())) {
-                recipeToEdit.setGlassType(recipeAttributes.getValue().get("glassType"));
-            }
-
             if (recipeAttributes.getKey().equals(recipeToEdit.getDrinkType())) {
                 recipeToEdit.setDrinkType(recipeAttributes.getValue().get("drinkType"));
             }
