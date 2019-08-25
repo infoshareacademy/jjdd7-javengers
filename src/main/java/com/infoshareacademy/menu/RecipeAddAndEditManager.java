@@ -24,6 +24,9 @@ class RecipeAddAndEditManager {
         recipe.setId(startIDNumber);
         startIDNumber++;
         listsPrinter.printCategory(RecipeRepository.getCategoriesList());
+
+        //TODO change to choose from numbers not names
+
         System.out.println("Enter recipe category (name) from list above or type your own:");
         recipe.setRecipeCategory(loadCategory(loadRecipeAttributes()));
         System.out.println("Enter name of recipe:");
