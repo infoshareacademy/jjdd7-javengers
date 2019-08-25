@@ -42,8 +42,6 @@ public class ListsPrinter {
     public void printRecipe(List<Recipe> recipeList) {
 
         for (Recipe recipe : recipeList) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ID <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-            System.out.println("\t\t\t\t" + recipeList.indexOf(recipe) + "\n");
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DRINK NAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             System.out.println("\t\t\t\t" + recipe.getName() + "\n");
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATEGORY <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");

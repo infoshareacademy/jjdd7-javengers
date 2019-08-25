@@ -7,13 +7,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ChoiceReader {
-
     private Scanner scanner = new Scanner(System.in);
 
     String makeChoice() {
         return scanner.nextLine();
     }
 
+    //tu moze byc bug
     public int makeMenuChoice() {
         int userChoice = 0;
         String choiceFromMenu;
@@ -30,9 +30,6 @@ public class ChoiceReader {
     }
 
     public List<String> userInputForListsCheck(List<String> inputList) {
-
-        //jest bug jak wciskam enter
-
         List<String> outputList = new ArrayList<>();
         Set<String> inputListToLower = new HashSet<>();
         String userSingleChoice = "";
@@ -42,12 +39,8 @@ public class ChoiceReader {
             inputListToLower.add(singleString.toLowerCase().trim());
         }
 
-        while (userChoiceList.isEmpty()) {
-            System.out.println("#sprawdzanie choice readera przed scannerem: " + userChoiceList.toString());
-            userChoiceList = Arrays.asList(scanner.nextLine().split(","));
-        }
-
-        System.out.println("#sprawdzanie choice readera po scannerze: " + userChoiceList.toString());
+        userSingleChoice = (scanner.nextLine());
+        userChoiceList = Arrays.asList(userSingleChoice.split(","));
         ListIterator<String> listIterator = userChoiceList.listIterator();
         while (listIterator.hasNext()) {
             userSingleChoice = listIterator.next();
@@ -61,10 +54,15 @@ public class ChoiceReader {
                         && userSingleChoice.trim().matches("[0-9]+")
                         && Integer.parseInt(userSingleChoice.trim().substring(1)) < inputList.size()) {
                     userSingleChoice = inputList.get(Integer.parseInt(userSingleChoice.trim().substring(1)));
+                    /*System.out.println("sprawdzenie co wychodzi z numerykow: " + userSingleChoice);*/
                     break;
                 }
-                System.out.println(userSingleChoice + "is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
+                System.out.println(userSingleChoice + " is an invalid input. Please proceed with DRINKS LIST MENU valid options (exception: only single search available)");
                 userSingleChoice = scanner.nextLine();
+                if (userSingleChoice.isEmpty()) {
+                    break;
+                }
+
             }
             if (userSingleChoice.isEmpty()) {
                 outputList.remove(userSingleChoice);
@@ -91,9 +89,9 @@ public class ChoiceReader {
                 outputList.add(userSingleChoice);
                 break;
             }
-            if (userSingleChoice.length() >= 3) {
+            if (userSingleChoice.length() >= 2) {
                 outputList = inputListToLower.stream().filter(recipeName -> recipeName.contains(userSingleChoice)).collect(Collectors.toList());
-            } else if (userSingleChoice.length() < 3 && inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
+            } else if (inputListToLower.stream().anyMatch(recipeName -> recipeName.equals(userSingleChoice))) {
                 outputList.add(userSingleChoice);
             } else {
                 System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");
@@ -104,12 +102,11 @@ public class ChoiceReader {
     }
 
     public List<String> userInputForFinalPickFromList(List<Recipe> inputList) {
-
         String userSingleChoice = scanner.nextLine().toLowerCase().trim();
         String outputString = "";
 
         while (outputString.isEmpty()) {
-            if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-2]")) {
+            if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-3]")) {
                 return Collections.singletonList(userSingleChoice);
             } else if (userSingleChoice.trim().length() > 1 && userSingleChoice.trim().substring(0, 1).equals("0")
                     && userSingleChoice.trim().matches("[0-9]+")
@@ -129,11 +126,9 @@ public class ChoiceReader {
         return Collections.singletonList(outputString);
     }
 
-
     public List<String> userInputForRecipeView() {
-
         String userSingleChoice = scanner.nextLine();
-        if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-4]")) {
+        if (userSingleChoice.trim().length() == 1 && userSingleChoice.trim().matches("[1-6]")) {
             return Collections.singletonList(userSingleChoice);
         } else {
             System.out.println("Invalid input. Please proceed with DRINKS LIST MENU valid options");

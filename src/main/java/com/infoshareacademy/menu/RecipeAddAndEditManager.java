@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class RecipeAddAndEditManager {
+class RecipeAddAndEditManager {
     private ChoiceReader userChoice = new ChoiceReader();
     private ListsPrinter listsPrinter = new ListsPrinter();
     private Scanner scanner = new Scanner(System.in);
@@ -23,10 +23,11 @@ public class RecipeAddAndEditManager {
         Recipe recipe = new Recipe();
         recipe.setId(startIDNumber);
         startIDNumber++;
-        //TODO take method to print categories from ListPrinter
+        listsPrinter.printCategory(RecipeRepository.getCategoriesList());
+        System.out.println("Enter recipe category (name) from list above or type your own:");
         recipe.setRecipeCategory(loadCategory(loadRecipeAttributes()));
         System.out.println("Enter name of recipe:");
-        recipe.setName(loadRecipeName());
+        recipe.setName(addRecipeName());
         System.out.println("Enter recipe instruction:");
         recipe.setInstruction(loadInstruction());
         System.out.println("Enter type of glass to serve this drink:");
@@ -38,7 +39,7 @@ public class RecipeAddAndEditManager {
         return recipe;
     }
 
-    String loadRecipeAttributes() {
+    private String loadRecipeAttributes() {
         String userInput = scanner.nextLine().toLowerCase().trim();
         while (userInput.length() < 2) {
             System.out.println("Your input is to short, type it one more time");
@@ -47,7 +48,7 @@ public class RecipeAddAndEditManager {
         return userInput;
     }
 
-    String loadCategory(String userInput){
+    private String loadCategory(String userInput){
         for (String category: RecipeRepository.getCategoriesList()){
             if (category.toLowerCase().equals(userInput)){
                 return category;
@@ -56,7 +57,7 @@ public class RecipeAddAndEditManager {
         return userInput;
     }
 
-    String loadInstruction() {
+    private String loadInstruction() {
         String userInput = scanner.nextLine().trim();
         while (userInput.length() < 5) {      // 5 because the shortest will be "do it"
             System.out.println("Your input is to short, type it one more time");
@@ -65,10 +66,18 @@ public class RecipeAddAndEditManager {
         return userInput;
     }
 
-    String loadRecipeName() {
+    private String addRecipeName() {
         String name = loadRecipeAttributes();
         while (!checkNameIsOnRecipeList(name)) {
             System.out.println("This recipe name is already on all recipe list, enter new name: ");
+            name = scanner.nextLine().trim();
+        }
+        return name;
+    }
+
+    String loadRecipeName(String name) {
+        while (checkNameIsOnRecipeList(name)) {
+            System.out.println("There is no recipe with these name on recipes list, type one more time: ");
             name = scanner.nextLine().trim();
         }
         return name;
@@ -84,7 +93,7 @@ public class RecipeAddAndEditManager {
         return true;
     }
 
-    String getDrinkType() {
+    private String getDrinkType() {
         System.out.println("1. Alcoholic\n2. Non alcoholic\n3. Optional alcohol\nEnter number");
         String userInput = scanner.nextLine().trim();
         String drinkType = "";
@@ -106,7 +115,7 @@ public class RecipeAddAndEditManager {
         return drinkType;
     }
 
-    Map<String, String> getListOfIngredients() {
+    private Map<String, String> getListOfIngredients() {
         Map<String, String> ingredients = new HashMap<>();
         System.out.println("Enter ingredient and its measure\nInput format: ingredient measure");
         String[] oneIngredient = getIngredientWithMeasure();
@@ -162,7 +171,7 @@ public class RecipeAddAndEditManager {
             switch (userInput) {
                 case "1":
                     System.out.println("Enter new name of recipe:");
-                    String name = loadRecipeName();
+                    String name = addRecipeName();
                     Map<String, String> newAttribute = new HashMap<>();
                     newAttribute.put("name", name);
                     editedAttributes.putIfAbsent(recipe.getName(), newAttribute);
@@ -176,7 +185,7 @@ public class RecipeAddAndEditManager {
                     break;
                 case "3":
                     System.out.println("Enter new recipe category from list or type your own:");
-                    //TODO take method to print categories from ListPrinter
+                    listsPrinter.printCategory(RecipeRepository.getCategoriesList());
                     String category = loadRecipeAttributes();
                     Map<String, String> newAttribute2 = new HashMap<>();
                     newAttribute2.put("category", category);
@@ -236,8 +245,9 @@ public class RecipeAddAndEditManager {
     private Map<String, Map<String, String>> editIngredients(String drinkName) {
         Map<String, Map<String, String>> editedIngredients = new HashMap<>();
         Map<Integer, Map<String, String>> ingredients = getIngredientsWithIndex(getIngredients(drinkName));
-        String userInput;
-        do {
+        String userInput = "y";
+        int ingredientSize = ingredients.size();
+        while (userInput.equals("y") && ingredientSize > 0) {
             System.out.println("\nWhich ingredient would you like to edit?\n");
             listsPrinter.printIngredients(ingredients);
             System.out.println();
@@ -254,13 +264,17 @@ public class RecipeAddAndEditManager {
                 ingredientName = recipeIngredients.getKey();
             }
             System.out.println("Enter ingredient and its measure\nInput format: \"ingredient\" \"measure\"");
-            String[] editdIngredient = getIngredientWithMeasure();
+            String[] ingredientArray = getIngredientWithMeasure();
             Map<String, String> ingredientsToEdit = new HashMap<>();
-            ingredientsToEdit.put(editdIngredient[0].trim(), editdIngredient[1].trim());
+            ingredientsToEdit.put(ingredientArray[0].trim(), ingredientArray[1].trim());
             editedIngredients.putIfAbsent(ingredientName, ingredientsToEdit);
-            System.out.println("Do you want to edit next ingredient? Enter y / n");
-            userInput = validateUserInput(scanner.nextLine().toLowerCase().trim());
-        } while (userInput.equals("y"));
+            if (ingredientSize > 1) {
+                System.out.println("Do you want to edit next ingredient? Enter y / n");
+                userInput = validateUserInput(scanner.nextLine().toLowerCase().trim());
+            }
+            --ingredientSize;
+        }
+        //TODO create a method to add ingredients to existing/edited  to reach max 15 ingredients
         return editedIngredients;
     }
 
