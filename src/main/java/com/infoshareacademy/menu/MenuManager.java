@@ -165,7 +165,6 @@ public class MenuManager {
         ClearScreenService.cleanConsole();
         switch (menuChoice) {
             case "1":
-                menuPrinter.printEntryMenu();
                 printMainMenuService();
             case "2":
                 exitFromMenu();
@@ -223,16 +222,34 @@ public class MenuManager {
             case "4":
                 ClearScreenService.cleanConsole();
                 recipeManager.addOrRemoveRecipeToFavourites(recipe);
-                middleMenuViewActions(listToLook, upperMenuName);
+                if (upperMenuName.equals("favourites")) {
+                    recipeByFavouritesListViewActions();
+                }
+                if (upperMenuName.equals("all drinks")) {
+                    recipeByRecipeListViewActions();
+                }
+                if (upperMenuName.equals("name")) {
+                    middleMenuViewActions(listToLook, upperMenuName);
+                    break;
+                }
+                if (upperMenuName.equals("category")) {
+                    middleMenuViewActions(listToLook, upperMenuName);
+                    break;
+                }
+                if (upperMenuName.equals("ingredient")) {
+                    middleMenuViewActions(listToLook, upperMenuName);
+                    break;
+                }
+
             case "5":
                 recipeManager.deleteRecipeFromList(recipeAddition.loadRecipeName(recipe));
-                middleMenuViewActions(listToLook, upperMenuName);
+                printMainMenuService();
                 break;
             case "6":
                 String date = recipeAddition.getLocalDateTime();
                 String name = recipeAddition.loadRecipeName(recipe);
                 recipeManager.editRecipe(recipeAddition.editRecipe(name),name,date);
-                middleMenuViewActions(listToLook, upperMenuName);
+                printMainMenuService();
         }
     }
 

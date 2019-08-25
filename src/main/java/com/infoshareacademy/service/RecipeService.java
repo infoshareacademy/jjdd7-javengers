@@ -24,11 +24,13 @@ public class RecipeService {
             RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) DataParseService.parseFile("favourites.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
+            RecipeRepository.getFavouritesRecipeList().sort(Comparator.comparing(Recipe::getName));
         }
     }
 
     public void loadCategoriesList() {
         RecipeRepository.getCategoriesList().clear();
+        List<String> tempList = new ArrayList<>();
         for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             String category = recipe.getRecipeCategory();
@@ -36,6 +38,7 @@ public class RecipeService {
                 RecipeRepository.getCategoriesList().add(category);
             }
         }
+
     }
 
     public void loadIngredientsList() {
