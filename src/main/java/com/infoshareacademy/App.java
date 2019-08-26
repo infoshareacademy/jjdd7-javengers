@@ -13,12 +13,12 @@ public class App {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        new ConfigLoader().loadAppConfig();
         RecipeService recipeService = new RecipeService();
         recipeService.loadRecipesList();
         recipeService.loadCategoriesList();
         recipeService.loadIngredientsList();
         recipeService.loadFavouritesList();
-        System.out.println("\n\t\t\t\t\tWelcome to Drinkopedia!");
         MenuManager menuManager = new MenuManager();
         ChoiceReader choiceReader = new ChoiceReader();
         MenuPrinter menuPrinter = new MenuPrinter();
@@ -26,6 +26,6 @@ public class App {
         int choice = choiceReader.makeMenuChoice();
         menuManager.chooseMainMenuOption(choice);
 
-        new ConfigLoader().loadAppConfig();
+
     }
 }

@@ -24,11 +24,13 @@ public class RecipeService {
             RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) DataParseService.parseFile("favourites.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
+            RecipeRepository.getFavouritesRecipeList().sort(Comparator.comparing(Recipe::getName));
         }
     }
 
     public void loadCategoriesList() {
         RecipeRepository.getCategoriesList().clear();
+        List<String> tempList = new ArrayList<>();
         for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             String category = recipe.getRecipeCategory();
@@ -36,6 +38,7 @@ public class RecipeService {
                 RecipeRepository.getCategoriesList().add(category);
             }
         }
+
     }
 
     public void loadIngredientsList() {
@@ -55,13 +58,12 @@ public class RecipeService {
     public List<Recipe> findRecipeByName(List<Recipe> recipesList, List<String> userChoiceArrayList) {
         List<Recipe> outputList = new ArrayList<>();
 
-        for (String userSingleChoice: userChoiceArrayList) {
+        for (String userSingleChoice : userChoiceArrayList) {
             outputList.addAll(recipesList.stream()
                     .filter(r -> r.getName().toLowerCase().trim().equals(userSingleChoice.toLowerCase().trim()))
                     .collect(Collectors.toList()));
         }
         return outputList.stream().distinct().collect(Collectors.toList());
-
     }
 
 
@@ -74,19 +76,11 @@ public class RecipeService {
                     .collect(Collectors.toList()));
         }
         return outputList.stream().distinct().collect(Collectors.toList());
-
     }
 
     public List<Recipe> findRecipeByIngredients(List<Recipe> recipesList, List<String> userChoiceArrayList) {
-        List<Recipe> outputList = new ArrayList<>();
-        List<String> userChoyceArrayListToLower = new ArrayList<>();
 
-        /*System.out.println(" wejsce do outputa w find recipe by ingredients" + userChoiceArrayList.toString());
-        for (Recipe recipe : recipesList){
-            System.out.println(recipe.getName() + recipe.getIngredients().keySet());
-        }*/
-
-        outputList = (recipesList.stream()
+        List<Recipe> outputList = (recipesList.stream()
                 .filter(r ->
                         (userChoiceArrayList.stream()
                                 .allMatch(
@@ -95,13 +89,13 @@ public class RecipeService {
                                                         .keySet()) + " ")
                                                         .toString()
                                                         .replace(",", " ")
-                                                        .concat(" ")
+                                                        .replace("[", "")
+                                                        .replace("]", "")
                                                         .toLowerCase()
                                                         .contains(" " + ingredient.trim() + " ")))))
                 .collect(Collectors.toList());
 
         for (Recipe recipe : outputList) {
-            System.out.println("test co wychodzi z findRecipeByIngredients");
             System.out.println(recipe.getName() + "  " + recipe.getIngredients().keySet());
 
         }
@@ -132,7 +126,7 @@ public class RecipeService {
                 isRecipeOnList = true;
             }
         }
-        if (!isRecipeOnList){
+        if (!isRecipeOnList) {
             System.out.println("There is no recipe with these name on list of all recipes");
         }
         RecipeRepository.getRecipesList().remove(recipeToDelete);
@@ -194,7 +188,7 @@ public class RecipeService {
             loadIngredientsList();
         }
     }
-  
+
     public void addOrRemoveRecipeToFavourites(String recipeName) {
         if (RecipeRepository.getFavouritesRecipeList().stream().anyMatch(recipe -> recipe.getName().equals(recipeName))) {
             List<Recipe> recipeToDelete = findRecipeByName(RecipeRepository

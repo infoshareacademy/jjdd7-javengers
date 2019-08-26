@@ -1,14 +1,14 @@
-   \
-   .\"""""""""-.     oooooooooo       oooooooooo       oooo    oooooo       oooo    oooo      oooo      oooooooooo
-   \`\-------'`/     oooooooooooo     oooooooooooo     oooo    ooooooo      oooo    oooo     oooo     oooooooooooooo
-    \ \__ o . /      oooo     oooo    oooo     oooo            oooooooo     oooo    oooo   oooo      oooo         oo
-     \/  \  o/       oooo     oooo    oooo     oooo    oooo    oooo oooo    oooo    oooo oooo         oooo
-      \__/. /        oooo     oooo    oooooooooooo     oooo    oooo  oooo   oooo    oooooooo           ooooooo
-       \_ _/         oooo     oooo    oooooooooo       oooo    oooo   oooo  oooo    oooooooo             oooooooo
-         Y           oooo     oooo    oooo   oooo      oooo    oooo    oooo oooo    oooo oooo              ooooooo
-         |           oooo     oooo    oooo     oooo    oooo    oooo     oooooooo    oooo   oooo       oo       ooooo
-         |           oooooooooooo     oooo     oooo    oooo    oooo      ooooooo    oooo     oooo     ooooooooooooo
-     _.-' '-._       oooooooooo       oooo     oooo    oooo    oooo       oooooo    oooo      oooo      oooooooooo
-    `---------`
-                                                                                                          by javengers
+ \
+ .\"""""""""-.  oooooo     oooooo     oo  oo       oo  oo    oo    oooooo
+ \`\-------'`/  oooooooo   oooooooo   oo  ooo      oo  oo   oo   oooooooooo
+  \ \__ o . /   oo     oo  oo     oo      oooo     oo  oo  oo    oo      oo
+   \/  \  o/    oo     oo  oo     oo  oo  oo oo    oo  oo oo      oo
+    \__/. /     oo     oo  oooooooo   oo  oo  oo   oo  oooo        oooo
+     \_ _/      oo     oo  oooooo     oo  oo   oo  oo  oooo          oooo
+       Y        oo     oo  oo   oo    oo  oo    oo oo  oo oo            oo
+       |        oo     oo  oo     oo  oo  oo     oooo  oo  oo    oo      oo
+       |        oooooooo   oo     oo  oo  oo      ooo  oo   oo   oooooooooo
+   _.-' '-._    oooooo     oo     oo  oo  oo       oo  oo    oo    oooooo
+  `---------`
+                Welcome to Drinkopedia!                        by javengers
 
