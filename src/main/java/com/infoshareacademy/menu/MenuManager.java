@@ -32,6 +32,7 @@ public class MenuManager {
                 break;
             case 4:
                 ClearScreenService.cleanConsole();
+                menuPrinter.printBreadcrumb("main menu", "add recipe");
                 recipeManager.addRecipeToList(recipeAddition.createNewRecipe());
                 printMainMenuService();
                 break;
@@ -148,7 +149,11 @@ public class MenuManager {
 
         List<String> userChoiceFinal;
         ClearScreenService.cleanConsole();
-        menuPrinter.printBreadcrumb("main menu", upperMenuName, upperMenuName + " - limited by pick", "recipe name: " + userChoiceFromUpperMenu.get(0));
+        if (upperMenuName.equals("name") || upperMenuName.equals("category") || upperMenuName.equals("ingredient")) {
+            menuPrinter.printBreadcrumb("main menu", upperMenuName, upperMenuName + " - limited by pick", "recipe name: " + userChoiceFromUpperMenu.get(0));
+        } else {
+            menuPrinter.printBreadcrumb("main menu", upperMenuName, "recipe name: " + userChoiceFromUpperMenu.get(0));
+        }
         if ((recipeManager.findRecipeByName(RecipeRepository
                 .getRecipesList(), userChoiceFromUpperMenu).get(0).getDrinkType().equals("Alcoholic"))
                 || (recipeManager
@@ -173,24 +178,23 @@ public class MenuManager {
                     recipeManager.findRecipeByName(RecipeRepository
                             .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
                     upperMenuName);
-        }
-        else {
+        } else {
 
-                listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
-                        .getRecipesList(), userChoiceFromUpperMenu));
-                if (RecipeRepository.getFavouritesRecipeList().stream()
-                        .anyMatch(recipe -> recipe.getName()
-                                .equals(recipeManager.findRecipeByName(RecipeRepository
-                                        .getRecipesList(), userChoiceFromUpperMenu).get(0).getName()))) {
-                    menuPrinter.printMenuForRecipeView("remove");
-                } else {
-                    menuPrinter.printMenuForRecipeView("add");
-                }
-                userChoiceFinal = choiceReader.userInputForRecipeView();
-                numericMenuChoicesLowest(userChoiceFinal.get(0),
-                        recipeManager.findRecipeByName(RecipeRepository
-                                .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
-                        upperMenuName);
+            listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
+                    .getRecipesList(), userChoiceFromUpperMenu));
+            if (RecipeRepository.getFavouritesRecipeList().stream()
+                    .anyMatch(recipe -> recipe.getName()
+                            .equals(recipeManager.findRecipeByName(RecipeRepository
+                                    .getRecipesList(), userChoiceFromUpperMenu).get(0).getName()))) {
+                menuPrinter.printMenuForRecipeView("remove");
+            } else {
+                menuPrinter.printMenuForRecipeView("add");
+            }
+            userChoiceFinal = choiceReader.userInputForRecipeView();
+            numericMenuChoicesLowest(userChoiceFinal.get(0),
+                    recipeManager.findRecipeByName(RecipeRepository
+                            .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
+                    upperMenuName);
 
         }
 

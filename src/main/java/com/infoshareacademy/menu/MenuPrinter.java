@@ -87,28 +87,28 @@ public class MenuPrinter {
 
     void printBreadcrumb(String level1, String level2, String level3, String level4) {
         System.out.println
-                (level1 + "\\" + level2 + "\\" + level3 + "\\" + level4 + "\\" +
+                (level1 + "\\" + level2 + "\\" + level3 + "\\" + level4 + ":" +
                         "\n============================================================================\n"
                 );
     }
 
     void printBreadcrumb(String level1, String level2, String level3) {
         System.out.println
-                (level1 + "\\" + level2 + "\\" + level3 + "\\" +
+                (level1 + "\\" + level2 + "\\" + level3 + ":" +
                         "\n============================================================================\n"
                 );
     }
 
     void printBreadcrumb(String level1, String level2) {
         System.out.println
-                (level1 + "\\" + level2 + "\\" +
+                (level1 + "\\" + level2 + ":" +
                         "\n============================================================================\n"
                 );
     }
 
     void printBreadcrumb(String level1) {
         System.out.println
-                (level1 + "\\" +
+                (level1 + ":" +
                         "\n============================================================================\n"
                 );
     }
