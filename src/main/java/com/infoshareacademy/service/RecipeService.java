@@ -3,30 +3,42 @@ package com.infoshareacademy.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
+import com.infoshareacademy.properties.AppConfig;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+
 public class RecipeService {
 
+    private static String SORT_TYPE = AppConfig.recipeSortType;
     public void loadRecipesList() {
         if (RecipeRepository.getRecipesList().isEmpty()) {
             RecipeRepository.getRecipesList().addAll((List<Recipe>) DataParseService.parseFile("drinks.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
-            RecipeRepository.getRecipesList().sort(Comparator.comparing(Recipe::getName));
+            RecipeRepository.getRecipesList().stream().sorted(comparing(Recipe::getName)).collect(Collectors.toList());
+            if (SORT_TYPE.equals("DESC")) {
+                RecipeRepository.getRecipesList().sort(comparing(Recipe::getName, Comparator.reverseOrder()));
+            } else {
+                RecipeRepository.getRecipesList().sort(comparing(Recipe::getName));
+            }
         }
     }
-
     public void loadFavouritesList() {
         if (RecipeRepository.getFavouritesRecipeList().isEmpty()) {
             RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) DataParseService.parseFile("favourites.json",
                     new TypeReference<List<Recipe>>() {
                     }, "drinks"));
-            RecipeRepository.getFavouritesRecipeList().sort(Comparator.comparing(Recipe::getName));
+            RecipeRepository.getFavouritesRecipeList().stream().sorted(comparing(Recipe::getName)).collect(Collectors.toList());
+            if (SORT_TYPE.equals("DESC")) {
+                RecipeRepository.getFavouritesRecipeList().sort(comparing(Recipe::getName, Comparator.reverseOrder()));
+            } else {
+                RecipeRepository.getFavouritesRecipeList().sort(comparing(Recipe::getName));
+            }
         }
     }
-
     public void loadCategoriesList() {
         RecipeRepository.getCategoriesList().clear();
         List<String> tempList = new ArrayList<>();
@@ -37,9 +49,12 @@ public class RecipeService {
                 RecipeRepository.getCategoriesList().add(category);
             }
         }
-
+        if (SORT_TYPE.equals("DESC")) {
+            Collections.sort(RecipeRepository.getCategoriesList(), Collections.reverseOrder());
+        } else {
+            Collections.sort(RecipeRepository.getCategoriesList());
+        }
     }
-
     public void loadIngredientsList() {
         RecipeRepository.getIngredientsList().clear();
         List<String> tempList = new ArrayList<>();
@@ -111,7 +126,6 @@ public class RecipeService {
         DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
         loadCategoriesList();
         loadIngredientsList();
-
     }
 
     public void deleteRecipeFromList(String name) {
@@ -190,6 +204,7 @@ public class RecipeService {
                     recipeToRemoveFromFavourites = recipe;
                 }
             }
+            recipeToEdit.setModificationDate(newDate);
             RecipeRepository.getFavouritesRecipeList().remove(recipeToRemoveFromFavourites);
             RecipeRepository.getFavouritesRecipeList().add(recipeToEdit);
             DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
