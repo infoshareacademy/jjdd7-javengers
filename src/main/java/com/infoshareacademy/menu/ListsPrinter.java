@@ -64,9 +64,9 @@ public class ListsPrinter {
             System.out.println("\t\t\t\t" + recipe.getDrinkType() + "\n");
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TYPE OF GLASS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             System.out.println("\t\t\t\t" + recipe.getGlassType() + "\n");
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println("Modification date: " + recipe.getModificationDate());
-            System.out.println("\n\n");
+
         }
 
     }
