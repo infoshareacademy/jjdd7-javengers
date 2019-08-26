@@ -167,7 +167,6 @@ public class RecipeService {
             if (recipeAttributes.getKey().equals(recipeToEdit.getRecipeCategory())) {
                 recipeToEdit.setRecipeCategory(recipeAttributes.getValue().get("category"));
             }
-
             Map<String, String> newIngredients = new HashMap<>();
 
             Map<String, String> ingredientsOfRecipeToEdit = recipeToEdit.getIngredients();
@@ -188,8 +187,6 @@ public class RecipeService {
                     newIngredients.put(changedIng.getKey(),changedIng.getValue());
                 }
             }
-
-            System.out.println(newIngredients);
             recipeToEdit.setIngredients(newIngredients);
             recipeToEdit.setModificationDate(newDate);
             DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
