@@ -169,12 +169,31 @@ public class MenuManager {
             } else {
                 userChoiceFinal = Collections.singletonList("3");
             }
-
             numericMenuChoicesLowest(userChoiceFinal.get(0),
                     recipeManager.findRecipeByName(RecipeRepository
                             .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
                     upperMenuName);
         }
+        else {
+
+                listsPrinter.printRecipe(recipeManager.findRecipeByName(RecipeRepository
+                        .getRecipesList(), userChoiceFromUpperMenu));
+                if (RecipeRepository.getFavouritesRecipeList().stream()
+                        .anyMatch(recipe -> recipe.getName()
+                                .equals(recipeManager.findRecipeByName(RecipeRepository
+                                        .getRecipesList(), userChoiceFromUpperMenu).get(0).getName()))) {
+                    menuPrinter.printMenuForRecipeView("remove");
+                } else {
+                    menuPrinter.printMenuForRecipeView("add");
+                }
+                userChoiceFinal = choiceReader.userInputForRecipeView();
+                numericMenuChoicesLowest(userChoiceFinal.get(0),
+                        recipeManager.findRecipeByName(RecipeRepository
+                                .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
+                        upperMenuName);
+
+        }
+
     }
 
     private void numericMenuChoicesUnderTop(String menuChoice) throws IOException, InterruptedException {
