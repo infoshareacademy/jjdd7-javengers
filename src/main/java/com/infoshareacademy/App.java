@@ -25,7 +25,5 @@ public class App {
         menuPrinter.printEntryMenu();
         int choice = choiceReader.makeMenuChoice();
         menuManager.chooseMainMenuOption(choice);
-
-
     }
 }
