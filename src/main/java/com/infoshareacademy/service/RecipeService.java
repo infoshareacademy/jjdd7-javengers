@@ -164,13 +164,21 @@ public class RecipeService {
             Map<String, String> newIngredients = new HashMap<>();
 
             Map<String, String> ingredientsOfRecipeToEdit = recipeToEdit.getIngredients();
+
             for (Map.Entry<String, String> editedIngredients : ingredientsOfRecipeToEdit.entrySet()) {
-                if (recipeAttributes.getKey().equals(editedIngredients.getKey())) {
+                if (recipeAttributes.getKey().equals(editedIngredients.getKey())){
                     for (Map.Entry<String, String> changedIng : recipeAttributes.getValue().entrySet()) {
                         newIngredients.put(changedIng.getKey(), changedIng.getValue());
                     }
                 } else {
                     newIngredients.put(editedIngredients.getKey(), editedIngredients.getValue());
+                }
+            }
+
+            if (recipeAttributes.getKey().equals("@#$%^&")){
+                Map<String, String> ingredients = recipeAttributes.getValue();
+                for (Map.Entry<String, String> changedIng : ingredients.entrySet()) {
+                    newIngredients.put(changedIng.getKey(),changedIng.getValue());
                 }
             }
             recipeToEdit.setIngredients(newIngredients);
