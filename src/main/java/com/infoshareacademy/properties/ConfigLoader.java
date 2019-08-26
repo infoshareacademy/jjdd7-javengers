@@ -18,6 +18,7 @@ public class ConfigLoader {
         AppConfig.recipeSortType = getProperty(ConfigLoader.RECIPE_SORT_TYPE_KEY, "ASC");
         AppConfig.dateFormat = getProperty(ConfigLoader.DATE_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
         AppConfig.adultAccessSession = getProperty(ConfigLoader.ADULT_ACCESS_SESSION_KEY, "180");
+
     }
 
     private String getProperty(String key, String defaultValue) {

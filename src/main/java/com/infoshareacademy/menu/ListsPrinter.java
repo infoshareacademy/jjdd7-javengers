@@ -22,18 +22,18 @@ public class ListsPrinter {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, categoryList, Arrays.asList(
-                createColumnString("    LIST No     ", category -> "0" + categoryList.indexOf(category)),
-                createColumnString("    CATEGORY    ", category -> categoryList.get(categoryList.indexOf(category))))));
+            createColumnString("    LIST No     ", category -> "0" + categoryList.indexOf(category)),
+            createColumnString("    CATEGORY    ", category -> categoryList.get(categoryList.indexOf(category))))));
     }
 
     public void printAllRecipes(List<Recipe> recipeList) {
 
         Character[] borderStyle = AsciiTable.NO_BORDERS;
         System.out.println(AsciiTable.getTable(borderStyle, recipeList, Arrays.asList(
-                createColumn("    LIST No     ", recipe -> "0" + recipeList.indexOf(recipe)),
-                createColumn("   DRINK NAME   ", Recipe::getName),
-                createColumn("    CATEGORY    ", Recipe::getRecipeCategory),
-                createColumn("      TYPE      ", Recipe::getDrinkType)))
+            createColumn("    LIST No     ", recipe -> "0" + recipeList.indexOf(recipe)),
+            createColumn("   DRINK NAME   ", Recipe::getName),
+            createColumn("    CATEGORY    ", Recipe::getRecipeCategory),
+            createColumn("      TYPE      ", Recipe::getDrinkType)))
                 /* tutaj jeszcze rozkminiam, nie kasowac komenta!
                 ,createColumn("   INGREDIENTS  ",recipe -> String.valueOf((recipe.getIngredients().keySet())))*/);
 
@@ -76,18 +76,18 @@ public class ListsPrinter {
 
     private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
         return new Column()
-                .header(name)
-                .headerAlign(HorizontalAlign.CENTER)
-                .dataAlign(HorizontalAlign.CENTER)
-                .with(functionReference);
+            .header(name)
+            .headerAlign(HorizontalAlign.CENTER)
+            .dataAlign(HorizontalAlign.CENTER)
+            .with(functionReference);
     }
 
     private ColumnData<String> createColumnString(String name, Function<String, String> functionReference) {
         return new Column()
-                .header(name)
-                .headerAlign(HorizontalAlign.CENTER)
-                .dataAlign(HorizontalAlign.CENTER)
-                .with(functionReference);
+            .header(name)
+            .headerAlign(HorizontalAlign.CENTER)
+            .dataAlign(HorizontalAlign.CENTER)
+            .with(functionReference);
     }
 
     public void printIngredients(Map<Integer, Map<String, String>> ingredientsWithIndex) {

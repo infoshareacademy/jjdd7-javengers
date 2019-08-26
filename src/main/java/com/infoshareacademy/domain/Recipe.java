@@ -1,11 +1,9 @@
 package com.infoshareacademy.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.infoshareacademy.mappers.RecipeListDeserializer;
-import com.infoshareacademy.mappers.RecipeListSerializer;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,15 +12,22 @@ import java.util.Map;
         "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
         "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = RecipeListDeserializer.class)
-@JsonSerialize(using = RecipeListSerializer.class)
 
 public class Recipe {
+
+    @JsonProperty("idDrink")
     private int id;
+    @JsonProperty("strDrink")
     private String name;
+    @JsonProperty("strInstructions")
     private String instruction;
+    @JsonProperty("strCategory")
     private String recipeCategory;
+    @JsonProperty("strAlcoholic")
     private String drinkType;
+    @JsonProperty("strGlass")
     private String glassType;
+    @JsonProperty("dateModified")
     private String modificationDate;
 
     private Map<String, String> ingredients = new HashMap<>();
@@ -105,6 +110,5 @@ public class Recipe {
                 '}';
     }
 }
-
 
 
