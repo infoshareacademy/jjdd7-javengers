@@ -4,7 +4,6 @@ import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
 import com.infoshareacademy.service.ClearScreenService;
 import com.infoshareacademy.service.RecipeService;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -168,20 +167,21 @@ public class MenuManager {
           menuPrinter.printMenuForRecipeView("add");
         }
         userChoiceFinal = choiceReader.userInputForRecipeView();
-      } else {
+      }
+
+      else{
         userChoiceFinal = Collections.singletonList("3");
       }
 
       numericMenuChoicesLowest(userChoiceFinal.get(0),
-          recipeManager.findRecipeByName(RecipeRepository
-              .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
-          upperMenuName);
+              recipeManager.findRecipeByName(RecipeRepository
+                      .getRecipesList(), userChoiceFromUpperMenu).get(0).getName(), listToLook,
+              upperMenuName);
 
 
     }
 
   }
-
 
   private void numericMenuChoicesUnderTop(String menuChoice)
       throws IOException, InterruptedException {
