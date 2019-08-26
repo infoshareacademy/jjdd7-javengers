@@ -162,10 +162,10 @@ public class ChoiceReader {
     String ageChoice;
     String choiceSave;
 
-    System.out.println("Do you have 18 years? ");
+    System.out.println("Do you have over 18 years? (enter yes / no)");
     ageChoice = scanner.nextLine();
     if ("yes".equals(ageChoice.toLowerCase())) {
-      System.out.println("Do you want to save your age?");
+      System.out.println("Do you want to save your choice?");
       choiceSave = scanner.nextLine();
       if ("yes".equals(choiceSave.toLowerCase())) {
         MatureVerifier.setMature();
