@@ -17,6 +17,8 @@ public class    DataParseService {
 
         ObjectMapper mapper = new ObjectMapper();
 
+        File file = new File(jsonFilePath);
+
         try {
             JsonNode jsonNode = mapper.readTree(new File(jsonFilePath));
             outputObject = mapper.readValue(jsonNode.get(upperNodeName).toString(), classToCampare);

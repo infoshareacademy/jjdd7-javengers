@@ -1,14 +1,15 @@
-package com.infoshareacademy;
+package com.infoshareacademy.properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIOException;
 
 import java.io.File;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class AppConfigTest {
+class ConfigLoaderTest {
+
   @Test
-  public void ShouldConfigFileExists() {
+  void loadAppConfig() {
     File file = new File("confg.properties");
     if (!file.exists()) {
       assertThatIOException();
@@ -17,5 +18,4 @@ public class AppConfigTest {
     }
 
   }
-
 }
