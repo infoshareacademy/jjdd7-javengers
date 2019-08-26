@@ -3,7 +3,6 @@ package com.infoshareacademy.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.RecipeRepository;
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -130,6 +129,7 @@ public class RecipeService {
             System.out.println("There is no recipe with these name on list of all recipes");
         }
         RecipeRepository.getRecipesList().remove(recipeToDelete);
+        RecipeRepository.getFavouritesRecipeList().remove(recipeToDelete);
         DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
         loadCategoriesList();
         loadIngredientsList();
@@ -137,6 +137,7 @@ public class RecipeService {
 
     public void editRecipe(Map<String, Map<String, String>> editedRecipe, String name, String newDate) {
         Recipe recipeToEdit = null;
+        Recipe recipeToRemoveFromFavourites = null;
         for (Recipe recipe : RecipeRepository.getRecipesList()
         ) {
             if (recipe.getName().equals(name)) {
@@ -182,7 +183,15 @@ public class RecipeService {
                 }
             }
             recipeToEdit.setIngredients(newIngredients);
-            recipeToEdit.setModificationDate(newDate);
+
+            for (Recipe recipe : RecipeRepository.getFavouritesRecipeList()
+            ) {
+                if (recipe.getName().equals(name)) {
+                    recipeToRemoveFromFavourites = recipe;
+                }
+            }
+            RecipeRepository.getFavouritesRecipeList().remove(recipeToRemoveFromFavourites);
+            RecipeRepository.getFavouritesRecipeList().add(recipeToEdit);
             DataConvertToJsonService.parseJsonToFile(RecipeRepository.getRecipesList(), "drinks.json");
             loadCategoriesList();
             loadIngredientsList();
