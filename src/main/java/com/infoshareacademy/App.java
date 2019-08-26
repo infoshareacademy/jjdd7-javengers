@@ -13,6 +13,7 @@ public class App {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         ClearScreenService.cleanConsole();
+        new ConfigLoader().loadAppConfig();
         RecipeService recipeService = new RecipeService();
         recipeService.loadRecipesList();
         recipeService.loadCategoriesList();
@@ -25,6 +26,6 @@ public class App {
         int choice = choiceReader.makeMenuChoice();
         menuManager.chooseMainMenuOption(choice);
 
-        new ConfigLoader().loadAppConfig();
+
     }
 }

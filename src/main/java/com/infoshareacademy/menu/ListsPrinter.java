@@ -78,18 +78,18 @@ public class ListsPrinter {
 
     private ColumnData<Recipe> createColumn(String name, Function<Recipe, String> functionReference) {
         return new Column()
-                .header(name)
-                .headerAlign(HorizontalAlign.CENTER)
-                .dataAlign(HorizontalAlign.CENTER)
-                .with(functionReference);
+            .header(name)
+            .headerAlign(HorizontalAlign.CENTER)
+            .dataAlign(HorizontalAlign.CENTER)
+            .with(functionReference);
     }
 
     private ColumnData<String> createColumnString(String name, Function<String, String> functionReference) {
         return new Column()
-                .header(name)
-                .headerAlign(HorizontalAlign.CENTER)
-                .dataAlign(HorizontalAlign.CENTER)
-                .with(functionReference);
+            .header(name)
+            .headerAlign(HorizontalAlign.CENTER)
+            .dataAlign(HorizontalAlign.CENTER)
+            .with(functionReference);
     }
 
     public void printIngredients(Map<Integer, Map<String, String>> ingredientsWithIndex) {
