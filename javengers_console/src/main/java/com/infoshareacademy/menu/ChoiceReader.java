@@ -2,16 +2,10 @@ package com.infoshareacademy.menu;
 
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.service.MatureVerifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.math.NumberUtils;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ChoiceReader {
 
