@@ -6,30 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<style>
-    .row div{padding:20px 10px; border:1px solid;}
-        .container{background: lightblue; text-align: center}
-    .jumbotron{background: lightblue; text-align: center}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+    <style>
+        .row div {
+            padding: 10px 10px;
+            /*border: 1px solid;*/
+        }
 
-    .form-control {
-        padding-left: 2.375rem;
-        position: absolute;
-        z-index: 2;
-        display: block;
-        width: 2.375rem;
-        height: 2.375rem;
-        line-height: 2.375rem;
-        text-align: center;
-        pointer-events: none;
-        color: #aaa;
-    }
+        .container {
+            background: lightblue;
+            text-align: center
+        }
 
+        .jumbotron {
+            background: lightblue;
+            text-align: center
+        }
 
-
-</style>
-
+    </style>
 
 
 </head>
@@ -37,63 +33,137 @@
 
 <div class="jumbotron jumbotron-fluid ">
     <div class="container">
-        <h1 class="display-1">Welcome to the Drinkopedia</h1>
+        <h1 class="display-3">Welcome to the Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>
 </div>
 
 
-
 <div class="container">
-<nav class="nav nav-tabs nav-justified ">
-    <a class="col-md  text-sm-center nav-link active"  href="#">Name</a>
-    <a class="col-md text-sm-center nav-link" href="#">Category</a>
-    <a class="col-md  text-sm-center nav-link" href="#">Ingredient</a>
-</nav>
+    <nav class="nav nav-tabs nav-justified ">
+        <a class="col-md text-sm-center nav-link active" href="#name" data-toggle="tab">Name</a>
+        <a class="col-md text-sm-center nav-link" href="#category" data-toggle="tab">Category</a>
+        <a class="col-md text-sm-center nav-link" href="#ingredient" data-toggle="tab">Ingredient</a>
+    </nav>
 </div>
 
 
+<div class="container">
+    <div class="tab-content row" style="background: white ">
+
+        <div class="tab-pane active col-sm-12" id="name">
+            <form>
+                <div class="form-group col-sm-12">
+                    <input type="text" class=form-control" placeholder="search by name">
+                    <button type="submit" class="=btn btn-dark">submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane col-sm-12" id="category">
+            <form>
+                <div class="form-group col-sm-12">
+                    <input type="text" class=form-control" placeholder="search by category">
+                    <button type="submit" class="=btn btn-dark">submit</button>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane col-sm-12" id="ingredient">
+            <form>
+                <div class="form-group col-sm-12">
+                    <input type="text" class=form-control" placeholder="search by ingredient">
+                    <button type="submit" class="=btn btn-dark">submit</button>
+
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
 
 <div class="container">
-    <div class="row" style="background: white ">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search">
-            <div class="input-group-append">
-                <button class="btn" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header"><h6 class="title">Filters</h6></header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Drinks staring with A</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Drinks staring with B</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Drinks staring with C</span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
             </div>
         </div>
 
+        <div class="col-sm-6">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header"><h6 class="title">Content</h6></header>
+                    <div class="filter-content">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item">ABC</a>
+                            <a href="#" class="list-group-item">B-52</a>
+                            <a href="#" class="list-group-item">GG</a>
+                            <a href="#" class="list-group-item">Zorro</a>
+                        </div>  <!-- list-group .// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div>
+        </div>
+
+
+        <div class="col-sm">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header"><h6 class="title">List Options</h6></header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="btn btn-primary">
+                                <input class="" type="radio" name="myradio" value="">
+                                <span class="form-check-label">All Drinks</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="radio" name="myradio" value="">
+                                <span class="form-check-label">Favourites</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="radio" name="myradio" value="">
+                                <span class="form-check-label">Most Popular</span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div>
+
+        </div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row" style="backglround: grey">
-        <div class="col-sm">filters</div>
-        <div class="col-sm-6">Content</div>
-        <div class="col-sm">List options</div>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-    <hi>Fluid Container</hi>
-</div>
-
-
-<div class = "container-fluid">
-    <ul class="nav nav-tabs">
-        <li class="active">Name</li>
-        <li>Category</li>
-        <li>Ingredients</li>
-    </ul>
 </div>
 
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 </body>
 </html>
