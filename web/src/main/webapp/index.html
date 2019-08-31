@@ -10,6 +10,9 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     <style>
+
+
+
         .row div {
             padding: 10px 10px;
             /*border: 1px solid;*/
@@ -24,14 +27,28 @@
             background: lightblue;
             text-align: center
         }
-
     </style>
-
 
 </head>
 <body>
 
+<div class="container-fluid">
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Main</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Log in</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">sign in</a>
+    </li>
+</ul>
+</div>
+
 <div class="jumbotron jumbotron-fluid ">
+
+
     <div class="container">
         <h1 class="display-3">Welcome to the Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
@@ -40,54 +57,52 @@
 
 
 <div class="container">
-    <nav class="nav nav-tabs nav-justified ">
-        <a class="col-md text-sm-center nav-link active" href="#name" data-toggle="tab">Name</a>
-        <a class="col-md text-sm-center nav-link" href="#category" data-toggle="tab">Category</a>
-        <a class="col-md text-sm-center nav-link" href="#ingredient" data-toggle="tab">Ingredient</a>
-    </nav>
-</div>
 
+    <ul class="nav nav-tabs nav-justified " id="navTab" role="tablist">
+        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_b_name" data-secondary="#panel_a_name"  href="#name" data-toggle="tab" role="tab" aria-controls="name" aria-selected="true">Name</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="category-tab" data-target="#panel_b_category" data-secondary="#panel_a_category" href="#category"   data-toggle="tab" role="tab" aria-controls="category" aria-selected="false">Category</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab" data-target="#panel_b_ingredient" data-secondary="#panel_a_ingredient" href="#ingredient" data-toggle="tab" role="tab" aria-controls="ingredient" aria-selected="false">Ingredient</a></li>
+    </ul>
 
-<div class="container">
-    <div class="tab-content row" style="background: white ">
+    <div class="tab-content row" id="navTabA" style="background: white ">
 
-        <div class="tab-pane active col-sm-12" id="name">
+        <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
             <form>
                 <div class="form-group col-sm-12">
-                    <input type="text" class=form-control" placeholder="search by name">
+                    <input type="text" class="form-control" placeholder="search by name">
                     <button type="submit" class="=btn btn-dark">submit</button>
                 </div>
             </form>
         </div>
 
-        <div class="tab-pane col-sm-12" id="category">
+        <div class="tab-pane col-sm-12" id="panel_a_category" role="tabpanel" aria-labelledby="category-tab">
             <form>
                 <div class="form-group col-sm-12">
-                    <input type="text" class=form-control" placeholder="search by category">
+                    <input type="text" class="form-control" placeholder="search by category">
                     <button type="submit" class="=btn btn-dark">submit</button>
 
                 </div>
             </form>
         </div>
 
-        <div class="tab-pane col-sm-12" id="ingredient">
+        <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
             <form>
                 <div class="form-group col-sm-12">
-                    <input type="text" class=form-control" placeholder="search by ingredient">
+                    <input type="text" class="form-control" placeholder="search by ingredient">
                     <button type="submit" class="=btn btn-dark">submit</button>
 
                 </div>
             </form>
         </div>
-
-
     </div>
-</div>
 
-<div class="container">
+
+
     <div class="row">
-        <div class="col-sm">
-            <div class="card">
+        <div class="tab-content col-md-3" id="navTabB">
+
+
+            <div class="tab-pane active card" id="panel_b_name" role="tabpanel" aria-labelledby="name-tab">
                 <article class="card-group-item">
                     <header class="card-header"><h6 class="title">Filters</h6></header>
                     <div class="filter-content">
@@ -108,6 +123,51 @@
                     </div>
                 </article> <!-- card-group-item.// -->
             </div>
+
+            <div class="tab-pane card" id="panel_b_category" role="tabpanel" aria-labelledby="category-tab">
+                <article class="card-group-item">
+                    <header class="card-header"><h6 class="title">Filters</h6></header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Shots</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Cocktails</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Long Drinks</span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div>
+
+            <div class="tab-pane card" id="panel_b_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
+                <article class="card-group-item">
+                    <header class="card-header"><h6 class="title">Filters</h6></header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Vodka</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Martini</span>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input class="" type="checkbox" name="myradio" value="">
+                                <span class="form-check-label">Prosecco</span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div>
+
         </div>
 
         <div class="col-sm-6">
@@ -127,7 +187,7 @@
         </div>
 
 
-        <div class="col-sm">
+        <div class="col-md-3">
             <div class="card">
                 <article class="card-group-item">
                     <header class="card-header"><h6 class="title">List Options</h6></header>
@@ -149,13 +209,12 @@
                     </div>
                 </article> <!-- card-group-item.// -->
             </div>
-
         </div>
     </div>
 </div>
 
 
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
+
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
         integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
         crossorigin="anonymous"></script>
@@ -165,5 +224,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
+
+<script>
+    $(document).on('click', '#navTab a', function(e) {
+        otherTabs = $(this).attr('data-secondary').split(',');
+        for(i= 0; i<otherTabs.length;i++) {
+            nav = $('<ul class="nav d-none" id="tmpNav"></ul>');
+            nav.append('<li class="nav-item"><a href="#" data-toggle="tab" data-target="' + otherTabs[i] + '">nav</a></li>"');
+            nav.find('a').tab('show');
+        }
+    });
+</script>
+
+
+
+
 </body>
 </html>
