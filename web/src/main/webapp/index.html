@@ -73,18 +73,18 @@
     <div class="tab-content row" id="navTabA" style="background: white ">
 
         <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
-            <form>
-                <div class="form-group col-sm-12">
-                    <input type="text" id="form-name" class="form-control" placeholder="search by name">
+            <form id="form-name">
+                <div class="form-group col-sm-12" >
+                    <input type="text" id="input-name"  class="form-control" placeholder="search by name">
                     <button type="submit" class="=btn btn-dark">submit</button>
                 </div>
             </form>
         </div>
 
         <div class="tab-pane col-sm-12" id="panel_a_category" role="tabpanel" aria-labelledby="category-tab">
-            <form>
-                <div class="form-group col-sm-12">
-                    <input type="text" id="form-category" class="form-control" placeholder="search by category">
+            <form id="form-category">
+                <div class="form-group col-sm-12" >
+                    <input type="text" id="input-category" class="form-control" placeholder="search by category">
                     <button type="submit" class="=btn btn-dark">submit</button>
 
                 </div>
@@ -92,9 +92,9 @@
         </div>
 
         <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
-            <form>
+            <form id="form-ingredient">
                 <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by ingredient">
+                    <input type="text" id="input-ingredient"  class="form-control" placeholder="search by ingredient">
                     <button type="submit" class="=btn btn-dark">submit</button>
 
                 </div>
@@ -104,7 +104,7 @@
 
 
     <div class="row">
-        <div class="tab-content col-md-3" id="navTabB">
+        <div class="tab-content col-lg-3" id="navTabB">
 
 
             <div class="tab-pane active card" id="panel_b_name" role="tabpanel" aria-labelledby="name-tab">
@@ -192,7 +192,7 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-lg-3">
             <div class="card">
                 <article class="card-group-item">
                     <header class="card-header"><h6 class="title">List Options</h6></header>
@@ -230,7 +230,7 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).on('click', '#navTab a', function (e) {
+    $(document).on('click', '#navTab a', function () {
         otherTabs = $(this).attr('data-secondary').split(',');
         for (i = 0; i < otherTabs.length; i++) {
             nav = $('<ul class="nav d-none" id="tmpNav"></ul>');
@@ -241,19 +241,38 @@
 </script>
 
 <script>
-    $(document).on('submit', '.form-group', function (e) {
-        $input = $("#form-category");
-         message = $("#form-category").val();
+$(document).on('submit', '#form-name', function() {
+    $input = $("#input-name");
+    message = $input.val();
+    if (message.length === 0) {
+        return false;
+    }
+    $input.val('');
+    return false;})
+</script>
+
+<script>
+    $(document).on('submit', '#form-category', function() {
+        $input = $("#input-category");
+        message = $input.val();
         if (message.length === 0) {
             return false;
         }
-
         $input.val('');
-        return false;
-
-    });
-
+        return false;})
 </script>
+
+<script>
+    $(document).on('submit', '#form-ingredient', function() {
+        $input = $("#input-ingredient");
+        message = $input.val();
+        if (message.length === 0) {
+            return false;
+        }
+        $input.val('');
+        return false;})
+</script>
+
 
 
 </body>
