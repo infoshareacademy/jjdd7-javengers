@@ -12,7 +12,6 @@
     <style>
 
 
-
         .row div {
             padding: 10px 10px;
             /*border: 1px solid;*/
@@ -33,17 +32,17 @@
 <body>
 
 <div class="container-fluid">
-<ul class="nav justify-content-end">
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Main</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">sign in</a>
-    </li>
-</ul>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Main</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Log in</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">sign in</a>
+        </li>
+    </ul>
 </div>
 
 <div class="jumbotron jumbotron-fluid ">
@@ -59,9 +58,16 @@
 <div class="container">
 
     <ul class="nav nav-tabs nav-justified " id="navTab" role="tablist">
-        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_b_name" data-secondary="#panel_a_name"  href="#name" data-toggle="tab" role="tab" aria-controls="name" aria-selected="true">Name</a></li>
-        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="category-tab" data-target="#panel_b_category" data-secondary="#panel_a_category" href="#category"   data-toggle="tab" role="tab" aria-controls="category" aria-selected="false">Category</a></li>
-        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab" data-target="#panel_b_ingredient" data-secondary="#panel_a_ingredient" href="#ingredient" data-toggle="tab" role="tab" aria-controls="ingredient" aria-selected="false">Ingredient</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_b_name"
+                                data-secondary="#panel_a_name" href="#name" data-toggle="tab" role="tab"
+                                aria-controls="name" aria-selected="true">Name</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="category-tab" data-target="#panel_b_category"
+                                data-secondary="#panel_a_category" href="#category" data-toggle="tab" role="tab"
+                                aria-controls="category" aria-selected="false">Category</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
+                                data-target="#panel_b_ingredient" data-secondary="#panel_a_ingredient"
+                                href="#ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
+                                aria-selected="false">Ingredient</a></li>
     </ul>
 
     <div class="tab-content row" id="navTabA" style="background: white ">
@@ -69,7 +75,7 @@
         <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
             <form>
                 <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by name">
+                    <input type="text" id="form-name" class="form-control" placeholder="search by name">
                     <button type="submit" class="=btn btn-dark">submit</button>
                 </div>
             </form>
@@ -78,7 +84,7 @@
         <div class="tab-pane col-sm-12" id="panel_a_category" role="tabpanel" aria-labelledby="category-tab">
             <form>
                 <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by category">
+                    <input type="text" id="form-category" class="form-control" placeholder="search by category">
                     <button type="submit" class="=btn btn-dark">submit</button>
 
                 </div>
@@ -95,7 +101,6 @@
             </form>
         </div>
     </div>
-
 
 
     <div class="row">
@@ -214,7 +219,6 @@
 </div>
 
 
-
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
         integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
         crossorigin="anonymous"></script>
@@ -226,9 +230,9 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).on('click', '#navTab a', function(e) {
+    $(document).on('click', '#navTab a', function (e) {
         otherTabs = $(this).attr('data-secondary').split(',');
-        for(i= 0; i<otherTabs.length;i++) {
+        for (i = 0; i < otherTabs.length; i++) {
             nav = $('<ul class="nav d-none" id="tmpNav"></ul>');
             nav.append('<li class="nav-item"><a href="#" data-toggle="tab" data-target="' + otherTabs[i] + '">nav</a></li>"');
             nav.find('a').tab('show');
@@ -236,7 +240,20 @@
     });
 </script>
 
+<script>
+    $(document).on('submit', '.form-group', function (e) {
+        $input = $("#form-category");
+         message = $("#form-category").val();
+        if (message.length === 0) {
+            return false;
+        }
 
+        $input.val('');
+        return false;
+
+    });
+
+</script>
 
 
 </body>
