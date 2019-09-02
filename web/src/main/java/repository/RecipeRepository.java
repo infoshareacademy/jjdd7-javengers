@@ -1,6 +1,6 @@
 package repository;
 
-import com.infoshareacademy.domain.Recipe;
+import domain.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +14,9 @@ public class RecipeRepository {
     }
 
     public static List<Recipe> getRecipesList() {
+        if (recipesList.size() ==0){
+            fillRepositoryWithDefaultValues();
+        }
         return recipesList;
     }
 
@@ -27,5 +30,23 @@ public class RecipeRepository {
 
     public static List<Recipe> getFavouritesRecipeList() {
         return favouritesRecipeList;
+    }
+
+    public static void fillRepositoryWithDefaultValues(){
+
+        Recipe recipe1 = new Recipe();
+        recipe1.setId(1);
+        recipe1.setName("252");
+        recipe1.setRecipeCategory("Shot");
+        recipe1.setDrinkType("Alcoholic");
+        recipesList.add(recipe1);
+
+        Recipe recipe2 = new Recipe();
+        recipe2.setId(2);
+        recipe2.setName("Kir");
+        recipe2.setRecipeCategory("Ordinary Drink");
+        recipe2.setDrinkType("Optional alcohol");
+        recipesList.add(recipe2);
+
     }
 }
