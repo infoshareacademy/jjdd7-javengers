@@ -2,18 +2,23 @@ package service;
 
 import dao.RecipeRepositoryDaoBean;
 import domain.Recipe;
-import java.util.List;
-import javax.inject.Inject;
+
+import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
-@Path("main")
+
+@Path("recipies")
 public class RecipeServlet {
-@Inject
-  RecipeRepositoryDaoBean recipeRepositoryDaoBean;
-  @GET
-  @Path("all-recipies")
-  public List<Recipe> loadtRecipesInsideContent(){
-    return recipeRepositoryDaoBean.loadRecipiesList();
-  }
+    @EJB
+    RecipeRepositoryDaoBean recipeRepositoryDaoBean;
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Recipe> allRecipes() {
+        return recipeRepositoryDaoBean.loadRecipiesList();
+    }
 }
+

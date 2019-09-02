@@ -48,5 +48,11 @@ public class RecipeRepository {
         recipe2.setDrinkType("Optional alcohol");
         recipesList.add(recipe2);
 
+        Recipe recipe3 = new Recipe();
+        recipe3.setId(3);
+        recipe3.setName("Melya");
+        recipe3.setRecipeCategory("Coffee / Tea");
+        recipe3.setDrinkType("Non alcoholic");
+        recipesList.add(recipe3);
     }
 }
