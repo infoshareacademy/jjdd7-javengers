@@ -1,0 +1,33 @@
+body, html {
+
+
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url(/img/mojito.jpg);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row div {
+    padding: 10px 10px;
+    /*border: 1px solid;*/
+}
+
+.container {
+    /*background: lightblue;*/
+    text-align: center
+}
+
+.jumbotron {
+    background: lightblue;
+    text-align: center
+}
