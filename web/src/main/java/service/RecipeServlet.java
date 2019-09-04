@@ -1,24 +1,23 @@
 package service;
 
 import dao.RecipeRepositoryDaoBean;
-import domain.Recipe;
-
+import java.io.IOException;
 import javax.ejb.EJB;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/all-recipies")
+public class RecipeServlet extends HttpServlet {
+  @EJB
+  RecipeRepositoryDaoBean recipeRepositoryDaoBean;
 
-@Path("recipies")
-public class RecipeServlet {
-    @EJB
-    RecipeRepositoryDaoBean recipeRepositoryDaoBean;
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Recipe> allRecipes() {
-        return recipeRepositoryDaoBean.loadRecipiesList();
-    }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    String list = String.valueOf(recipeRepositoryDaoBean.loadRecipiesList());
+    resp.getWriter().println(list);
+  }
 }
-

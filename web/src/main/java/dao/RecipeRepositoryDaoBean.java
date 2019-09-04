@@ -29,4 +29,9 @@ public class RecipeRepositoryDaoBean {
         .filter(r -> r.getName() == name).findFirst().get();
   }
 
+  public Recipe getRecipeById(Integer id) {
+    return RecipeRepository.getRecipesList().stream()
+        .filter(u -> u.getId() == id).findFirst().get();
+  }
+
 }
