@@ -2,6 +2,7 @@ package com.infoshareacademy.freemarker;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

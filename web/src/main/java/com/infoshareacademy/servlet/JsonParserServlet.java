@@ -1,21 +1,19 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.domain.Recipe;
-import com.infoshareacademy.freemarker.TemplateProvider;
+import com.infoshareacademy.repository.RecipeRepository;
 import com.infoshareacademy.service.LoadParsedDataToDao;
 import com.infoshareacademy.service.ParserService;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/upload-data")
 public class JsonParserServlet extends HttpServlet {
@@ -24,36 +22,14 @@ public class JsonParserServlet extends HttpServlet {
   private ParserService parserService;
 
   @Inject
-  private TemplateProvider templateProvider;
-
-  @Inject
   private LoadParsedDataToDao loadParsedDataToDao;
 
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    loadParsedDataToDao.loadParsedData((List<Recipe>) parserService.parseFile());
 
-    Template template = templateProvider.getTemplate(getServletContext(),
-        "admin-view.ftlh");
-
-    String status = req.getParameter("status");
-
-    if (status.equals("active")) {
-      loadParsedDataToDao.loadParsedData((List< Recipe>)parserService.parseFile());
-    }
-
-    Map<String, Object> dataModel = new HashMap<>();
-    dataModel.put("status", status);
-
-    if (status == null || status.isEmpty()) {
-      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-      return;
-    }
-
+    //this print is just for test
     PrintWriter writer = resp.getWriter();
-    try {
-      template.process(dataModel, writer);
-    } catch (TemplateException e) {
-      e.printStackTrace();
-    }
+    writer.println(RecipeRepository.getRecipesList());
   }
 }
