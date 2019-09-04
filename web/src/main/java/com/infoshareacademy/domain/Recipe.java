@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.infoshareacademy.mappers.RecipeListDeserializer;
-
 import java.util.HashMap;
 import java.util.Map;
 

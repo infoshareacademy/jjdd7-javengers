@@ -1,11 +1,9 @@
 package com.infoshareacademy.dao;
 
-
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.repository.RecipeRepository;
-
-import javax.ejb.Stateless;
 import java.util.List;
+import javax.ejb.Stateless;
 
 @Stateless
 public class RecipeRepositoryDao {
