@@ -21,7 +21,7 @@ public class ParserService {
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(new File("/home/daria/KursJava/jjdd7-javengers/drinks.json"));
+      JsonNode jsonNode = mapper.readTree(new File("/home/daria/Pulpit/KolejnyJavengers/jjdd7-javengers/drinks.json"));
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
           new TypeReference<List<Recipe>>() {});
     } catch (JsonGenerationException e) {
