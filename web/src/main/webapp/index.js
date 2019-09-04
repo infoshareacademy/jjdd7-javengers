@@ -72,3 +72,30 @@ $(document).on('click', '#navTab a', function () {
     }
 });
 </script>*/
+
+let selectedCategories = []
+let asdasd= []
+
+function selectCategory () {
+    const categories = $('.x-category')
+    if (categories && categories.length) {
+        selectedCategories = []
+        categories.each(function(i) {
+            const input = this
+            if (input.checked) {
+                selectedCategories.push(input.value)
+            }
+        })
+    }
+
+    const queryParams = $.param({
+        categories: selectedCategories,
+        drugiParam: ['s', 'sss']
+    })
+
+    fetch('http://localhost:63342/drinks?' + queryParams, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
