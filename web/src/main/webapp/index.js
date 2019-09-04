@@ -7,12 +7,10 @@ const $formIngredient = $('#form-ingredient');
 const $input = $('#input-new-todo');
 const $todoList = $('#list-todo');
 
-
 /**
  *  FORM SUBMISSIONS
  *  ____________________________________________
  */
-
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -24,17 +22,14 @@ $formName.on('submit', () => {
     return false;
 });
 
-
 $formIngredient.on('submit', () => {
     const $input = $("#input-ingredient");
     message = $input.val();
     if (message.length === 0) {
         return false;
     }
-
     const newTodo = makeTodoHtml(message);
     $todoList.prepend(newTodo);
-
 
     $input.val('');
     return false;
