@@ -4,6 +4,9 @@ import dao.RecipeRepositoryDaoBean;
 import domain.Recipe;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,19 +24,18 @@ public class StartingPageServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-   /* String name = req.getParameter("name");
-    String ingredient = req.getParameter("ingredient");*/
 
-    PrintWriter writer = resp.getWriter();
+    resp.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = resp.getWriter();
 
-    List<Recipe> recipeList = recipeRepositoryDaoBean.loadRecipiesList();
-    for (Recipe recipe : recipeList) {
+    List<String> parametersList = Collections.list(req.getParameterNames());
+    for (String parameterName : parametersList) {
+      String[] values = req.getParameterValues(parameterName);
+      Arrays.stream(values)
+              .sorted()
+              .forEach(v -> out.println(parameterName + "=" + v));
+    }
 
-      writer.println("Id: " + recipe.getId());
-      writer.println("Name: " + recipe.getName());
-      writer.println("Category: " + recipe.getRecipeCategory());
-      writer.println("Drink Type: " + recipe.getDrinkType());
 
     }
   }
-}

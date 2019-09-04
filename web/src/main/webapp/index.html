@@ -8,49 +8,57 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
+    <!--<link rel="stylesheet" type="text/css" href="/home/andrzej/javengers/jjdd7-javengers/web/src/main/webapp/css/index.css")>-->
     <style>
-
-
-
+        body, html {
+            background-image: url(img/wp2172683.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+        }
+        .card {
+            background: transparent;
+        }
         .row div {
             padding: 10px 10px;
             /*border: 1px solid;*/
         }
-
         .container {
-            background: lightblue;
+            background: transparent;
             text-align: center
         }
-
         .jumbotron {
-            background: lightblue;
+            color: white;
+            background: transparent;
             text-align: center
+        }
+        #navTabA {
+            background: rgba(255, 255, 255, 0.5);
         }
     </style>
 
 </head>
 <body>
 
-<div class="container-fluid">
-<ul class="nav justify-content-end">
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Main</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">sign in</a>
-    </li>
-</ul>
-</div>
-
 <div class="jumbotron jumbotron-fluid ">
-
+    <div class="container-fluid">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Main</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">sign in</a>
+            </li>
+        </ul>
+    </div>
 
     <div class="container">
-        <h1 class="display-3">Welcome to the Drinkopedia</h1>
+        <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>
 </div>
@@ -58,160 +66,127 @@
 
 <div class="container">
 
-    <ul class="nav nav-tabs nav-justified " id="navTab" role="tablist">
-        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_b_name" data-secondary="#panel_a_name"  href="#name" data-toggle="tab" role="tab" aria-controls="name" aria-selected="true">Name</a></li>
-        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="category-tab" data-target="#panel_b_category" data-secondary="#panel_a_category" href="#category"   data-toggle="tab" role="tab" aria-controls="category" aria-selected="false">Category</a></li>
-        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab" data-target="#panel_b_ingredient" data-secondary="#panel_a_ingredient" href="#ingredient" data-toggle="tab" role="tab" aria-controls="ingredient" aria-selected="false">Ingredient</a></li>
+    <ul class="nav nav-tabs nav-justified col-sm-9" id="navTab" role="tablist">
+        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_a_name"
+                                data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
+                                aria-controls="name" aria-selected="true">Name</a></li>
+        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
+                                data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
+                                href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
+                                aria-selected="false">Ingredient</a></li>
     </ul>
 
-    <div class="tab-content row" id="navTabA" style="background: white ">
-
-        <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
-            <form>
-                <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by name">
-                    <button type="submit" class="=btn btn-dark">submit</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="tab-pane col-sm-12" id="panel_a_category" role="tabpanel" aria-labelledby="category-tab">
-            <form>
-                <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by category">
-                    <button type="submit" class="=btn btn-dark">submit</button>
-
-                </div>
-            </form>
-        </div>
-
-        <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
-            <form>
-                <div class="form-group col-sm-12">
-                    <input type="text" class="form-control" placeholder="search by ingredient">
-                    <button type="submit" class="=btn btn-dark">submit</button>
-
-                </div>
-            </form>
-        </div>
+    <div class="tab-content row col-sm-9" id="navTabA"
+    ">
+    <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
+        <form id="form-name">
+            <div class="col-sm-12">
+                <input type="text" id="input-name" class="form-control" placeholder="search by name">
+            </div>
+        </form>
     </div>
-
-
-
-    <div class="row">
-        <div class="tab-content col-md-3" id="navTabB">
-
-
-            <div class="tab-pane active card" id="panel_b_name" role="tabpanel" aria-labelledby="name-tab">
-                <article class="card-group-item">
-                    <header class="card-header"><h6 class="title">Filters</h6></header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Drinks staring with A</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Drinks staring with B</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Drinks staring with C</span>
-                            </label>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </article> <!-- card-group-item.// -->
+    <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
+        <form id="form-ingredient">
+            <div class="col-sm-12">
+                <input type="text" id="input-ingredient" class="form-control" placeholder="search by ingredient">
             </div>
-
-            <div class="tab-pane card" id="panel_b_category" role="tabpanel" aria-labelledby="category-tab">
-                <article class="card-group-item">
-                    <header class="card-header"><h6 class="title">Filters</h6></header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Shots</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Cocktails</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Long Drinks</span>
-                            </label>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </article> <!-- card-group-item.// -->
-            </div>
-
-            <div class="tab-pane card" id="panel_b_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
-                <article class="card-group-item">
-                    <header class="card-header"><h6 class="title">Filters</h6></header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Vodka</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Martini</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="checkbox" name="myradio" value="">
-                                <span class="form-check-label">Prosecco</span>
-                            </label>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </article> <!-- card-group-item.// -->
-            </div>
-
-        </div>
-
-        <div class="col-sm-6">
-            <div class="card">
-                <article class="card-group-item">
-                    <header class="card-header"><h6 class="title">Content</h6></header>
-                    <div class="filter-content">
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item">ABC</a>
-                            <a href="#" class="list-group-item">B-52</a>
-                            <a href="#" class="list-group-item">GG</a>
-                            <a href="#" class="list-group-item">Zorro</a>
-                        </div>  <!-- list-group .// -->
-                    </div>
-                </article> <!-- card-group-item.// -->
-            </div>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="card">
-                <article class="card-group-item">
-                    <header class="card-header"><h6 class="title">List Options</h6></header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <label class="btn btn-primary">
-                                <input class="" type="radio" name="myradio" value="">
-                                <span class="form-check-label">All Drinks</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="radio" name="myradio" value="">
-                                <span class="form-check-label">Favourites</span>
-                            </label>
-                            <label class="btn btn-primary">
-                                <input class="" type="radio" name="myradio" value="">
-                                <span class="form-check-label">Most Popular</span>
-                            </label>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </article> <!-- card-group-item.// -->
-            </div>
-        </div>
+        </form>
     </div>
 </div>
+<div class="container" id="list-todo" style="height: 50px">
+</div>
+<div class="row">
+    <div class=" col-sm-3"
+    ">
+    <div class="card">
+        <article class="card-group-item">
+            <header class="card-header"><h6 class="title">Category</h6></header>
+            <div class="btn-group-vertical">
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Shots</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Cocktails</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Long Drinks</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Shots</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Cocktails</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Long Drinks</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Shots</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Cocktails</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Long Drinks</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="checkbox" name="myradio" value="">
+                    <span class="form-check-label">Long Drinks</span>
+                </label>
+            </div>
+        </article>
+    </div>
+
+
+</div>
+
+<div class="col-sm-6">
+    <div class="card">
+        <article class="card-group-item">
+            <header class="card-header"><h6 class="title">Content</h6></header>
+            <div class="filter-content">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item">ABC</a>
+                    <a href="#" class="list-group-item">B-52</a>
+                    <a href="#" class="list-group-item">GG</a>
+                    <a href="#" class="list-group-item">Zorro</a>
+                </div>  <!-- list-group .// -->
+            </div>
+        </article> <!-- card-group-item.// -->
+    </div>
+</div>
+<div class=" col-sm-3">
+
+    <div class="card">
+        <article class="card-group-item">
+            <header class="card-header"><h6 class="title">List Options</h6></header>
+            <div class="btn-group-vertical">
+                <label class="btn btn-primary">
+                    <input class="" type="radio" name="myradio" value="">
+                    <span class="form-check-label">All Drinks</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="radio" name="myradio" value="">
+                    <span class="form-check-label">Favourites</span>
+                </label>
+                <label class="btn btn-primary">
+                    <input class="" type="radio" name="myradio" value="">
+                    <span class="form-check-label">Most Popular</span>
+                </label>
+            </div>
+        </article>
+    </div>
+</div>
+
 
 
 
@@ -224,19 +199,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
-
-<script>
-    $(document).on('click', '#navTab a', function(e) {
-        otherTabs = $(this).attr('data-secondary').split(',');
-        for(i= 0; i<otherTabs.length;i++) {
-            nav = $('<ul class="nav d-none" id="tmpNav"></ul>');
-            nav.append('<li class="nav-item"><a href="#" data-toggle="tab" data-target="' + otherTabs[i] + '">nav</a></li>"');
-            nav.find('a').tab('show');
-        }
-    });
-</script>
-
-
+<script src="index.js"></script>
 
 
 </body>
