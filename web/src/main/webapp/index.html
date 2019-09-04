@@ -10,33 +10,45 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!--<link rel="stylesheet" type="text/css" href="/home/andrzej/javengers/jjdd7-javengers/web/src/main/webapp/css/index.css")>-->
     <style>
+
         body, html {
-            background-image: url(img/wp2172683.jpg);
+            /*background-image: url(img/wp2172683.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             height: 100%;
-            margin: 0;
+            margin: 0;*/
         }
+
         .card {
             background: transparent;
+            background: lightblue;
+
         }
+
         .row div {
             padding: 10px 10px;
             /*border: 1px solid;*/
         }
+
         .container {
             background: transparent;
+            background: lightblue;
             text-align: center
         }
+
         .jumbotron {
             color: white;
             background: transparent;
+            background: lightblue;
             text-align: center
         }
+
         #navTabA {
             background: rgba(255, 255, 255, 0.5);
         }
+
+
     </style>
 
 </head>
@@ -66,7 +78,7 @@
 
 <div class="container">
 
-    <ul class="nav nav-tabs nav-justified col-sm-9" id="navTab" role="tablist">
+    <ul class="nav nav-tabs nav-justified col-sm-12" id="navTab" role="tablist">
         <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_a_name"
                                 data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
                                 aria-controls="name" aria-selected="true">Name</a></li>
@@ -76,8 +88,8 @@
                                 aria-selected="false">Ingredient</a></li>
     </ul>
 
-    <div class="tab-content row col-sm-9" id="navTabA"
-    ">
+    <div class="tab-content row col-sm-12" id="navTabA">
+
     <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
         <form id="form-name">
             <div class="col-sm-12">
@@ -85,6 +97,7 @@
             </div>
         </form>
     </div>
+
     <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
         <form id="form-ingredient">
             <div class="col-sm-12">
@@ -94,10 +107,13 @@
     </div>
 </div>
 <div class="container" id="list-todo" style="height: 50px">
+
 </div>
+
 <div class="row">
-    <div class=" col-sm-3"
-    ">
+
+
+    <div class=" col-sm-3">
     <div class="card">
         <article class="card-group-item">
             <header class="card-header"><h6 class="title">Category</h6></header>
