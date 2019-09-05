@@ -59,7 +59,7 @@ $formIngredient.on('submit', () => {
 
     radiobtn = document.getElementById(message);
     radiobtn.checked = true;
-    selectIngredient()
+    selectIngredient();
 
     $input.val('');
     return false;
@@ -74,7 +74,7 @@ $(document).on('click', '#list-todo label', function (event) {
 
 function makeTodoHtml(message) {
     return `
-    <label class="btn btn-primary form-group">
+    <label class="btn btn-primary btn-sm form-group">
      <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="selectIngredient()">
      <span class="form-check-label">${message}</span>
     </label>   
@@ -128,8 +128,8 @@ function selectCategory () {
             'Content-Type': 'application/json'
         }
     })
+    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 
-    window.location = 'http://localhost:8080/drinks?' + queryParams;
 }
 
 
@@ -155,9 +155,9 @@ function selectListOption () {
             'Content-Type': 'application/json'
         }
     })
+    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 
 
-    window.location = 'http://localhost:8080/drinks?' + queryParams;
 }
 
 function selectIngredient () {
@@ -184,6 +184,6 @@ function selectIngredient () {
         }
     })
 
-    window.location = 'http://localhost:8080/drinks?' + queryParams;
+    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 
 }
