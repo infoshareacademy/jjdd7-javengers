@@ -1,7 +1,7 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.RecipeRepositoryDao;
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.RecipeWithJsonAnnotations;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -13,7 +13,7 @@ public class LoadParsedDataToDao {
   @Inject
   private RecipeRepositoryDao recipeRepositoryDao;
 
-  public void loadParsedData(List<Recipe>recipeList){
-    recipeRepositoryDao.loadRepository(recipeList);
+  public void loadParsedData(List<RecipeWithJsonAnnotations> recipeWithJsonAnnotationsList){
+    recipeRepositoryDao.loadRepository(recipeWithJsonAnnotationsList);
   }
 }

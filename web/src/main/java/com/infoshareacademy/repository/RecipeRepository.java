@@ -1,18 +1,18 @@
 package com.infoshareacademy.repository;
 
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.RecipeWithJsonAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeRepository {
 
-  private static List<Recipe> recipesList = new ArrayList<>();
+  private static List<RecipeWithJsonAnnotations> recipesList = new ArrayList<>();
 
   private RecipeRepository() {
   }
 
-  public static List<Recipe> getRecipesList() {
+  public static List<RecipeWithJsonAnnotations> getRecipesList() {
     return recipesList;
   }
 }

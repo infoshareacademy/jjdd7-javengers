@@ -1,115 +1,115 @@
 package com.infoshareacademy.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.infoshareacademy.mappers.RecipeListDeserializer;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@JsonIgnoreProperties({"strDrinkAlternate", "strDrinkES", "strDrinkDE", "strDrinkFR",
-    "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA",
-    "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
-    "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
-@JsonDeserialize(using = RecipeListDeserializer.class)
-
+@Entity
+@Table(name = "recipes")
 public class Recipe {
 
-  @JsonProperty("idDrink")
-  private int id;
-  @JsonProperty("strDrink")
-  private String name;
-  @JsonProperty("strInstructions")
-  private String instruction;
-  @JsonProperty("strCategory")
-  private String recipeCategory;
-  @JsonProperty("strAlcoholic")
-  private String drinkType;
-  @JsonProperty("strGlass")
-  private String glassType;
-  @JsonProperty("dateModified")
-  private String modificationDate;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
 
-  private Map<String, String> ingredients = new HashMap<>();
+    @Column(name = "name")
+    @NotNull
+    private String name;
 
-  public int getId() {
-    return id;
-  }
+    @Column(name = "instruction")
+    @NotNull
+    private String instruction;
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-  public String getName() {
-    return name;
-  }
+    @Column(name = "drinkType")
+    @NotNull
+    private String drinkType;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @Column(name = "glassType")
+    @NotNull
+    private String glassType;
 
-  public String getInstruction() {
-    return instruction;
-  }
+    @Column(name = "modificationDate")
+    @NotNull
+    private String modificationDate;
 
-  public void setInstruction(String instruction) {
-    this.instruction = instruction;
-  }
+    @ManyToMany
+    @JoinTable(
+            name = "ingredients_users",
+            joinColumns = { @JoinColumn(name = "recipe_id") },
+            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
+    )
+    private List<Ingredient> ingredients = new ArrayList<>();
 
-  public String getRecipeCategory() {
-    return recipeCategory;
-  }
 
-  public void setRecipeCategory(String recipeCategory) {
-    this.recipeCategory = recipeCategory;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public String getDrinkType() {
-    return drinkType;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public void setDrinkType(String drinkType) {
-    this.drinkType = drinkType;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getGlassType() {
-    return glassType;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setGlassType(String glassType) {
-    this.glassType = glassType;
-  }
+    public String getInstruction() {
+        return instruction;
+    }
 
-  public String getModificationDate() {
-    return modificationDate;
-  }
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
 
-  public void setModificationDate(String modificationDate) {
-    this.modificationDate = modificationDate;
-  }
+    public Category getCategory() {
+        return category;
+    }
 
-  public Map<String, String> getIngredients() {
-    return ingredients;
-  }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-  public void setIngredients(Map<String, String> ingredients) {
-    this.ingredients = ingredients;
-  }
+    public String getDrinkType() {
+        return drinkType;
+    }
 
-  @Override
-  public String toString() {
-    return "Recipe{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", instruction='" + instruction + '\'' +
-        ", recipeCategory='" + recipeCategory + '\'' +
-        ", drinkType='" + drinkType + '\'' +
-        ", glassType='" + glassType + '\'' +
-        ", modificationDate='" + modificationDate + '\'' +
-        ", ingredients=" + ingredients +
-        '}';
-  }
+    public void setDrinkType(String drinkType) {
+        this.drinkType = drinkType;
+    }
+
+    public String getGlassType() {
+        return glassType;
+    }
+
+    public void setGlassType(String glassType) {
+        this.glassType = glassType;
+    }
+
+    public String getModificationDate() {
+        return modificationDate;
+    }
+
+    public void setModificationDate(String modificationDate) {
+        this.modificationDate = modificationDate;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 }
 
 
