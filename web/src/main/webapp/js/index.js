@@ -128,6 +128,8 @@ function selectCategory () {
             'Content-Type': 'application/json'
         }
     })
+
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 }
 
 
@@ -153,6 +155,9 @@ function selectListOption () {
             'Content-Type': 'application/json'
         }
     })
+
+
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 }
 
 function selectIngredient () {
@@ -178,4 +183,7 @@ function selectIngredient () {
             'Content-Type': 'application/json'
         }
     })
+
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
+
 }
