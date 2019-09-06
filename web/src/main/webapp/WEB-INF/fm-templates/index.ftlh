@@ -72,6 +72,8 @@
     </div>
 
 
+
+    <div class="row">
         <div class="card col-sm-3">
            <#--category-filter fm template-->
             <#include "category-filter.ftlh">
@@ -84,7 +86,7 @@
             <#--list-options fm templates-->
             <#include "list-options.ftlh">
         </div>
-
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
         integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
