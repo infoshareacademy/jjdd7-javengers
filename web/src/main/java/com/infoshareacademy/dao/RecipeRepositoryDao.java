@@ -1,9 +1,7 @@
 package com.infoshareacademy.dao;
 
-
 import com.infoshareacademy.domain.RecipeWithJsonAnnotations;
 import com.infoshareacademy.repository.RecipeRepository;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

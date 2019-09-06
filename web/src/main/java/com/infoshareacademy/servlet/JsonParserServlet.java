@@ -27,9 +27,9 @@ public class JsonParserServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //    loadParsedDataToDao.loadParsedData((List<RecipeWithJsonAnnotations>) parserService.parseFile());
-
-    //this print is just for test
-    PrintWriter writer = resp.getWriter();
-    writer.println(RecipeRepository.getRecipesList());
+//
+//    this print is just for test
+//    PrintWriter writer = resp.getWriter();
+//    writer.println(RecipeRepository.getRecipesList());
   }
 }
