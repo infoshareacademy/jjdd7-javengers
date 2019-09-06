@@ -45,17 +45,12 @@ public class RecipeRepositoryDaoBean {
     }
   }*/
 
-  public Recipe getRecipeByName(String name) {
-    return RecipeRepository.getRecipesList().stream()
-            .filter(r -> r.getName() == name).findFirst().get();
-  }
-
   public Recipe getRecipeById(Integer id) {
     return RecipeRepository.getRecipesList().stream()
             .filter(u -> u.getId() == id).findFirst().get();
   }
   public List<Recipe> loadRecipesList() {
-    return RecipeRepository.getFavouritesRecipeList();
+    return RecipeRepository.getRecipesList();
   }
 
   public List<Recipe> loadFavouritesRecipeList() {

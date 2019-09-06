@@ -4,6 +4,7 @@
     <title>Welcome User</title>
 </head>
 <body>
-<h1>Welcome <strong>${name}</strong></h1>
+<h1>Welcome <strong>${recipe[0]}</strong></h1>
+<p>${recipeContent[0].name}</p>
 </body>
 </html>
