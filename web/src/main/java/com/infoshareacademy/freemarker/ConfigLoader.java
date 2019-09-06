@@ -2,15 +2,14 @@ package com.infoshareacademy.freemarker;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
-
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ConfigLoader {
 
-  Configuration configuration;
+  private Configuration configuration;
 
-  public Configuration loadConfiguration() {
+  Configuration loadConfiguration() {
     if (configuration == null) {
       configuration = new Configuration(Configuration.VERSION_2_3_29);
       configuration.setDefaultEncoding("UTF-8");
