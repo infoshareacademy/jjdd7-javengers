@@ -6,12 +6,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class LoadParsedDataToDao {
+public class LoadParsedDataService {
 
   @Inject
   private RecipeRepositoryDao recipeRepositoryDao;
 
-//  public void loadParsedData(List<RecipeWithJsonAnnotations> recipeWithJsonAnnotationsList){
-//    recipeRepositoryDao.loadRepository(recipeWithJsonAnnotationsList);
-//  }
+  public void loadParsedData(){
+    recipeRepositoryDao.loadDataFromFile();
+  }
 }

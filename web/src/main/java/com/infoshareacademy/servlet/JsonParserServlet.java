@@ -1,7 +1,6 @@
 package com.infoshareacademy.servlet;
 
-import com.infoshareacademy.service.LoadParsedDataToDao;
-import com.infoshareacademy.service.ParserService;
+import com.infoshareacademy.service.LoadParsedDataService;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -14,13 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 public class JsonParserServlet extends HttpServlet {
 
   @Inject
-  private ParserService parserService;
-
-  @Inject
-  private LoadParsedDataToDao loadParsedDataToDao;
+  private LoadParsedDataService loadParsedDataService;
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    loadParsedDataService.loadParsedData();
   }
 }

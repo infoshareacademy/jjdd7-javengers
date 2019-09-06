@@ -4,12 +4,11 @@ import com.infoshareacademy.domain.Category;
 import com.infoshareacademy.domain.Ingredient;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.mappers.DataParsedMapper;
-
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
 @Stateless
 public class RecipeRepositoryDao {
@@ -20,15 +19,23 @@ public class RecipeRepositoryDao {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void loadRecipes(List<Recipe> recipesList) {
+    public void loadDataFromFile() {
+        List<Recipe> recipeList = dataParsedMapper.mapToRecipesList();
+        for (Recipe recipe : recipeList
+        ) {
+            entityManager.persist(recipe);
+        }
 
-    }
+        List<Category> categoryList = dataParsedMapper.mapCategoriesList();
+        for (Category category : categoryList
+        ) {
+            entityManager.persist(category);
+        }
 
-    public void loadIngredients(List<Ingredient> ingredientListList) {
-
-    }
-
-    public void loadCategories(List<Category> categoriesList) {
-
+        List<Ingredient> ingredientList = dataParsedMapper.mapIngredientList();
+        for (Ingredient ingredient : ingredientList
+        ) {
+            entityManager.persist(ingredient);
+        }
     }
 }
