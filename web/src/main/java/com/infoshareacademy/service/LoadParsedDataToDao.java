@@ -13,7 +13,7 @@ public class LoadParsedDataToDao {
   @Inject
   private RecipeRepositoryDao recipeRepositoryDao;
 
-  public void loadParsedData(List<RecipeWithJsonAnnotations> recipeWithJsonAnnotationsList){
-    recipeRepositoryDao.loadRepository(recipeWithJsonAnnotationsList);
-  }
+//  public void loadParsedData(List<RecipeWithJsonAnnotations> recipeWithJsonAnnotationsList){
+//    recipeRepositoryDao.loadRepository(recipeWithJsonAnnotationsList);
+//  }
 }

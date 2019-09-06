@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "recipes")
+@Table(name = "recipe")
 public class Recipe {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name")
     @NotNull
@@ -22,36 +22,37 @@ public class Recipe {
     @NotNull
     private String instruction;
 
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @Column(name = "drinkType")
+    @Column(name = "drink_type")
     @NotNull
     private String drinkType;
 
-    @Column(name = "glassType")
+    @Column(name = "glass_type")
     @NotNull
     private String glassType;
 
-    @Column(name = "modificationDate")
+    @Column(name = "modification_date")
     @NotNull
     private String modificationDate;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     @ManyToMany
     @JoinTable(
-            name = "ingredients_users",
-            joinColumns = { @JoinColumn(name = "recipe_id") },
-            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
-    )
+            name = "recipe_to_ingredient",
+            joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")})
     private List<Ingredient> ingredients = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "recipes")
+    private List<User> users = new ArrayList<>();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -69,14 +70,6 @@ public class Recipe {
 
     public void setInstruction(String instruction) {
         this.instruction = instruction;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public String getDrinkType() {
@@ -109,6 +102,22 @@ public class Recipe {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
 

@@ -15,7 +15,7 @@ public class RecipeRepositoryDao {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void loadRepository(List<RecipeWithJsonAnnotations> recipesList) {
-      RecipeRepository.getRecipesList().addAll(recipesList);
-  }
+//    public void loadRepository(List<RecipeWithJsonAnnotations> recipesList) {
+//      RecipeRepository.getRecipesList().addAll(recipesList);
+//  }
 }

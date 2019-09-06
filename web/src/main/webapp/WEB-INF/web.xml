@@ -11,7 +11,7 @@
   <data-source>
     <name>java:ds/recipeDS</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-    <url>jdbc:mysql://0.0.0.0:3308/mysql_drinks?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+    <url>jdbc:mysql://0.0.0.0:3307/javengersdb?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
     <user>root</user>
     <password>root</password>
   </data-source>
