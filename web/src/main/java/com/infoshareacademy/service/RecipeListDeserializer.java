@@ -4,19 +4,20 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.RecipeWithJsonAnnotations;
+import com.infoshareacademy.domain.RecipeForParser;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecipeListDeserializer extends JsonDeserializer<RecipeWithJsonAnnotations> {
+public class RecipeListDeserializer extends JsonDeserializer<RecipeForParser> {
 
   @Override
-  public RecipeWithJsonAnnotations deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+  public RecipeForParser deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
     Map<String, String> ingredients = new HashMap<>();
 
-    RecipeWithJsonAnnotations recipeWithJsonAnnotations = new RecipeWithJsonAnnotations();
+    RecipeForParser recipeForParser = new RecipeForParser();
     JsonNode tree = p.readValueAsTree();
 
     String[] errors = {"null"};
@@ -43,15 +44,15 @@ public class RecipeListDeserializer extends JsonDeserializer<RecipeWithJsonAnnot
       }
     }
 
-    recipeWithJsonAnnotations.setId(tree.get("idDrink").asInt());
-    recipeWithJsonAnnotations.setName(tree.get("strDrink").asText());
-    recipeWithJsonAnnotations.setInstruction(tree.get("strInstructions").asText());
-    recipeWithJsonAnnotations.setRecipeCategory(tree.get("strCategory").asText());
-    recipeWithJsonAnnotations.setDrinkType(tree.get("strAlcoholic").asText());
-    recipeWithJsonAnnotations.setGlassType(tree.get("strGlass").asText());
-    recipeWithJsonAnnotations.setModificationDate(tree.get("dateModified").asText());
-    recipeWithJsonAnnotations.setIngredients(ingredients);
-    return recipeWithJsonAnnotations;
+    recipeForParser.setId(tree.get("idDrink").asInt());
+    recipeForParser.setName(tree.get("strDrink").asText());
+    recipeForParser.setInstruction(tree.get("strInstructions").asText());
+    recipeForParser.setRecipeCategory(tree.get("strCategory").asText());
+    recipeForParser.setDrinkType(tree.get("strAlcoholic").asText());
+    recipeForParser.setGlassType(tree.get("strGlass").asText());
+    recipeForParser.setModificationDate(tree.get("dateModified").asText());
+    recipeForParser.setIngredients(ingredients);
+    return recipeForParser;
   }
 }
 

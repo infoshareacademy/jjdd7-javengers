@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.domain.RecipeWithJsonAnnotations;
+import com.infoshareacademy.domain.RecipeForParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class ParserService {
     try {
       JsonNode jsonNode = mapper.readTree(new File("/home/daria/Pulpit/KolejnyJavengers/jjdd7-javengers/drinks.json"));
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
-          new TypeReference<List<RecipeWithJsonAnnotations>>() {});
+          new TypeReference<List<RecipeForParser>>() {});
     } catch (JsonGenerationException e) {
       e.printStackTrace();
     } catch (JsonMappingException e) {

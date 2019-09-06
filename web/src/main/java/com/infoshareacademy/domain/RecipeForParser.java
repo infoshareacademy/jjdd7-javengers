@@ -14,7 +14,7 @@ import java.util.Map;
     "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = RecipeListDeserializer.class)
 
-public class RecipeWithJsonAnnotations {
+public class RecipeForParser {
 
   @JsonProperty("idDrink")
   private int id;
