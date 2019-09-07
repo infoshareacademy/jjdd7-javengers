@@ -1,9 +1,18 @@
 package com.infoshareacademy.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
@@ -17,6 +26,10 @@ public class Recipe {
     @Column(name = "name", unique = true, length = 100)
     @NotNull
     private String name;
+
+    @Column(name = "isCustom")
+    @NotNull
+    private Boolean isCustom;
 
     @Column(name = "instruction")
     @NotNull
