@@ -14,7 +14,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, length = 100)
     @NotNull
     private String name;
 
@@ -22,9 +22,9 @@ public class Recipe {
     @NotNull
     private String instruction;
 
-    @Column(name = "drink_type")
-    @NotNull
-    private String drinkType;
+    @ManyToOne
+    @JoinColumn(name = "drink_type_id")
+    private DrinkType drinkType;
 
     @Column(name = "glass_type")
     @NotNull
@@ -72,11 +72,11 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public String getDrinkType() {
+    public DrinkType getDrinkType() {
         return drinkType;
     }
 
-    public void setDrinkType(String drinkType) {
+    public void setDrinkType(DrinkType drinkType) {
         this.drinkType = drinkType;
     }
 

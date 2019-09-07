@@ -30,7 +30,7 @@ public class DataParsedMapper {
              ) {
             recipe.setName(recipes.getName());
             recipe.setModificationDate(recipes.getModificationDate());
-            recipe.setDrinkType(recipes.getDrinkType());
+//            recipe.setDrinkType(recipes.getDrinkType()); TODO
             recipe.setGlassType(recipes.getGlassType());
             recipe.setInstruction(recipes.getInstruction());
 
@@ -39,7 +39,7 @@ public class DataParsedMapper {
             Map<String, String> ingredients = recipes.getIngredients();
             for (Map.Entry<String, String> entry : ingredients.entrySet()) {
                 ingredient.setName(entry.getKey());
-                ingredient.setMeasure(entry.getValue());
+//                ingredient.setMeasure(entry.getValue()); TODO
                 ingredientsList.add(ingredient);
             }
 
@@ -64,7 +64,7 @@ public class DataParsedMapper {
             for (Map.Entry<String, String> entry : ingredients.entrySet()) {
 
                 ingredient.setName(entry.getKey());
-                ingredient.setMeasure(entry.getValue());
+//                ingredient.setMeasure(entry.getValue()); TODO
             }
 
 //            List<Recipe>recipesList = mapToRecipesList();

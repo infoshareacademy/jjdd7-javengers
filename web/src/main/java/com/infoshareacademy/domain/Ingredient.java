@@ -1,9 +1,17 @@
 package com.infoshareacademy.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ingredient")
@@ -14,13 +22,16 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, length = 100)
     @NotNull
     private String name;
 
-    @Column(name = "measure")
-    @NotNull
-    private String measure;
+    @ManyToMany
+    @JoinTable(
+        name = "ingredient_to_measure",
+        joinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "measure_id", referencedColumnName = "id")})
+    private List<MeasureOfIngredient> measures = new ArrayList<>();
 
     @ManyToMany(mappedBy = "ingredients")
     private List<Recipe> recipes = new ArrayList<>();
@@ -41,12 +52,13 @@ public class Ingredient {
         this.name = name;
     }
 
-    public String getMeasure() {
-        return measure;
+
+    public List<MeasureOfIngredient> getMeasures() {
+        return measures;
     }
 
-    public void setMeasure(String measure) {
-        this.measure = measure;
+    public void setMeasures(List<MeasureOfIngredient> measures) {
+        this.measures = measures;
     }
 
     public List<Recipe> getRecipes() {
