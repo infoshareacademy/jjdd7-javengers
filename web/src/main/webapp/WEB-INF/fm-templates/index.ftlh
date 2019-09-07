@@ -16,20 +16,8 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Main</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">sign in</a>
-            </li>
-        </ul>
-    </div>
-
+    <#--navbar fm templates-->
+    <#include "navbar.ftlh">
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
@@ -67,8 +55,9 @@
         </div>
 
     </div>
-    <div class="container" id="list-todo">
-
+    <div class="container" id="list-ingredient">
+        <#--category-filter fm template-->
+        <#include "list-ingredient.ftlh">
     </div>
 
 

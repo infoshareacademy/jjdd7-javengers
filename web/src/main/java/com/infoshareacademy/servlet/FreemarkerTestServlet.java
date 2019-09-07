@@ -6,6 +6,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import testClass.Category;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-@WebServlet("/test")
+@WebServlet("/drinks")
 public class FreemarkerTestServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(DummyServlet.class.getName());
@@ -33,13 +33,21 @@ public class FreemarkerTestServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
 
-       /* if (user != null) {
 
-            model.put("user", user);
+        List<Category> categoryList = Arrays.asList(
+                new Category(1, "Shots"),
+                new Category(2, "Cocktails" ),
+                new Category(3, "Party Drink" )
+                );
 
-        } else {
-            model.put("errorMessage", "User has not been found.");
-        }*/
+        List<String> categoryListChecked = new ArrayList<>();
+        categoryListChecked.add("1");
+        categoryListChecked.add("3");
+
+            model.put("categoryList", categoryList);
+            model.put("categoryListChecked", categoryListChecked);
+
+
 
         try {
             template.process(model, writer);

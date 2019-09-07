@@ -4,8 +4,7 @@
  */
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
-const $input = $('#input-new-todo');
-const $todoList = $('#list-todo');
+const $ingredientList = $('#list-ingredient');
 
 /**
  *  FORM SUBMISSIONS
@@ -54,8 +53,8 @@ $formIngredient.on('submit', () => {
     if (message.length === 0) {
         return false;
     }
-    const newTodo = makeTodoHtml(message);
-    $todoList.prepend(newTodo);
+    const newIngredient = makeIngredientListHtml(message);
+    $ingredientList.prepend(newIngredient);
 
     radiobtn = document.getElementById(message);
     radiobtn.checked = true;
@@ -66,13 +65,13 @@ $formIngredient.on('submit', () => {
 });
 
 
-$(document).on('click', '#list-todo label', function (event) {
+$(document).on('click', '#list-ingredient label', function (event) {
     const element = $(event.target).parents('.form-group');
     element.remove();
 });
 
 
-function makeTodoHtml(message) {
+function makeIngredientListHtml(message) {
     return `
     <label class="btn btn-primary btn-sm form-group">
      <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="selectIngredient()">
@@ -128,7 +127,7 @@ function selectCategory () {
             'Content-Type': 'application/json'
         }
     })
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 
 }
 
@@ -155,7 +154,7 @@ function selectListOption () {
             'Content-Type': 'application/json'
         }
     })
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 
 
 }
@@ -184,6 +183,6 @@ function selectIngredient () {
         }
     })
 
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 
 }
