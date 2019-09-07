@@ -18,120 +18,128 @@ import javax.validation.constraints.NotNull;
 @Table(name = "recipe")
 public class Recipe {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "name", unique = true, length = 100)
-    @NotNull
-    private String name;
+  @Column(name = "name", unique = true, length = 100)
+  @NotNull
+  private String name;
 
-    @Column(name = "isCustom")
-    @NotNull
-    private Boolean isCustom;
+  @Column(name = "isCustom")
+  @NotNull
+  private Boolean isCustom;
 
-    @Column(name = "instruction")
-    @NotNull
-    private String instruction;
+  @Column(name = "instruction")
+  @NotNull
+  private String instruction;
 
-    @ManyToOne
-    @JoinColumn(name = "drink_type_id")
-    private DrinkType drinkType;
+  @ManyToOne
+  @JoinColumn(name = "drink_type_id")
+  private DrinkType drinkType;
 
-    @Column(name = "glass_type")
-    @NotNull
-    private String glassType;
+  @Column(name = "glass_type")
+  @NotNull
+  private String glassType;
 
-    @Column(name = "modification_date")
-    @NotNull
-    private String modificationDate;
+  @Column(name = "modification_date")
+  @NotNull
+  private String modificationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  private Category category;
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_to_ingredient",
-            joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")})
-    private List<Ingredient> ingredients = new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+      name = "recipe_to_ingredient",
+      joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},
+      inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")})
+  private List<Ingredient> ingredients = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "recipes")
-    private List<User> users = new ArrayList<>();
+  @ManyToMany(mappedBy = "recipes")
+  private List<User> users = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getInstruction() {
-        return instruction;
-    }
+  public Boolean getCustom() {
+    return isCustom;
+  }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
-    }
+  public void setCustom(Boolean custom) {
+    isCustom = custom;
+  }
 
-    public DrinkType getDrinkType() {
-        return drinkType;
-    }
+  public String getInstruction() {
+    return instruction;
+  }
 
-    public void setDrinkType(DrinkType drinkType) {
-        this.drinkType = drinkType;
-    }
+  public void setInstruction(String instruction) {
+    this.instruction = instruction;
+  }
 
-    public String getGlassType() {
-        return glassType;
-    }
+  public DrinkType getDrinkType() {
+    return drinkType;
+  }
 
-    public void setGlassType(String glassType) {
-        this.glassType = glassType;
-    }
+  public void setDrinkType(DrinkType drinkType) {
+    this.drinkType = drinkType;
+  }
 
-    public String getModificationDate() {
-        return modificationDate;
-    }
+  public String getGlassType() {
+    return glassType;
+  }
 
-    public void setModificationDate(String modificationDate) {
-        this.modificationDate = modificationDate;
-    }
+  public void setGlassType(String glassType) {
+    this.glassType = glassType;
+  }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
+  public String getModificationDate() {
+    return modificationDate;
+  }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+  public void setModificationDate(String modificationDate) {
+    this.modificationDate = modificationDate;
+  }
 
-    public List<User> getUsers() {
-        return users;
-    }
+  public List<Ingredient> getIngredients() {
+    return ingredients;
+  }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+  public void setIngredients(List<Ingredient> ingredients) {
+    this.ingredients = ingredients;
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  public List<User> getUsers() {
+    return users;
+  }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
 }
 
 
