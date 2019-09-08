@@ -4,7 +4,7 @@
         <#items as category>
             <label class="btn btn-outline-light btn-sm">
                 <input class="x-category" type="checkbox" name="myradio" value="${category.id}"
-                       onclick="selectCategory()" ${categoryListChecked?seq_contains("${category.id}")?string("checked", "")}>
+                       onclick="checkFilters()" ${categoryListChecked?seq_contains("${category.id}")?string("checked", "")}>
                 <span class="form-check-label">${category.name}</span>
             </label>
 
