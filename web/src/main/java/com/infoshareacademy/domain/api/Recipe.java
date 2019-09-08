@@ -1,9 +1,9 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.infoshareacademy.service.RecipeListDeserializer;
+import com.infoshareacademy.service.RecipeDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +12,9 @@ import java.util.Map;
     "strDrinkZH-HANS", "strDrinkZH-HANT", "strTags", "strVideo", "strIBA",
     "strInstructionsES", "strInstructionsDE", "strInstructionsFR", "strInstructionsZH-HANS",
     "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
-@JsonDeserialize(using = RecipeListDeserializer.class)
+@JsonDeserialize(using = RecipeDeserializer.class)
 
-public class RecipeForParser {
+public class Recipe {
 
   @JsonProperty("idDrink")
   private int id;

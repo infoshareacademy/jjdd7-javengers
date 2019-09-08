@@ -5,15 +5,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.domain.RecipeForParser;
-
+import com.infoshareacademy.domain.api.Recipe;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
-@RequestScoped
-public class ParserService {
+@SessionScoped
+public class ParserService implements Serializable {
 
   public <T> Object parseFile() {
 
@@ -22,9 +22,10 @@ public class ParserService {
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(new File("/home/daria/Pulpit/KolejnyJavengers/jjdd7-javengers/drinks.json"));
+      JsonNode jsonNode = mapper.readTree(new File("/opt/drinks.json"));
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
-          new TypeReference<List<RecipeForParser>>() {});
+          new TypeReference<List<Recipe>>() {
+          });
     } catch (JsonGenerationException e) {
       e.printStackTrace();
     } catch (JsonMappingException e) {

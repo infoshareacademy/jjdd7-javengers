@@ -31,7 +31,7 @@ public class Ingredient {
         name = "ingredient_to_measure",
         joinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "measure_id", referencedColumnName = "id")})
-    private List<MeasureOfIngredient> measures = new ArrayList<>();
+    private List<IngredientMeasure> measures = new ArrayList<>();
 
     @ManyToMany(mappedBy = "ingredients")
     private List<Recipe> recipes = new ArrayList<>();
@@ -52,12 +52,11 @@ public class Ingredient {
         this.name = name;
     }
 
-
-    public List<MeasureOfIngredient> getMeasures() {
+    public List<IngredientMeasure> getMeasures() {
         return measures;
     }
 
-    public void setMeasures(List<MeasureOfIngredient> measures) {
+    public void setMeasures(List<IngredientMeasure> measures) {
         this.measures = measures;
     }
 

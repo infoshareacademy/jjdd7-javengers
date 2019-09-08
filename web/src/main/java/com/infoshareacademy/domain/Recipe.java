@@ -27,11 +27,15 @@ public class Recipe {
   @NotNull
   private String name;
 
-  @Column(name = "isCustom")
+  @Column(name = "is_custom")
   @NotNull
   private Boolean isCustom;
 
-  @Column(name = "instruction")
+  @Column(name = "is_approved")
+  @NotNull
+  private Boolean isApproved;
+
+  @Column(name = "instruction", length = 1000)
   @NotNull
   private String instruction;
 
@@ -50,6 +54,10 @@ public class Recipe {
   @ManyToOne
   @JoinColumn(name = "category_id")
   private Category category;
+
+  @Column(name = "image_url_address", length = 1000)
+  @NotNull
+  private String imageUrlAddress;
 
   @ManyToMany
   @JoinTable(
@@ -85,6 +93,14 @@ public class Recipe {
     isCustom = custom;
   }
 
+  public Boolean getApproved() {
+    return isApproved;
+  }
+
+  public void setApproved(Boolean approved) {
+    isApproved = approved;
+  }
+
   public String getInstruction() {
     return instruction;
   }
@@ -117,6 +133,22 @@ public class Recipe {
     this.modificationDate = modificationDate;
   }
 
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
+  public String getImageUrlAddress() {
+    return imageUrlAddress;
+  }
+
+  public void setImageUrlAddress(String imageUrlAddress) {
+    this.imageUrlAddress = imageUrlAddress;
+  }
+
   public List<Ingredient> getIngredients() {
     return ingredients;
   }
@@ -131,14 +163,6 @@ public class Recipe {
 
   public void setUsers(List<User> users) {
     this.users = users;
-  }
-
-  public Category getCategory() {
-    return category;
-  }
-
-  public void setCategory(Category category) {
-    this.category = category;
   }
 }
 

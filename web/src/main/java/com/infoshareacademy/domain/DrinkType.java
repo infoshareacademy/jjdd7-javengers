@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,16 +20,13 @@ public class DrinkType {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "name", unique = true, length = 50)
+  @Column(name = "name", unique = true, length = 50) //TODO change to enum
   @NotNull
   private String name;
 
-//  @Enumerated(EnumType.STRING)
-//  @NotNull
-//  private String name;
-
   @OneToMany(mappedBy = "drinkType")
   private List<Recipe> recipes = new ArrayList<>();
+
 
   public Long getId() {
     return id;

@@ -4,20 +4,19 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.RecipeForParser;
-
+import com.infoshareacademy.domain.api.Recipe;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecipeListDeserializer extends JsonDeserializer<RecipeForParser> {
+public class RecipeDeserializer extends JsonDeserializer<Recipe> {
 
   @Override
-  public RecipeForParser deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+  public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
     Map<String, String> ingredients = new HashMap<>();
 
-    RecipeForParser recipeForParser = new RecipeForParser();
+    Recipe recipe = new Recipe();
     JsonNode tree = p.readValueAsTree();
 
     String[] errors = {"null"};
@@ -44,15 +43,15 @@ public class RecipeListDeserializer extends JsonDeserializer<RecipeForParser> {
       }
     }
 
-    recipeForParser.setId(tree.get("idDrink").asInt());
-    recipeForParser.setName(tree.get("strDrink").asText());
-    recipeForParser.setInstruction(tree.get("strInstructions").asText());
-    recipeForParser.setRecipeCategory(tree.get("strCategory").asText());
-    recipeForParser.setDrinkType(tree.get("strAlcoholic").asText());
-    recipeForParser.setGlassType(tree.get("strGlass").asText());
-    recipeForParser.setModificationDate(tree.get("dateModified").asText());
-    recipeForParser.setIngredients(ingredients);
-    return recipeForParser;
+    recipe.setId(tree.get("idDrink").asInt());
+    recipe.setName(tree.get("strDrink").asText());
+    recipe.setInstruction(tree.get("strInstructions").asText());
+    recipe.setRecipeCategory(tree.get("strCategory").asText());
+    recipe.setDrinkType(tree.get("strAlcoholic").asText());
+    recipe.setGlassType(tree.get("strGlass").asText());
+    recipe.setModificationDate(tree.get("dateModified").asText());
+    recipe.setIngredients(ingredients);
+    return recipe;
   }
 }
 

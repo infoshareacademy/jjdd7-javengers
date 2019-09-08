@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "measure_of_ingredient")
-public class MeasureOfIngredient {
+@Table(name = "ingredient_measure")
+public class IngredientMeasure {
 
   @Id
   @Column(name = "id")
