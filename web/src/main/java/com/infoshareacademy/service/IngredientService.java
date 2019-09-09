@@ -6,8 +6,8 @@ import javax.enterprise.context.RequestScoped;
 
 @RequestScoped
 public class IngredientService {
-
-  @EJB
-  private IngredientDaoBean ingredientDaoBean;
+//
+//  @EJB
+//  private IngredientDaoBean ingredientDaoBean;
 
 }

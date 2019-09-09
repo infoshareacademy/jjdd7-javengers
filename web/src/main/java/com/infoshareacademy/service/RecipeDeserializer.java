@@ -4,19 +4,20 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.api.Recipe;
+import com.infoshareacademy.domain.api.RecipeApi;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecipeDeserializer extends JsonDeserializer<Recipe> {
+public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
 
   @Override
-  public Recipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+  public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
     Map<String, String> ingredients = new HashMap<>();
 
-    Recipe recipe = new Recipe();
+    RecipeApi recipeApi = new RecipeApi();
     JsonNode tree = p.readValueAsTree();
 
     String[] errors = {"null"};
@@ -43,15 +44,15 @@ public class RecipeDeserializer extends JsonDeserializer<Recipe> {
       }
     }
 
-    recipe.setId(tree.get("idDrink").asInt());
-    recipe.setName(tree.get("strDrink").asText());
-    recipe.setInstruction(tree.get("strInstructions").asText());
-    recipe.setRecipeCategory(tree.get("strCategory").asText());
-    recipe.setDrinkType(tree.get("strAlcoholic").asText());
-    recipe.setGlassType(tree.get("strGlass").asText());
-    recipe.setModificationDate(tree.get("dateModified").asText());
-    recipe.setIngredients(ingredients);
-    return recipe;
+    recipeApi.setId(tree.get("idDrink").asInt());
+    recipeApi.setName(tree.get("strDrink").asText());
+    recipeApi.setInstruction(tree.get("strInstructions").asText());
+    recipeApi.setRecipeCategory(tree.get("strCategory").asText());
+    recipeApi.setDrinkType(tree.get("strAlcoholic").asText());
+    recipeApi.setGlassType(tree.get("strGlass").asText());
+    recipeApi.setModificationDate(tree.get("dateModified").asText());
+    recipeApi.setIngredients(ingredients);
+    return recipeApi;
   }
 }
 

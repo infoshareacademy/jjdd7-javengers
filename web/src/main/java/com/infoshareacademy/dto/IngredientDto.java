@@ -7,7 +7,6 @@ public class IngredientDto {
 
   private Long id;
   private String name;
-  private List<IngredientMeasureDto> measures = new ArrayList<>();
   private List<RecipeDto> recipes = new ArrayList<>();
 
   public Long getId() {
@@ -24,14 +23,6 @@ public class IngredientDto {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public List<IngredientMeasureDto> getMeasures() {
-    return measures;
-  }
-
-  public void setMeasures(List<IngredientMeasureDto> measures) {
-    this.measures = measures;
   }
 
   public List<RecipeDto> getRecipes() {

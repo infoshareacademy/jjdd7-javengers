@@ -6,7 +6,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class IngredientMeasureService {
 
-  @EJB
-  private IngredientMeasureService ingredientMeasureService;
+//  @EJB
+//  private IngredientMeasureService ingredientMeasureService;
 
 }
