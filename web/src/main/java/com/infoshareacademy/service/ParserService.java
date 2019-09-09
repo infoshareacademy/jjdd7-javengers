@@ -15,14 +15,14 @@ import javax.enterprise.context.SessionScoped;
 @SessionScoped
 public class ParserService implements Serializable {
 
-  public <T> Object parseFile() {
+  public <T> Object parseFile(File jsonFile) {
 
     T outputObject = null;
 
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(new File("/opt/drinks.json"));
+      JsonNode jsonNode = mapper.readTree(jsonFile);
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
           new TypeReference<List<Recipe>>() {
           });

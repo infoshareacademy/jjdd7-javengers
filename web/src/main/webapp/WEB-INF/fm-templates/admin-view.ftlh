@@ -20,7 +20,8 @@
   </div>
 </div>
   <div class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-    <form id="form-upload" action="/upload-data" method="post">
+    <form id="form-upload" action="/upload-data" method="post"enctype="multipart/form-data">
+      <input type ="file" name="drinks">
       <button type="submit" class="btn btn-secondary">Upload</button>
     </form>
   </div>
