@@ -7,6 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -32,7 +49,7 @@
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
-        <p class="lead">Read, mix, enjoy...</p>
+        <p class="lead">Read, mix, enjoy...dupa</p>
     </div>
 </div>
 
@@ -54,24 +71,26 @@
 
             <div class="tab-pane active" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
                 <form id="form-name">
-                        <input type="text" id="input-name" class="form-control" placeholder="search by name">
+                    <input type="text" id="input-name" class="form-control" placeholder="search by name">
                 </form>
             </div>
 
             <div class="tab-pane" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
                 <form id="form-ingredient">
-                        <input type="text" id="input-ingredient" class="form-control"
-                               placeholder="search by ingredient">
+                    <input type="text" id="input-ingredient" class="form-control"
+                           placeholder="search by ingredient">
+                    <!--<select class="js-example-basic-single" name="state">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                    </select>-->
                 </form>
             </div>
         </div>
 
     </div>
-        <div class="container" id="list-todo">
+    <div class="container" id="list-ingredient">
 
-        </div>
-
-arz17!
+    </div>
 
 
     <div class="row">
@@ -83,52 +102,52 @@ arz17!
             <div class="btn-group-vertical">
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="Shots"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Shots</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="Cocktails"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Cocktails</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="Long Drink"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Long Drinks</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="Coffee/Tea"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Coffee/Tea </span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="aaa"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">aaa</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="bbb"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">bbb</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="ccc"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">ccc</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="ddd"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">ddd</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="eee"
-                           onclick="selectCategory()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">eee</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-category" type="checkbox" name="myradio" value="fff"
-                           onclick="selectCategory()" checked>
+                           onclick="checkFilters()" checked>
                     <span class="form-check-label">fff</span>
                 </label>
             </div>
@@ -137,12 +156,12 @@ arz17!
         <div class="card col-sm-6">
             <header class="card-header"><h6 class="title">Content</h6></header>
             <div class="content-container">
-            <ul class="list-group list-group-flush">
-                <li><a href="#" class="list-group-item">ABC</a></li>
-                <li><a href="#" class="list-group-item">B-52</a></li>
-                <li><a href="#" class="list-group-item">GG</a></li>
-                <li><a href="#" class="list-group-item">Zorro</a></li>
-            </ul>  <!-- list-group .// -->
+                <ul class="list-group list-group-flush">
+                    <li><a href="#" class="list-group-item">ABC</a></li>
+                    <li><a href="#" class="list-group-item">B-52</a></li>
+                    <li><a href="#" class="list-group-item">GG</a></li>
+                    <li><a href="#" class="list-group-item">Zorro</a></li>
+                </ul>
             </div>
         </div>
         <div class="card col-sm-3">
@@ -150,34 +169,24 @@ arz17!
             <div class="btn-group-vertical">
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-list-options" type="radio" name="myradio" value="All Drinks"
-                           onclick="selectListOption()">
-                    <span class="form-check-label">All Drinks</span>
+                           onclick="checkFilters()" checked>
+                    <span class="form-check-label">All Drinks </span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-list-options" type="radio" name="myradio" value="Favourites"
-                           onclick="selectListOption()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Favourites</span>
                 </label>
                 <label class="btn btn-outline-light btn-sm">
                     <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
-                           onclick="selectListOption()">
+                           onclick="checkFilters()">
                     <span class="form-check-label">Most Popular</span>
                 </label>
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
 <script src="js/index.js"></script>
-
 
 </body>
 </html>

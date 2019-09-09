@@ -4,8 +4,7 @@
  */
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
-const $input = $('#input-new-todo');
-const $todoList = $('#list-todo');
+const $ingredientList = $('#list-ingredient');
 
 /**
  *  FORM SUBMISSIONS
@@ -42,7 +41,6 @@ else
 }
 );*/
 
-
 /**
  *  INGRIDIENTS FORM AND MANAGING INGREDIENT BUTTONS
  *  ____________________________________________
@@ -54,31 +52,37 @@ $formIngredient.on('submit', () => {
     if (message.length === 0) {
         return false;
     }
-    const newTodo = makeTodoHtml(message);
-    $todoList.prepend(newTodo);
+    const newIngredient = makeIngredientListHtml(message);
+    $ingredientList.prepend(newIngredient);
 
     radiobtn = document.getElementById(message);
     radiobtn.checked = true;
-    selectIngredient();
+    checkFilters();
 
     $input.val('');
     return false;
 });
 
 
-$(document).on('click', '#list-todo label', function (event) {
+$(document).on('click', '#list-ingredient label', function (event) {
     const element = $(event.target).parents('.form-group');
     element.remove();
 });
 
 
-function makeTodoHtml(message) {
-    return `
+function makeIngredientListHtml(message) {
+    /*tutaj value jest do zmiany na nr id z listy dostepnych drinkow*/
+    if (ingredientList.filter(ingredient => ingredient.name.match(message))) {
+        console.log("mamy to")
+        return `
     <label class="btn btn-primary btn-sm form-group">
      <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="selectIngredient()">
      <span class="form-check-label">${message}</span>
     </label>   
 `
+    } else {
+        console.log("nie mamy")
+    }
 }
 
 
@@ -101,71 +105,36 @@ $(document).on('click', '#navTab a', function () {
  *  ____________________________________________
  */
 
-let selectedCategories = []
-let selectedListOptions = []
-let selectedIngredients = []
+let selectedCategories = [];
+let selectedListOptions = [];
+let selectedIngredients = [];
 
-function selectCategory () {
-    const categories = $('.x-category')
+function checkFilters() {
+    const categories = $('.x-category');
     if (categories && categories.length) {
-        selectedCategories = []
-        categories.each(function(i) {
-            const input = this
+        selectedCategories = [];
+        categories.each(function (i) {
+            const input = this;
             if (input.checked) {
                 selectedCategories.push(input.value)
             }
         })
     }
-    const queryParams = $.param({
-        categories: selectedCategories,
-        listOptions: selectedListOptions,
-        ingredients: selectedIngredients
-
-    })
-
-    fetch('http://localhost:8080/drinks?' + queryParams, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
-
-}
-
-
-function selectListOption () {
-    const listOptions = $('.x-list-options')
+    const listOptions = $('.x-list-options');
     if (listOptions && listOptions.length) {
-        selectedListOptions = []
-        listOptions.each(function(i) {
-            const input = this
+        selectedListOptions = [];
+        listOptions.each(function (i) {
+            const input = this;
             if (input.checked) {
                 selectedListOptions.push(input.value)
             }
         })
     }
-    const queryParams = $.param({
-        categories: selectedCategories,
-        listOptions: selectedListOptions,
-        ingredients: selectedIngredients
-    })
-
-    fetch('http://localhost:8080/drinks?' + queryParams, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
-
-
-}
-
-function selectIngredient () {
-    const ingredients = $('.x-ingredient')
+    const ingredients = $('.x-ingredient');
     if (ingredients && ingredients.length) {
-        selectedIngredients = []
-        ingredients.each(function(i) {
-            const input = this
+        selectedIngredients = [];
+        ingredients.each(function (i) {
+            const input = this;
             if (input.checked) {
                 selectedIngredients.push(input.value)
             }
@@ -176,14 +145,27 @@ function selectIngredient () {
         listOptions: selectedListOptions,
         ingredients: selectedIngredients
 
-    })
+    });
 
-    fetch('http://localhost:8080/drinks?' + queryParams, {
+    /*do JSowych rozwiazan
+
+    fetch('http://localhost:8080/drink?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
-
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
-
+    })*/
+    window.location = 'http://localhost:8080/drinks?' + queryParams;
 }
+
+$('#input-ingredient').keyup(function () {
+    var substring = $(this).val();
+    let filteredData = ingredientList.filter(ingredient => ingredient.name.toLowerCase().includes(substring.toLowerCase()));
+    console.log(filteredData);
+
+});
+
+
+/* select odpimpiony
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});*/

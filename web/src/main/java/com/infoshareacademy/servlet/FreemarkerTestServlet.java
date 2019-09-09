@@ -6,6 +6,8 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import testClass.Category;
+import testClass.Ingredient;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-@WebServlet("/test")
+@WebServlet("/drinks")
 public class FreemarkerTestServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(DummyServlet.class.getName());
@@ -32,14 +33,33 @@ public class FreemarkerTestServlet extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
         PrintWriter writer = resp.getWriter();
 
+// lista testowa
+        List<Category> categoryList = Arrays.asList(
+                new Category(1, "Shots"),
+                new Category(2, "Cocktails"),
+                new Category(3, "Party Drink")
+        );
+// lista testowa
+        List<String> categoryListChecked = new ArrayList<>();
+        categoryListChecked.add("1");
+        categoryListChecked.add("3");
+        model.put("categoryList", categoryList);
+        model.put("categoryListChecked", categoryListChecked);
+// lista testowa
+        List<Ingredient> ingredientList = Arrays.asList(
+                new Ingredient(1, "Lemon"),
+                new Ingredient(2, "Vodka"),
+                new Ingredient(3, "Ice"),
+                new Ingredient(11, "isa")
+        );
+// lista testowa
+        List<String> ingredientListChecked = new ArrayList<>();
+        ingredientListChecked.add("11");
+        ingredientListChecked.add("2");
 
-       /* if (user != null) {
+        model.put("ingredientList", ingredientList);
+        model.put("ingredientListChecked", ingredientListChecked);
 
-            model.put("user", user);
-
-        } else {
-            model.put("errorMessage", "User has not been found.");
-        }*/
 
         try {
             template.process(model, writer);
