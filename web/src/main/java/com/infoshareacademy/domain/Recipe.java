@@ -1,18 +1,9 @@
 package com.infoshareacademy.domain;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
@@ -39,9 +30,9 @@ public class Recipe {
   @NotNull
   private String instruction;
 
-  @ManyToOne
-  @JoinColumn(name = "drink_type_id")
-  private DrinkType drinkType;
+  @Column
+  @NotNull
+  private String drinkType;
 
   @Column(name = "glass_type")
   @NotNull
@@ -109,11 +100,11 @@ public class Recipe {
     this.instruction = instruction;
   }
 
-  public DrinkType getDrinkType() {
+  public String getDrinkType() {
     return drinkType;
   }
 
-  public void setDrinkType(DrinkType drinkType) {
+  public void setDrinkType(String drinkType) {
     this.drinkType = drinkType;
   }
 

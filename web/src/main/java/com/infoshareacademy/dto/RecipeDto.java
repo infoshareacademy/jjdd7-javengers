@@ -10,7 +10,7 @@ public class RecipeDto {
   private Boolean isCustom;
   private Boolean isApproved;
   private String instruction;
-  private DrinkTypeDto drinkType;
+  private String drinkType;
   private String glassType;
   private String modificationDate;
   private CategoryDto category;
@@ -58,11 +58,11 @@ public class RecipeDto {
     this.instruction = instruction;
   }
 
-  public DrinkTypeDto getDrinkType() {
+  public String getDrinkType() {
     return drinkType;
   }
 
-  public void setDrinkType(DrinkTypeDto drinkType) {
+  public void setDrinkType(String drinkType) {
     this.drinkType = drinkType;
   }
 

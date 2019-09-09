@@ -18,6 +18,4 @@ public class RecipeDaoBean {
       entityManager.persist(recipe);
     }
   }
-
-
 }

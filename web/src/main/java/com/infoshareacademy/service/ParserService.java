@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.domain.api.Recipe;
+import com.infoshareacademy.domain.api.RecipeApi;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -24,7 +24,7 @@ public class ParserService implements Serializable {
     try {
       JsonNode jsonNode = mapper.readTree(jsonFile);
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
-          new TypeReference<List<Recipe>>() {
+          new TypeReference<List<RecipeApi>>() {
           });
     } catch (JsonGenerationException e) {
       e.printStackTrace();

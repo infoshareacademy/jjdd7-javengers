@@ -7,7 +7,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class CategoryService {
 
-  @EJB
-  private CategoryDaoBean categoryDaoBean;
+//  @EJB
+//  private CategoryDaoBean categoryDaoBean;
 
 }
