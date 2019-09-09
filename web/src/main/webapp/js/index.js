@@ -1,17 +1,11 @@
-/**
- *  HTML ELEMENTS
- *  ____________________________________________
- */
+
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
 const $ingredientListButtons = $('#list-ingredient');
 let selectedCategories = [];
 let selectedListOptions = [];
 let selectedIngredients = [];
-/**
- *  FORM SUBMISSIONS
- *  ____________________________________________
- */
+
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -22,12 +16,6 @@ $formName.on('submit', () => {
     $input.val('');
     return false;
 });
-
-
-/**
- *  INGRIDIENTS FORM AND MANAGING INGREDIENT BUTTONS
- *  ____________________________________________
- */
 
 $formIngredient.on('submit', () => {
     const $input = $("#input-ingredient");
@@ -50,7 +38,6 @@ $formIngredient.on('submit', () => {
     checkFilters();
     $input.val('');
     return false;
-
 });
 
 
@@ -83,50 +70,16 @@ $(document).on('click', '#navTab a', function () {
 });
 </script>*/
 
-
-/**
- *  MANAGING SENDING DATA TO SERVLET
- *  ____________________________________________
- */
-
-
-
 function checkFilters() {
-    const categories = $('.x-category');
-    if (categories && categories.length) {
-        selectedCategories = [];
-        categories.each(function (i) {
-            const input = this;
-            if (input.checked) {
-                selectedCategories.push(input.value)
-            }
-        })
-    }
-    const listOptions = $('.x-list-options');
-    if (listOptions && listOptions.length) {
-        selectedListOptions = [];
-        listOptions.each(function (i) {
-            const input = this;
-            if (input.checked) {
-                selectedListOptions.push(input.value)
-            }
-        })
-    }
-    const ingredients = $('.x-ingredient');
-    if (ingredients && ingredients.length) {
-        selectedIngredients = [];
-        ingredients.each(function (i) {
-            const input = this;
-            if (input.checked) {
-                selectedIngredients.push(input.value)
-            }
-        })
-    }
+
+    listSelectedCategories();
+    listSelectedOptions();
+    listSelectedIngredients();
+
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
         ingredients: selectedIngredients
-
     });
 
     /*do JSowych rozwiazan*/
@@ -137,22 +90,22 @@ function checkFilters() {
         }
     })
 
-
+    /*do przeladowania strony*/
     /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 }
 
-$('#input-ingredient').keyup(function () {
-    var substring = $(this).val();
-    let filteredData = ingredientList.filter(ingredient => ingredient.name.toLowerCase().includes(substring.toLowerCase()));
-    console.log(filteredData);
-
-});
-
-
-/* select odpimpiony
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});*/
+function listSelectedCategories() {
+    const categories = $('.x-category');
+    if (categories && categories.length) {
+        selectedCategories = [];
+        categories.each(function (i) {
+            const input = this;
+            if (input.checked) {
+                selectedCategories.push(input.value)
+            }
+        })
+    }
+}
 
 function listSelectedIngredients() {
     const ingredients = $('.x-ingredient');
@@ -162,6 +115,19 @@ function listSelectedIngredients() {
             const input = this;
             if (input.checked) {
                 selectedIngredients.push(input.value)
+            }
+        })
+    }
+}
+
+function listSelectedOptions() {
+    const listOptions = $('.x-list-options');
+    if (listOptions && listOptions.length) {
+        selectedListOptions = [];
+        listOptions.each(function (i) {
+            const input = this;
+            if (input.checked) {
+                selectedListOptions.push(input.value)
             }
         })
     }
