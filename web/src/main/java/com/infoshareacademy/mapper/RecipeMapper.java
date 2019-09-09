@@ -1,19 +1,36 @@
 package com.infoshareacademy.mapper;
 
+import com.infoshareacademy.dao.RecipeDaoBean;
 import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.lang3.NotImplementedException;
-
+import com.infoshareacademy.domain.api.RecipeApi;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.List;
 
 @Stateless
 public class RecipeMapper {
 
-  public List<Recipe> mapRecipes(List<Recipe> recipes) {
-    try {
-      return null;
-    } catch (Exception ex) {
-      throw new NotImplementedException("method not implemented jet", ex);
-    }
+  @EJB
+  private CategoryMapper categoryMapper;
+
+  @EJB
+  private IngredientMapper ingredientMapper;
+
+  @EJB
+  private RecipeDaoBean recipeDaoBean;
+
+  public Recipe mapRecipes(RecipeApi recipeApi) {
+
+    Recipe recipe = new Recipe();
+    recipe.setName(recipe.getName());
+    recipe.setCategory(categoryMapper.mapCategory(recipeApi));
+    recipe.setGlassType(recipeApi.getGlassType());
+    recipe.setDrinkType(recipeApi.getDrinkType());
+    recipe.setInstruction(recipeApi.getInstruction());
+    recipe.setIngredients(ingredientMapper.mapIngredients(recipeApi));
+    recipe.setModificationDate(recipeApi.getModificationDate());
+    recipe.setCustom(false);
+    recipe.setApproved(true);
+    recipeDaoBean.addRecipe(recipe);
+    return recipe;
   }
 }
