@@ -4,7 +4,7 @@
  */
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
-const $ingredientList = $('#list-ingredient');
+const $ingredientListButtons = $('#list-ingredient');
 
 /**
  *  FORM SUBMISSIONS
@@ -52,15 +52,24 @@ $formIngredient.on('submit', () => {
     if (message.length === 0) {
         return false;
     }
-    const newIngredient = makeIngredientListHtml(message);
-    $ingredientList.prepend(newIngredient);
 
-    radiobtn = document.getElementById(message);
-    radiobtn.checked = true;
+    if (ingredientList.some(ingredient=>ingredient.name.toLowerCase()===message.toLowerCase())) {
+
+        let messageIngredient = ingredientList.filter(ingredient=>ingredient.name.toLowerCase()===message.toLowerCase())
+
+        console.log(messageIngredient)
+
+        const newIngredient = makeIngredientListHtml(messageIngredient[0]);
+        $ingredientListButtons.prepend(newIngredient);
+
+        radiobtn = document.getElementById(messageIngredient[0].name);
+        radiobtn.checked = true;
+
+    }
     checkFilters();
-
     $input.val('');
     return false;
+
 });
 
 
@@ -72,17 +81,12 @@ $(document).on('click', '#list-ingredient label', function (event) {
 
 function makeIngredientListHtml(message) {
     /*tutaj value jest do zmiany na nr id z listy dostepnych drinkow*/
-    if (ingredientList.filter(ingredient => ingredient.name.match(message))) {
-        console.log("mamy to")
-        return `
+    return `
     <label class="btn btn-primary btn-sm form-group">
-     <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="selectIngredient()">
-     <span class="form-check-label">${message}</span>
+     <input class="x-ingredient" id="${message.name}" type="checkbox" name="myradio" value="${message.id}" onclick="selectIngredient()">
+     <span class="form-check-label">${message.name}</span>
     </label>   
 `
-    } else {
-        console.log("nie mamy")
-    }
 }
 
 
@@ -147,14 +151,14 @@ function checkFilters() {
 
     });
 
-    /*do JSowych rozwiazan
+    /*do JSowych rozwiazan*/
 
     fetch('http://localhost:8080/drink?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
-    })*/
-    window.location = 'http://localhost:8080/drinks?' + queryParams;
+    })
+    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 }
 
 $('#input-ingredient').keyup(function () {
