@@ -5,7 +5,9 @@
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
 const $ingredientListButtons = $('#list-ingredient');
-
+let selectedCategories = [];
+let selectedListOptions = [];
+let selectedIngredients = [];
 /**
  *  FORM SUBMISSIONS
  *  ____________________________________________
@@ -21,25 +23,6 @@ $formName.on('submit', () => {
     return false;
 });
 
-//filter names
-/*const searchBar = document.forms['form-name'].querySelector('input');
-searchBar.addEventListener('keyup',function(e)
-{
-
-    const term = e.target.value.toLowerCase();
-    const drinks = list.getElementsByTagName("li");
-    Array.from(drinks).forEach(function (drink) {
-        const name = drink.firstElementChild.textContent;
-        if (name.toLowerCase().indexOf(term) != -1) {
-            drink.style.display = 'block';
-        }
-    })
-else
-    {
-        drink.style.display = 'none';
-    }
-}
-);*/
 
 /**
  *  INGRIDIENTS FORM AND MANAGING INGREDIENT BUTTONS
@@ -53,18 +36,16 @@ $formIngredient.on('submit', () => {
         return false;
     }
 
-    if (ingredientList.some(ingredient=>ingredient.name.toLowerCase()===message.toLowerCase())) {
+    if (ingredientList.some(ingredient => ingredient.name.toLowerCase() === message.toLowerCase())) {
 
-        let messageIngredient = ingredientList.filter(ingredient=>ingredient.name.toLowerCase()===message.toLowerCase())
-
-        console.log(messageIngredient)
-
-        const newIngredient = makeIngredientListHtml(messageIngredient[0]);
-        $ingredientListButtons.prepend(newIngredient);
-
-        radiobtn = document.getElementById(messageIngredient[0].name);
-        radiobtn.checked = true;
-
+        let messageIngredient = ingredientList.filter(ingredient => ingredient.name.toLowerCase() === message.toLowerCase())
+        listSelectedIngredients();
+        if (selectedIngredients.some(ingredient => ingredient === messageIngredient[0].id)) {
+            console.log("already existing")
+        } else {
+            const newIngredient = makeIngredientListHtml(messageIngredient[0]);
+            $ingredientListButtons.prepend(newIngredient);
+        }
     }
     checkFilters();
     $input.val('');
@@ -83,7 +64,7 @@ function makeIngredientListHtml(message) {
     /*tutaj value jest do zmiany na nr id z listy dostepnych drinkow*/
     return `
     <label class="btn btn-primary btn-sm form-group">
-     <input class="x-ingredient" id="${message.name}" type="checkbox" name="myradio" value="${message.id}" onclick="selectIngredient()">
+     <input class="x-ingredient" id="${message.name}" type="checkbox" name="myradio" value="${message.id}" onclick="checkFilters()" checked>
      <span class="form-check-label">${message.name}</span>
     </label>   
 `
@@ -91,7 +72,6 @@ function makeIngredientListHtml(message) {
 
 
 /* Skrypt do obslugi 2 zmieniajacych sie divow na stronie
-
 <script>
 $(document).on('click', '#navTab a', function () {
     otherTabs = $(this).attr('data-secondary').split(',');
@@ -109,9 +89,7 @@ $(document).on('click', '#navTab a', function () {
  *  ____________________________________________
  */
 
-let selectedCategories = [];
-let selectedListOptions = [];
-let selectedIngredients = [];
+
 
 function checkFilters() {
     const categories = $('.x-category');
@@ -158,6 +136,8 @@ function checkFilters() {
             'Content-Type': 'application/json'
         }
     })
+
+
     /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 }
 
@@ -173,3 +153,16 @@ $('#input-ingredient').keyup(function () {
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });*/
+
+function listSelectedIngredients() {
+    const ingredients = $('.x-ingredient');
+    if (ingredients && ingredients.length) {
+        selectedIngredients = [];
+        ingredients.each(function (i) {
+            const input = this;
+            if (input.checked) {
+                selectedIngredients.push(input.value)
+            }
+        })
+    }
+}
