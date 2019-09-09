@@ -27,7 +27,8 @@ public class IngredientMapper {
 
       String name = singleIngredient.getKey();
       String measure = singleIngredient.getValue();
-      Ingredient foundIngredient = ingredientDaoBean.findIngredient(name, measure);
+      //Is there a problem like nullPointerException??
+      Ingredient foundIngredient = ingredientDaoBean.findIngredientByNameAndMeasure(name, measure);
 
       if (foundIngredient == null) {
         Ingredient ingredient = new Ingredient();

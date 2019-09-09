@@ -8,11 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+    @NamedQuery(
+        name = "Ingredient.findIngredientByNameAndMeasure",
+        query = "SELECT i FROM Ingredient i WHERE i.name LIKE :name and i.measure LIKE :measure"
+    )
+})
+
 @Entity
-@Table(name = "ingredient")
+@Table(name = "Ingredient")
 public class Ingredient {
 
     @Id

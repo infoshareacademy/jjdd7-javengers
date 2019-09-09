@@ -13,22 +13,12 @@ public class CategoryDaoBean {
   @PersistenceContext
   EntityManager entityManager;
 
-  public void loadCategory(List<Category> categories) {
-    for (Category category : categories
-    ) {
-      entityManager.persist(category);
-    }
-  }
   public void addCategory(Category category) {
     entityManager.persist(category);
   }
 
   public Category editCategory(Category category) {
     return entityManager.merge(category);
-  }
-
-  public Category getCategoryByName(String name) {
-    return entityManager.find(Category.class, name);
   }
 
   public Category getCategoryById(Long id) {
@@ -45,5 +35,11 @@ public class CategoryDaoBean {
     Query query = entityManager.createQuery("SELECT c FROM Category c");
     return query.getResultList();
 
+  }
+
+  public Category findCategoryByName(String name) {
+    Query query = entityManager.createNamedQuery("Category.findCategoryByName");
+    query.setParameter("name", name);
+    return (Category) query.getSingleResult();
   }
 }

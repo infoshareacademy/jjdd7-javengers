@@ -20,7 +20,8 @@ public class CategoryMapper {
 
     Category category = new Category();
     String name = recipeApi.getRecipeCategory();
-    Category categoryByName = categoryDaoBean.getCategoryByName(name);
+    //Is there a problem like nullPointerException??
+    Category categoryByName = categoryDaoBean.findCategoryByName(name);
 
     if (categoryByName == null) {
       category.setName(name);

@@ -4,6 +4,7 @@ import com.infoshareacademy.cdi.FileUploadProcessor;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.exception.UserImageNotFound;
 import com.infoshareacademy.service.FileParserService;
+import javax.ejb.EJB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,11 +22,13 @@ import java.io.IOException;
 @WebServlet("/upload-data")
 public class JsonParserServlet extends HttpServlet {
 
-    @Inject
-    FileParserService fileParserService;
 
     @Inject
     private FileUploadProcessor fileUploadProcessor;
+
+    @Inject
+    private FileParserService fileParserService;
+
     Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
 
     @Override
@@ -33,12 +36,11 @@ public class JsonParserServlet extends HttpServlet {
         Part jsonFile = req.getPart("drinks");
         String fileUrl = "";
         try {
+            fileParserService.parseSaveFileAndData();
             fileUrl = "/drinks/" + fileUploadProcessor.uploadImageFile(jsonFile).getName();
         } catch (UserImageNotFound userImageNotFound) {
             logger.warn(userImageNotFound.getMessage());
         }
-        Recipe recipe1 = new Recipe();
-        recipe1.setImageUrlAddress(fileUrl);
         resp.getWriter().println("File successful uploaded!");
     }
 }

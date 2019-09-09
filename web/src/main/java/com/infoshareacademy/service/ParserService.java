@@ -10,19 +10,20 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
-@SessionScoped
+@RequestScoped
 public class ParserService implements Serializable {
 
-  public <T> Object parseFile(File jsonFile) {
+  public <T> Object parseFile(String jsonFilePath) {
 
     T outputObject = null;
 
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(jsonFile);
+      JsonNode jsonNode = mapper.readTree(new File(jsonFilePath));
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
           new TypeReference<List<RecipeApi>>() {
           });

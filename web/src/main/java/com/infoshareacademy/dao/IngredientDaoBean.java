@@ -14,13 +14,6 @@ public class IngredientDaoBean {
   @PersistenceContext
   EntityManager entityManager;
 
-  public void loadIngredient(List<Ingredient> ingredients) {
-    for (Ingredient ingredient : ingredients
-    ) {
-      entityManager.persist(ingredient);
-    }
-  }
-
   public void addIngredient(Ingredient ingredient) {
     entityManager.persist(ingredient);
   }
@@ -29,9 +22,6 @@ public class IngredientDaoBean {
     return entityManager.merge(ingredient);
   }
 
-  public Ingredient getIngredientByName(String name) {
-    return entityManager.find(Ingredient.class, name);
-  }
 
   public Ingredient getIngredientById(Long id) {
     return entityManager.find(Ingredient.class, id);
@@ -44,12 +34,10 @@ public class IngredientDaoBean {
     }
   }
 
-  public Ingredient findIngredient(String name, String measure) {
-    Query query = entityManager.createNamedQuery("SELECT FROM Ingredient i WHERE i.name=:name and i.measure=;measure");
+  public Ingredient findIngredientByNameAndMeasure(String name, String measure) {
+    Query query = entityManager.createNamedQuery("Ingredient.findIngredientByNameAndMeasure");
     query.setParameter("name", name);
     query.setParameter("measure",measure);
     return (Ingredient) query.getSingleResult();
   }
-
-
 }

@@ -14,13 +14,6 @@ public class RecipeDaoBean {
   @PersistenceContext
   EntityManager entityManager;
 
-  public void loadRecipe(List<Recipe> recipes) {
-    for (Recipe recipe : recipes
-    ) {
-      entityManager.persist(recipe);
-    }
-  }
-
   public void addRecipe(Recipe recipe) {
     entityManager.persist(recipe);
   }
