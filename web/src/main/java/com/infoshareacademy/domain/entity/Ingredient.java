@@ -1,40 +1,34 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
-@NamedQueries({
-    @NamedQuery(
-        name = "Category.findCategoryByName",
-        query = "SELECT c FROM Category c WHERE c.name like :name"
-    )
-})
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "ingredient")
+public class Ingredient {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", unique = true, length = 50)
+    @Column(name = "name", length = 100)
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @Column(name = "measure")
+    @NotNull
+    private String measure;
+
+    @ManyToMany(mappedBy = "ingredients")
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {
@@ -51,6 +45,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
     public List<Recipe> getRecipes() {

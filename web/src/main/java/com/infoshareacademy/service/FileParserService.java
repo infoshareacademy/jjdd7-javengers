@@ -1,8 +1,8 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.CategoryDaoBean;
-import com.infoshareacademy.domain.Category;
 import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.mapper.CategoryMapper;
 import com.infoshareacademy.mapper.RecipeMapper;
 import java.io.File;
@@ -29,15 +29,14 @@ public class FileParserService {
     @EJB
     private CategoryDaoBean categoryDaoBean;
 
-    public Object parseSaveFileAndData(File json) {
+    public Object parseDataToDatabase(File json) {
         List<RecipeApi> recipes = (List<RecipeApi>) parserService.parseFile(json);
         for (RecipeApi recipe : recipes) {
             Category category = Optional
                 .ofNullable(categoryDaoBean.findCategoryByName(recipe.getRecipeCategory()))
                 .orElseGet(() -> categoryMapper.mapCategory(recipe));
             category.getRecipes().add(recipeMapper.mapRecipes(recipe, category));
-
-            categoryDaoBean.editCategory(category);
+            categoryDaoBean.updateCategory(category);
         }
         return null;
     }

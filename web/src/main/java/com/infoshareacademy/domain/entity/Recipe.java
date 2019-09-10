@@ -1,4 +1,4 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class Recipe {
   @JoinColumn(name = "category_id")
   private Category category;
 
-  @Column(name = "image_url_address", length = 1000)
+  @Column(name = "image_url", length = 1000)
   @NotNull
   private String imageUrlAddress;
 
@@ -162,8 +162,6 @@ public class Recipe {
   public void setUsers(List<User> users) {
     this.users = users;
   }
-
-
 }
 
 

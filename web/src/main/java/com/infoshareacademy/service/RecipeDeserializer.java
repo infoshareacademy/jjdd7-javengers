@@ -8,8 +8,12 @@ import com.infoshareacademy.domain.api.RecipeApi;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
+
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @Override
   public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
@@ -52,6 +56,7 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
     recipeApi.setModificationDate(tree.get("dateModified").asText());
     recipeApi.setImageUrl(tree.get("strDrinkThumb").asText());
     recipeApi.setIngredients(ingredients);
+    logger.info("Deserialization data from file");
     return recipeApi;
   }
 }

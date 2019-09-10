@@ -1,4 +1,4 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+    @NamedQuery(
+        name = "User.findUserByName",
+        query = "SELECT u FROM User u WHERE u.name like :name"),
+    @NamedQuery(
+        name = "User.getUserList",
+        query = "SELECT u FROM User u")
+})
+
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +56,8 @@ public class User {
     @ManyToMany
     @JoinTable(
         name = "user_favourite_recipe",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "recipe_id") })
+        joinColumns = {@JoinColumn(name = "user_id")},
+        inverseJoinColumns = {@JoinColumn(name = "recipe_id")})
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {

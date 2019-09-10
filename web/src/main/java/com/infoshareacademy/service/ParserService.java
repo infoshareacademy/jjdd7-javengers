@@ -11,9 +11,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RequestScoped
 public class ParserService implements Serializable {
+
+  private static String JSON_ROOT = "drinks";
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
 
   public <T> Object parseFile(File json) {
 
@@ -23,7 +29,7 @@ public class ParserService implements Serializable {
 
     try {
       JsonNode jsonNode = mapper.readTree(json);
-      outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
+      outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
           new TypeReference<List<RecipeApi>>() {
           });
     } catch (JsonGenerationException e) {
@@ -33,6 +39,7 @@ public class ParserService implements Serializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    logger.info("Parse data from file");
     return outputObject;
   }
 }

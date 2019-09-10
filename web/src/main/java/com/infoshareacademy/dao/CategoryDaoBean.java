@@ -1,6 +1,6 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.Category;
+import com.infoshareacademy.domain.entity.Category;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,11 +13,11 @@ public class CategoryDaoBean {
   @PersistenceContext
   EntityManager entityManager;
 
-  public void addCategory(Category category) {
+  public void save(Category category) {
     entityManager.persist(category);
   }
 
-  public Category editCategory(Category category) {
+  public Category updateCategory(Category category) {
     return entityManager.merge(category);
   }
 
@@ -25,23 +25,14 @@ public class CategoryDaoBean {
     return entityManager.find(Category.class, id);
   }
 
-  public void deleteCategoryById(Long id) {
-    Category category = getCategoryById(id);
-    if (category != null) {
-      entityManager.remove(category);
-    }
-  }
-
   public List<Category> getCategoriesList() {
-    Query query = entityManager.createQuery("SELECT c FROM Category c");
+    Query query = entityManager.createNamedQuery("Category.getCategoryList");
     return query.getResultList();
-
   }
 
   public Category findCategoryByName(String name) {
     Query query = entityManager.createNamedQuery("Category.findCategoryByName");
     query.setParameter("name", name);
-
     return (Category) query.getResultList().stream().findFirst().orElse(null);
   }
 }
