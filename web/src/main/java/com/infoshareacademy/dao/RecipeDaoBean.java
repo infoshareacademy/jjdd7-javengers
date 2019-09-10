@@ -33,11 +33,11 @@ public class RecipeDaoBean {
         return entityManager.find(Recipe.class, name);
     }
 
-    public Recipe getRecipeById(Integer id) {
+    public Recipe getRecipeById(Long id) {
         return entityManager.find(Recipe.class, id);
     }
 
-    public void deleteRecipeById(Integer id) {
+    public void deleteRecipeById(Long id) {
         Recipe recipe = getRecipeById(id);
         if (recipe != null) {
             entityManager.remove(recipe);

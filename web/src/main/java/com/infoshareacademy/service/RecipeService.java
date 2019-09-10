@@ -29,11 +29,11 @@ public class RecipeService {
     return recipeDaoBean.getRecipeByName(name);
   }
 
-  public Recipe getRecipeById(Integer id) {
+  public Recipe getRecipeById(Long id) {
     return recipeDaoBean.getRecipeById(id);
   }
 
-  public void deleteRecipeById(Integer id) {
+  public void deleteRecipeById(Long id) {
     recipeDaoBean.deleteRecipeById(id);
   }
 

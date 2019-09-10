@@ -15,10 +15,10 @@ import java.util.Properties;
 public class FileUploadProcessor {
     private static String SETTINGS_FILE = "settings.properties";
 
-    public File uploadImageFile(Part filePart) throws IOException, UserImageNotFound {
+    public File uploadFile(Part filePart) throws IOException, UserImageNotFound {
 
         String filename = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        java.io.File file = new File(getUploadImageFilesPath() + filename);
+        java.io.File file = new File(getUploadFilesPath() + filename);
         Files.deleteIfExists(file.toPath());
 
         InputStream fileContent = filePart.getInputStream();
@@ -26,10 +26,10 @@ public class FileUploadProcessor {
         return file;
     }
 
-    public String getUploadImageFilesPath() throws IOException {
+    public String getUploadFilesPath() throws IOException {
         Properties settings = new Properties();
         settings.load(Thread.currentThread().getContextClassLoader().getResource(SETTINGS_FILE).openStream());
-        return settings.getProperty("Upload.Path.Images");
+        return settings.getProperty("Upload.Path");
     }
 
 }

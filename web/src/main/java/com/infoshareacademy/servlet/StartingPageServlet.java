@@ -29,7 +29,6 @@ public class StartingPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
         List<String> parameters = Collections.list(req.getParameterNames());
 /*        List<String> categoriesValues = Arrays.asList(req.getParameterValues("categories[]"));
         List<String> ingredientsValues = Arrays.asList(req.getParameterValues("ingredients[]"));*/

@@ -3,6 +3,7 @@ package com.infoshareacademy.servlet;
 import com.infoshareacademy.cdi.FileUploadProcessor;
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.exception.UserImageNotFound;
+import com.infoshareacademy.service.FileDataHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-
 @MultipartConfig
 @WebServlet("/upload-data")
 public class JsonParserServlet extends HttpServlet {
 
     @Inject
-    private FileUploadProcessor fileUploadProcessor;
+    private FileDataHandler fileDataHandler;
     Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
 
     @Override
@@ -29,7 +29,7 @@ public class JsonParserServlet extends HttpServlet {
         Part jsonFile = req.getPart("drinks");
         String fileUrl = "";
         try {
-            fileUrl = "/drinks/" + fileUploadProcessor.uploadImageFile(jsonFile).getName();
+            fileUrl = "/drinks/" + fileDataHandler.dataUploadHandler(jsonFile);
         } catch (UserImageNotFound userImageNotFound) {
             logger.warn(userImageNotFound.getMessage());
         }

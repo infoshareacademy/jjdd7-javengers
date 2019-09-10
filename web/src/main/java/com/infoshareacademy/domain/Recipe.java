@@ -100,7 +100,7 @@ public class Recipe {
     this.instruction = instruction;
   }
 
-  public String getDrinkType() {
+  public String  getDrinkType() {
     return drinkType;
   }
 
