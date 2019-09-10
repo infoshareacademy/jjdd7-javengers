@@ -17,6 +17,29 @@ $formName.on('submit', () => {
     return false;
 });
 
+
+$('#input-name').keyup(function () {
+    if( this.value.length < 3 ) return;
+    var substring = $(this).val();
+    //wyslij request
+    $.ajax({
+        url: '/drinks?nameChars=' + substring,
+        type: 'GET',
+        success: function() {
+            console.log(response);
+            nameList = response;
+        }
+
+    });
+    //dostan liste
+    var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
+
+    let filteredData = nameList.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
+    //trzeba zassac do rozwijanej listy
+    console.log(filteredData);
+});
+
+
 $formIngredient.on('submit', () => {
     const $input = $("#input-ingredient");
     message = $input.val();
@@ -162,4 +185,6 @@ $(".favorite").click(function() {
             'Content-Type': 'application/json'
         }
     })
+
+    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
 });
