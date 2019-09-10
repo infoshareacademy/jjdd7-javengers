@@ -1,12 +1,11 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.Ingredient;
-
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.List;
 
 @Stateless
 public class IngredientDaoBean {
@@ -21,7 +20,6 @@ public class IngredientDaoBean {
   public Ingredient editIngredient(Ingredient ingredient) {
     return entityManager.merge(ingredient);
   }
-
 
   public Ingredient getIngredientById(Long id) {
     return entityManager.find(Ingredient.class, id);

@@ -5,12 +5,11 @@ import com.infoshareacademy.domain.Category;
 import com.infoshareacademy.domain.api.RecipeApi;
 import com.infoshareacademy.mapper.CategoryMapper;
 import com.infoshareacademy.mapper.RecipeMapper;
-
+import java.util.List;
+import java.util.Optional;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 
 @RequestScoped
@@ -32,14 +31,11 @@ public class FileParserService {
     public void parseSaveFileAndData(){
         List<RecipeApi> recipes = (List<RecipeApi>) parserService.parseFile("/opt/drinks.json");
         for (RecipeApi recipe : recipes) {
-//            Category category = categoryMapper.mapCategory(recipe);
-            Category category = Optional.ofNullable(categoryDaoBean.findCategoryByName(recipe.getRecipeCategory()))
-                    .orElseGet(() -> categoryMapper.mapCategory(recipe));
+            Category category = Optional
+                .ofNullable(categoryDaoBean.findCategoryByName(recipe.getRecipeCategory()))
+                .orElseGet(() -> categoryMapper.mapCategory(recipe));
+            category.getRecipes().add(recipeMapper.mapRecipes(recipe, category));
 
-//            categoryDaoBean.editCategory(category);
-
-
-            category.getRecipes().add(recipeMapper.mapRecipes(recipe));
             categoryDaoBean.editCategory(category);
         }
     }
