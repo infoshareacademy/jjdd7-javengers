@@ -7,7 +7,6 @@
                        onclick="checkFilters()" ${categoryListChecked?seq_contains("${category.id}")?string("checked", "")}>
                 <span class="form-check-label">${category.name}</span>
             </label>
-
         </#items>
     </#list>
 

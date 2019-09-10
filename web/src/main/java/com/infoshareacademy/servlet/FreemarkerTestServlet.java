@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import testClass.Category;
 import testClass.Ingredient;
+import testClass.Recipe;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -60,6 +61,19 @@ public class FreemarkerTestServlet extends HttpServlet {
         model.put("ingredientList", ingredientList);
         model.put("ingredientListChecked", ingredientListChecked);
 
+
+   List<Recipe> recipeList = new ArrayList<>();
+   int numberOfRecipesPerPage = 10;
+   int pageNumber=2;
+   int lastPageNumber=20;
+
+    for (int i =0; i<numberOfRecipesPerPage;i++) {
+        recipeList.add(new Recipe(i, ("drink " + Integer.toString(i))));
+    }
+
+    model.put("recipeListPerPage", recipeList);
+    model.put("pageNumber", pageNumber);
+    model.put("lastPageNumber", lastPageNumber);
 
         try {
             template.process(model, writer);

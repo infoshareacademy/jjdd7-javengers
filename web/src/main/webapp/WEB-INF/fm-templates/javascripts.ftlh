@@ -6,14 +6,16 @@
     ];
     
     $(document).ready(function () {
-        $("#input-ingredient").autocomplete({
+        $("#input-ingredient").autocomplete( {
+
             source: [
                 <#list ingredientList as ingredient>
                 <#if ingredientListChecked?seq_contains("${ingredient.id}") == false>
                 '${ingredient.name}'<#if ingredient_has_next>,</#if>
                 </#if>
                 </#list>
-            ]
+            ],
+            minLength: 3
         });
     });
 

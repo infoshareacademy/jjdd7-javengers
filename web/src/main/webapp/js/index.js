@@ -132,3 +132,34 @@ function listSelectedOptions() {
         })
     }
 }
+
+
+function goToPage() {
+    var page = this.value();
+    console.log(page);
+    /*checkFilters();*/
+}
+
+$(".favorite").click(function() {
+    var fired_button = $(this).val();
+    console.log(fired_button);
+
+    listSelectedCategories();
+    listSelectedOptions();
+    listSelectedIngredients();
+
+    const queryParams = $.param({
+        categories: selectedCategories,
+        listOptions: selectedListOptions,
+        ingredients: selectedIngredients,
+        page: fired_button
+    });
+
+    /*do JSowych rozwiazan*/
+
+    fetch('http://localhost:8080/drink?' + queryParams, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+});

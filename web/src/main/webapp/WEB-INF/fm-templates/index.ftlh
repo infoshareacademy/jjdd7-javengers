@@ -97,6 +97,7 @@
 </div>
 
 <script src="js/index.js"></script>
+<script src="js/pagination.js"></script>
 <#include "javascripts.ftlh">
 
 
