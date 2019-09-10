@@ -22,8 +22,16 @@ body, html {
     background: transparent;
     text-align: center;
     /*border: solid;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
+
+.jumbotron.jumbotron-fluid{
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
 .card {
     background: transparent;
     /*border: solid;*/
