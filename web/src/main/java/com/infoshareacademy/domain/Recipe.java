@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Recipe")
+@Table(name = "recipe")
 public class Recipe {
 
   @Id
   @Column(name = "id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "name", unique = true, length = 100)
@@ -42,7 +42,7 @@ public class Recipe {
   @NotNull
   private String modificationDate;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "category_id")
   private Category category;
 
@@ -50,7 +50,7 @@ public class Recipe {
   @NotNull
   private String imageUrlAddress;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "recipe_to_ingredient",
       joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},

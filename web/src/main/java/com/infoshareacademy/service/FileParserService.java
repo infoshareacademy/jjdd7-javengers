@@ -1,15 +1,16 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.cdi.FileUploadProcessor;
-
+import com.infoshareacademy.dao.CategoryDaoBean;
+import com.infoshareacademy.domain.Category;
 import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.mapper.CategoryMapper;
 import com.infoshareacademy.mapper.RecipeMapper;
-import com.infoshareacademy.servlet.JsonParserServlet;
-import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.io.File;
+import java.util.List;
+import java.util.Optional;
 
 @RequestScoped
 public class FileParserService {
@@ -20,11 +21,24 @@ public class FileParserService {
     @EJB
     private RecipeMapper recipeMapper;
 
+    @EJB
+    private CategoryMapper categoryMapper;
+
+    @EJB
+    private CategoryDaoBean categoryDaoBean;
+
     public void parseSaveFileAndData(){
-        List<RecipeApi> recipes = (List< RecipeApi>)parserService.parseFile("/opt/drinks.json");
-        for (RecipeApi recipe:recipes
-        ) {
-            recipeMapper.mapRecipes(recipe);
+        List<RecipeApi> recipes = (List<RecipeApi>) parserService.parseFile("/home/daria/Downloads/drinks.json");
+        for (RecipeApi recipe : recipes) {
+//            Category category = categoryMapper.mapCategory(recipe);
+            Category category = Optional.ofNullable(categoryDaoBean.findCategoryByName(recipe.getRecipeCategory()))
+                    .orElseGet(() -> categoryMapper.mapCategory(recipe));
+
+//            categoryDaoBean.editCategory(category);
+
+
+            category.getRecipes().add(recipeMapper.mapRecipes(recipe));
+            categoryDaoBean.editCategory(category);
         }
     }
 }

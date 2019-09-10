@@ -1,11 +1,12 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.Category;
-import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class CategoryDaoBean {
@@ -40,6 +41,14 @@ public class CategoryDaoBean {
   public Category findCategoryByName(String name) {
     Query query = entityManager.createNamedQuery("Category.findCategoryByName");
     query.setParameter("name", name);
-    return (Category) query.getSingleResult();
+
+    List resultList = query.getResultList();
+    if (resultList.size() > 0) {
+      return (Category) resultList.get(0);
+    } else {
+      return null;
+    }
+
+//    return (Category) resultList.stream().findFirst().orElseGet(null);
   }
 }

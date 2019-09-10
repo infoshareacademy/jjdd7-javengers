@@ -1,17 +1,9 @@
 package com.infoshareacademy.domain;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @NamedQueries({
     @NamedQuery(
@@ -21,7 +13,7 @@ import javax.validation.constraints.NotNull;
 })
 
 @Entity
-@Table(name = "Ingredient")
+@Table(name = "ingredient")
 public class Ingredient {
 
     @Id

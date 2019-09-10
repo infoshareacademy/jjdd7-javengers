@@ -34,10 +34,10 @@ public class IngredientDaoBean {
     }
   }
 
-  public Ingredient findIngredientByNameAndMeasure(String name, String measure) {
+  public List<Ingredient> findIngredientByNameAndMeasure(String name, String measure) {
     Query query = entityManager.createNamedQuery("Ingredient.findIngredientByNameAndMeasure");
     query.setParameter("name", name);
     query.setParameter("measure",measure);
-    return (Ingredient) query.getSingleResult();
+    return query.getResultList();
   }
 }

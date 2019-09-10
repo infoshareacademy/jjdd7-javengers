@@ -44,13 +44,14 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
       }
     }
 
-    recipeApi.setId(tree.get("idDrink").asInt());
+    recipeApi.setId(tree.get("idDrink").asLong());
     recipeApi.setName(tree.get("strDrink").asText());
     recipeApi.setInstruction(tree.get("strInstructions").asText());
     recipeApi.setRecipeCategory(tree.get("strCategory").asText());
     recipeApi.setDrinkType(tree.get("strAlcoholic").asText());
     recipeApi.setGlassType(tree.get("strGlass").asText());
     recipeApi.setModificationDate(tree.get("dateModified").asText());
+    recipeApi.setImageUrl(tree.get("strDrinkThumb").asText());
     recipeApi.setIngredients(ingredients);
     return recipeApi;
   }

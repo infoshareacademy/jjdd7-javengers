@@ -1,48 +1,55 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.dao.IngredientDaoBean;
 import com.infoshareacademy.domain.Ingredient;
 import com.infoshareacademy.domain.api.RecipeApi;
+
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 
 @Stateless
 public class IngredientMapper {
 
-  @EJB
-  private IngredientDaoBean ingredientDaoBean;
-
-  @EJB
-  private RecipeMapper recipeMapper;
 
   public List<Ingredient> mapIngredients(RecipeApi recipeApi) {
 
-    List<Ingredient> ingredientList = new ArrayList<>();
-    Map<String, String> ingredientsMap = recipeApi.getIngredients();
+    List<Ingredient> ingredients = new ArrayList<>();
 
-    for (Map.Entry<String, String> singleIngredient : ingredientsMap.entrySet()) {
+    recipeApi.getIngredients().entrySet().forEach(i -> {
+      Ingredient ingredient = new Ingredient();
+      ingredient.setName(i.getKey());
+      ingredient.setMeasure(i.getValue());
+      ingredients.add(ingredient);
+    });
 
-      String name = singleIngredient.getKey();
-      String measure = singleIngredient.getValue();
-      //Is there a problem like nullPointerException??
-      Ingredient foundIngredient = ingredientDaoBean.findIngredientByNameAndMeasure(name, measure);
+    return ingredients;
 
-      if (foundIngredient == null) {
-        Ingredient ingredient = new Ingredient();
-        ingredient.setName(name);
-        ingredient.setRecipes(new ArrayList<>());
-        ingredient.getRecipes().add(recipeMapper.mapRecipes(recipeApi));
-        ingredientDaoBean.addIngredient(ingredient);
-        ingredientList.add(ingredient);
-      } else {
-        foundIngredient.getRecipes().add(recipeMapper.mapRecipes(recipeApi));
-        ingredientDaoBean.editIngredient(foundIngredient);
-        ingredientList.add(foundIngredient);
-      }
+//    List<Ingredient> ingredientList = new ArrayList<>();
+//    Map<String, String> ingredientsMap = recipeApi.getIngredients();
+//
+//    for (Map.Entry<String, String> singleIngredient : ingredientsMap.entrySet()) {
+//
+//      String name = singleIngredient.getKey();
+//      String measure = singleIngredient.getValue();
+//      //Is there a problem like nullPointerException??
+//      List<Ingredient> foundIngredient = ingredientDaoBean.findIngredientByNameAndMeasure(name, measure);
+//
+//      if (foundIngredient.isEmpty()) {
+//        Ingredient ingredient = new Ingredient();
+//        ingredient.setName(name);
+//        ingredient.setRecipes(new ArrayList<>());
+//        ingredient.getRecipes().add(recipeMapper.mapRecipes(recipeApi));
+//        ingredientDaoBean.addIngredient(ingredient);
+//        ingredientList.add(ingredient);
+//      } else if (foundIngredient.size()==1){
+//        Ingredient i = foundIngredient.get(0);
+//        i.getRecipes().add(recipeMapper.mapRecipes(recipeApi));
+//        ingredientDaoBean.editIngredient(i);
+//        ingredientList.add(i);
+//      }else {
+//        //todo
+//      }
     }
-    return ingredientList;
-  }
+//    return ingredientList;
+//  }
 }

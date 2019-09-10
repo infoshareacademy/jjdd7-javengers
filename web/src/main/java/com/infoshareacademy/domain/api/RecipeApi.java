@@ -17,7 +17,7 @@ import java.util.Map;
 public class RecipeApi {
 
   @JsonProperty("idDrink")
-  private int id;
+  private Long id;
   @JsonProperty("strDrink")
   private String name;
   @JsonProperty("strInstructions")
@@ -30,14 +30,16 @@ public class RecipeApi {
   private String glassType;
   @JsonProperty("dateModified")
   private String modificationDate;
+  @JsonProperty("strDrinkThumb")
+  private String imageUrl;
 
   private Map<String, String> ingredients = new HashMap<>();
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -95,6 +97,14 @@ public class RecipeApi {
 
   public void setIngredients(Map<String, String> ingredients) {
     this.ingredients = ingredients;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   @Override
