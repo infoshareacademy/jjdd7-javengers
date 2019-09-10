@@ -2,7 +2,6 @@ package com.infoshareacademy.mapper;
 
 import com.infoshareacademy.domain.Recipe;
 import com.infoshareacademy.domain.api.RecipeApi;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 

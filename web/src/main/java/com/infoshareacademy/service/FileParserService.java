@@ -11,8 +11,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 
 @RequestScoped
+@Transactional
 public class FileParserService {
 
     @Inject
@@ -28,7 +30,7 @@ public class FileParserService {
     private CategoryDaoBean categoryDaoBean;
 
     public void parseSaveFileAndData(){
-        List<RecipeApi> recipes = (List<RecipeApi>) parserService.parseFile("/home/daria/Downloads/drinks.json");
+        List<RecipeApi> recipes = (List<RecipeApi>) parserService.parseFile("/opt/drinks.json");
         for (RecipeApi recipe : recipes) {
 //            Category category = categoryMapper.mapCategory(recipe);
             Category category = Optional.ofNullable(categoryDaoBean.findCategoryByName(recipe.getRecipeCategory()))
