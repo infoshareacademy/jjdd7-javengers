@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.infoshareacademy.service.RecipeDeserializer;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +108,7 @@ public class RecipeApi {
 
   @Override
   public String toString() {
-    return "Recipe{" +
+    return "RecipeApi{" +
         "id=" + id +
         ", name='" + name + '\'' +
         ", instruction='" + instruction + '\'' +
@@ -117,6 +116,7 @@ public class RecipeApi {
         ", drinkType='" + drinkType + '\'' +
         ", glassType='" + glassType + '\'' +
         ", modificationDate='" + modificationDate + '\'' +
+        ", imageUrl='" + imageUrl + '\'' +
         ", ingredients=" + ingredients +
         '}';
   }

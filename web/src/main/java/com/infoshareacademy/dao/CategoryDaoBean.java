@@ -31,6 +31,7 @@ public class CategoryDaoBean {
       entityManager.remove(category);
     }
   }
+
   public List<Category> getCategoriesList() {
     Query query = entityManager.createQuery("SELECT c FROM Category c");
     return query.getResultList();

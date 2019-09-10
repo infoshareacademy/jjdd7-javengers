@@ -15,14 +15,14 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ParserService implements Serializable {
 
-  public <T> Object parseFile(String jsonFilePath) {
+  public <T> Object parseFile(File json) {
 
     T outputObject = null;
 
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(new File(jsonFilePath));
+      JsonNode jsonNode = mapper.readTree(json);
       outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
           new TypeReference<List<RecipeApi>>() {
           });
