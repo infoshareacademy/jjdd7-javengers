@@ -103,3 +103,7 @@ a:-webkit-any-link {
 .btn-primary:hover {
     background-color: olivedrab !important;
 }
+
+ul {
+    list-style-type: none;
+}

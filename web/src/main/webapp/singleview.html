@@ -3,25 +3,56 @@
 <head>
 
     <title>single view page</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <style>
 
+    <style>
         .container {
             color: white;
             /*border: white;
             border: solid;*/
         }
 
+        .left {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
 
+        .right {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
     </style>
-
 </head>
 <body>
 
@@ -53,11 +84,9 @@
             <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
                                     data-target="#panel_a_name"
                                     data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                                    aria-controls="name" aria-selected="true"><strong>Name</strong></a></li>
+                                    aria-controls="name" aria-selected="true"><strong>Recipe Name</strong></a></li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                    data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
-                                    href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
-                                    aria-selected="false"><strong>Ingredient</strong></a></li>
+                                    href="http://localhost:8080/drink"><strong>Back to list</strong></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -68,26 +97,20 @@
                 </form>
             </div>
 
-            <div class="tab-pane" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
-                <form id="form-ingredient">
-                    <input type="text" id="input-ingredient" class="form-control"
-                           placeholder="search by ingredient">
-                </form>
-            </div>
+
         </div>
 
     </div>
 
     <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>ADD TO FAVOURITES</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
+        <h2>NAME OF SUPER DRINK</h2>
     </div>
-
 
     <div class="row">
 
-
+        <div class="left">
+                <button class="favorite btn btn-primary btn-sm align-middle" type="button" value='edit'>left</button>
+        </div>
         <div class="card col-sm-10" STYLE="margin: auto;">
 
             <div class="row ">
@@ -101,26 +124,30 @@
                         <div class="row ">
                             <div class="col-md-6">
                                 <ul>
-                                    <p class="card-text">Kahlua:</p>
-                                    <p class="card-text">ailey's irish cream:</p>
-                                    <p class="card-text">Frangelico:</p>
+                                    <li>Kahlua:</li>
+                                    <li>ailey's irish cream:</li>
+                                    <li>Frangelico:</li>
+                                    <li>ailey's irish cream:</li>
+                                    <li>Frangelico:</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul>
-                                    <p class="card-text">1/3 part</p>
-                                    <p class="card-text">1/3 part</p>
-                                    <p class="card-text">1/3 part</p>
+                                    <li>1/3 part</li>
+                                    <li>1/3 part</li>
+                                    <li>1/3 part</li>
+                                    <li>1/3 part</li>
+                                    <li>1/3 part</li>
                                 </ul>
                             </div>
                         </div>
                         <br/>
-                        <br/>
-
                         <h5 class="card-title">Instructions</h5>
-                        <p class="card-text">pour kaluha, then Baileys, then Frangelico not chilled and not
-                            layered</p>
-                        <br/>
+                        <p class="card-text">Fill a tall glass with ice. Layer the Finlandia Vodka, lemon and apple
+                            juices, Pisang Ambon, and top up with lemonade. Stir slightly and garnish with a spiralled
+                            cucumber skin and a red cherry. The cucumber provides zest and looks attractive. This drink,
+                            created by Timo Haimi, took first prize in the 1991 Finlandia Vodka Long Drink
+                            Competition.",</p>
                         <br/>
                         <div class="row ">
                             <div class="col-md-4">
@@ -137,26 +164,28 @@
                             </div>
                         </div>
                         <br/>
-                        <p class="card-text"><small class="text-muted">Date of modification: 2016-08-31 19:28:2</small></p>
+                        <p class="card-text">
+                            <small class="text-muted">Date of modification: 2016-08-31 19:28:2</small>
+                        </p>
                         <br/>
                     </div>
                 </div>
             </div>
 
         </div>
-        
-</div>
+        <div class="right">
+            <button class="favorite btn btn-primary btn-sm align-middle" type="button" value='edit'>right</button>
+        </div>
+    </div>
+    <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>ADD TO FAVOURITES</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM</button>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+</div>
+
 <script src="js/index.js"></script>
 
 
