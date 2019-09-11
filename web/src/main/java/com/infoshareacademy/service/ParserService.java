@@ -19,16 +19,41 @@ public class ParserService implements Serializable {
 
   private static String JSON_ROOT = "drinks";
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private ObjectMapper mapper = new ObjectMapper();
 
 
-  public <T> Object parseFile(File json) {
+  public <T> Object parseRecipes(File recipes) {
 
     T outputObject = null;
 
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(json);
+      JsonNode jsonNode = mapper.readTree(recipes);
+
+      outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
+          new TypeReference<List<RecipeApi>>() {
+          });
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    logger.info("Parse data from file");
+    return outputObject;
+  }
+
+  public <T> Object parseApiRecipes(String recipes){
+
+    T outputObject = null;
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    try {
+      JsonNode jsonNode = mapper.readTree(recipes);
+
       outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
           new TypeReference<List<RecipeApi>>() {
           });

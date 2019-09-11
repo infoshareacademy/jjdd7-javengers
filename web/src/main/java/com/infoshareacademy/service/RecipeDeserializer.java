@@ -41,18 +41,18 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
 
         if (!trim.equals(error) && !trim.isEmpty()) {
 
-          ingredients.put(tree.get("strIngredient" + index).asText().trim(),
-              tree.get("strMeasure" + index).asText().trim());
+          ingredients.put(tree.get("strIngredient" + index).asText().trim().toLowerCase(),
+              tree.get("strMeasure" + index).asText().trim().toLowerCase());
         }
       }
     }
 
     recipeApi.setId(tree.get("idDrink").asLong());
-    recipeApi.setName(tree.get("strDrink").asText());
-    recipeApi.setInstruction(tree.get("strInstructions").asText());
-    recipeApi.setRecipeCategory(tree.get("strCategory").asText());
-    recipeApi.setDrinkType(tree.get("strAlcoholic").asText());
-    recipeApi.setGlassType(tree.get("strGlass").asText());
+    recipeApi.setName(tree.get("strDrink").asText().toLowerCase());
+    recipeApi.setInstruction(tree.get("strInstructions").asText().toLowerCase());
+    recipeApi.setRecipeCategory(tree.get("strCategory").asText().toLowerCase());
+    recipeApi.setDrinkType(tree.get("strAlcoholic").asText().toLowerCase());
+    recipeApi.setGlassType(tree.get("strGlass").asText().toLowerCase());
     recipeApi.setModificationDate(tree.get("dateModified").asText());
     recipeApi.setImageUrl(tree.get("strDrinkThumb").asText());
     recipeApi.setIngredients(ingredients);

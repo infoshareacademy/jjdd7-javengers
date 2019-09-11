@@ -1,7 +1,9 @@
 package com.infoshareacademy.service;
 
+import com.infoshareacademy.domain.api.RecipeApi;
 import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
 import java.io.IOException;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
@@ -14,14 +16,19 @@ public class FileDataHandler {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @Inject
-  FileUploadService fileUploadService;
+  private FileUploadService fileUploadService;
 
   @Inject
-  FileParserService fileParserService;
+  private FileParserService fileParserService;
+
+  @Inject
+  private ParserService parserService;
 
   public <T> Object dataUploadHandler(Part partFile) throws IOException, RecipeUploadedFileNotFound {
     logger.info("file was parsed, mapped and save to database");
-    return fileParserService.parseDataToDatabase(fileUploadService.uploadFile(partFile));
+    List<RecipeApi> recipes = (List<RecipeApi>) parserService
+        .parseRecipes(fileUploadService.uploadFile(partFile));
+    return fileParserService.loadDataToDatabase(recipes);
   }
 }
 
