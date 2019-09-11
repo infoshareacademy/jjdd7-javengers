@@ -26,7 +26,7 @@ public class RecipeMapper {
     recipe.setInstruction(recipeApi.getInstruction());
     recipe.getIngredients().addAll(ingredientMapper.mapIngredients(recipeApi));
     recipe.setModificationDate(recipeApi.getModificationDate());
-    recipe.setImageUrlAddress(recipeApi.getImageUrl());
+    recipe.setImageUrl(recipeApi.getImageUrl());
     recipe.setCategory(category);
     recipe.setCustom(false);
     recipe.setApproved(true);

@@ -55,7 +55,7 @@ public class Recipe {
 
   @Column(name = "image_url", length = 1000)
   @NotNull
-  private String imageUrlAddress;
+  private String imageUrl;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
@@ -139,12 +139,12 @@ public class Recipe {
     this.category = category;
   }
 
-  public String getImageUrlAddress() {
-    return imageUrlAddress;
+  public String getImageUrl() {
+    return imageUrl;
   }
 
-  public void setImageUrlAddress(String imageUrlAddress) {
-    this.imageUrlAddress = imageUrlAddress;
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   public List<Ingredient> getIngredients() {

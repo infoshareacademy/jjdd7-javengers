@@ -12,10 +12,14 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@RequestScoped
 @Transactional
+@RequestScoped
 public class FileParserService {
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Inject
     private ParserService parserService;
@@ -38,6 +42,7 @@ public class FileParserService {
             category.getRecipes().add(recipeMapper.mapRecipes(recipe, category));
             categoryDaoBean.updateCategory(category);
         }
+        logger.info("file was parsed successfully");
         return null;
     }
 }

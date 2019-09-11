@@ -30,10 +30,10 @@ public class JsonParserServlet extends HttpServlet {
         try {
             fileUrl = "/drinks/" + fileDataHandler.dataUploadHandler(jsonFile);
         } catch (RecipeUploadedFileNotFound recipeUploadedFileNotFound) {
-            logger.warn(recipeUploadedFileNotFound.getMessage());
+            logger.info(recipeUploadedFileNotFound.getMessage());
         }
         Recipe recipe1 = new Recipe();
-        recipe1.setImageUrlAddress(fileUrl);
+        recipe1.setImageUrl(fileUrl);
         resp.getWriter().println("File successful uploaded!");
     }
 }

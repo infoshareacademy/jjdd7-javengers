@@ -1,4 +1,4 @@
-package com.infoshareacademy.cdi;
+package com.infoshareacademy.service;
 
 import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
 import java.io.File;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RequestScoped
-public class FileUploadProcessor {
+public class FileUploadService {
 
     private static String SETTINGS_FILE = "settings.properties";
     private static String UPLOAD_KEY = "Upload.Path";
