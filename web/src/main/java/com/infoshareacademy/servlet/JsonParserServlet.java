@@ -33,7 +33,7 @@ public class JsonParserServlet extends HttpServlet {
             logger.warn(recipeUploadedFileNotFound.getMessage());
         }
         Recipe recipe1 = new Recipe();
-        recipe1.setImageUrlAddress(fileUrl);
+        recipe1.setImageUrl(fileUrl);
         resp.getWriter().println("File successful uploaded!");
     }
 }

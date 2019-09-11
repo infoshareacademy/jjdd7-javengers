@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 @RequestScoped
-@Transactional
 public class FileParserService {
 
     @Inject

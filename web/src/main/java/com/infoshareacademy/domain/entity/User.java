@@ -2,6 +2,7 @@ package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,11 +54,11 @@ public class User {
     @NotNull
     private String password;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "user_favourite_recipe",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "recipe_id")})
+        joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")})
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {
