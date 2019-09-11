@@ -37,7 +37,7 @@ public class Recipe {
   @NotNull
   private String instruction;
 
-  @Column
+  @Column(name = "drink_type")
   @NotNull
   private String drinkType;
 
@@ -49,13 +49,13 @@ public class Recipe {
   @NotNull
   private String modificationDate;
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "category_id")
-  private Category category;
-
   @Column(name = "image_url", length = 1000)
   @NotNull
   private String imageUrl;
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "category_id")
+  private Category category;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
