@@ -1,8 +1,7 @@
 package com.infoshareacademy.servlet;
 
-import com.infoshareacademy.cdi.FileUploadProcessor;
 import com.infoshareacademy.domain.Recipe;
-import com.infoshareacademy.exception.UserImageNotFound;
+import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
 import com.infoshareacademy.service.FileDataHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +29,7 @@ public class JsonParserServlet extends HttpServlet {
         String fileUrl = "";
         try {
             fileUrl = "/drinks/" + fileDataHandler.dataUploadHandler(jsonFile);
-        } catch (UserImageNotFound userImageNotFound) {
+        } catch (RecipeUploadedFileNotFound userImageNotFound) {
             logger.warn(userImageNotFound.getMessage());
         }
         Recipe recipe1 = new Recipe();

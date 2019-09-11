@@ -2,6 +2,8 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.IngredientDaoBean;
 import com.infoshareacademy.domain.Ingredient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -10,16 +12,18 @@ import java.util.List;
 
 @RequestScoped
 public class IngredientService {
-
-  @Inject
-  private IngredientDaoBean ingredientDaoBean;
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+    @Inject
+    private IngredientDaoBean ingredientDaoBean;
 
     public void loadIngredient(List<Ingredient> ingredients) {
         ingredientDaoBean.loadIngredient(ingredients);
+        logger.info("Recipe ingredients list has been loaded");
     }
 
     public void addIngredient(Ingredient ingredient) {
         ingredientDaoBean.addIngredient(ingredient);
+        logger.info("Recipe ingredient has been saved");
     }
 
     public Ingredient editIngredient(Ingredient ingredient) {
@@ -27,6 +31,7 @@ public class IngredientService {
     }
 
     public Ingredient getIngredientByName(String name) {
+        logger.info("Get recipe ingredient by name");
         return ingredientDaoBean.getIngredientByName(name);
     }
 

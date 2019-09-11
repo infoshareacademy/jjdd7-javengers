@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infoshareacademy.domain.api.RecipeApi;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,8 +17,11 @@ import javax.enterprise.context.SessionScoped;
 
 @SessionScoped
 public class ParserService implements Serializable {
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
 
   public <T> Object parseFile(File jsonFile) {
+    logger.info("Parse data from file");
 
     T outputObject = null;
 

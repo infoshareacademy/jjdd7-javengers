@@ -1,6 +1,8 @@
 package com.infoshareacademy.cdi;
 
-import com.infoshareacademy.exception.UserImageNotFound;
+import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.Part;
@@ -14,8 +16,12 @@ import java.util.Properties;
 @RequestScoped
 public class FileUploadProcessor {
     private static String SETTINGS_FILE = "settings.properties";
+    private static String UPLOAD_KEY = "Upload.Path";
 
-    public File uploadFile(Part filePart) throws IOException, UserImageNotFound {
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
+    public File uploadFile(Part filePart) throws IOException, RecipeUploadedFileNotFound {
+        logger.info("Json file upload");
 
         String filename = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         java.io.File file = new File(getUploadFilesPath() + filename);
@@ -27,9 +33,10 @@ public class FileUploadProcessor {
     }
 
     public String getUploadFilesPath() throws IOException {
+        logger.info("Getting json file path");
         Properties settings = new Properties();
         settings.load(Thread.currentThread().getContextClassLoader().getResource(SETTINGS_FILE).openStream());
-        return settings.getProperty("Upload.Path");
+        return settings.getProperty(UPLOAD_KEY);
     }
 
 }

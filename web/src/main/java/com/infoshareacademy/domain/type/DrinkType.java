@@ -26,6 +26,7 @@ public enum DrinkType {
         }
         return null;
     }
+
     @Override
     public String toString() {
         return "DrinkType{" +
