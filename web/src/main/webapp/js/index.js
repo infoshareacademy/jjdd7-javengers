@@ -26,8 +26,8 @@ $('#input-name').keyup(function () {
         url: '/drinks?nameChars=' + substring,
         type: 'GET',
         success: function() {
-            console.log(response);
-            nameList = response;
+            console.log("parametr  nameChars sent: " + substring);
+            /*nameList = response;*/
         }
 
     });
@@ -157,11 +157,7 @@ function listSelectedOptions() {
 }
 
 
-function goToPage() {
-    var page = this.value();
-    console.log(page);
-    /*checkFilters();*/
-}
+
 
 $(".favorite").click(function() {
     var fired_button = $(this).val();

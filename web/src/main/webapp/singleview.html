@@ -11,7 +11,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <style>
 
+        .container {
+            color: white;
+            /*border: white;
+            border: solid;*/
+        }
+
+
+    </style>
 
 </head>
 <body>
@@ -68,104 +77,75 @@
         </div>
 
     </div>
-    <div class="container" id="list-todo">
 
+    <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>ADD TO FAVOURITES</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
     </div>
 
-    <div class="col">
-    </div>
 
     <div class="row">
 
 
-        <div class="card col-sm-3">
+        <div class="card col-sm-10" STYLE="margin: auto;">
 
-            <header class="card-header"><h6 class="title">Category</h6></header>
-            <div class="btn-group-vertical">
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="Shots"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">Shots</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="Cocktails"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">Cocktails</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="Long Drink"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">Long Drinks</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="Coffee/Tea"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">Coffee/Tea </span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="aaa"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">aaa</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="bbb"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">bbb</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="ccc"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">ccc</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="ddd"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">ddd</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="eee"
-                           onclick="checkFilters()">
-                    <span class="form-check-label">eee</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-category" type="checkbox" name="myradio" value="fff"
-                           onclick="checkFilters()" checked>
-                    <span class="form-check-label">fff</span>
-                </label>
-            </div>
-        </div>
+            <div class="row ">
+                <div class="col-md-6">
+                    <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                         style="max-width: 100%;" class="card-img" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Ingredients</h5>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <ul>
+                                    <p class="card-text">Kahlua:</p>
+                                    <p class="card-text">ailey's irish cream:</p>
+                                    <p class="card-text">Frangelico:</p>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul>
+                                    <p class="card-text">1/3 part</p>
+                                    <p class="card-text">1/3 part</p>
+                                    <p class="card-text">1/3 part</p>
+                                </ul>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
 
-        <div class="card col-sm-6">
-            <header class="card-header"><h6 class="title">Content</h6></header>
-            <div class="content-container">
-                <ul class="list-group list-group-flush">
-                    <li><a href="#" class="list-group-item">ABC</a></li>
-                    <li><a href="#" class="list-group-item">B-52</a></li>
-                    <li><a href="#" class="list-group-item">GG</a></li>
-                    <li><a href="#" class="list-group-item">Zorro</a></li>
-                </ul>  <!-- list-group .// -->
+                        <h5 class="card-title">Instructions</h5>
+                        <p class="card-text">pour kaluha, then Baileys, then Frangelico not chilled and not
+                            layered</p>
+                        <br/>
+                        <br/>
+                        <div class="row ">
+                            <div class="col-md-4">
+                                <h5 class="card-title">Category</h5>
+                                <p class="card-text">Shot</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="card-title">strAlcoholic</h5>
+                                <p class="card-text">Alcoholic</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="card-title">Glass</h5>
+                                <p class="card-text">Shot glass</p>
+                            </div>
+                        </div>
+                        <br/>
+                        <p class="card-text"><small class="text-muted">Date of modification: 2016-08-31 19:28:2</small></p>
+                        <br/>
+                    </div>
+                </div>
             </div>
+
         </div>
-        <div class="card col-sm-3">
-            <header class="card-header"><h6 class="title">List Options</h6></header>
-            <div class="btn-group-vertical">
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-list-options" type="radio" name="myradio" value="All Drinks"
-                           onclick="selectListOption()">
-                    <span class="form-check-label">All Drinks</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-list-options" type="radio" name="myradio" value="Favourites"
-                           onclick="selectListOption()">
-                    <span class="form-check-label">Favourites</span>
-                </label>
-                <label class="btn btn-outline-light btn-sm">
-                    <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
-                           onclick="selectListOption()">
-                    <span class="form-check-label">Most Popular</span>
-                </label>
-            </div>
-        </div>
+        
+</div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

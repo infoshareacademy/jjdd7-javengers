@@ -4,16 +4,20 @@
     <ul class="list-group list-group-flush">
         <#list recipeListPerPage>
             <#items as recipe>
-                <li><a href="#" class="list-group-item">${recipe.name}</a></li>
+                <li><a href="#" class="list-group-item">${recipe.name} bedzie category i czy cos jeszcze?? </a></li>
             </#items>
         </#list>
-    </ul>  <!-- list-group .// -->
+    </ul>
 </div>
-<div class="col paginator">
-
-    <#if pageNumber gt 1>
+<div class="row paginator">
+    <div class="col-sm-3 paginator">
+        <button class="favorite btn btn-primary btn-sm" type="button" value="1" >First(1)</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value="1" >&leftarrow;</button>
+    </div>
+    <div class="col-sm-6 paginator">
+    <#--<#if pageNumber gt 1>
     <button class="favorite btn btn-primary btn-sm" type="button" value="1" >First(1)</button>
-    </#if>
+    </#if>-->
     <#if pageNumber gt 3>
         ...
         <button class="favorite btn btn-primary btn-sm" type="button" value='${pageNumber-2}'>${pageNumber-2}</button>
@@ -29,8 +33,13 @@
         <button class="favorite btn btn-primary btn-sm" type="button" value='${pageNumber+2}'>${pageNumber+2}</button>
         ...
     </#if>
-    <#if (lastPageNumber-1) gte pageNumber>
+   <#-- <#if (lastPageNumber-1) gte pageNumber>
     <button class="favorite btn btn-primary btn-sm" type="button" value='${lastPageNumber}'>Last(${lastPageNumber})</button>
-    </#if>
+    </#if>-->
+    </div>
+    <div class="col-sm-3 paginator">
+        <button class="favorite btn btn-primary btn-sm" type="button" value="1" >&rightarrow;</button>
+        <button class="favorite btn btn-primary btn-sm" type="button" value="1" >Last(${lastPageNumber})</button>
+    </div>
 
-</div>$
+</div>
