@@ -45,8 +45,7 @@ public class RecipeDaoBean {
     }
 
     public List<Recipe> getRecipiesList() {
-        Query query = entityManager.createQuery("SELECT r FROM Recipe r");
-        System.out.println(query.getResultList());
+        Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
     }
 }

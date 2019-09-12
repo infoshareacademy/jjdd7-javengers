@@ -2,19 +2,17 @@ package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
+@NamedQueries({
+        @NamedQuery(
+                name = "Recipe.getRecipiesList",
+                query = "SELECT r FROM Recipe r")
+})
+
 public class Recipe {
 
   @Id
