@@ -25,8 +25,20 @@ $('#input-name').keyup(function () {
     $.ajax({
         url: '/drinks?nameChars=' + substring,
         type: 'GET',
-        success: function() {
-            console.log("parametr  nameChars sent: " + substring);
+        success: function(data) {
+
+            // MOCKED SERVER
+            var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
+
+                $("#input-name").autocomplete( {
+                        source: nameList,
+                minLength: 3
+            });
+
+            /*let filteredData = nameList.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
+            // HANDLING RETURN
+
+            console.log("parametr  nameChars sent: " + substring, data);
             /*nameList = response;*/
         }
 
@@ -79,6 +91,8 @@ function makeIngredientListHtml(message) {
     </label>   
 `
 }
+
+
 
 
 /* Skrypt do obslugi 2 zmieniajacych sie divow na stronie
