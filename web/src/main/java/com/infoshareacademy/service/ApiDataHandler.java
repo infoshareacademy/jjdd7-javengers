@@ -22,10 +22,12 @@ public class ApiDataHandler {
   @EJB
   private ApiConsumer apiConsumer;
 
-  public void parseAndLoadDataFormApi() {
+  public void parseAndLoadDataFormApi(String uri) {
     logger.info("data form api was saves to database successfully");
-    String recipes = apiConsumer.consumeApi();
-    List<RecipeApi> recipesList = (List<RecipeApi>) parserService.parseApiRecipes(recipes);
-    fileParserService.loadDataToDatabase(recipesList);
+    String recipes = apiConsumer.consumeApi(uri);
+    if (!recipes.equals("{\"drinks\":null}")) {
+      List<RecipeApi> recipesList = (List<RecipeApi>) parserService.parseApiRecipes(recipes);
+      fileParserService.loadDataToDatabase(recipesList);
+    }
   }
 }

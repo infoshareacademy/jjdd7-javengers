@@ -10,18 +10,16 @@ import javax.ws.rs.core.Response;
 public class ApiConsumer {
 
   private WebTarget webTarget;
-  private static final String URI_ADDRESS = "http://isa-proxy.blueazurit.com/cocktails/1/search.php?f=a";
 
-  public String consumeApi() {
-    init();
+  public String consumeApi(String uri) {
+    init(uri);
     Response response = webTarget.request().get();
-    String resp = response.readEntity(String.class);
-    return resp;
+    return response.readEntity(String.class);
   }
 
-  private void init() {
+  private void init(String uri) {
     Client client = ClientBuilder.newClient();
-    webTarget = client.target(URI_ADDRESS);
+    webTarget = client.target(uri);
   }
 
 }

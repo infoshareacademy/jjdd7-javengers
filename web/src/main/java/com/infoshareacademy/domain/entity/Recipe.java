@@ -33,7 +33,7 @@ public class Recipe {
   @NotNull
   private Boolean isApproved;
 
-  @Column(name = "instruction", length = 1000)
+  @Column(name = "instruction", length = 10000)
   @NotNull
   private String instruction;
 

@@ -26,8 +26,6 @@ public class ParserService implements Serializable {
 
     T outputObject = null;
 
-    ObjectMapper mapper = new ObjectMapper();
-
     try {
       JsonNode jsonNode = mapper.readTree(recipes);
 
@@ -48,8 +46,6 @@ public class ParserService implements Serializable {
   public <T> Object parseApiRecipes(String recipes){
 
     T outputObject = null;
-
-    ObjectMapper mapper = new ObjectMapper();
 
     try {
       JsonNode jsonNode = mapper.readTree(recipes);
