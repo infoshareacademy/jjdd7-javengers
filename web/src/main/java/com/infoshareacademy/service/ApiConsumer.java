@@ -12,14 +12,13 @@ public class ApiConsumer {
   private WebTarget webTarget;
 
   public String consumeApi(String uri) {
-    init(uri);
+    fetchBody(uri);
     Response response = webTarget.request().get();
     return response.readEntity(String.class);
   }
 
-  private void init(String uri) {
+  private void fetchBody(String uri) {
     Client client = ClientBuilder.newClient();
     webTarget = client.target(uri);
   }
-
 }

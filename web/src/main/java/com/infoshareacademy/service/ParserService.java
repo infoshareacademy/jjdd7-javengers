@@ -1,8 +1,6 @@
 package com.infoshareacademy.service;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infoshareacademy.domain.api.RecipeApi;
@@ -21,46 +19,19 @@ public class ParserService implements Serializable {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   private ObjectMapper mapper = new ObjectMapper();
 
-
-  public <T> Object parseRecipes(File recipes) {
-
-    T outputObject = null;
-
-    try {
-      JsonNode jsonNode = mapper.readTree(recipes);
-
-      outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
-          new TypeReference<List<RecipeApi>>() {
-          });
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    logger.info("Parse data from file");
-    return outputObject;
+  public JsonNode getJsonNodeForApiParsing(String recipes) throws IOException {
+    return mapper.readTree(recipes);
   }
 
-  public <T> Object parseApiRecipes(String recipes){
+  public JsonNode getJsonNodeForFileParsing(File file) throws IOException {
+    return mapper.readTree(file);
+  }
 
-    T outputObject = null;
-
-    try {
-      JsonNode jsonNode = mapper.readTree(recipes);
-
-      outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
+  public <T> Object parse(JsonNode jsonNode) throws IOException {
+    logger.info("Parse data from file");
+    return mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
           new TypeReference<List<RecipeApi>>() {
           });
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    logger.info("Parse data from file");
-    return outputObject;
   }
+
 }
