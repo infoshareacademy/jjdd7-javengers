@@ -107,3 +107,10 @@ a:-webkit-any-link {
 ul {
     list-style-type: none;
 }
+
+.list-group-item{
+
+    padding:0;
+
+}
+

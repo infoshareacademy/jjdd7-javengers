@@ -29,6 +29,16 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
+    <style>
+
+        .card {
+            color: white;
+        }
+
+
+
+    </style>
+
 </head>
 <body>
 
@@ -79,10 +89,6 @@
                 <form id="form-ingredient">
                     <input type="text" id="input-ingredient" class="form-control"
                            placeholder="search by ingredient">
-                    <!--<select class="js-example-basic-single" name="state">
-                        <option value="AL">Alabama</option>
-                        <option value="WY">Wyoming</option>
-                    </select>-->
                 </form>
             </div>
         </div>
@@ -155,20 +161,53 @@
 
         <div class="card col-sm-6">
             <header class="card-header"><h6 class="title">Content</h6></header>
-            <img src="https://d-pt.ppstatic.pl/k/r/1/b9/cc/5b9f77242e778_p.jpg?1542319310" alt="Italian Trulli">
-            <div class="content-container">
 
-                <ul class="list-group list-group-flush">
-                    <li>
-                    </li>
-                </ul>
+            <div class="row" Style="border: white solid" >
+                <div class="col-md-8" style="padding: 0px">
+                    <a href="#" class="list-group-item recipe-link">
+                        <div class="col-md-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-9" style="padding: 0px">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h6 class="card-title">Sex on the beach</h6>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4" style="padding: 0px">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
+                </div>
             </div>
-            <div class="col paginator">
-                <button class="favorite" type="button" value="1" >1</button>
-                <button class="favorite" type="button" value="2">2</button>
-                <button class="favorite" type="button" value="3">3</button>
+
+
+            <div class="row paginator">
+                <div class="col-sm-3 paginator">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value="1">First(1)</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value="1">&leftarrow;</button>
+                </div>
+                <div class="col-sm-6 paginator">
+                    <button class="favorite btn btn-light btn-sm" type="button" value='${pageNumber}'><strong>1</strong>
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='${pageNumber-2}'>2</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='${pageNumber-1}'>3</button>
+                    ...
+                </div>
+                <div class="col-sm-3 paginator">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value="1">&rightarrow;</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value="1">Last(No)</button>
+                </div>
+
             </div>
+
         </div>
+
         <div class="card col-sm-3">
             <header class="card-header"><h6 class="title">List Options</h6></header>
             <div class="btn-group-vertical">

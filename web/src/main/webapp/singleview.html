@@ -29,29 +29,33 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <style>
+
+        #left {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        #right {
+
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
         .container {
             color: white;
             /*border: white;
             border: solid;*/
         }
 
-        .left {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 15%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
 
-        .right {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            right: 15%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
+
+
     </style>
 </head>
 <body>
@@ -108,10 +112,11 @@
 
     <div class="row">
 
-        <div class="left">
-                <button class="favorite btn btn-primary btn-sm align-middle" type="button" value='edit'>left</button>
+        <div id="left">
+                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>left</button>
         </div>
-        <div class="card col-sm-10" STYLE="margin: auto;">
+
+        <div class="col-sm-10" STYLE="margin: auto;">
 
             <div class="row ">
                 <div class="col-md-6">
@@ -173,9 +178,11 @@
             </div>
 
         </div>
-        <div class="right">
-            <button class="favorite btn btn-primary btn-sm align-middle" type="button" value='edit'>right</button>
+
+        <div id="right">
+            <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>right</button>
         </div>
+
     </div>
     <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
         <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>ADD TO FAVOURITES</button>
