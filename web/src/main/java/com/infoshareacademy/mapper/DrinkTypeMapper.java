@@ -1,7 +1,7 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.DrinkType;
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.entity.Recipe;
+import com.infoshareacademy.domain.type.DrinkType;
 import org.apache.commons.lang3.NotImplementedException;
 
 import javax.ejb.Stateless;

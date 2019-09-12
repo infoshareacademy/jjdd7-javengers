@@ -6,30 +6,30 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infoshareacademy.domain.api.RecipeApi;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@SessionScoped
+@RequestScoped
 public class ParserService implements Serializable {
+
+  private static String JSON_ROOT = "drinks";
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
 
-  public <T> Object parseFile(File jsonFile) {
-    logger.info("Parse data from file");
+  public <T> Object parseFile(File json) {
 
     T outputObject = null;
 
     ObjectMapper mapper = new ObjectMapper();
 
     try {
-      JsonNode jsonNode = mapper.readTree(jsonFile);
-      outputObject = mapper.readValue(jsonNode.get("drinks").toString(),
+      JsonNode jsonNode = mapper.readTree(json);
+      outputObject = mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
           new TypeReference<List<RecipeApi>>() {
           });
     } catch (JsonGenerationException e) {
@@ -39,6 +39,7 @@ public class ParserService implements Serializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    logger.info("Parse data from file");
     return outputObject;
   }
 }

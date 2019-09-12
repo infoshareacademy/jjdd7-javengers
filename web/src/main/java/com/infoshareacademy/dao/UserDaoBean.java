@@ -1,12 +1,11 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.User;
-
+import com.infoshareacademy.domain.entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.List;
 
 @Stateless
 public class UserDaoBean {
@@ -14,23 +13,12 @@ public class UserDaoBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void loadUsers(List<User> users) {
-        for (User user : users
-        ) {
-            entityManager.persist(user);
-        }
-    }
-
-    public void addUser(User user) {
+    public void save(User user) {
         entityManager.persist(user);
     }
 
-    public User editUser(User user) {
+    public User updateUser(User user) {
         return entityManager.merge(user);
-    }
-
-    public User getUserByName(String name) {
-        return entityManager.find(User.class, name);
     }
 
     public User getUserById(Integer id) {
@@ -45,10 +33,13 @@ public class UserDaoBean {
     }
 
     public List<User> getUsersList() {
-        Query query = entityManager.createQuery("SELECT u FROM User u");
+        Query query = entityManager.createNamedQuery("User.getUserList");
         return query.getResultList();
-
     }
 
-
+    public User findUserByName(String name) {
+        Query query = entityManager.createNamedQuery("User.findUserByName");
+        query.setParameter("name", name);
+        return (User) query.getResultList().stream().findFirst().orElse(null);
+    }
 }

@@ -5,58 +5,59 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.infoshareacademy.domain.api.RecipeApi;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @Override
-    public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        logger.info("Deserialization data from file");
-        Map<String, String> ingredients = new HashMap<>();
+  @Override
+  public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
-        RecipeApi recipeApi = new RecipeApi();
-        JsonNode tree = p.readValueAsTree();
+    Map<String, String> ingredients = new HashMap<>();
 
-        String[] errors = {"null"};
+    RecipeApi recipeApi = new RecipeApi();
+    JsonNode tree = p.readValueAsTree();
 
-        for (int index = 1; index < 16; index++) {
+    String[] errors = {"null"};
 
-            index = (char) index;
+    for (int index = 1; index < 16; index++) {
 
-            JsonNode ingredientNode = tree.get("strIngredient" + index);
+      index = (char) index;
 
-            if (ingredientNode == null) {
-                break;
-            }
+      JsonNode ingredientNode = tree.get("strIngredient" + index);
 
-            String trim = ingredientNode.asText().trim();
+      if (ingredientNode == null) {
+        break;
+      }
 
-            for (String error : errors) {
+      String trim = ingredientNode.asText().trim();
 
-                if (!trim.equals(error) && !trim.isEmpty()) {
+      for (String error : errors) {
 
-                    ingredients.put(tree.get("strIngredient" + index).asText().trim(),
-                            tree.get("strMeasure" + index).asText().trim());
-                }
-            }
+        if (!trim.equals(error) && !trim.isEmpty()) {
+
+          ingredients.put(tree.get("strIngredient" + index).asText().trim(),
+              tree.get("strMeasure" + index).asText().trim());
         }
-
-        recipeApi.setId(tree.get("idDrink").asLong());
-        recipeApi.setName(tree.get("strDrink").asText());
-        recipeApi.setInstruction(tree.get("strInstructions").asText());
-        recipeApi.setRecipeCategory(tree.get("strCategory").asText());
-        recipeApi.setDrinkType(tree.get("strAlcoholic").asText());
-        recipeApi.setGlassType(tree.get("strGlass").asText());
-        recipeApi.setModificationDate(tree.get("dateModified").asText());
-        recipeApi.setIngredients(ingredients);
-        return recipeApi;
+      }
     }
+
+    recipeApi.setId(tree.get("idDrink").asLong());
+    recipeApi.setName(tree.get("strDrink").asText());
+    recipeApi.setInstruction(tree.get("strInstructions").asText());
+    recipeApi.setRecipeCategory(tree.get("strCategory").asText());
+    recipeApi.setDrinkType(tree.get("strAlcoholic").asText());
+    recipeApi.setGlassType(tree.get("strGlass").asText());
+    recipeApi.setModificationDate(tree.get("dateModified").asText());
+    recipeApi.setImageUrl(tree.get("strDrinkThumb").asText());
+    recipeApi.setIngredients(ingredients);
+    logger.info("Deserialization data from file");
+    return recipeApi;
+  }
 }
 

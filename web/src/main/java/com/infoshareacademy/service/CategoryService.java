@@ -1,7 +1,7 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.CategoryDaoBean;
-import com.infoshareacademy.domain.Category;
+import com.infoshareacademy.domain.entity.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,38 +17,23 @@ public class CategoryService {
     @Inject
     private CategoryDaoBean categoryDaoBean;
 
-    public void loadCategory(List<Category> categories) {
-        categoryDaoBean.loadCategory(categories);
-        logger.info("Recipe categories list has been loaded");
+    public void save(Category category) {
+        categoryDaoBean.save(category);
     }
 
-    public void addCategory(Category category) {
-        categoryDaoBean.addCategory(category);
-        logger.info("Recipe category has been saved");
-    }
-
-    public Category editCategory(Category category) {
-
-        return categoryDaoBean.editCategory(category);
-    }
-
-    public Category getCategoryByName(String name) {
-        logger.info("Get recipe category by name");
-        return categoryDaoBean.getCategoryByName(name);
+    public Category updateCategory(Category category) {
+        return categoryDaoBean.updateCategory(category);
     }
 
     public Category getCategoryById(Long id) {
-        logger.info("Get recipe category by id");
         return categoryDaoBean.getCategoryById(id);
     }
 
-    public void deleteCategoryById(Long id) {
-        categoryDaoBean.deleteCategoryById(id);
-        logger.info("Category has been deleted");
+    public List<Category> getCategoriesList() {
+        return categoryDaoBean.getCategoriesList();
     }
 
-    public List<Category> getCategoriesList() {
-        logger.info("Get recipe categories list");
-        return categoryDaoBean.getCategoriesList();
+    public Category findCategoryByName(String name) {
+        return categoryDaoBean.findCategoryByName(name);
     }
 }

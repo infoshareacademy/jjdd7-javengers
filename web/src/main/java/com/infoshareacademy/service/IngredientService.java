@@ -1,11 +1,10 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.IngredientDaoBean;
-import com.infoshareacademy.domain.Ingredient;
+import com.infoshareacademy.domain.entity.Ingredient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.List;

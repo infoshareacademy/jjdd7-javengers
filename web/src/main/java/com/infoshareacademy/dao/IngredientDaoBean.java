@@ -1,6 +1,6 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.Ingredient;
+import com.infoshareacademy.domain.entity.Ingredient;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

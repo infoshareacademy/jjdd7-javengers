@@ -1,20 +1,29 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.Ingredient;
-import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.lang3.NotImplementedException;
-
-import javax.ejb.Stateless;
+import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.entity.Ingredient;
+import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateless
 public class IngredientMapper {
 
-  public List<Ingredient> mapRecipes(List<Recipe> recipes) {
-    try {
-      return null;
-    } catch (Exception ex) {
-      throw new NotImplementedException("method not implemented jet", ex);
-    }
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
+  public List<Ingredient> mapIngredients(RecipeApi recipeApi) {
+
+    List<Ingredient> ingredients = new ArrayList<>();
+
+    recipeApi.getIngredients().entrySet().forEach(i -> {
+      Ingredient ingredient = new Ingredient();
+      ingredient.setName(i.getKey());
+      ingredient.setMeasure(i.getValue());
+      ingredients.add(ingredient);
+    });
+    logger.info("Ingredients were mapped");
+    return ingredients;
   }
 }

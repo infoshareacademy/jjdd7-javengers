@@ -1,6 +1,6 @@
 package com.infoshareacademy.servlet;
 
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
 import freemarker.template.Template;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -32,7 +31,7 @@ public class StartingPageServlet extends HttpServlet {
         List<String> parameters = Collections.list(req.getParameterNames());
 /*        List<String> categoriesValues = Arrays.asList(req.getParameterValues("categories[]"));
         List<String> ingredientsValues = Arrays.asList(req.getParameterValues("ingredients[]"));*/
-        List<String> listOptions = Arrays.asList(req.getParameterValues("listOptions[]"));
+  //      List<String> listOptions = Arrays.asList(req.getParameterValues("listOptions[]"));
 
         List<Recipe> recipe = recipeService.getRecipiesList();
      /*   List<String> categories = recipeService.getAllCategories();
@@ -43,7 +42,7 @@ public class StartingPageServlet extends HttpServlet {
         if (recipe != null) {
        /*     model.put("categoriesValues", categories);
             model.put("ingredientsValues", ingredients);*/
-            model.put("recipe", listOptions);
+         //   model.put("recipe", listOptions);
             model.put("recipeContent", recipe);
         }
 

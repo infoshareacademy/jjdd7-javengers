@@ -1,20 +1,20 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.Category;
-import com.infoshareacademy.domain.Recipe;
-import org.apache.commons.lang3.NotImplementedException;
-
+import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.entity.Category;
 import javax.ejb.Stateless;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateless
 public class CategoryMapper {
 
-  public List<Category> mapDrinkTypes(List<Recipe> recipes) {
-    try {
-      return null;
-    } catch (Exception ex) {
-      throw new NotImplementedException("method not implemented jet", ex);
-    }
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
+  public Category mapCategory(RecipeApi recipeApi) {
+    Category category = new Category();
+    category.setName(recipeApi.getRecipeCategory());
+    logger.info("Category was mapped");
+    return category;
   }
 }

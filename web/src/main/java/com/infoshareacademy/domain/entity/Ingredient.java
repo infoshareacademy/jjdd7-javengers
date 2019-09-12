@@ -1,4 +1,4 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class Ingredient {
     private String name;
 
     @Column(name = "measure")
+    @NotNull
     private String measure;
 
     @ManyToMany(mappedBy = "ingredients")
@@ -44,6 +45,14 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
     public List<Recipe> getRecipes() {

@@ -1,7 +1,7 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.RecipeDaoBean;
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.entity.Recipe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

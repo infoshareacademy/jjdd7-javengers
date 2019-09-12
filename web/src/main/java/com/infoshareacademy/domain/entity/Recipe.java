@@ -1,9 +1,17 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.domain.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
@@ -11,7 +19,6 @@ public class Recipe {
 
   @Id
   @Column(name = "id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "name", unique = true, length = 100)
@@ -30,7 +37,7 @@ public class Recipe {
   @NotNull
   private String instruction;
 
-  @Column
+  @Column(name = "drink_type")
   @NotNull
   private String drinkType;
 
@@ -42,15 +49,15 @@ public class Recipe {
   @NotNull
   private String modificationDate;
 
-  @ManyToOne
+  @Column(name = "image_url", length = 1000)
+  @NotNull
+  private String imageUrl;
+
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "category_id")
   private Category category;
 
-  @Column(name = "image_url_address", length = 1000)
-  @NotNull
-  private String imageUrlAddress;
-
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "recipe_to_ingredient",
       joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},
@@ -100,7 +107,7 @@ public class Recipe {
     this.instruction = instruction;
   }
 
-  public String  getDrinkType() {
+  public String getDrinkType() {
     return drinkType;
   }
 
@@ -132,12 +139,12 @@ public class Recipe {
     this.category = category;
   }
 
-  public String getImageUrlAddress() {
-    return imageUrlAddress;
+  public String getImageUrl() {
+    return imageUrl;
   }
 
-  public void setImageUrlAddress(String imageUrlAddress) {
-    this.imageUrlAddress = imageUrlAddress;
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   public List<Ingredient> getIngredients() {
@@ -155,8 +162,6 @@ public class Recipe {
   public void setUsers(List<User> users) {
     this.users = users;
   }
-
-
 }
 
 

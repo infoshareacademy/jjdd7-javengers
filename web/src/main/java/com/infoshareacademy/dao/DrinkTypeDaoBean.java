@@ -1,6 +1,7 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.DrinkType;
+import com.infoshareacademy.domain.type.DrinkType;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

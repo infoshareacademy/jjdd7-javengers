@@ -1,6 +1,6 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.Recipe;
+import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -46,7 +46,7 @@ public class RecipeDaoBean {
 
     public List<Recipe> getRecipiesList() {
         Query query = entityManager.createQuery("SELECT r FROM Recipe r");
+        System.out.println(query.getResultList());
         return query.getResultList();
-
     }
 }

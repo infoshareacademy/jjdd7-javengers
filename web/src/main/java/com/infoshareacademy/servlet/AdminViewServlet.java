@@ -1,12 +1,8 @@
 package com.infoshareacademy.servlet;
 
-import com.infoshareacademy.cdi.FileUploadProcessor;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -19,12 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin-view")
 public class AdminViewServlet extends HttpServlet {
-    Logger logger = LoggerFactory.getLogger(AdminViewServlet.class);
+
     @Inject
     private TemplateProvider templateProvider;
-    @Inject
-    private FileUploadProcessor fileUploadProcessor;
-
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
@@ -41,6 +34,4 @@ public class AdminViewServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-
 }
