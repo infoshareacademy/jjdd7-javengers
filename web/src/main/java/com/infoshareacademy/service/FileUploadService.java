@@ -1,6 +1,5 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,14 +18,13 @@ public class FileUploadService {
     private static String UPLOAD_KEY = "Upload.Path";
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    public File uploadFile(Part filePart) throws IOException, RecipeUploadedFileNotFound {
+    public File uploadFile(Part filePart) throws IOException {
         String filename = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        java.io.File file = new File(getUploadFilesPath() + filename);
+        File file = new File(getUploadFilesPath() + filename);
         Files.deleteIfExists(file.toPath());
-
         InputStream fileContent = filePart.getInputStream();
         Files.copy(fileContent, file.toPath());
-        logger.info("Json file upload");
+        logger.info("Json file " + filePart.toString() + " upload");
         return file;
     }
 
@@ -34,7 +32,8 @@ public class FileUploadService {
         Properties settings = new Properties();
         settings.load(Thread.currentThread().getContextClassLoader()
             .getResource(SETTINGS_FILE).openStream());
-        logger.info("Getting json file path");
-        return settings.getProperty(UPLOAD_KEY);
+        String filePath = settings.getProperty(UPLOAD_KEY);
+        logger.info("Getting json file path " + filePath);
+        return filePath;
     }
 }

@@ -1,6 +1,6 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Category;
 import javax.ejb.Stateless;
 import org.slf4j.Logger;
@@ -11,10 +11,10 @@ public class CategoryMapper {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-  public Category mapCategory(RecipeApi recipeApi) {
+  public Category mapCategory(RecipeResponse recipe) {
     Category category = new Category();
-    category.setName(recipeApi.getRecipeCategory());
-    logger.info("Category was mapped");
+    category.setName(recipe.getRecipeCategory());
+    logger.info("Category " + category.getName() + " was mapped");
     return category;
   }
 }
