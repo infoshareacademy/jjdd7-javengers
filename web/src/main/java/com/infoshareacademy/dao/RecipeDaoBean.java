@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 @Stateless
@@ -47,5 +49,11 @@ public class RecipeDaoBean {
     public List<Recipe> getRecipiesList() {
         Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
+    }
+
+    public List<String> findRecipeByCategoryId(List<Long> ids){
+            Query query = entityManager.createNamedQuery("Recipe.findRecipeByCategoryId");
+            query.setParameter("ids", ids);
+            return query.getResultList();
     }
 }

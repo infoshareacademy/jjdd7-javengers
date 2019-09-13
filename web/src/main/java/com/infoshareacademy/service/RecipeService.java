@@ -49,4 +49,8 @@ public class RecipeService {
     logger.info("Get recipies list");
     return recipeDaoBean.getRecipiesList();
   }
+
+  public List<String> findRecipeByCategoryId(List<Long> ids) {
+    return recipeDaoBean.findRecipeByCategory(ids);
+  }
 }

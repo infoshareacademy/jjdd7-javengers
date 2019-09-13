@@ -38,7 +38,7 @@ public class IngredientDaoBean {
     }
 
     public void deleteCategoryById(Long id) {
-      Ingredient ingredient = getIngredientById(id);
+        Ingredient ingredient = getIngredientById(id);
         if (ingredient != null) {
             entityManager.remove(ingredient);
         }

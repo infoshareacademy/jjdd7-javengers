@@ -1,55 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <title>index page</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <!--<link rel="stylesheet" type="text/css" href="/home/andrzej/javengers/jjdd7-javengers/web/src/main/webapp/css/index.css")>-->
-    <style>
-
-        body, html {
-            /*background-image: url(img/wp2172683.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-            margin: 0;*/
-        }
-
-        .card {
-            background: transparent;
-            background: lightblue;
-
-        }
-
-        .row div {
-            padding: 10px 10px;
-            /*border: 1px solid;*/
-        }
-
-        .container {
-            background: transparent;
-            background: lightblue;
-            text-align: center
-        }
-
-        .jumbotron {
-            color: white;
-            background: transparent;
-            background: lightblue;
-            text-align: center
-        }
-
-        #navTabA {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
 </head>
 <body>
@@ -71,151 +49,149 @@
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
-        <p class="lead">Read, mix, enjoy...</p>
+        <p class="lead">Read, mix, enjoy...dupa</p>
     </div>
 </div>
-
 
 <div class="container">
 
-    <ul class="nav nav-tabs nav-justified col-sm-12" id="navTab" role="tablist">
-        <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab" data-target="#panel_a_name"
-                                data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                                aria-controls="name" aria-selected="true">Name</a></li>
-        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
-                                href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
-                                aria-selected="false">Ingredient</a></li>
-    </ul>
+    <div class="col-sm-12-md-6" id="search-container">
+        <ul class="nav nav-tabs nav-justified " style="margin: 0px" id="navTab" role="tablist">
+            <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
+                                    data-target="#panel_a_name"
+                                    data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
+                                    aria-controls="name" aria-selected="true"><strong>Recipe Name</strong></a></li>
+            <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
+                                    data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
+                                    href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
+                                    aria-selected="false"><strong>Ingredient</strong></a></li>
+        </ul>
 
-    <div class="tab-content row col-sm-12" id="navTabA">
+        <div class="tab-content col-sm-12 " id="navTabA">
 
-    <div class="tab-pane active col-sm-12" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
-        <form id="form-name">
-            <div class="col-sm-12">
-                <input type="text" id="input-name" class="form-control" placeholder="search by name">
+            <div class="tab-pane active" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
+                <form id="form-name">
+                    <input type="text" id="input-name" class="form-control" placeholder="search by name">
+                </form>
             </div>
-        </form>
+
+            <div class="tab-pane" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
+                <form id="form-ingredient">
+                    <input type="text" id="input-ingredient" class="form-control"
+                           placeholder="search by ingredient">
+                    <!--<select class="js-example-basic-single" name="state">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                    </select>-->
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="container" id="list-ingredient">
+
     </div>
 
-    <div class="tab-pane col-sm-12" id="panel_a_ingredient" role="tabpanel" aria-labelledby="ingredient-tab">
-        <form id="form-ingredient">
-            <div class="col-sm-12">
-                <input type="text" id="input-ingredient" class="form-control" placeholder="search by ingredient">
-            </div>
-        </form>
-    </div>
-</div>
-<div class="container" id="list-todo" style="height: 50px">
 
-</div>
-
-<div class="row">
+    <div class="row">
 
 
-    <div class=" col-sm-3">
-    <div class="card">
-        <article class="card-group-item">
+        <div class="card col-sm-3">
+
             <header class="card-header"><h6 class="title">Category</h6></header>
             <div class="btn-group-vertical">
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="Shots"
+                           onclick="checkFilters()">
                     <span class="form-check-label">Shots</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="Cocktails"
+                           onclick="checkFilters()">
                     <span class="form-check-label">Cocktails</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="Long Drink"
+                           onclick="checkFilters()">
                     <span class="form-check-label">Long Drinks</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Shots</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="Coffee/Tea"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">Coffee/Tea </span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Cocktails</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="aaa"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">aaa</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Long Drinks</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="bbb"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">bbb</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Shots</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="ccc"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">ccc</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Cocktails</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="ddd"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">ddd</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Long Drinks</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="eee"
+                           onclick="checkFilters()">
+                    <span class="form-check-label">eee</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="checkbox" name="myradio" value="">
-                    <span class="form-check-label">Long Drinks</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-category" type="checkbox" name="myradio" value="fff"
+                           onclick="checkFilters()" checked>
+                    <span class="form-check-label">fff</span>
                 </label>
             </div>
-        </article>
-    </div>
+        </div>
 
-
-</div>
-
-<div class="col-sm-6">
-    <div class="card">
-        <article class="card-group-item">
+        <div class="card col-sm-6">
             <header class="card-header"><h6 class="title">Content</h6></header>
-            <div class="filter-content">
-                <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item">ABC</a>
-                    <a href="#" class="list-group-item">B-52</a>
-                    <a href="#" class="list-group-item">GG</a>
-                    <a href="#" class="list-group-item">Zorro</a>
-                </div>  <!-- list-group .// -->
-            </div>
-        </article> <!-- card-group-item.// -->
-    </div>
-</div>
-<div class=" col-sm-3">
+            <img src="https://d-pt.ppstatic.pl/k/r/1/b9/cc/5b9f77242e778_p.jpg?1542319310" alt="Italian Trulli">
+            <div class="content-container">
 
-    <div class="card">
-        <article class="card-group-item">
+                <ul class="list-group list-group-flush">
+                    <li>
+                    </li>
+                </ul>
+            </div>
+            <div class="col paginator">
+                <button class="favorite" type="button" value="1" >1</button>
+                <button class="favorite" type="button" value="2">2</button>
+                <button class="favorite" type="button" value="3">3</button>
+            </div>
+        </div>
+        <div class="card col-sm-3">
             <header class="card-header"><h6 class="title">List Options</h6></header>
             <div class="btn-group-vertical">
-                <label class="btn btn-primary">
-                    <input class="" type="radio" name="myradio" value="">
-                    <span class="form-check-label">All Drinks</span>
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-list-options" type="radio" name="myradio" value="All Drinks"
+                           onclick="checkFilters()" checked>
+                    <span class="form-check-label">All Drinks </span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="radio" name="myradio" value="">
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-list-options" type="radio" name="myradio" value="Favourites"
+                           onclick="checkFilters()">
                     <span class="form-check-label">Favourites</span>
                 </label>
-                <label class="btn btn-primary">
-                    <input class="" type="radio" name="myradio" value="">
+                <label class="btn btn-outline-light btn-sm">
+                    <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
+                           onclick="checkFilters()">
                     <span class="form-check-label">Most Popular</span>
                 </label>
             </div>
-        </article>
+        </div>
     </div>
 </div>
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
-<script src="index.js"></script>
+<script src="js/index.js"></script>
 
 
 </body>

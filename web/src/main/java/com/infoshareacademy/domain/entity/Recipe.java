@@ -10,7 +10,14 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
         @NamedQuery(
                 name = "Recipe.getRecipiesList",
-                query = "SELECT r FROM Recipe r")
+                query = "SELECT r FROM Recipe r"),
+        @NamedQuery(
+                name = "Recipe.findRecipeByCategoryId",
+                query = "SELECT r.name FROM Recipe r, Category c WHERE r.id = c.id AND  c.id IN :ids"),
+        @NamedQuery(
+                name = "Recipe.findRecipeByIngredientId",
+                query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE i.id IN :ids")
+
 })
 
 public class Recipe {
