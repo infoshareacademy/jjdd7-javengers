@@ -12,15 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
-import javax.enterprise.context.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-@RequestScoped
 public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private static final String SETTINGS_FILE_NAME = "settings.properties";
+  private static final String DATE_FORMAT = "date.format";
 
   @Override
   public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
@@ -60,7 +59,7 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
     recipeApi.setDrinkType(tree.get("strAlcoholic").asText().toLowerCase());
     recipeApi.setGlassType(tree.get("strGlass").asText().toLowerCase());
     if ((tree.get("dateModified")).isNull()) {
-      String datePattern = getDatePattern("date.format");
+      String datePattern = getDatePattern();
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
       recipeApi.setModificationDate(LocalDateTime.now().format(formatter));
     } else {
@@ -72,12 +71,12 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
     return recipeApi;
   }
 
-  public String getDatePattern(String property) throws IOException {
+  private String getDatePattern() throws IOException {
     Properties settings = new Properties();
     settings.load(Objects.requireNonNull(Thread.currentThread()
-        .getContextClassLoader().getResource("settings.properties"))
+        .getContextClassLoader().getResource(SETTINGS_FILE_NAME))
         .openStream());
-    return settings.getProperty(property);
+    return settings.getProperty(DATE_FORMAT);
   }
 }
 

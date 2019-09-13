@@ -33,5 +33,4 @@ public class ParserService implements Serializable {
           new TypeReference<List<RecipeApi>>() {
           });
   }
-
 }

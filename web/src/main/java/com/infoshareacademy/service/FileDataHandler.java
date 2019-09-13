@@ -34,7 +34,7 @@ public class FileDataHandler {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    logger.info("file was parsed, mapped and save to database");
+    logger.info("file was parsed successfully");
     return outputObject;
   }
 }

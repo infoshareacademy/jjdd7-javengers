@@ -35,6 +35,6 @@ public class ApiDataHandler {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    logger.info("data form api was saves to database successfully");
+    logger.info("data form api was saved successfully");
   }
 }
