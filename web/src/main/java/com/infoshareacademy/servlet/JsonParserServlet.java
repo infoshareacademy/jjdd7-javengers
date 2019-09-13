@@ -24,7 +24,8 @@ public class JsonParserServlet extends HttpServlet {
     Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws
+        ServletException, IOException {
         Part jsonFile = req.getPart("drinks");
         String fileUrl = "";
         try {
@@ -32,8 +33,8 @@ public class JsonParserServlet extends HttpServlet {
         } catch (RecipeUploadedFileNotFound recipeUploadedFileNotFound) {
             logger.info(recipeUploadedFileNotFound.getMessage());
         }
-        Recipe recipe1 = new Recipe();
-        recipe1.setImageUrl(fileUrl);
-        resp.getWriter().println("File successful uploaded!");
+        Recipe drinkRecipe = new Recipe();
+        drinkRecipe.setImageUrl(fileUrl);
+        resp.getWriter().println(fileUrl + " successful uploaded!");
     }
 }

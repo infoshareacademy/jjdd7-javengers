@@ -3,7 +3,7 @@ package com.infoshareacademy.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -30,7 +30,7 @@ public class ParserService implements Serializable {
   public <T> Object parse(JsonNode jsonNode) throws IOException {
     logger.info("Parse data from file");
     return mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
-          new TypeReference<List<RecipeApi>>() {
+        new TypeReference<List<RecipeResponse>>() {
           });
   }
 }

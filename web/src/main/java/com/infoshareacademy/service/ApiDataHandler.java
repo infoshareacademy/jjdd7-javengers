@@ -1,7 +1,7 @@
 package com.infoshareacademy.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class ApiDataHandler {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private static final String NULL_JSON_CONTENT = "{\"drinks\":null}";
 
   @Inject
   private FileParserService fileParserService;
@@ -25,16 +26,16 @@ public class ApiDataHandler {
   private ApiConsumer apiConsumer;
 
   public void parseAndLoadDataFormApi(String uri) {
-    String recipes = apiConsumer.consumeApi(uri);
+    String jsonContent = apiConsumer.fetchBody(uri);
     try {
-      if (!recipes.equals("{\"drinks\":null}")) {
-        JsonNode jsonNode = parserService.getJsonNodeForApiParsing(recipes);
-        List<RecipeApi> recipesList = (List<RecipeApi>) parserService.parse(jsonNode);
-        fileParserService.loadDataToDatabase(recipesList);
+      if (!jsonContent.equals(NULL_JSON_CONTENT)) {
+        JsonNode jsonNode = parserService.getJsonNodeForApiParsing(jsonContent);
+        List<RecipeResponse> recipes = (List<RecipeResponse>) parserService.parse(jsonNode);
+        fileParserService.loadDataToDatabase(recipes);
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      logger.error("Load data from: " + uri + " failed", e);
     }
-    logger.info("data form api was saved successfully");
+    logger.info("data form" + uri + " was saved successfully");
   }
 }

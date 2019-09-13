@@ -1,8 +1,9 @@
 package com.infoshareacademy.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -28,13 +29,14 @@ public class FileDataHandler {
   public <T> Object dataUploadHandler(Part partFile) throws RecipeUploadedFileNotFound {
     Object outputObject = null;
     try {
-      JsonNode jsonNode = parserService.getJsonNodeForFileParsing(fileUploadService.uploadFile(partFile));
-      List<RecipeApi> recipes = (List<RecipeApi>) parserService.parse(jsonNode);
+      File file = fileUploadService.uploadFile(partFile);
+      JsonNode jsonNode = parserService.getJsonNodeForFileParsing(file);
+      List<RecipeResponse> recipes = (List<RecipeResponse>) parserService.parse(jsonNode);
       outputObject =  fileParserService.loadDataToDatabase(recipes);
     } catch (IOException e) {
-      e.printStackTrace();
+      logger.error("Upload file: " + partFile.toString() + " failed");
     }
-    logger.info("file was parsed successfully");
+    logger.info("file " + partFile.toString() + " was uploaded successfully");
     return outputObject;
   }
 }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,18 +15,18 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
+public class RecipeDeserializer extends JsonDeserializer<RecipeResponse> {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   private static final String SETTINGS_FILE_NAME = "settings.properties";
   private static final String DATE_FORMAT = "date.format";
 
   @Override
-  public RecipeApi deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+  public RecipeResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
     Map<String, String> ingredients = new HashMap<>();
 
-    RecipeApi recipeApi = new RecipeApi();
+    RecipeResponse drinkRecipe = new RecipeResponse();
     JsonNode tree = p.readValueAsTree();
 
     String[] errors = {"null"};
@@ -52,23 +52,22 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
         }
       }
     }
-    recipeApi.setId(tree.get("idDrink").asLong());
-    recipeApi.setName(tree.get("strDrink").asText().toLowerCase());
-    recipeApi.setInstruction(tree.get("strInstructions").asText().toLowerCase());
-    recipeApi.setRecipeCategory(tree.get("strCategory").asText().toLowerCase());
-    recipeApi.setDrinkType(tree.get("strAlcoholic").asText().toLowerCase());
-    recipeApi.setGlassType(tree.get("strGlass").asText().toLowerCase());
+    drinkRecipe.setId(tree.get("idDrink").asLong());
+    drinkRecipe.setName(tree.get("strDrink").asText().toLowerCase());
+    drinkRecipe.setInstruction(tree.get("strInstructions").asText().toLowerCase());
+    drinkRecipe.setRecipeCategory(tree.get("strCategory").asText().toLowerCase());
+    drinkRecipe.setDrinkType(tree.get("strAlcoholic").asText().toLowerCase());
+    drinkRecipe.setGlassType(tree.get("strGlass").asText().toLowerCase());
     if ((tree.get("dateModified")).isNull()) {
       String datePattern = getDatePattern();
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
-      recipeApi.setModificationDate(LocalDateTime.now().format(formatter));
+      drinkRecipe.setModificationDate(LocalDateTime.now().format(formatter));
     } else {
-      recipeApi.setModificationDate(tree.get("dateModified").asText());
+      drinkRecipe.setModificationDate(tree.get("dateModified").asText());
     }
-    recipeApi.setImageUrl(tree.get("strDrinkThumb").asText());
-    recipeApi.setIngredients(ingredients);
-    logger.info("Deserialization data from file");
-    return recipeApi;
+    drinkRecipe.setImageUrl(tree.get("strDrinkThumb").asText());
+    drinkRecipe.setIngredients(ingredients);
+    return drinkRecipe;
   }
 
   private String getDatePattern() throws IOException {
@@ -76,7 +75,9 @@ public class RecipeDeserializer extends JsonDeserializer<RecipeApi> {
     settings.load(Objects.requireNonNull(Thread.currentThread()
         .getContextClassLoader().getResource(SETTINGS_FILE_NAME))
         .openStream());
-    return settings.getProperty(DATE_FORMAT);
+    String dateFormat = settings.getProperty(DATE_FORMAT);
+    logger.info("Date Time format is: " + dateFormat);
+    return dateFormat;
   }
 }
 

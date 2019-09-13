@@ -13,7 +13,7 @@ import java.util.Map;
     "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = RecipeDeserializer.class)
 
-public class RecipeApi {
+public class RecipeResponse {
 
   @JsonProperty("idDrink")
   private Long id;

@@ -1,6 +1,7 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.api.RecipeApi;
+
+import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import javax.ejb.EJB;
@@ -16,21 +17,21 @@ public class RecipeMapper {
   @EJB
   private IngredientMapper ingredientMapper;
 
-  public Recipe mapRecipes(RecipeApi recipeApi, Category category) {
+  public Recipe mapRecipes(RecipeResponse recipe, Category category) {
 
-    Recipe recipe = new Recipe();
-    recipe.setId(recipeApi.getId());
-    recipe.setName(recipeApi.getName());
-    recipe.setDrinkType(recipeApi.getDrinkType());
-    recipe.setGlassType(recipeApi.getGlassType());
-    recipe.setInstruction(recipeApi.getInstruction());
-    recipe.getIngredients().addAll(ingredientMapper.mapIngredients(recipeApi));
-    recipe.setModificationDate(recipeApi.getModificationDate());
-    recipe.setImageUrl(recipeApi.getImageUrl());
-    recipe.setCategory(category);
-    recipe.setCustom(false);
-    recipe.setApproved(true);
-    logger.info("Recipe was mapped");
-    return recipe;
+    Recipe drinkRecipe = new Recipe();
+    drinkRecipe.setId(recipe.getId());
+    drinkRecipe.setName(recipe.getName());
+    drinkRecipe.setDrinkType(recipe.getDrinkType());
+    drinkRecipe.setGlassType(recipe.getGlassType());
+    drinkRecipe.setInstruction(recipe.getInstruction());
+    drinkRecipe.getIngredients().addAll(ingredientMapper.mapIngredients(recipe));
+    drinkRecipe.setModificationDate(recipe.getModificationDate());
+    drinkRecipe.setImageUrl(recipe.getImageUrl());
+    drinkRecipe.setCategory(category);
+    drinkRecipe.setCustom(false);
+    drinkRecipe.setApproved(true);
+    logger.info("Recipe " + drinkRecipe.getName() + " was mapped");
+    return drinkRecipe;
   }
 }
