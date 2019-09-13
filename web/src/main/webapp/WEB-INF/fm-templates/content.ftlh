@@ -1,13 +1,37 @@
-<header class="card-header"><h6 class="title">Content</h6></header>
+<header class="card-header"><h4 class="title">Content</h4></header>
 
-<div class="content-container">
+
     <#list recipeListPerPage>
         <#items as recipe>
-            sdfdfs<br/>
+
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <a href="/singleview.html" class="list-group-item recipe-link" >
+                        <div class="col-sm-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h4 class="card-title">Sex on the beach</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+                </div>
+            </div>
 
         </#items>
     </#list>
-</div>
+
+
 <div class="row paginator">
     <div class="col-sm-3 paginator">
         <button class="favorite btn btn-primary btn-sm" type="button" value="1">First(1)</button>
@@ -41,8 +65,7 @@
         <button class="favorite btn btn-primary btn-sm" type="button"
                 <#if (lastPageNumber-1) gte pageNumber> value="${pageNumber+1}" <#else> value="${lastPageNumber}" </#if>> &rightarrow;
         </button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value="${lastPageNumber}">Last(${lastPageNumber}
-            )
+        <button class="favorite btn btn-primary btn-sm" type="button" value="${lastPageNumber}">Last(${lastPageNumber})
         </button>
     </div>
 </div>

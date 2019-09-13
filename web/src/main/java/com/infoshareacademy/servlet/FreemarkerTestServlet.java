@@ -63,7 +63,7 @@ public class FreemarkerTestServlet extends HttpServlet {
 
 
    List<Recipe> recipeList = new ArrayList<>();
-   int numberOfRecipesPerPage = 10;
+   int numberOfRecipesPerPage = 5;
    int pageNumber=20;
    int lastPageNumber=20;
 

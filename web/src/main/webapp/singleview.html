@@ -31,20 +31,17 @@
     <style>
 
         #left {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+            margin-top: 20%;
+
+
         }
 
         #right {
 
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+            margin-top: 20%;
+
+
+
         }
 
         .container {
@@ -52,7 +49,6 @@
             /*border: white;
             border: solid;*/
         }
-
 
 
 
@@ -88,9 +84,9 @@
             <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
                                     data-target="#panel_a_name"
                                     data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                                    aria-controls="name" aria-selected="true"><strong>Recipe Name</strong></a></li>
+                                    aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a></li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                    href="index.html"><strong>Back to list</strong></a></li>
+                                    href="index.html"><h4><strong>Back to list</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -110,16 +106,16 @@
         <h2>NAME OF SUPER DRINK</h2>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin:0;">
 
-        <div id="left">
+        <div id="left" class=" col-sm-1">
                 <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>left</button>
         </div>
 
-        <div class="col-sm-10" STYLE="margin: auto;">
+        <div class="col-sm-10" >
 
             <div class="row ">
-                <div class="col-md-6">
+                <div class="col-md-6"; style="margin:0px">
                     <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
                          style="max-width: 100%;" class="card-img" alt="...">
                 </div>
@@ -179,13 +175,13 @@
 
         </div>
 
-        <div id="right">
+        <div id="right" class="col-sm-1">
             <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>right</button>
         </div>
 
     </div>
-    <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>ADD TO FAVOURITES</button>
+    <div class="col-sm-6" id="edit-buttons-single-view">
+        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS</button>
         <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
         <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
         <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM</button>

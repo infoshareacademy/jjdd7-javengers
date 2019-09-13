@@ -59,7 +59,7 @@
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
-        <p class="lead">Read, mix, enjoy...dupa</p>
+        <p class="lead">Read, mix, enjoy...</p>
     </div>
 </div>
 
@@ -70,11 +70,11 @@
             <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
                                     data-target="#panel_a_name"
                                     data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                                    aria-controls="name" aria-selected="true"><strong>Recipe Name</strong></a></li>
+                                    aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a></li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
                                     data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
                                     href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
-                                    aria-selected="false"><strong>Ingredient</strong></a></li>
+                                    aria-selected="false"><h4><strong>Ingredient</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -95,63 +95,60 @@
 
     </div>
     <div class="container" id="list-ingredient">
-
     </div>
-
 
     <div class="row">
 
-
         <div class="card col-sm-3">
 
-            <header class="card-header"><h6 class="title">Category</h6></header>
+            <header class="card-header"><h4 class="title">Category</h4></header>
             <div class="btn-group-vertical">
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light ">
                     <input class="x-category" type="checkbox" name="myradio" value="Shots"
                            onclick="checkFilters()">
                     <span class="form-check-label">Shots</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light ">
                     <input class="x-category" type="checkbox" name="myradio" value="Cocktails"
                            onclick="checkFilters()">
                     <span class="form-check-label">Cocktails</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="Long Drink"
                            onclick="checkFilters()">
                     <span class="form-check-label">Long Drinks</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="Coffee/Tea"
                            onclick="checkFilters()">
                     <span class="form-check-label">Coffee/Tea </span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="aaa"
                            onclick="checkFilters()">
                     <span class="form-check-label">aaa</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="bbb"
                            onclick="checkFilters()">
                     <span class="form-check-label">bbb</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="ccc"
                            onclick="checkFilters()">
                     <span class="form-check-label">ccc</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="ddd"
                            onclick="checkFilters()">
                     <span class="form-check-label">ddd</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="eee"
                            onclick="checkFilters()">
                     <span class="form-check-label">eee</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-category" type="checkbox" name="myradio" value="fff"
                            onclick="checkFilters()" checked>
                     <span class="form-check-label">fff</span>
@@ -159,33 +156,128 @@
             </div>
         </div>
 
-        <div class="card col-md-6">
-            <header class="card-header"><h6 class="title">Content</h6></header>
+        <div class="card col-sm-6">
+            <header class="card-header"><h4 class="title">Content</h4></header>
 
-            <div class="row" Style="border: white solid" >
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
                 <div class="col-sm-8" style="padding: 0px">
-                    <a href="singleview.html" class="list-group-item recipe-link">
+                    <a href="singleview.html" class="list-group-item recipe-link" >
                         <div class="col-sm-3" style="padding: 0px">
                             <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
                                  style="max-width: 100%;" class="card-img" alt="...">
                         </div>
-                        <div class="col-sm-9" style="padding: 0px">
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
                             <div class="card-body" style="padding: 0px">
                                 <br/>
-                                <h6 class="card-title">Sex on the beach</h6>
+                                <h4 class="card-title">Sex on the beach</h4>
                                 <br/>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-4" style="padding: 0px">
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
                     </button>
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
                 </div>
             </div>
 
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <a href="singleview.html" class="list-group-item recipe-link" >
+                        <div class="col-sm-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h4 class="card-title">Sex on the beach</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+                </div>
+            </div>
+
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <a href="singleview.html" class="list-group-item recipe-link" >
+                        <div class="col-sm-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h4 class="card-title">Sex on the beach</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+                </div>
+            </div>
+
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <a href="singleview.html" class="list-group-item recipe-link" >
+                        <div class="col-sm-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h4 class="card-title">Sex on the beach</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+                </div>
+            </div>
+
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <a href="singleview.html" class="list-group-item recipe-link" >
+                        <div class="col-sm-3" style="padding: 0px">
+                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                                 style="max-width: 100%;" class="card-img" alt="...">
+                        </div>
+                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                            <div class="card-body" style="padding: 0px">
+                                <br/>
+                                <h4 class="card-title">Sex on the beach</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+                </div>
+            </div>
 
             <div class="row paginator">
                 <div class="col-lg-3 paginator">
@@ -208,20 +300,20 @@
 
         </div>
 
-        <div class="card col-sm-3">
-            <header class="card-header"><h6 class="title">List Options</h6></header>
+        <div class="card col-sm-3" style="margin-top: 20%">
+            <header class="card-header"><h4 class="title">List Options</h4></header>
             <div class="btn-group-vertical">
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-list-options" type="radio" name="myradio" value="All Drinks"
                            onclick="checkFilters()" checked>
                     <span class="form-check-label">All Drinks </span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-list-options" type="radio" name="myradio" value="Favourites"
                            onclick="checkFilters()">
                     <span class="form-check-label">Favourites</span>
                 </label>
-                <label class="btn btn-outline-light btn-sm">
+                <label class="btn btn-outline-light">
                     <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
                            onclick="checkFilters()">
                     <span class="form-check-label">Most Popular</span>
