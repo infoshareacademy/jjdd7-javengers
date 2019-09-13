@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -43,31 +40,35 @@ public class StartingPageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
-        String pageNumber = req.getParameter("page");
-        String recipeName = req.getParameter("nameChars");
-        List<String> checkedCategoriesList = Arrays.asList(req.getParameterValues("categories[]"));
-        List<String> checkedIngredientsList = Arrays.asList(req.getParameterValues("ingredients[]"));
-        List<String> checkedListOptions = Arrays.asList(req.getParameterValues("listOptions[]"));
+        String pageNumber = Optional.ofNullable(req.getParameter("page")).orElse("1");
+        String recipeName = Optional.ofNullable(req.getParameter("nameChars")).orElse(null);
+        List<String> checkedCategoriesList = Optional.ofNullable(Arrays.asList(req.getParameterValues("categories[]"))).orElse(new ArrayList<>());
+        List<String> checkedIngredientsList = Optional.ofNullable(Arrays.asList(req.getParameterValues("ingredients[]"))).orElse(new ArrayList<>());
+        List<String> checkedListOptions = Optional.ofNullable(Arrays.asList(req.getParameterValues("listOptions[]"))).orElse(new ArrayList<>());
 
         Integer pageNo = Integer.parseInt(pageNumber);
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo);
         List<Category> categoriesList = categoryService.getCategoriesList();
-        Recipe recipeByName = recipeService.getRecipeByName(recipeName);
+     //   Recipe recipeByName = recipeService.getRecipeByName(recipeName);
 
         List<Long> newList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
 
-        List<String> checkedCategories = recipeService.findRecipeByCategory(newList);
+        List<String> checkedCategories = recipeService.findRecipeByCategoryId(newList);
+        List<String> checkedIngredients = recipeService.findRecipeByIngredientId(checkedIngredientsList);
 
 
         Template template = templateProvider.getTemplate(getServletContext(), "test.ftlh");
         Map<String, Object> model = new HashMap<>();
-        if (recipesList != null || categoriesList != null || checkedCategories != null) {
+        if (recipesList != null || categoriesList != null || checkedCategories != null || checkedIngredients != null) {
             model.put("recipes", recipesList);
             model.put("categories", categoriesList);
+        //    model.put("recipeName", recipeByName);
             model.put("checkedCategories", checkedCategories);
-            model.put("recipeName", recipeByName);
+            model.put("checkedIngredients", checkedIngredients);
+
+            logger.info("ingredients:" + checkedIngredients);
         }
 
         try {

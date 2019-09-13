@@ -19,6 +19,10 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(
         name = "Category.findCategoryByName",
         query = "SELECT c FROM Category c WHERE c.name like :name"),
+
+     @NamedQuery(
+                name = "Category.findCategoryById",
+                query = "SELECT c FROM Category c WHERE c.id in :ids"),
     @NamedQuery(
         name = "Category.getCategoryList",
         query = "SELECT c FROM Category c")

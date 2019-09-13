@@ -1,5 +1,6 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.ejb.Stateless;
@@ -51,9 +52,19 @@ public class RecipeDaoBean {
         return query.getResultList();
     }
 
-    public List<String> findRecipeByCategoryId(List<Long> ids){
-            Query query = entityManager.createNamedQuery("Recipe.findRecipeByCategoryId");
-            query.setParameter("ids", ids);
-            return query.getResultList();
+    public List<String> findRecipeByCategoryId(List<Long> ids) {
+        Query query = entityManager.createNamedQuery("Category.findCategoryById");
+        query.setParameter("ids", ids);
+        List<Category> categories = query.getResultList();
+
+        Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY);
+        recipeQuery.setParameter("categories", categories);
+        return recipeQuery.getResultList();
+    }
+
+    public List<String> findRecipeByIngredientId(List<String> names) {
+        Query query = entityManager.createNamedQuery("Recipe.findRecipeByIngredientName");
+        query.setParameter("names", names);
+        return query.getResultList();
     }
 }
