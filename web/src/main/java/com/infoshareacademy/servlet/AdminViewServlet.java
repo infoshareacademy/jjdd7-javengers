@@ -12,12 +12,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet("/admin-view")
 public class AdminViewServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
@@ -31,7 +35,7 @@ public class AdminViewServlet extends HttpServlet {
         try {
             template.process(dataModel, writer);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
     }
 }
