@@ -1,6 +1,5 @@
 package com.infoshareacademy.mapper;
 
-
 import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;

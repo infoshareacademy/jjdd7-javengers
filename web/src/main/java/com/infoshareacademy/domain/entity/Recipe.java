@@ -163,5 +163,3 @@ public class Recipe {
     this.users = users;
   }
 }
-
-
