@@ -43,12 +43,8 @@ $('#input-name').keyup(function () {
         }
 
     });
-    //dostan liste
-    var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
 
-    let filteredData = nameList.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
-    //trzeba zassac do rozwijanej listy
-    console.log(filteredData);
+
 });
 
 
