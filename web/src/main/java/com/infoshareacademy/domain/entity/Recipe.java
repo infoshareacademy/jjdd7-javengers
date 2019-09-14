@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 //        query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE r.category IN :categories AND i.name IN :names"),
         @NamedQuery(
                 name = Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT,
-                query = "SELECT r.name FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN (:names))"  )
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN (:names))"  )
 
 })
 

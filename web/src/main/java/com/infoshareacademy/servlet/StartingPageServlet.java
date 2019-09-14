@@ -48,36 +48,39 @@ public class StartingPageServlet extends HttpServlet {
         List<String> checkedListOptions = Optional.ofNullable(Arrays.asList(req.getParameterValues("listOptions[]"))).orElse(Arrays.asList("emptyString"));
 
         Integer pageNo = Integer.parseInt(pageNumber);
-        List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo);
-        List<Recipe> allRecipesList = startingPageService.getRecipeByFilterOption(checkedListOptions.get(0));
+        List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo,recipeService.getRecipiesList());
+    //    List<Recipe> allRecipesList = startingPageService.getRecipeByFilterOption(checkedListOptions.get(0));
         List<Category> categoriesList = categoryService.getCategoriesList();
-        Integer lastPageNumber = startingPageService.getLastNumberPage(allRecipesList);
+
         List<String> ingredientList = ingredientService.getIngredientsList();
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
 
 
-        //     List<String> checkedCategories = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
+        //  List<String> checkedCategories = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
         //  List<String> checkedIngredients = recipeService.findRecipeByIngredientId(checkedIngredientsList);
-        List<String> checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
+        List<Recipe> checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
+        List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo,checkedCategoriesAndIngredients);
 
+
+        Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredients);
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
-            model.put("recipeListPerPage", recipesList);
+            model.put("recipeListPerPage", recipeListPerPage);
             model.put("pageNumber", pageNo);
             model.put("lastPageNumber", lastPageNumber);
 
             model.put("categoryList", categoriesList);
             model.put("categoryListChecked", checkedCategoriesList);
-            model.put("allRecipesList", allRecipesList);
+    //        model.put("allRecipesList", allRecipesList);
 
             model.put("ingredientList", ingredientList);
             model.put("ingredientListChecked", checkedIngredientsList);
 
-            model.put("checkedCategoriesAndIngredients", checkedCategoriesAndIngredients);
+
 
             model.put("checkedListOptions", checkedListOptions);
 

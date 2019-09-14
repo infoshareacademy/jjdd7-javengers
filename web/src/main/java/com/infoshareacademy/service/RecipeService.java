@@ -54,7 +54,7 @@ public class RecipeService {
     return recipeDaoBean.findRecipeByCategoryId(ids);
   }*/
 
-  public List<String> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
+  public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
     return recipeDaoBean.findRecipeByCategoryIdAndIngredient(ids, names);
   }
 }

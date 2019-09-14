@@ -14,19 +14,17 @@ public class StartingPageService {
     @Inject
     RecipeService recipeService;
 
-    public List<Recipe> getRecipesPerPage(int pageNumber) {
-        List<Recipe> result = new ArrayList<>();
-        List<Recipe> recipeList = recipeService.getRecipiesList();
+    public List<Recipe> getRecipesPerPage(int pageNumber, List<Recipe> filterList) {
         int pageSize = 5;
 
         if (pageSize <= 0 || pageNumber <= 0) {
             throw new IllegalArgumentException("invalid page size: " + pageSize);
         }
         int fromIndex = (pageNumber - 1) * pageSize;
-        if (recipeList == null || recipeList.size() < fromIndex) {
+        if (filterList == null || filterList.size() < fromIndex) {
             return Collections.emptyList();
         }
-        return recipeList.subList(fromIndex, Math.min(fromIndex + pageSize, recipeList.size()));
+        return filterList.subList(fromIndex, Math.min(fromIndex + pageSize, filterList.size()));
     }
 
     public Integer getLastNumberPage(List<Recipe> recipeList){
