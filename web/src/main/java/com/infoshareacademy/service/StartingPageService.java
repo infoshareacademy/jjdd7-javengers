@@ -17,7 +17,7 @@ public class StartingPageService {
     public List<Recipe> getRecipesPerPage(int pageNumber) {
         List<Recipe> result = new ArrayList<>();
         List<Recipe> recipeList = recipeService.getRecipiesList();
-        int pageSize = 10;
+        int pageSize = 5;
 
         if (pageSize <= 0 || pageNumber <= 0) {
             throw new IllegalArgumentException("invalid page size: " + pageSize);
@@ -30,7 +30,7 @@ public class StartingPageService {
     }
 
     public Integer getLastNumberPage(List<Recipe> recipeList){
-       int pageSize = 10;
+       int pageSize = 5;
         return (recipeList.size() + pageSize - 1) / pageSize;
     }
 
