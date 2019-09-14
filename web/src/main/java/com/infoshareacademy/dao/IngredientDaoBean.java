@@ -1,5 +1,6 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 
 import javax.ejb.Stateless;
@@ -49,6 +50,12 @@ public class IngredientDaoBean {
         query.setParameter("name", name);
         return (Ingredient) query.getSingleResult();
     }
+
+    public List<String > getIngredientsList() {
+        Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
+        return query.getResultList();
+    }
+
 
 
 }

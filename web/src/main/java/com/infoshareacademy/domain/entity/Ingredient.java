@@ -8,7 +8,10 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 @NamedQuery(
         name = "Ingredient.findIngredientByName",
-        query = "SELECT i FROM Ingredient i WHERE i.name in :names")
+        query = "SELECT i FROM Ingredient i WHERE i.name in :names"),
+        @NamedQuery(
+                name = "Ingredient.getIngredientList",
+                query = "SELECT distinct i.name FROM Ingredient i")
 })
 
 @Entity

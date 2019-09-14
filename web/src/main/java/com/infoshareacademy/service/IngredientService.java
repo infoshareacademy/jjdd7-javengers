@@ -46,5 +46,7 @@ public class IngredientService {
         return ingredientDaoBean.findIngredient(name);
     }
 
-
+    public List<String> getIngredientsList() {
+        return ingredientDaoBean.getIngredientsList();
+    }
 }

@@ -4,6 +4,7 @@ import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.CategoryService;
+import com.infoshareacademy.service.IngredientService;
 import com.infoshareacademy.service.RecipeService;
 import com.infoshareacademy.service.StartingPageService;
 import freemarker.template.Template;
@@ -30,6 +31,8 @@ public class StartingPageServlet extends HttpServlet {
     @Inject
     private RecipeService recipeService;
     @Inject
+    private IngredientService ingredientService;
+    @Inject
     TemplateProvider templateProvider;
 
     @Override
@@ -39,7 +42,7 @@ public class StartingPageServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
         String pageNumber = Optional.ofNullable(req.getParameter("page")).orElse("1");
-//        String recipeName = Optional.ofNullable(req.getParameter("nameChars")).orElse("emptyString");
+
         List<String> checkedCategoriesList = Optional.ofNullable(Arrays.asList(req.getParameterValues("categories[]"))).orElse(Arrays.asList("-1"));
         List<String> checkedIngredientsList = Optional.ofNullable(Arrays.asList(req.getParameterValues("ingredients[]"))).orElse(Arrays.asList("emptyString"));
         List<String> checkedListOptions = Optional.ofNullable(Arrays.asList(req.getParameterValues("listOptions[]"))).orElse(Arrays.asList("emptyString"));
@@ -48,10 +51,11 @@ public class StartingPageServlet extends HttpServlet {
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo);
         List<Recipe> allRecipesList = startingPageService.getRecipeByFilterOption(checkedListOptions.get(0));
         List<Category> categoriesList = categoryService.getCategoriesList();
+        Integer lastPageNumber = startingPageService.getLastNumberPage(allRecipesList);
+        List<String> ingredientList = ingredientService.getIngredientsList();
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
-//        Recipe recipeByName = recipeService.getRecipeByName(recipeName);
 
 
         //     List<String> checkedCategories = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
@@ -59,15 +63,24 @@ public class StartingPageServlet extends HttpServlet {
         List<String> checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
 
 
-        Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
-            model.put("recipes", recipesList);
+            model.put("recipeListPerPage", recipesList);
+            model.put("pageNumber", pageNo);
+            model.put("lastPageNumber", lastPageNumber);
+
             model.put("categoryList", categoriesList);
+            model.put("categoryListChecked", checkedCategoriesList);
             model.put("allRecipesList", allRecipesList);
-//            model.put("recipeName", recipeByName);
+
+            model.put("ingredientList", ingredientList);
+            model.put("ingredientListChecked", checkedIngredientsList);
+
             model.put("checkedCategoriesAndIngredients", checkedCategoriesAndIngredients);
-            //    model.put("checkedCategories", checkedCategories);
+
+            model.put("checkedListOptions", checkedListOptions);
+
         }
 
         try {
