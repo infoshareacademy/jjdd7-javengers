@@ -45,4 +45,6 @@ public class IngredientService {
     public Ingredient findIngredient(String name) {
         return ingredientDaoBean.findIngredient(name);
     }
+
+
 }

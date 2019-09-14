@@ -1,7 +1,5 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.domain.entity.Category;
-import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.enterprise.context.RequestScoped;
@@ -31,9 +29,20 @@ public class StartingPageService {
         return recipeList.subList(fromIndex, Math.min(fromIndex + pageSize, recipeList.size()));
     }
 
-  /*  public List<Recipe> findRecibyByFilters(List<Category> checkedCategoryList, List<Ingredient> checkedIngredientList, List<Recipe> recipeList){
+    public Integer getLastNumberPage(List<Recipe> recipeList){
+       int pageSize = 10;
+        return (recipeList.size() + pageSize - 1) / pageSize;
+    }
 
-    }*/
+
+    public List<Recipe> getRecipeByFilterOption(String filterOption) {
+        List<Recipe> result = new ArrayList<>();
+        String allRecipies = "All Drinks";
+        if (filterOption == allRecipies) {
+            result = recipeService.getRecipiesList();
+        }
+        return result;
+    }
 }
 
 

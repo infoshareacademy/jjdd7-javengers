@@ -4,23 +4,22 @@
     <title>Welcome User</title>
 </head>
 <body>
-<#--<#list recipes>
+<#list recipes>
     <#items as recipes>
-            <p>${recipes.name}</p>
+            <p> ${recipes.name}</p>
 
     </#items>
 </#list>
-<#list categories>
+<#list categories>All categories
     <#items as categories>
         <p>${categories.name}</p>
     </#items>
-</#list>-->
-<#list checkedIngredients>
-    <#items as checkedIngredients>
-        <p>${checkedIngredients}</p>
+</#list>
+All checked recipies and ingredients
+<#list checkedCategoriesAndIngredients>
+    <#items as checkedCategoriesAndIngredients>
+        <p>${checkedCategoriesAndIngredients}</p>
     </#items>
 </#list>
-
-
 </body>
 </html>

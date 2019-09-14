@@ -5,6 +5,12 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+@NamedQuery(
+        name = "Ingredient.findIngredientByName",
+        query = "SELECT i FROM Ingredient i WHERE i.name in :names")
+})
+
 @Entity
 @Table(name="ingredient", indexes = { @Index(name = "idx_name", columnList = "name") })
 public class Ingredient {

@@ -1,14 +1,14 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.Category;
+import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -51,6 +51,7 @@ public class RecipeDaoBean {
         Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
     }
+/*
 
     public List<String> findRecipeByCategoryId(List<Long> ids) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
@@ -61,10 +62,30 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("categories", categories);
         return recipeQuery.getResultList();
     }
+*/
 
-    public List<String> findRecipeByIngredientId(List<String> names) {
+
+    public List<String> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
+
+        Query query = entityManager.createNamedQuery("Category.findCategoryById");
+        query.setParameter("ids", ids);
+        List<Category> categories = query.getResultList();
+        Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
+        queryIngredient.setParameter("names", names);
+        List<Ingredient> ingredients = queryIngredient.getResultList();
+
+        Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT);
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("names",names);
+
+        return recipeQuery.getResultList();
+
+    }
+
+/*    public List<String> findRecipeByIngredientId(List<String> names) {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByIngredientName");
         query.setParameter("names", names);
         return query.getResultList();
-    }
+    }*/
+
 }

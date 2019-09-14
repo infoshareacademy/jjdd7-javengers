@@ -11,19 +11,20 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(
                 name = "Recipe.getRecipiesList",
                 query = "SELECT r FROM Recipe r"),
-        @NamedQuery(
+       /* @NamedQuery(
                 name = Recipe.GET_RECIPE_BY_CATEGORY,
-                query = "SELECT r.name FROM Recipe r  WHERE r.category IN :categories"),
+                  query = "SELECT r.name FROM Recipe r  WHERE r.category IN :categories"),*/
 //        query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE r.category IN :categories AND i.name IN :names"),
         @NamedQuery(
-                name = "Recipe.findRecipeByIngredientName",
-                query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE i.name IN :names")
+                name = Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT,
+                query = "SELECT r.name FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN (:names))"  )
 
 })
 
 public class Recipe {
 
-  public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";
+ /*public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";*/
+ public static final String GET_RECIPE_BY_CATEGORY_AND_INGREDENT = "Recipe.findRecipeByCategoryIdAndIngredientName";
 
   @Id
   @Column(name = "id")
