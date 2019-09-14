@@ -22,7 +22,7 @@ import java.util.*;
 @WebServlet("/drinks")
 public class FreemarkerTestServlet extends HttpServlet {
 
-    private Logger logger = LoggerFactory.getLogger(DummyServlet.class.getName());
+    private Logger logger = LoggerFactory.getLogger("alert");
 
     @Inject
     private TemplateProvider templateProvider;
