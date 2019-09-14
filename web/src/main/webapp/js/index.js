@@ -43,12 +43,8 @@ $('#input-name').keyup(function () {
         }
 
     });
-    //dostan liste
-    var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
 
-    let filteredData = nameList.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
-    //trzeba zassac do rozwijanej listy
-    console.log(filteredData);
+
 });
 
 
@@ -59,14 +55,14 @@ $formIngredient.on('submit', () => {
         return false;
     }
 
-    if (ingredientList.some(ingredient => ingredient.name.toLowerCase() === message.toLowerCase())) {
+    if (ingredientList.some(ingredient => ingredient.toLowerCase() === message.toLowerCase())) {
 
-        let messageIngredient = ingredientList.filter(ingredient => ingredient.name.toLowerCase() === message.toLowerCase())
+        let messageIngredient = ingredientList.filter(ingredient => ingredient.toLowerCase() === message.toLowerCase())
         listSelectedIngredients();
-        if (selectedIngredients.some(ingredient => ingredient === messageIngredient[0].id)) {
+        if (selectedIngredients.some(ingredient => ingredient === messageIngredient)) {
             console.log("already existing")
         } else {
-            const newIngredient = makeIngredientListHtml(messageIngredient[0]);
+            const newIngredient = makeIngredientListHtml(messageIngredient);
             $ingredientListButtons.prepend(newIngredient);
         }
     }
@@ -86,8 +82,8 @@ function makeIngredientListHtml(message) {
     /*tutaj value jest do zmiany na nr id z listy dostepnych drinkow*/
     return `
     <label class="btn btn-primary btn-sm form-group">
-     <input class="x-ingredient" id="${message.name}" type="checkbox" name="myradio" value="${message.id}" onclick="checkFilters()" checked>
-     <span class="form-check-label">${message.name}</span>
+     <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="checkFilters()" checked>
+     <span class="form-check-label">${message}</span>
     </label>   
 `
 }
@@ -121,14 +117,14 @@ function checkFilters() {
 
     /*do JSowych rozwiazan*/
 
-    fetch('http://localhost:8080/drink?' + queryParams, {
+    fetch('http://localhost:8080/home?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
     })
 
-    /*do przeladowania strony*/
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
+   /* do przeladowania strony*/
+   /* window.location = 'http://localhost:8080/home?' + queryParams;*/
 }
 
 function listSelectedCategories() {
@@ -190,11 +186,11 @@ $(".favorite").click(function() {
 
     /*do JSowych rozwiazan*/
 
-    fetch('http://localhost:8080/drink?' + queryParams, {
+    fetch('http://localhost:8080/home?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
     })
 
-    /*window.location = 'http://localhost:8080/drinks?' + queryParams;*/
+    /*window.location = 'http://localhost:8080/home?' + queryParams;*/
 });

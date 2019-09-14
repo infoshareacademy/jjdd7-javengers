@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -26,7 +27,7 @@ import javax.validation.constraints.NotNull;
 })
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", indexes = {@Index(name = "user_name", columnList = "name")})
 public class User {
 
     @Id

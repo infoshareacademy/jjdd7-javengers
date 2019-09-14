@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>index page</title>
+    <title>home page</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,19 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-            crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
-    <#-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
-
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -33,8 +26,20 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <#--navbar fm templates-->
-    <#include "navbar.ftlh">
+    <div class="container-fluid">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Main</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">sign in</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
@@ -45,18 +50,14 @@
 
     <div class="col-sm-12-md-6" id="search-container">
         <ul class="nav nav-tabs nav-justified " style="margin: 0px" id="navTab" role="tablist">
-            <li class="nav-item">
-                <a class="col-md text-sm-center nav-link active" id="name-tab"
-                   data-target="#panel_a_name"
-                   data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                   aria-controls="name" aria-selected="true">
-                    <strong>Recipe Name</strong>
-                </a>
-            </li>
+            <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
+                                    data-target="#panel_a_name"
+                                    data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
+                                    aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a></li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
                                     data-target="#panel_a_ingredient" data-secondary="#panel_a_ingredient"
                                     href="#panel_a_ingredient" data-toggle="tab" role="tab" aria-controls="ingredient"
-                                    aria-selected="false"><strong>Ingredient</strong></a></li>
+                                    aria-selected="false"><h4><strong>Ingredient</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -89,7 +90,7 @@
             <#--content fm templates-->
             <#include "content.ftlh">
         </div>
-        <div class="card col-sm-3">
+        <div class="card col-sm-3" style="margin-top: 20%">
             <#--list-options fm templates-->
             <#include "list-options.ftlh">
         </div>

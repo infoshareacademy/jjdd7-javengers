@@ -1,6 +1,6 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.api.RecipeApi;
+import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,17 @@ public class IngredientMapper {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-  public List<Ingredient> mapIngredients(RecipeApi recipeApi) {
+  public List<Ingredient> mapIngredients(RecipeResponse recipe) {
 
     List<Ingredient> ingredients = new ArrayList<>();
 
-    recipeApi.getIngredients().entrySet().forEach(i -> {
+    recipe.getIngredients().forEach((key, value) -> {
       Ingredient ingredient = new Ingredient();
-      ingredient.setName(i.getKey());
-      ingredient.setMeasure(i.getValue());
+      ingredient.setName(key);
+      ingredient.setMeasure(value);
       ingredients.add(ingredient);
     });
-    logger.info("Ingredients were mapped");
+    logger.info("Ingredients of recipe " + recipe.toString() + " were mapped");
     return ingredients;
   }
 }
