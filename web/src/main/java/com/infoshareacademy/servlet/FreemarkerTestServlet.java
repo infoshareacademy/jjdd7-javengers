@@ -22,7 +22,7 @@ import java.util.*;
 @WebServlet("/drinks")
 public class FreemarkerTestServlet extends HttpServlet {
 
-    private Logger logger = LoggerFactory.getLogger("alert");
+    /*private Logger logger = LoggerFactory.getLogger(DummyServlet.class.getName());*/
 
     @Inject
     private TemplateProvider templateProvider;
@@ -78,7 +78,7 @@ public class FreemarkerTestServlet extends HttpServlet {
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
-            logger.error("this is error logger");
+            /*logger.error("this is error logger");*/
         }
     }
 }

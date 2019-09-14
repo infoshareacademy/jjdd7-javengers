@@ -59,11 +59,11 @@ public class StartingPageServlet extends HttpServlet {
         List<String> checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
 
 
-        Template template = templateProvider.getTemplate(getServletContext(), "test.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
             model.put("recipes", recipesList);
-            model.put("categories", categoriesList);
+            model.put("categoryList", categoriesList);
             model.put("allRecipesList", allRecipesList);
 //            model.put("recipeName", recipeByName);
             model.put("checkedCategoriesAndIngredients", checkedCategoriesAndIngredients);
