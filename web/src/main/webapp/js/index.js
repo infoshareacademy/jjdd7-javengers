@@ -117,14 +117,14 @@ function checkFilters() {
 
     /*do JSowych rozwiazan*/
 
-    fetch('http://localhost:8080/home?' + queryParams, {
+    /*fetch('http://localhost:8080/home?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
+    })*/
 
    /* do przeladowania strony*/
-   /* window.location = 'http://localhost:8080/home?' + queryParams;*/
+    window.location = 'http://localhost:8080/home?' + queryParams;
 }
 
 function listSelectedCategories() {
@@ -186,11 +186,11 @@ $(".favorite").click(function() {
 
     /*do JSowych rozwiazan*/
 
-    fetch('http://localhost:8080/home?' + queryParams, {
+   /* fetch('http://localhost:8080/home?' + queryParams, {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
+    })*/
 
-    /*window.location = 'http://localhost:8080/home?' + queryParams;*/
+    window.location = 'http://localhost:8080/home?' + queryParams;
 });

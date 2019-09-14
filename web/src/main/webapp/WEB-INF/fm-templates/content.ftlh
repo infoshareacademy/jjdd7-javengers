@@ -6,15 +6,16 @@
 
             <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
                 <div class="col-sm-8" style="padding: 0px">
+                    <#--podmienic link na ftlh -->
                     <a href="/singleview.html" class="list-group-item recipe-link" >
                         <div class="col-sm-3" style="padding: 0px">
-                            <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                            <img src="${recipe.imageUrl}"
                                  style="max-width: 100%;" class="card-img" alt="...">
                         </div>
                         <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
                             <div class="card-body" style="padding: 0px">
                                 <br/>
-                                <h4 class="card-title">Sex on the beach</h4>
+                                <h4 class="card-title">${recipe.name}</h4>
                                 <br/>
                             </div>
                         </div>
