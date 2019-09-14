@@ -2,17 +2,17 @@ package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+@NamedQuery(
+        name = "Ingredient.findIngredientByName",
+        query = "SELECT i FROM Ingredient i WHERE i.name in :names")
+})
+
 @Entity
-@Table(name = "ingredient")
+@Table(name="ingredient", indexes = { @Index(name = "idx_name", columnList = "name") })
 public class Ingredient {
 
     @Id

@@ -2,20 +2,29 @@ package com.infoshareacademy.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
+@NamedQueries({
+        @NamedQuery(
+                name = "Recipe.getRecipiesList",
+                query = "SELECT r FROM Recipe r"),
+       /* @NamedQuery(
+                name = Recipe.GET_RECIPE_BY_CATEGORY,
+                  query = "SELECT r.name FROM Recipe r  WHERE r.category IN :categories"),*/
+//        query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE r.category IN :categories AND i.name IN :names"),
+        @NamedQuery(
+                name = Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT,
+                query = "SELECT r.name FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN (:names))"  )
+
+})
+
 public class Recipe {
+
+ /*public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";*/
+ public static final String GET_RECIPE_BY_CATEGORY_AND_INGREDENT = "Recipe.findRecipeByCategoryIdAndIngredientName";
 
   @Id
   @Column(name = "id")
