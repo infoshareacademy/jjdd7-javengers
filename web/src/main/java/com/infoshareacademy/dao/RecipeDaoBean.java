@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -51,9 +50,9 @@ public class RecipeDaoBean {
         Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
     }
-/*
 
-    public List<String> findRecipeByCategoryId(List<Long> ids) {
+
+    public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
         List<Category> categories = query.getResultList();
@@ -62,11 +61,10 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("categories", categories);
         return recipeQuery.getResultList();
     }
-*/
+
 
 
     public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
-
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
         List<Category> categories = query.getResultList();
@@ -76,16 +74,13 @@ public class RecipeDaoBean {
         long namesLength = (names).size();
         Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT);
         recipeQuery.setParameter("categories", categories);
-        recipeQuery.setParameter("ingredients",ingredients);
-        recipeQuery.setParameter("namesLength",namesLength);
+        recipeQuery.setParameter("ingredients", ingredients);
+        recipeQuery.setParameter("namesLength", namesLength);
         return recipeQuery.getResultList();
-
     }
 
-/*    public List<String> findRecipeByIngredientId(List<String> names) {
-        Query query = entityManager.createNamedQuery("Recipe.findRecipeByIngredientName");
-        query.setParameter("names", names);
-        return query.getResultList();
-    }*/
-
 }
+
+
+
+

@@ -30,7 +30,7 @@ public class FreemarkerTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
         PrintWriter writer = resp.getWriter();
 

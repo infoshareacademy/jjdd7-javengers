@@ -23,7 +23,7 @@ $('#input-name').keyup(function () {
     var substring = $(this).val();
     //wyslij request
     $.ajax({
-        url: '/drinks?nameChars=' + substring,
+        url: 'http://isa-proxy.blueazurit.com/cocktails/1/search.php?f=' + substring,
         type: 'GET',
         success: function(data) {
 

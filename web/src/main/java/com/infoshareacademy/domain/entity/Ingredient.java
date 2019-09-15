@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 })
 
 @Entity
-@Table(name="ingredient", indexes = { @Index(name = "idx_name", columnList = "name") })
+@Table(name="ingredient", indexes = { @Index(name = "ingredient_name", columnList = "name") })
 public class Ingredient {
 
     @Id
