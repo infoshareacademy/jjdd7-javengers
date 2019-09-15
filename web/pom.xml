@@ -13,7 +13,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>web</name>s
+  <name>web</name>
 
   <dependencies>
     <dependency>
