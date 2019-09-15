@@ -73,11 +73,11 @@ public class RecipeDaoBean {
         Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
         queryIngredient.setParameter("names", names);
         List<Ingredient> ingredients = queryIngredient.getResultList();
-
+        long namesLength = (names).size();
         Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT);
         recipeQuery.setParameter("categories", categories);
         recipeQuery.setParameter("ingredients",ingredients);
-
+        recipeQuery.setParameter("namesLength",namesLength);
         return recipeQuery.getResultList();
 
     }
