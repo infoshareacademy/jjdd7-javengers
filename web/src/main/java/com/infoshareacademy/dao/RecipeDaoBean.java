@@ -76,7 +76,7 @@ public class RecipeDaoBean {
 
         Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT);
         recipeQuery.setParameter("categories", categories);
-        recipeQuery.setParameter("names",names);
+        recipeQuery.setParameter("ingredients",ingredients);
 
         return recipeQuery.getResultList();
 
