@@ -1,6 +1,5 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 
 import javax.ejb.Stateless;
@@ -51,11 +50,22 @@ public class IngredientDaoBean {
         return (Ingredient) query.getSingleResult();
     }
 
-    public List<String > getIngredientsList() {
+    public List<String> getIngredientsList() {
         Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
         return query.getResultList();
     }
 
-
-
+    public String[] getIngredientsListName() {
+        Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
+        List<String> zdupuyLista = query.getResultList();
+        String[] tablica = new String[zdupuyLista.size()];
+        for (int i = 0; i < zdupuyLista.size(); i++) {
+            tablica[i] = zdupuyLista.get(i);
+        }
+        return tablica;
+    }
 }
+
+
+
+

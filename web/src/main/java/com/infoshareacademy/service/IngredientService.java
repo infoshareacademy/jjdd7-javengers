@@ -49,4 +49,8 @@ public class IngredientService {
     public List<String> getIngredientsList() {
         return ingredientDaoBean.getIngredientsList();
     }
+
+    public String[]  getIngredientsListName() {
+        return ingredientDaoBean.getIngredientsListName();
+    }
 }

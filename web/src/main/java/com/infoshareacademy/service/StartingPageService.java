@@ -32,7 +32,6 @@ public class StartingPageService {
         return (recipeList.size() + pageSize - 1) / pageSize;
     }
 
-
     public List<Recipe> getRecipeByFilterOption(String filterOption) {
         List<Recipe> result = new ArrayList<>();
         String allRecipies = "All Drinks";

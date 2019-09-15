@@ -12,12 +12,16 @@ import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -39,29 +43,33 @@ public class StartingPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        String[] allCheckedCategoriesList = categoryService.getCategoryIds();
+
 
         resp.setContentType("text/html;charset=UTF-8");
-        String pageNumber = Optional.ofNullable(req.getParameter("page")).orElse("1");
+        List<String> pageNumber = Arrays.asList(getParametersList(req, "page", new String[]{"1"}));
+        List<String> checkedCategoriesList = Arrays.asList(getParametersList(req, "categories[]", allCheckedCategoriesList));
+        List<String> checkedIngredientsList = Arrays.asList(getParametersList(req, "ingredients[]", new String[]{}));
 
-        List<String> checkedCategoriesList = Optional.ofNullable(Arrays.asList(req.getParameterValues("categories[]"))).orElse(Arrays.asList("-1"));
-        List<String> checkedIngredientsList = Optional.ofNullable(Arrays.asList(req.getParameterValues("ingredients[]"))).orElse(Arrays.asList("emptyString"));
-        List<String> checkedListOptions = Optional.ofNullable(Arrays.asList(req.getParameterValues("listOptions[]"))).orElse(Arrays.asList("emptyString"));
+        Integer pageNo = Integer.parseInt(pageNumber.get(0));
 
-        Integer pageNo = Integer.parseInt(pageNumber);
-        List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo,recipeService.getRecipiesList());
-    //    List<Recipe> allRecipesList = startingPageService.getRecipeByFilterOption(checkedListOptions.get(0));
+        List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo, recipeService.getRecipiesList());
+
         List<Category> categoriesList = categoryService.getCategoriesList();
 
         List<String> ingredientList = ingredientService.getIngredientsList();
+
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
+        List<Recipe> checkedCategoriesAndIngredients;
+        if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
+            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
+        } else {
+            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
+        }
 
-
-        //  List<String> checkedCategories = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
-        //  List<String> checkedIngredients = recipeService.findRecipeByIngredientId(checkedIngredientsList);
-        List<Recipe> checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
-        List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo,checkedCategoriesAndIngredients);
+        List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredients);
 
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredients);
@@ -72,27 +80,24 @@ public class StartingPageServlet extends HttpServlet {
             model.put("recipeListPerPage", recipeListPerPage);
             model.put("pageNumber", pageNo);
             model.put("lastPageNumber", lastPageNumber);
-
             model.put("categoryList", categoriesList);
             model.put("categoryListChecked", checkedCategoriesList);
-    //        model.put("allRecipesList", allRecipesList);
-
             model.put("ingredientList", ingredientList);
             model.put("ingredientListChecked", checkedIngredientsList);
-
-
-
-            model.put("checkedListOptions", checkedListOptions);
-
         }
-
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
             logger.severe(e.getMessage());
         }
+    }
 
-
+    public static String[] getParametersList(ServletRequest request, String paramName, String[] defaultValue) {
+        if (request.getParameterValues(paramName) != null) {
+            return request.getParameterValues(paramName);
+        } else {
+            return defaultValue;
+        }
     }
 
 }

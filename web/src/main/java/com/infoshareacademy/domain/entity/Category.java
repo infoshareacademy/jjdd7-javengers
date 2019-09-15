@@ -26,7 +26,12 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT c FROM Category c WHERE c.id in :ids"),
     @NamedQuery(
         name = "Category.getCategoryList",
-        query = "SELECT c FROM Category c")
+        query = "SELECT c FROM Category c"),
+
+        @NamedQuery(
+                name = "Category.getCategoryIds",
+                query = "SELECT c.id FROM Category c")
+
 })
 
 @Entity

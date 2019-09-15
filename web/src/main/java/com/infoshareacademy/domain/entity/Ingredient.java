@@ -8,14 +8,14 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 @NamedQuery(
         name = "Ingredient.findIngredientByName",
-        query = "SELECT i FROM Ingredient i WHERE i.name in :names"),
+        query = "SELECT distinct i.name FROM Ingredient i WHERE i.name in :names"),
         @NamedQuery(
                 name = "Ingredient.getIngredientList",
                 query = "SELECT distinct i.name FROM Ingredient i")
 })
 
 @Entity
-@Table(name="ingredient", indexes = { @Index(name = "idx_name", columnList = "name") })
+@Table(name="ingredient", indexes = { @Index(name = "ingredient_name", columnList = "name") })
 public class Ingredient {
 
     @Id

@@ -36,4 +36,8 @@ public class CategoryService {
     public Category findCategoryByName(String name) {
         return categoryDaoBean.findCategoryByName(name);
     }
+
+    public String[] getCategoryIds() {
+        return categoryDaoBean.getCategoryIds();
+    }
 }
