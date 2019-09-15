@@ -4,17 +4,16 @@ import com.infoshareacademy.dao.CategoryDaoBean;
 import com.infoshareacademy.domain.entity.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.List;
 
-@RequestScoped
+@Stateless
 public class CategoryService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @Inject
+    @EJB
     private CategoryDaoBean categoryDaoBean;
 
     public void save(Category category) {
@@ -34,10 +33,12 @@ public class CategoryService {
     }
 
     public Category findCategoryByName(String name) {
+        logger.info("ingredients with name contains " + name + " found in database");
         return categoryDaoBean.findCategoryByName(name);
     }
-
+    
     public String[] getCategoryIds() {
         return categoryDaoBean.getCategoryIds();
     }
+
 }

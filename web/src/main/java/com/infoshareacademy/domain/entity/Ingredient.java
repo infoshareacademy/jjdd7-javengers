@@ -1,21 +1,23 @@
 package com.infoshareacademy.domain.entity;
-
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
-@NamedQuery(
-        name = "Ingredient.findIngredientByName",
-        query = "SELECT distinct i.name FROM Ingredient i WHERE i.name in :names"),
+        @NamedQuery(
+                name = "Ingredient.findIngredientByLiveSearch",
+                query = "SELECT distinct i.name FROM Ingredient i WHERE i.name like :nameChars"),
+        @NamedQuery(
+                name = "Ingredient.findIngredientByName",
+                query = "SELECT distinct i.name FROM Ingredient i WHERE i.name in :names"),
         @NamedQuery(
                 name = "Ingredient.getIngredientList",
                 query = "SELECT distinct i.name FROM Ingredient i")
 })
 
 @Entity
-@Table(name="ingredient", indexes = { @Index(name = "ingredient_name", columnList = "name") })
+@Table(name = "ingredient", indexes = {@Index(name = "idx_name", columnList = "name")})
 public class Ingredient {
 
     @Id

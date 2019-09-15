@@ -1,7 +1,5 @@
 package com.infoshareacademy.dao;
-
 import com.infoshareacademy.domain.entity.Ingredient;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,17 +8,14 @@ import java.util.List;
 
 @Stateless
 public class IngredientDaoBean {
-
     @PersistenceContext
     EntityManager entityManager;
 
     public void loadIngredient(List<Ingredient> ingredients) {
-        for (Ingredient ingredient : ingredients
-        ) {
+        for (Ingredient ingredient : ingredients) {
             entityManager.persist(ingredient);
         }
     }
-
     public void addIngredient(Ingredient ingredient) {
         entityManager.persist(ingredient);
     }
@@ -43,29 +38,27 @@ public class IngredientDaoBean {
             entityManager.remove(ingredient);
         }
     }
-
     public Ingredient findIngredient(String name) {
-        Query query = entityManager.createNamedQuery("SELECT FROM Ingredient i WHERE i.name=:name");
+        Query query = entityManager.createNamedQuery("Ingredient.findIngredientByName");
         query.setParameter("name", name);
         return (Ingredient) query.getSingleResult();
     }
-
+    public List<String> findIngredientsByLiveSearch(String nameChars) {
+        Query query = entityManager.createNamedQuery("Ingredient.findIngredientByLiveSearch");
+        query.setParameter("nameChars", "%" + nameChars + "%");
+        return query.getResultList();
+    }
     public List<String> getIngredientsList() {
         Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
         return query.getResultList();
     }
-
     public String[] getIngredientsListName() {
         Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
-        List<String> zdupuyLista = query.getResultList();
-        String[] tablica = new String[zdupuyLista.size()];
-        for (int i = 0; i < zdupuyLista.size(); i++) {
-            tablica[i] = zdupuyLista.get(i);
+        List<String> allIngredientNameList = query.getResultList();
+        String[] ingredientArr = new String[allIngredientNameList.size()];
+        for (int i = 0; i < allIngredientNameList.size(); i++) {
+            ingredientArr[i] = allIngredientNameList.get(i);
         }
-        return tablica;
+        return ingredientArr;
     }
 }
-
-
-
-
