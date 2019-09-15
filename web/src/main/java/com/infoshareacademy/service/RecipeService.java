@@ -2,16 +2,17 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.RecipeDaoBean;
 import com.infoshareacademy.domain.entity.Recipe;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import java.util.List;
-
-@RequestScoped
+@Stateless
 public class RecipeService {
+
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @EJB
     private RecipeDaoBean recipeDaoBean;
 
@@ -47,14 +48,28 @@ public class RecipeService {
 
     public List<Recipe> getRecipiesList() {
         logger.info("Get recipies list");
+        /*return recipeDaoBean.getrecipieslist();*/
         return recipeDaoBean.getRecipiesList();
     }
-
     public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
         return recipeDaoBean.findRecipeByCategoryId(ids);
+    }
+    /*public List<String> findRecipeByCategoryId(List<Long> ids) {
+        return recipeDaoBean.findRecipeByCategoryId(ids);
+    }
+*/
+    public List<String> findRecipeByIngredientId(List<String> names) {
+        return recipeDaoBean.findRecipeByIngredientId(names);
+    }
+
+    public List<Recipe> findRecipeForLiveSearch(String nameChars) {
+        logger.info("recipes with name contains " + nameChars + " found in database");
+        return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
 
     public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
         return recipeDaoBean.findRecipeByCategoryIdAndIngredient(ids, names);
     }
+
+
 }

@@ -47,4 +47,6 @@ public class CategoryDaoBean {
         }
         return tablica;
     }
+
+
 }

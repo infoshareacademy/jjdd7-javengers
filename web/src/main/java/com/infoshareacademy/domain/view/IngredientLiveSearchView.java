@@ -1,6 +1,6 @@
-package com.infoshareacademy.dto;
+package com.infoshareacademy.domain.view;
 
-public class CategoryDto {
+public class IngredientLiveSearchView {
 
   private String name;
 

@@ -3,6 +3,17 @@ package com.infoshareacademy.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,8 +29,11 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(
                 name = Recipe.GET_RECIPE_BY_CATEGORY_AND_INGREDENT,
 
-                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC ")
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
 
+       @NamedQuery(
+        name = "Recipe.findRecipeByLiveSearch",
+        query = "SELECT r FROM Recipe as r WHERE r.name LIKE :nameChars"),
 })
 
 public class Recipe {
