@@ -1,8 +1,5 @@
 package com.infoshareacademy.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserDto {
 
   private Long id;
@@ -11,7 +8,6 @@ public class UserDto {
   private String userType;
   private String login;
   private String password;
-  private List<RecipeDto> recipes = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -59,13 +55,5 @@ public class UserDto {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public List<RecipeDto> getRecipes() {
-    return recipes;
-  }
-
-  public void setRecipes(List<RecipeDto> recipes) {
-    this.recipes = recipes;
   }
 }

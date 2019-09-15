@@ -1,22 +1,20 @@
 package com.infoshareacademy.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class RecipeDto {
 
   private Long id;
   private String name;
-  private Boolean isCustom;
-  private Boolean isApproved;
   private String instruction;
   private String drinkType;
   private String glassType;
   private String modificationDate;
   private CategoryDto category;
   private String imageUrlAddress;
-  private List<IngredientDto> ingredients = new ArrayList<>();
-  private List<UserDto> users = new ArrayList<>();
+  private Map<String, String> ingredients;
 
   public Long getId() {
     return id;
@@ -32,22 +30,6 @@ public class RecipeDto {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public Boolean getCustom() {
-    return isCustom;
-  }
-
-  public void setCustom(Boolean custom) {
-    isCustom = custom;
-  }
-
-  public Boolean getApproved() {
-    return isApproved;
-  }
-
-  public void setApproved(Boolean approved) {
-    isApproved = approved;
   }
 
   public String getInstruction() {
@@ -98,19 +80,11 @@ public class RecipeDto {
     this.imageUrlAddress = imageUrlAddress;
   }
 
-  public List<IngredientDto> getIngredients() {
+  public Map<String, String> getIngredients() {
     return ingredients;
   }
 
-  public void setIngredients(List<IngredientDto> ingredients) {
+  public void setIngredients(Map<String, String> ingredients) {
     this.ingredients = ingredients;
-  }
-
-  public List<UserDto> getUsers() {
-    return users;
-  }
-
-  public void setUsers(List<UserDto> users) {
-    this.users = users;
   }
 }

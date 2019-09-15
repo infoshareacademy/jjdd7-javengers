@@ -1,21 +1,9 @@
 package com.infoshareacademy.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class IngredientDto {
 
-  private Long id;
   private String name;
-  private List<RecipeDto> recipes = new ArrayList<>();
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
+  private String measure;
 
   public String getName() {
     return name;
@@ -25,11 +13,11 @@ public class IngredientDto {
     this.name = name;
   }
 
-  public List<RecipeDto> getRecipes() {
-    return recipes;
+  public String getMeasure() {
+    return measure;
   }
 
-  public void setRecipes(List<RecipeDto> recipes) {
-    this.recipes = recipes;
+  public void setMeasure(String measure) {
+    this.measure = measure;
   }
 }

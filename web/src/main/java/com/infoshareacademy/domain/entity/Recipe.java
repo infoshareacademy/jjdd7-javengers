@@ -10,13 +10,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
+@NamedQueries(value = {
+    @NamedQuery(
+        name = "Recipe.getRecipiesList",
+        query = "SELECT r FROM Recipe r"),
+    @NamedQuery(
+        name = Recipe.GET_RECIPE_BY_CATEGORY,
+        query = "SELECT r.name FROM Recipe r  WHERE r.category IN :categories"),
+    @NamedQuery(
+        name = "Recipe.findRecipeByIngredientName",
+        query = "SELECT r.name FROM Recipe r INNER JOIN Ingredient i ON r.id = i.id WHERE i.name IN :names"),
+    @NamedQuery(
+        name = "Recipe.findRecipeByLiveSearch",
+        query = "SELECT r FROM Recipe as r WHERE r.name LIKE :nameChars"),
+})
+
 public class Recipe {
 
+  public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";
+  
   @Id
   @Column(name = "id")
   private Long id;
