@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
 @Stateless
-@Transactional      //todo check it
 public class IngredientEntityToDtoMapper {
 
   public IngredientDto mapIngredientEntityToDto(Ingredient ingredient) {

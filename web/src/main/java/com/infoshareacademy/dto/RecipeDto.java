@@ -3,7 +3,6 @@ package com.infoshareacademy.dto;
 import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class RecipeDto {
 
   private Long id;

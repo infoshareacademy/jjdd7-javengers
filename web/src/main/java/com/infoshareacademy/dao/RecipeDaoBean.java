@@ -53,7 +53,7 @@ public class RecipeDaoBean {
         query.setParameter("ids", ids);
         List<Category> categories = query.getResultList();
 
-        Query recipeQuery = entityManager.createNamedQuery(Recipe.GET_RECIPE_BY_CATEGORY);
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategory");
         recipeQuery.setParameter("categories", categories);
         return recipeQuery.getResultList();
     }

@@ -1,19 +1,15 @@
 package com.infoshareacademy.mapper;
 
-import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.view.RecipeLiveSearchView;
 import com.infoshareacademy.dto.IngredientDto;
 import com.infoshareacademy.dto.RecipeDto;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.transaction.Transactional;
 
 @Stateless
-@Transactional      //todo check it
 public class RecipeEntityToDtoMapper {
 
   @EJB
@@ -34,13 +30,10 @@ public class RecipeEntityToDtoMapper {
     recipeDto.setInstruction(recipe.getInstruction());
     recipeDto.setModificationDate(recipe.getModificationDate());
     Map<String, String> ingredientDto = new HashMap<>();
-    List<Ingredient> entityIngredients = recipe.getIngredients();
-    for (Ingredient ing : entityIngredients
-    ) {
-      IngredientDto ingredient = ingredientEntityToDtoMapper
-          .mapIngredientEntityToDto(ing);
+    recipe.getIngredients().forEach(i -> {
+      IngredientDto ingredient = ingredientEntityToDtoMapper.mapIngredientEntityToDto(i);
       ingredientDto.put(ingredient.getName(), ingredient.getMeasure());
-    }
+    });
     recipeDto.setIngredients(ingredientDto);
     return recipeDto;
   }

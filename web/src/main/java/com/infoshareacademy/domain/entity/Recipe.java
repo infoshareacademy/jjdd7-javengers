@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
         name = "Recipe.getRecipiesList",
         query = "SELECT r FROM Recipe r"),
     @NamedQuery(
-        name = Recipe.GET_RECIPE_BY_CATEGORY,
+        name = "Recipe.findRecipeByCategory",
         query = "SELECT r.name FROM Recipe r  WHERE r.category IN :categories"),
     @NamedQuery(
         name = "Recipe.findRecipeByIngredientName",
@@ -33,8 +33,6 @@ import javax.validation.constraints.NotNull;
 })
 
 public class Recipe {
-
-  public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";
 
   @Id
   @Column(name = "id")

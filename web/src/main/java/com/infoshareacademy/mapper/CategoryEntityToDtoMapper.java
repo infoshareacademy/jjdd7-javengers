@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 @Stateless
 public class CategoryEntityToDtoMapper {
 
-  @Transactional      //todo check it
   public CategoryDto mapEntityToDto(Category category) {
 
     CategoryDto categoryDto = new CategoryDto();
