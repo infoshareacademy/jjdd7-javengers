@@ -36,13 +36,11 @@
         }
 
         #right {
-
             margin-top: 20%;
         }
+
         .container {
             color: white;
-            /*border: white;
-            border: solid;*/
         }
 
     </style>
@@ -77,9 +75,10 @@
             <li class="nav-item"><a class="col-md text-sm-center nav-link active" id="name-tab"
                                     data-target="#panel_a_name"
                                     data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
-                                    aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a></li>
+                                    aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a>
+            </li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                    href="/drinks"><h4><strong>Back to list</strong></h4></a></li>
+                                    href="/home"><h4><strong>Back to list</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -108,8 +107,8 @@
         <div class="col-sm-10">
 
             <div class="row ">
-                <div class="col-md-6"; style="margin:0px">
-                    <img src="https://www.thecocktaildb.com/images/media/drink/qyqtpv1468876144.jpg"
+                <div class="col-md-6" ; style="margin:0px">
+                    <img src="${responseRecipeId.imageUrl}"
                          style="max-width: 100%;" class="card-img" alt="...">
                 </div>
                 <div class="col-md-6">
@@ -118,48 +117,44 @@
                         <div class="row ">
                             <div class="col-md-6">
                                 <ul>
-                                    <li>Kahlua:</li>
-                                    <li>ailey's irish cream:</li>
-                                    <li>Frangelico:</li>
-                                    <li>ailey's irish cream:</li>
-                                    <li>Frangelico:</li>
+                                    <#list responseRecipeId.ingredients>
+                                        <#items as ingredient>
+                                            <li>${ingredient.name}:</li>
+                                        </#items>
+                                    </#list>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul>
-                                    <li>1/3 part</li>
-                                    <li>1/3 part</li>
-                                    <li>1/3 part</li>
-                                    <li>1/3 part</li>
-                                    <li>1/3 part</li>
+                                    <#list responseRecipeId.ingredients>
+                                        <#items as ingredient>
+                                            <li>${ingredient.measure}:</li>
+                                        </#items>
+                                    </#list>
                                 </ul>
                             </div>
                         </div>
                         <br/>
                         <h5 class="card-title">Instructions</h5>
-                        <p class="card-text">Fill a tall glass with ice. Layer the Finlandia Vodka, lemon and apple
-                            juices, Pisang Ambon, and top up with lemonade. Stir slightly and garnish with a spiralled
-                            cucumber skin and a red cherry. The cucumber provides zest and looks attractive. This drink,
-                            created by Timo Haimi, took first prize in the 1991 Finlandia Vodka Long Drink
-                            Competition."</p>
+                        <p class="card-text">${responseRecipeId.instruction}</p>
                         <br/>
                         <div class="row ">
                             <div class="col-md-4">
                                 <h5 class="card-title">Category</h5>
-                                <p class="card-text">Shot</p>
+                                <p class="card-text">${responseRecipeId.category.name}</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="card-title">strAlcoholic</h5>
-                                <p class="card-text">Alcoholic</p>
+                                <p class="card-text">${responseRecipeId.drinkType}</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="card-title">Glass</h5>
-                                <p class="card-text">Shot glass</p>
+                                <p class="card-text">${responseRecipeId.glassType}</p>
                             </div>
                         </div>
                         <br/>
                         <p class="card-text">
-                            <small class="text-muted">Date of modification: 2016-08-31 19:28:2</small>
+                            <small class="text-muted">Date of modification: ${responseRecipeId.modificationDate}</small>
                         </p>
                         <br/>
                     </div>

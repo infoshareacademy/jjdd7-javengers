@@ -5,6 +5,8 @@ import com.infoshareacademy.domain.entity.Recipe;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +37,7 @@ public class RecipeService {
         logger.info("Get recipe by name");
         return recipeDaoBean.getRecipeByName(name);
     }
-
+    @Transactional
     public Recipe getRecipeById(Long id) {
         logger.info("Get recipe by id");
         return recipeDaoBean.getRecipeById(id);
