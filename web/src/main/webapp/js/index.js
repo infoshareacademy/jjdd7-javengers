@@ -6,12 +6,18 @@ let selectedCategories = [];
 let selectedListOptions = [];
 let selectedIngredients = [];
 
+let listOfNames =[];
+
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
     message = $input.val();
     if (message.length === 0) {
         return false;
+    }
+    if(listOfNames.some(recipe=>recipe.name===$input.val())){
+        let recipeIDs = listOfNames.filter(recipe=>recipe.name===$input.val());
+        window.location = 'http://localhost:8080/recipe-view?recipeId=' + recipeIDs[0].id;
     }
     $input.val('');
     return false;
@@ -23,28 +29,21 @@ $('#input-name').keyup(function () {
     var substring = $(this).val();
     //wyslij request
     $.ajax({
-        url: 'http://isa-proxy.blueazurit.com/cocktails/1/search.php?f=' + substring,
+        url: '/api/recipes/nameChars/' + substring,
         type: 'GET',
         success: function(data) {
-
+            console.log(data);
             // MOCKED SERVER
-            var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
-
-                $("#input-name").autocomplete( {
-                        source: nameList,
+            //var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
+            listOfNames = data;
+            let result = data.map(r => r.name);
+            $("#input-name").autocomplete( {
+                source: result,
                 minLength: 3
             });
-
-            /*let filteredData = nameList.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
-            // HANDLING RETURN
-
-            console.log("parametr  nameChars sent: " + substring, data);
-            /*nameList = response;*/
         }
 
     });
-
-
 });
 
 
@@ -89,19 +88,6 @@ function makeIngredientListHtml(message) {
 }
 
 
-
-
-/* Skrypt do obslugi 2 zmieniajacych sie divow na stronie
-<script>
-$(document).on('click', '#navTab a', function () {
-    otherTabs = $(this).attr('data-secondary').split(',');
-    for (i = 0; i < otherTabs.length; i++) {
-        nav = $('<ul class="nav d-none" id="tmpNav"></ul>');
-        nav.append('<li class="nav-item"><a href="#" data-toggle="tab" data-target="' + otherTabs[i] + '">nav</a></li>"');
-        nav.find('a').tab('show');
-    }
-});
-</script>*/
 
 function checkFilters() {
 
