@@ -24,6 +24,7 @@ public class IngredientRestService {
   @Path("/nameChars/{nameChars}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getNotification(@PathParam("nameChars") String nameChars) {
+    logger.info("Ingredients with name contains " +nameChars + " was parsed to json successfully");
     return Response.ok().entity(apiIngredientService.getLiveSearchIngredient(nameChars)).build();
   }
 }

@@ -24,7 +24,7 @@ public class RecipeRestService {
   @Path("/nameChars/{nameChars}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getNotification(@PathParam("nameChars") String nameChars) {
-    logger.info("recipes with name contains " + nameChars + "were parsed to json" );
+    logger.info("recipes with name contains " + nameChars + "were parsed to json successfully" );
     return Response.ok().entity(apiRecipeService.getLiveSearchRecipe(nameChars)).build();
   }
 

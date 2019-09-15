@@ -14,8 +14,7 @@ public class IngredientDaoBean {
   EntityManager entityManager;
 
   public void loadIngredient(List<Ingredient> ingredients) {
-    for (Ingredient ingredient : ingredients
-    ) {
+    for (Ingredient ingredient : ingredients) {
       entityManager.persist(ingredient);
     }
   }

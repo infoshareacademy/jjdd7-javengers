@@ -35,7 +35,7 @@ import javax.validation.constraints.NotNull;
 public class Recipe {
 
   public static final String GET_RECIPE_BY_CATEGORY = "Recipe.findRecipeByCategory";
-  
+
   @Id
   @Column(name = "id")
   private Long id;

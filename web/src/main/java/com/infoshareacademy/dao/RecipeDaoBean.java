@@ -15,8 +15,7 @@ public class RecipeDaoBean {
     EntityManager entityManager;
 
     public void loadRecipe(List<Recipe> recipes) {
-        for (Recipe recipe : recipes
-        ) {
+        for (Recipe recipe : recipes) {
             entityManager.persist(recipe);
         }
     }
