@@ -128,7 +128,7 @@
                                 <ul>
                                     <#list responseRecipeId.ingredients>
                                         <#items as ingredient>
-                                            <li>${ingredient.measure}:</li>
+                                            <li>${ingredient.measure}</li>
                                         </#items>
                                     </#list>
                                 </ul>

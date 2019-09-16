@@ -7,7 +7,7 @@
             <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
                 <div class="col-sm-8" style="padding: 0px">
                     <#--podmienic link na ftlh -->
-                    <a href="/recipe-view?recipeId=${recipe.id}" class="list-group-item recipe-link" >
+                    <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
                         <div class="col-sm-3" style="padding: 0px">
                             <img src="${recipe.imageUrl}"
                                  style="max-width: 100%;" class="card-img" alt="...">
