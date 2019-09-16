@@ -61,7 +61,7 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByIngredientId(names);
     }
     public List<Recipe> findRecipeForLiveSearch(String nameChars) {
-        logger.info("recipes with name contains " + nameChars + " found in database");
+        logger.info("recipes with name contains {} found in database", nameChars);
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
 

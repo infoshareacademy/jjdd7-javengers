@@ -9,7 +9,7 @@
   <display-name>Drinkopedia Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>welcome.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
   <data-source>

@@ -5,6 +5,8 @@ import com.infoshareacademy.service.RecipeService;
 import freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
 import javax.transaction.Transactional;
 
 @Transactional
 @WebServlet("/recipe-view")
 public class SingleRecipeViewServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(StartingPageServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(StartingPageServlet.class.getName());
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -36,7 +38,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
@@ -45,7 +47,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }
