@@ -8,8 +8,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.infoshareacademy.domain.view.RecipeLiveSearchView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 @Path("/recipes")
 @Stateless
@@ -25,7 +29,13 @@ public class RecipeRestService {
   @Produces(MediaType.APPLICATION_JSON)
   public Response getNotification(@PathParam("nameChars") String nameChars) {
     logger.info("recipes with name contains " + nameChars + "were parsed to json successfully" );
-    return Response.ok().entity(apiRecipeService.getLiveSearchRecipe(nameChars)).build();
+    List<RecipeLiveSearchView> recipes = apiRecipeService.getLiveSearchRecipe(nameChars);
+    if (recipes.isEmpty()) {
+      logger.warn("Cannot find ingredients {} contains " + nameChars);
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    logger.info("Found ingredients {} contains " + nameChars);
+    return Response.ok().entity(recipes).build();
   }
 
   @GET

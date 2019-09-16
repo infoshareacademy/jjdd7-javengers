@@ -7,7 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
+@Transactional
 @Stateless
 public class RecipeDaoBean {
     @PersistenceContext
@@ -27,6 +29,8 @@ public class RecipeDaoBean {
     public Recipe getRecipeByName(String name) {
         return entityManager.find(Recipe.class, name);
     }
+
+    @Transactional
     public Recipe getRecipeById(Long id) {
         return entityManager.find(Recipe.class, id);
     }

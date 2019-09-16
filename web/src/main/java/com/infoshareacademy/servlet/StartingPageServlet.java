@@ -74,7 +74,7 @@ public class StartingPageServlet extends HttpServlet {
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredients);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
             model.put("recipeListPerPage", recipeListPerPage);

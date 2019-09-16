@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +40,7 @@ public class RecipeService {
         logger.info("Get recipe by name");
         return recipeDaoBean.getRecipeByName(name);
     }
+    @Transactional
     public Recipe getRecipeById(Long id) {
         logger.info("Get recipe by id");
         return recipeDaoBean.getRecipeById(id);
@@ -58,9 +61,10 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByIngredientId(names);
     }
     public List<Recipe> findRecipeForLiveSearch(String nameChars) {
-        logger.info("recipes with name contains " + nameChars + " found in database");
+        logger.info("recipes with name contains {} found in database", nameChars);
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
+
     public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
@@ -75,4 +79,6 @@ public class RecipeService {
         recipeQuery.setParameter("namesLength", namesLength);
         return recipeQuery.getResultList();
     }
+
+
 }

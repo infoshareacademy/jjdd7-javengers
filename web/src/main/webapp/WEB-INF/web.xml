@@ -8,6 +8,10 @@
   version="3.1">
   <display-name>Drinkopedia Web Application</display-name>
 
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
   <data-source>
     <name>java:ds/demoDS</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
