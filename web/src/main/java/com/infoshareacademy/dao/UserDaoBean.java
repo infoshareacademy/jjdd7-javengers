@@ -1,11 +1,12 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.User;
-import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class UserDaoBean {
@@ -31,12 +32,10 @@ public class UserDaoBean {
             entityManager.remove(recipe);
         }
     }
-
     public List<User> getUsersList() {
         Query query = entityManager.createNamedQuery("User.getUserList");
         return query.getResultList();
     }
-
     public User findUserByName(String name) {
         Query query = entityManager.createNamedQuery("User.findUserByName");
         query.setParameter("name", name);
