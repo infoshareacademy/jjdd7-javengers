@@ -4,6 +4,7 @@ import com.infoshareacademy.dao.IngredientDaoBean;
 import com.infoshareacademy.domain.entity.Ingredient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -18,10 +19,12 @@ public class IngredientService {
         ingredientDaoBean.loadIngredient(ingredients);
         logger.info("Recipe ingredients list has been loaded");
     }
+
     public void addIngredient(Ingredient ingredient) {
         ingredientDaoBean.addIngredient(ingredient);
         logger.info("Recipe ingredient has been saved");
     }
+
     public Ingredient editIngredient(Ingredient ingredient) {
         return ingredientDaoBean.editIngredient(ingredient);
     }
@@ -30,6 +33,7 @@ public class IngredientService {
         logger.info("Get recipe ingredient by name");
         return ingredientDaoBean.getIngredientByName(name);
     }
+
     public Ingredient getIngredientById(Long id) {
         return ingredientDaoBean.getIngredientById(id);
     }
@@ -44,9 +48,6 @@ public class IngredientService {
 
     public List<String> getIngredientsList() {
         return ingredientDaoBean.getIngredientsList();
-    }
-    public String[] getIngredientsListName() {
-        return ingredientDaoBean.getIngredientsListName();
     }
 
     public List<String> findIngredientsForLiveSearch(String nameChars) {

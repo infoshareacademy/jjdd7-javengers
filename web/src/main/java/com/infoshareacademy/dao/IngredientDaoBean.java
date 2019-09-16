@@ -12,10 +12,9 @@ public class IngredientDaoBean {
     EntityManager entityManager;
 
     public void loadIngredient(List<Ingredient> ingredients) {
-        for (Ingredient ingredient : ingredients) {
-            entityManager.persist(ingredient);
+        ingredients.stream().forEach(i->entityManager.persist(i));
         }
-    }
+
     public void addIngredient(Ingredient ingredient) {
         entityManager.persist(ingredient);
     }
@@ -51,14 +50,5 @@ public class IngredientDaoBean {
     public List<String> getIngredientsList() {
         Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
         return query.getResultList();
-    }
-    public String[] getIngredientsListName() {
-        Query query = entityManager.createNamedQuery("Ingredient.getIngredientList");
-        List<String> allIngredientNameList = query.getResultList();
-        String[] ingredientArr = new String[allIngredientNameList.size()];
-        for (int i = 0; i < allIngredientNameList.size(); i++) {
-            ingredientArr[i] = allIngredientNameList.get(i);
-        }
-        return ingredientArr;
     }
 }

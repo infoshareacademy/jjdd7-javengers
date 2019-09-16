@@ -39,12 +39,9 @@ public class CategoryDaoBean {
 
     public String[] getCategoryIds() {
         Query query = entityManager.createNamedQuery("Category.getCategoryIds");
-
-        List<Long> zdupuyLista = query.getResultList();
-        String[] tablica = new String[zdupuyLista.size()];
-        for (int i = 0; i < zdupuyLista.size(); i++) {
-            tablica[i] = zdupuyLista.get(i).toString();
-        }
-        return tablica;
+        List<Long> categoryIdList = query.getResultList();
+        return categoryIdList.stream().map(l -> l.toString()).toArray(String[]::new);
     }
+
 }
+
