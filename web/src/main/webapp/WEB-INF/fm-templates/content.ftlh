@@ -1,4 +1,4 @@
-<header class="card-header"><h4 class="title">Content</h4></header>
+
 
 
     <#list recipeListPerPage>
