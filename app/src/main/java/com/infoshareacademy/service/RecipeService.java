@@ -29,8 +29,7 @@ public class RecipeService {
     public void loadFavouritesList() {
         if (RecipeRepository.getFavouritesRecipeList().isEmpty()) {
             RecipeRepository.getFavouritesRecipeList().addAll((List<Recipe>) DataParseService.parseFile("favourites.json",
-                    new TypeReference<List<Recipe>>() {
-                    }, "drinks"));
+                    new TypeReference<List<Recipe>>() {}, "drinks"));
             RecipeRepository.getFavouritesRecipeList().stream().sorted(comparing(Recipe::getName)).collect(Collectors.toList());
             if (SORT_TYPE.equals("DESC")) {
                 RecipeRepository.getFavouritesRecipeList().sort(comparing(Recipe::getName, Comparator.reverseOrder()));

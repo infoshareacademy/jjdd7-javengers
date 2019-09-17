@@ -41,7 +41,8 @@ public class ConfigLoader {
 
     private void loadProperties() {
         try (InputStream input
-                     = new FileInputStream("./config.properties")) {
+                     = new FileInputStream("../config.properties")) {
+
 
             if (input == null) {
                 System.out.println("Sorry, unable to find config.properties");
