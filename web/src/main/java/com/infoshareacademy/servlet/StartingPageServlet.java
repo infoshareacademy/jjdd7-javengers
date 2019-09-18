@@ -51,6 +51,7 @@ public class StartingPageServlet extends HttpServlet {
         List<String> checkedCategoriesList = Arrays.asList(getParametersList(req, "categories[]", allCheckedCategoriesList));
         List<String> checkedIngredientsList = Arrays.asList(getParametersList(req, "ingredients[]", new String[]{}));
 
+        String active = req.getParameter("active");
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
 
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo, recipeService.getRecipiesList());
@@ -77,6 +78,7 @@ public class StartingPageServlet extends HttpServlet {
         Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
+            model.put("isActive", active);
             model.put("recipeListPerPage", recipeListPerPage);
             model.put("pageNumber", pageNo);
             model.put("lastPageNumber", lastPageNumber);

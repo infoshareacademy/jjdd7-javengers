@@ -10,13 +10,7 @@ let ingredientList = [];
 
 let paramActive;
 
-if ($('#name-tab').hasClass('active'))
-{
-    paramActive = 'name'
-else{
-    paramActive = 'ingredient'
-}
-}
+
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -26,7 +20,7 @@ $formName.on('submit', () => {
     }
     if (listOfNames.some(recipe => recipe.name === $input.val())) {
         let recipeIDs = listOfNames.filter(recipe => recipe.name === $input.val());
-        window.location = 'http://localhost:8080/recipe-view?recipeId=' + recipeIDs[0].id;
+        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id;
     }
     $input.val('');
     return false;
@@ -118,11 +112,13 @@ function checkFilters() {
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
+    whatIsActive()
 
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
-        ingredients: selectedIngredients
+        ingredients: selectedIngredients,
+        active: paramActive
     });
 
     /*do JSowych rozwiazan*/
@@ -134,7 +130,7 @@ function checkFilters() {
     })*/
 
     /* do przeladowania strony*/
-    window.location = 'http://localhost:8080/home?' + queryParams;
+    window.location = '/home?' + queryParams;
 }
 
 function listSelectedCategories() {
@@ -176,6 +172,15 @@ function listSelectedOptions() {
     }
 }
 
+function whatIsActive() {
+if ($('#name-tab').hasClass('active'))
+{
+    paramActive = 'name'}
+else{
+    paramActive = 'ingredient'
+
+}}
+
 
 $(".favorite").click(function () {
     var fired_button = $(this).val();
@@ -184,6 +189,7 @@ $(".favorite").click(function () {
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
+    whatIsActive()
 
     const queryParams = $.param({
         categories: selectedCategories,
@@ -201,5 +207,5 @@ $(".favorite").click(function () {
          }
      })*/
 
-    window.location = 'http://localhost:8080/home?' + queryParams;
+    window.location = '/home?' + queryParams;
 });

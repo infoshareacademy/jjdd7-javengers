@@ -97,8 +97,6 @@
     </div>
 </div>
 
-
-<#include "javascripts.ftlh">
 <script src="js/index.js"></script>
 
 </body>
