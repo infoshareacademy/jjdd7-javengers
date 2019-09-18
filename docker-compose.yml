@@ -1,0 +1,22 @@
+version: "2"
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass123
+      - MYSQL_DATABASE=javengersdb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 4361:3307
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+  wildfly:
+    build:
+      context: ./web
+    ports:
+      - 4362:9990
+      - 4360:8080
+    depends_on:
+      - db
+    links:
+      - db
