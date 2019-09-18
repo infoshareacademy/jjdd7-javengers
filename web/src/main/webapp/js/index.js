@@ -17,7 +17,7 @@ $formName.on('submit', () => {
     }
     if(listOfNames.some(recipe=>recipe.name===$input.val())){
         let recipeIDs = listOfNames.filter(recipe=>recipe.name===$input.val());
-        window.location = 'http://localhost:8080/recipe-view?recipeId=' + recipeIDs[0].id;
+        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id;
     }
     $input.val('');
     return false;
@@ -110,7 +110,7 @@ function checkFilters() {
     })*/
 
    /* do przeladowania strony*/
-    window.location = 'http://localhost:8080/home?' + queryParams;
+    window.location = '/home?' + queryParams;
 }
 
 function listSelectedCategories() {
@@ -178,5 +178,5 @@ $(".favorite").click(function() {
         }
     })*/
 
-    window.location = 'http://localhost:8080/home?' + queryParams;
+    window.location = '/home?' + queryParams;
 });
