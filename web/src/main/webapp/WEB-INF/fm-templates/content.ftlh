@@ -1,7 +1,3 @@
-<header class="card-header"><h4 class="title">Content</h4></header>
-
-
-
 <#list recipeListPerPage>
     <#items as recipe>
 
@@ -17,7 +13,6 @@
                             <#else>  <img src="http://placekitten.com/500/500"
                             </#if>
                             <img src="${recipe.imageUrl}"
-
 
                                  style="max-width: 100%;" class="card-img" alt="...">
                         </div>
