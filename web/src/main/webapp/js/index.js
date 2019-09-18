@@ -4,12 +4,13 @@ const $ingredientListButtons = $('#list-ingredient');
 let selectedCategories = [];
 let selectedListOptions = [];
 let selectedIngredients = [];
+let selectedTypes = [];
 
 let listOfNames = [];
 let ingredientList = [];
 
 let paramActive;
-
+let pU = window.location.href ;
 
 
 $formName.on('submit', () => {
@@ -20,7 +21,7 @@ $formName.on('submit', () => {
     }
     if (listOfNames.some(recipe => recipe.name === $input.val())) {
         let recipeIDs = listOfNames.filter(recipe => recipe.name === $input.val());
-        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id;
+        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id + '&pU=' + pU;
     }
     $input.val('');
     return false;
@@ -112,13 +113,16 @@ function checkFilters() {
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
-    whatIsActive()
+    listSelectedTypes();
+    whatIsActive();
 
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
         ingredients: selectedIngredients,
+        types: selectedTypes,
         active: paramActive
+        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
@@ -130,6 +134,7 @@ function checkFilters() {
     })*/
 
     /* do przeladowania strony*/
+   /* pu = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 }
 
@@ -172,14 +177,27 @@ function listSelectedOptions() {
     }
 }
 
-function whatIsActive() {
-if ($('#name-tab').hasClass('active'))
-{
-    paramActive = 'name'}
-else{
-    paramActive = 'ingredient'
+function listSelectedTypes() {
+    const types = $('.x-type');
+    if (types && types.length) {
+        selectedTypes = [];
+        types.each(function (i) {
+            const input = this;
+            if (input.checked) {
+                selectedTypes.push(input.value)
+            }
+        })
+    }
+}
 
-}}
+function whatIsActive() {
+    if ($('#name-tab').hasClass('active')) {
+        paramActive = 'name'
+    } else {
+        paramActive = 'ingredient'
+
+    }
+}
 
 
 $(".favorite").click(function () {
@@ -189,14 +207,17 @@ $(".favorite").click(function () {
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
-    whatIsActive()
+    listSelectedTypes();
+    whatIsActive();
 
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
         ingredients: selectedIngredients,
+        types: selectedTypes,
         page: fired_button,
         active: paramActive
+        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
@@ -206,6 +227,6 @@ $(".favorite").click(function () {
              'Content-Type': 'application/json'
          }
      })*/
-
+  /*  pU = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 });
