@@ -43,10 +43,7 @@
                 <a class="nav-link active" href="#">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">sign in</a>
+                <#include "login.ftlh">
             </li>
         </ul>
     </div>

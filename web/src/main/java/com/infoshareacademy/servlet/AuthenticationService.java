@@ -16,16 +16,16 @@ import org.slf4j.LoggerFactory;
 @WebServlet("/authentication")
 public class AuthenticationService extends HttpServlet {
 
+  private static final Logger logger = LoggerFactory
+      .getLogger(AuthenticationService.class.getName());
+
   @EJB
   private TokenVerifierService tokenVerifierService;
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
-    Logger logger = LoggerFactory.getLogger(getClass().getName());
-
-    resp.setContentType("text/html");
+    resp.setContentType("text/html;charset=UTF-8");
 
     try {
       String idToken = req.getParameter("idToken");
@@ -37,12 +37,12 @@ public class AuthenticationService extends HttpServlet {
       logger.info("User email: " + email);
 
       HttpSession session = req.getSession(true);
-      session.setAttribute("userName", name);
+      session.setAttribute("User email", email); //TODO take id and @ from database
       req.getServletContext()
-          .getRequestDispatcher("/index.html").forward(req, resp);
+          .getRequestDispatcher("/welcome").forward(req, resp);
 
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      logger.error(e.getMessage());
     }
   }
 }
