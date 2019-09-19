@@ -32,12 +32,10 @@ public class UserDaoBean {
             entityManager.remove(recipe);
         }
     }
-
     public List<User> getUsersList() {
         Query query = entityManager.createNamedQuery("User.getUserList");
         return query.getResultList();
     }
-
     public User findUserByName(String name) {
         Query query = entityManager.createNamedQuery("User.findUserByName");
         query.setParameter("name", name);

@@ -1,9 +1,8 @@
 package com.infoshareacademy.domain.entity;
-
-
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,27 +13,21 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
 
 @NamedQueries({
         @NamedQuery(
-        name = "Ingredient.findIngredientByLiveSearch",
-        query = "SELECT distinct i.name FROM Ingredient i WHERE i.name like :nameChars"),
-
-
-
-@NamedQuery(
-        name = "Ingredient.findIngredientByName",
-        query = "SELECT distinct i.name FROM Ingredient i WHERE i.name in :names"),
+                name = "Ingredient.findIngredientByLiveSearch",
+                query = "SELECT distinct i.name FROM Ingredient i WHERE i.name like :nameChars"),
+        @NamedQuery(
+                name = "Ingredient.findIngredientByName",
+                query = "SELECT distinct i.name FROM Ingredient i WHERE i.name in :names"),
         @NamedQuery(
                 name = "Ingredient.getIngredientList",
                 query = "SELECT distinct i.name FROM Ingredient i")
 })
 
 @Entity
-/*
-@Table(name="ingredient", indexes = { @Index(name = "ingredient_name", columnList = "name") })
-*/
 @Table(name = "ingredient", indexes = {@Index(name = "idx_name", columnList = "name")})
 public class Ingredient {
 

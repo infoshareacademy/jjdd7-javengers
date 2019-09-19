@@ -4,11 +4,9 @@ import com.infoshareacademy.dao.IngredientDaoBean;
 import com.infoshareacademy.domain.entity.Ingredient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
@@ -52,12 +50,8 @@ public class IngredientService {
         return ingredientDaoBean.getIngredientsList();
     }
 
-    public String[]  getIngredientsListName() {
-        return ingredientDaoBean.getIngredientsListName();
-    }
-
     public List<String> findIngredientsForLiveSearch(String nameChars) {
-        logger.info("ingredients with name contains " + nameChars +" found in database");
+        logger.info("ingredients with name contains " + nameChars + " found in database");
         return ingredientDaoBean.findIngredientsByLiveSearch(nameChars);
     }
 }

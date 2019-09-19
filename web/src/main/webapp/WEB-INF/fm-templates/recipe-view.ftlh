@@ -78,7 +78,12 @@
                                     aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a>
             </li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                    href="/home"><h4><strong>Back to list</strong></h4></a></li>
+                        <#if pU??>
+                                    href="${pU}"
+                        <#else >
+                                    href="/home">
+                        </#if>
+                    <h4><strong>Back to list</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -128,7 +133,7 @@
                                 <ul>
                                     <#list responseRecipeId.ingredients>
                                         <#items as ingredient>
-                                            <li>${ingredient.measure}:</li>
+                                            <li>${ingredient.measure}</li>
                                         </#items>
                                     </#list>
                                 </ul>
