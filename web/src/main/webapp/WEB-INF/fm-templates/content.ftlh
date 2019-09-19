@@ -1,19 +1,19 @@
-<#list recipeListPerPage>
-    <#items as recipe>
 
-        <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;">
-            <div class="col-sm-8" style="padding: 0px">
-                <#--podmienic link na ftlh -->
-                <#if pU??> <a href="/recipe-view?recipeId=${recipe.id?c}&pU=${pU}" class="list-group-item recipe-link">
-                    <#else> <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link">
-                        </#if>
+
+
+    <#list recipeListPerPage>
+        <#items as recipe>
+
+            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+                <div class="col-sm-8" style="padding: 0px">
+                    <#--podmienic link na ftlh -->
+                    <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
                         <div class="col-sm-3" style="padding: 0px">
                             <#if recipe.imageUrl??>
                                 <img src="${recipe.imageUrl}"
                             <#else>  <img src="http://placekitten.com/500/500"
                             </#if>
                             <img src="${recipe.imageUrl}"
-
                                  style="max-width: 100%;" class="card-img" alt="...">
                         </div>
                         <div class="col-sm-9" style="padding: 0px; padding-top:4% ">

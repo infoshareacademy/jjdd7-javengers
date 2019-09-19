@@ -1,5 +1,4 @@
 package com.infoshareacademy.domain.entity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
