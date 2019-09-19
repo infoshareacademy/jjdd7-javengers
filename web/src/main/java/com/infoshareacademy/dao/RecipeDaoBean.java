@@ -63,4 +63,9 @@ public class RecipeDaoBean {
         query.setParameter("nameChars", "%" + nameChars + "%");
         return query.getResultList();
     }
+
+    public List<String> getRecipeTypes(){
+        Query query = entityManager.createNamedQuery("Recipe.getRecipeTypes");
+        return query.getResultList();
+    }
 }

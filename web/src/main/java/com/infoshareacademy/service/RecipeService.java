@@ -80,5 +80,10 @@ public class RecipeService {
         return recipeQuery.getResultList();
     }
 
+    public List<String> getRecipeTypes(){
+        logger.info("Get recipe types");
+        return recipeDaoBean.getRecipeTypes();
+    }
+
 
 }

@@ -22,6 +22,12 @@ import java.util.List;
         @NamedQuery(
                 name = "Recipe.findRecipeByLiveSearch",
                 query = "SELECT r FROM Recipe as r WHERE r.name LIKE :nameChars"),
+
+        @NamedQuery(
+               name = "Recipe.getRecipeTypes",
+               query = "Select distinct r.drinkType from Recipe r"
+
+        )
 })
 
 public class Recipe {
