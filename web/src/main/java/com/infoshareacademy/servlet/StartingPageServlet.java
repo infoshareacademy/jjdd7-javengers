@@ -52,8 +52,6 @@ public class StartingPageServlet extends HttpServlet {
         List<String> checkedTypesList = Arrays.asList(getParametersList(req, "types[]", allCheckedTypesList));
         List<String> checkedIngredientsList = Arrays.asList(getParametersList(req, "ingredients[]", new String[]{}));
 
-
-
         String active = req.getParameter("active");
         String pU = req.getParameter("pU");
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
