@@ -1,4 +1,5 @@
 package com.infoshareacademy.domain.entity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -17,17 +18,21 @@ import java.util.List;
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryIdAndIngredientName",
 
-                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
 
         @NamedQuery(
                 name = "Recipe.findRecipeByLiveSearch",
                 query = "SELECT r FROM Recipe as r WHERE r.name LIKE :nameChars"),
 
         @NamedQuery(
-               name = "Recipe.getRecipeTypes",
-               query = "Select distinct r.drinkType from Recipe r"
-
-        )
+                name = "Recipe.getRecipeTypes",
+                query = "Select distinct r.drinkType from Recipe r"),
+        @NamedQuery(
+                name = "Type.findTypeByName",
+                query = "SELECT distinct r.drinkType FROM Recipe r WHERE r.drinkType in :types"),
+        @NamedQuery(
+                name = "Recipe.findRecipeByCategoryIdAndType",
+                query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC")
 })
 
 public class Recipe {

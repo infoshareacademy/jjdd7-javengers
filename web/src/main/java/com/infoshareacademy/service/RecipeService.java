@@ -65,18 +65,35 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
 
-    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
+    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names, List<String> types) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
         List<Category> categories = query.getResultList();
         Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
         queryIngredient.setParameter("names", names);
         List<Ingredient> ingredients = queryIngredient.getResultList();
+        Query queryType = entityManager.createNamedQuery("Type.findTypeByName");
+        queryType.setParameter("types", types);
+        List<String> drinkTypes = queryType.getResultList();
         long namesLength = (names).size();
         Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndIngredientName");
         recipeQuery.setParameter("categories", categories);
         recipeQuery.setParameter("ingredients", ingredients);
         recipeQuery.setParameter("namesLength", namesLength);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
+        return recipeQuery.getResultList();
+    }
+
+    public List<Recipe> findRecipeByCategoryIdAndType(List<Long> ids, List<String> types) {
+        Query query = entityManager.createNamedQuery("Category.findCategoryById");
+        query.setParameter("ids", ids);
+        List<Category> categories = query.getResultList();
+        Query queryType = entityManager.createNamedQuery("Type.findTypeByName");
+        queryType.setParameter("types", types);
+        List<String> drinkTypes = queryType.getResultList();
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndType");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
         return recipeQuery.getResultList();
     }
 

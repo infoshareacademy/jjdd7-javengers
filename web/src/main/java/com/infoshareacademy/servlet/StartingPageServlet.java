@@ -71,9 +71,9 @@ public class StartingPageServlet extends HttpServlet {
                 .collect(Collectors.toList());
         List<Recipe> checkedCategoriesAndIngredients;
         if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
-            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryId(paredToLongCategoriesList);
+            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndType(paredToLongCategoriesList, checkedTypesList);
         } else {
-            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList);
+            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
         }
 
         List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredients);
