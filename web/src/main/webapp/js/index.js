@@ -8,10 +8,7 @@ let selectedTypes = [];
 
 let listOfNames = [];
 let ingredientList = [];
-
 let paramActive;
-let pU = window.location.href ;
-
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -21,7 +18,7 @@ $formName.on('submit', () => {
     }
     if (listOfNames.some(recipe => recipe.name === $input.val())) {
         let recipeIDs = listOfNames.filter(recipe => recipe.name === $input.val());
-        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id + '&pU=' + pU;
+        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id;
     }
     $input.val('');
     return false;
@@ -40,7 +37,7 @@ $('#input-name').keyup(function () {
             let result = data.map(r => r.name);
             $("#input-name").autocomplete({
                 source: result,
-                minLength: 3
+                /*minLength: 3*/
             });
         }
 
@@ -84,7 +81,7 @@ $('#input-ingredient').keyup(function () {
             let result = dataIngredient.map(r => r.name);
             $("#input-ingredient").autocomplete({
                 source: result,
-                minLength: 3
+                /*minLength: 3*/
             });
         }
 
@@ -122,7 +119,6 @@ function checkFilters() {
         ingredients: selectedIngredients,
         types: selectedTypes,
         active: paramActive
-        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
@@ -134,7 +130,6 @@ function checkFilters() {
     })*/
 
     /* do przeladowania strony*/
-   /* pu = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 }
 
@@ -217,7 +212,6 @@ $(".favorite").click(function () {
         types: selectedTypes,
         page: fired_button,
         active: paramActive
-        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
@@ -227,6 +221,5 @@ $(".favorite").click(function () {
              'Content-Type': 'application/json'
          }
      })*/
-  /*  pU = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 });

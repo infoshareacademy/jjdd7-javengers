@@ -33,11 +33,13 @@ public class SingleRecipeViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-
-        String pU = req.getParameter("pU");
+        String pU =  req.getHeader("referer");
+       /* String pU = req.getParameter("pU");*/
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
+
+
 
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
