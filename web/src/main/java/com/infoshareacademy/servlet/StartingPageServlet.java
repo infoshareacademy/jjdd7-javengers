@@ -50,8 +50,10 @@ public class StartingPageServlet extends HttpServlet {
         List<String> pageNumber = Arrays.asList(getParametersList(req, "page", new String[]{"1"}));
         List<String> checkedCategoriesList = Arrays.asList(getParametersList(req, "categories[]", allCheckedCategoriesList));
         List<String> checkedIngredientsList = Arrays.asList(getParametersList(req, "ingredients[]", new String[]{}));
-
+        List<String> checkedOptionList = Arrays.asList(getParametersList(req,"listOption[]]",allCheckedCategoriesList));
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
+
+
 
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo, recipeService.getRecipiesList());
 
