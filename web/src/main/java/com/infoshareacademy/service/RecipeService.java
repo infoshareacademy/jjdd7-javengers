@@ -65,7 +65,7 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
 
-    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names, List<String> types) {
+    public List<Recipe> findRecipeByCategoryIdAndIngredientAndType(List<Long> ids, List<String> names, List<String> types) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
         List<Category> categories = query.getResultList();

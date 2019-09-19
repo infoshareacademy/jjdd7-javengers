@@ -69,21 +69,21 @@ public class StartingPageServlet extends HttpServlet {
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
-        List<Recipe> checkedCategoriesAndIngredients;
+        List<Recipe> checkedCategoriesAndIngredientsAndTypes;
         if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
-            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndType(paredToLongCategoriesList, checkedTypesList);
+            checkedCategoriesAndIngredientsAndTypes = recipeService.findRecipeByCategoryIdAndType(paredToLongCategoriesList, checkedTypesList);
         } else {
-            checkedCategoriesAndIngredients = recipeService.findRecipeByCategoryIdAndIngredient(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+            checkedCategoriesAndIngredientsAndTypes = recipeService.findRecipeByCategoryIdAndIngredientAndType(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
         }
 
-        List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredients);
+        List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredientsAndTypes);
 
 
-        Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredients);
+        Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
 
         Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
-        if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
+        if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredientsAndTypes != null || checkedCategoriesAndIngredientsAndTypes.isEmpty()) {
             model.put("isActive", active);
             model.put("recipeListPerPage", recipeListPerPage);
             model.put("pageNumber", pageNo);
