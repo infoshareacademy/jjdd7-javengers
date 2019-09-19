@@ -34,6 +34,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
+        String pU = req.getParameter("pU");
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
@@ -42,6 +43,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
+            model.put("pU", pU);
         }
 
         try {

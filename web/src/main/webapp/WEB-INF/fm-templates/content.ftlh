@@ -1,15 +1,19 @@
-<header class="card-header"><h4 class="title">Content</h4></header>
+<#list recipeListPerPage>
+    <#items as recipe>
 
-
-    <#list recipeListPerPage>
-        <#items as recipe>
-
-            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
-                <div class="col-sm-8" style="padding: 0px">
-                    <#--podmienic link na ftlh -->
-                    <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
+        <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;">
+            <div class="col-sm-8" style="padding: 0px">
+                <#--podmienic link na ftlh -->
+                <#if pU??> <a href="/recipe-view?recipeId=${recipe.id?c}&pU=${pU}" class="list-group-item recipe-link">
+                    <#else> <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link">
+                        </#if>
                         <div class="col-sm-3" style="padding: 0px">
+                            <#if recipe.imageUrl??>
+                                <img src="${recipe.imageUrl}"
+                            <#else>  <img src="http://placekitten.com/500/500"
+                            </#if>
                             <img src="${recipe.imageUrl}"
+
                                  style="max-width: 100%;" class="card-img" alt="...">
                         </div>
                         <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
@@ -20,16 +24,16 @@
                             </div>
                         </div>
                     </a>
-                </div>
-                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
-                    </button>
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
-                </div>
             </div>
-        </#items>
-    </#list>
+            <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                </button>
+                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+            </div>
+        </div>
+    </#items>
+</#list>
 
 
 <div class="row paginator">
@@ -63,7 +67,8 @@
     </div>
     <div class="col-sm-3 paginator">
         <button class="favorite btn btn-primary btn-sm" type="button"
-                <#if (lastPageNumber-1) gte pageNumber> value="${pageNumber+1}" <#else> value="${lastPageNumber}" </#if>> &rightarrow;
+                <#if (lastPageNumber-1) gte pageNumber> value="${pageNumber+1}" <#else> value="${lastPageNumber}" </#if>>
+            &rightarrow;
         </button>
         <button class="favorite btn btn-primary btn-sm" type="button" value="${lastPageNumber}">Last(${lastPageNumber})
         </button>

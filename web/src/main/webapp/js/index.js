@@ -1,12 +1,16 @@
-
 const $formName = $('#form-name');
 const $formIngredient = $('#form-ingredient');
 const $ingredientListButtons = $('#list-ingredient');
 let selectedCategories = [];
 let selectedListOptions = [];
 let selectedIngredients = [];
+let selectedTypes = [];
 
-let listOfNames =[];
+let listOfNames = [];
+let ingredientList = [];
+
+let paramActive;
+let pU = window.location.href ;
 
 
 $formName.on('submit', () => {
@@ -15,29 +19,26 @@ $formName.on('submit', () => {
     if (message.length === 0) {
         return false;
     }
-    if(listOfNames.some(recipe=>recipe.name===$input.val())){
-        let recipeIDs = listOfNames.filter(recipe=>recipe.name===$input.val());
-        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id;
+    if (listOfNames.some(recipe => recipe.name === $input.val())) {
+        let recipeIDs = listOfNames.filter(recipe => recipe.name === $input.val());
+        window.location = '/recipe-view?recipeId=' + recipeIDs[0].id + '&pU=' + pU;
     }
     $input.val('');
     return false;
 });
 
-
 $('#input-name').keyup(function () {
-    if( this.value.length < 3 ) return;
+    if (this.value.length < 3) return;
     var substring = $(this).val();
     //wyslij request
     $.ajax({
         url: '/api/recipes/nameChars/' + substring,
         type: 'GET',
-        success: function(data) {
+        success: function (data) {
             console.log(data);
-            // MOCKED SERVER
-            //var nameList= ['mojito', 'Huricane', 'Sex on the beach', 'Mai Tai', 'Cuba Libre', 'caipirinha', 'caipiroshca'];
             listOfNames = data;
             let result = data.map(r => r.name);
-            $("#input-name").autocomplete( {
+            $("#input-name").autocomplete({
                 source: result,
                 minLength: 3
             });
@@ -70,6 +71,25 @@ $formIngredient.on('submit', () => {
     return false;
 });
 
+$('#input-ingredient').keyup(function () {
+    if (this.value.length < 3) return;
+    var substring = $(this).val();
+    //wyslij request
+    $.ajax({
+        url: '/api/ingredients/nameChars/' + substring,
+        type: 'GET',
+        success: function (dataIngredient) {
+            console.log(dataIngredient);
+            ingredientList = dataIngredient.map(r => r.name);
+            let result = dataIngredient.map(r => r.name);
+            $("#input-ingredient").autocomplete({
+                source: result,
+                minLength: 3
+            });
+        }
+
+    });
+});
 
 $(document).on('click', '#list-ingredient label', function (event) {
     const element = $(event.target).parents('.form-group');
@@ -88,17 +108,21 @@ function makeIngredientListHtml(message) {
 }
 
 
-
 function checkFilters() {
 
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
+    listSelectedTypes();
+    whatIsActive();
 
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
-        ingredients: selectedIngredients
+        ingredients: selectedIngredients,
+        types: selectedTypes,
+        active: paramActive
+        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
@@ -109,7 +133,8 @@ function checkFilters() {
         }
     })*/
 
-   /* do przeladowania strony*/
+    /* do przeladowania strony*/
+   /* pu = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 }
 
@@ -152,31 +177,56 @@ function listSelectedOptions() {
     }
 }
 
+function listSelectedTypes() {
+    const types = $('.x-type');
+    if (types && types.length) {
+        selectedTypes = [];
+        types.each(function (i) {
+            const input = this;
+            if (input.checked) {
+                selectedTypes.push(input.value)
+            }
+        })
+    }
+}
+
+function whatIsActive() {
+    if ($('#name-tab').hasClass('active')) {
+        paramActive = 'name'
+    } else {
+        paramActive = 'ingredient'
+
+    }
+}
 
 
-
-$(".favorite").click(function() {
+$(".favorite").click(function () {
     var fired_button = $(this).val();
     console.log(fired_button);
 
     listSelectedCategories();
     listSelectedOptions();
     listSelectedIngredients();
+    listSelectedTypes();
+    whatIsActive();
 
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
         ingredients: selectedIngredients,
-        page: fired_button
+        types: selectedTypes,
+        page: fired_button,
+        active: paramActive
+        //pU: pU
     });
 
     /*do JSowych rozwiazan*/
 
-   /* fetch('http://localhost:8080/home?' + queryParams, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })*/
-
+    /* fetch('http://localhost:8080/home?' + queryParams, {
+         headers: {
+             'Content-Type': 'application/json'
+         }
+     })*/
+  /*  pU = '/home?' + queryParams;*/
     window.location = '/home?' + queryParams;
 });
