@@ -76,21 +76,6 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
     }
 
-    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
-        Query query = entityManager.createNamedQuery("Category.findCategoryById");
-        query.setParameter("ids", ids);
-        List<Category> categories = query.getResultList();
-        Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
-        queryIngredient.setParameter("names", names);
-        List<Ingredient> ingredients = queryIngredient.getResultList();
-        long namesLength = (names).size();
-        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndIngredientName");
-        recipeQuery.setParameter("categories", categories);
-        recipeQuery.setParameter("ingredients", ingredients);
-        recipeQuery.setParameter("namesLength", namesLength);
-        return recipeQuery.getResultList();
-    }
-
     public List<Recipe> getFavouritesRecipeList(Long recipeId) {
         List<Recipe> favouritesRecipeList = new ArrayList<>();
         Recipe favouriteRecipe = getRecipeById(recipeId);
@@ -98,8 +83,13 @@ public class RecipeService {
             favouritesRecipeList.remove(favouriteRecipe);
         } else {
             favouritesRecipeList.add(favouriteRecipe);
-
         }
         return favouritesRecipeList;
     }
+
+    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
+        return recipeDaoBean.findRecipeByCategoryIdAndIngredient(ids, names);
+    }
+
+
 }

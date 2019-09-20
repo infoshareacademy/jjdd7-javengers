@@ -11,6 +11,9 @@ import java.util.List;
                 name = "Recipe.getRecipiesList",
                 query = "SELECT r FROM Recipe r"),
         @NamedQuery(
+                name = "Recipe.getFavouritesListById",
+                query = "SELECT r FROM Recipe r WHERE r.id IN :favourites"),
+        @NamedQuery(
                 name = "Recipe.findRecipeByCategory",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories ORDER BY r.name ASC"),
 
@@ -18,6 +21,12 @@ import java.util.List;
                 name = "Recipe.findRecipeByCategoryIdAndIngredientName",
 
                 query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND  (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+
+        @NamedQuery(
+                name = "Recipe.findRecipeByCategoryAndIngredientAndFavourites",
+
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND (r.id IN :favourites) AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+
 
         @NamedQuery(
                 name = "Recipe.findRecipeByLiveSearch",

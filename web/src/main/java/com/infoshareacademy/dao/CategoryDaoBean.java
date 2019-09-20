@@ -43,4 +43,9 @@ public class CategoryDaoBean {
         return categoryIdList.stream().map(l -> l.toString()).toArray(String[]::new);
     }
 
+    public List<Category> getCategoriesById(List<Long> ids) {
+        Query query = entityManager.createNamedQuery("Category.findCategoryById");
+        query.setParameter("ids", ids);
+        return query.getResultList();
+    }
 }

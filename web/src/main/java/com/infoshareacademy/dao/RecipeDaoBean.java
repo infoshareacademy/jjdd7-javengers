@@ -2,6 +2,8 @@ package com.infoshareacademy.dao;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -62,5 +64,38 @@ public class RecipeDaoBean {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByLiveSearch");
         query.setParameter("nameChars", "%" + nameChars + "%");
         return query.getResultList();
+    }
+
+    public List<Recipe> findRecipeByCategoryIdAndIngredient(List<Long> ids, List<String> names) {
+        Query query = entityManager.createNamedQuery("Category.findCategoryById");
+        query.setParameter("ids", ids);
+        List<Category> categories = query.getResultList();
+        Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
+        queryIngredient.setParameter("names", names);
+        List<Ingredient> ingredients = queryIngredient.getResultList();
+        long namesLength = (names).size();
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndIngredientName");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("ingredients", ingredients);
+        recipeQuery.setParameter("namesLength", namesLength);
+        return recipeQuery.getResultList();
+    }
+
+
+
+    public List<Recipe> findRecipeFiltetredByAll(List<Long> categories, List<String> ingredients, List<String> type, Long favourites, long namesLength) {
+        Query recipeQuery = null;
+        if(type.contains("All Drinks") && favourites !=null){
+            recipeQuery = entityManager.createNamedQuery("Recipe.findFavouriteByCategoryAndIngredientAndType");
+        }
+        else{
+            recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryAndIngredientAndType");
+        }
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("ingredients", ingredients);
+        recipeQuery.setParameter("namesLength", namesLength);
+        recipeQuery.setParameter("favouritesList",favourites);
+        recipeQuery.setParameter("type",type);
+        return recipeQuery.getResultList();
     }
 }
