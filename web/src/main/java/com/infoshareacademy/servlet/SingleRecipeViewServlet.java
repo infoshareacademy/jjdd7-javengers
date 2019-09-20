@@ -33,7 +33,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-
+        String pU =  req.getHeader("referer");
+       /* String pU = req.getParameter("pU");*/
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
@@ -43,6 +44,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("pU", pU);
         }
 
         try {

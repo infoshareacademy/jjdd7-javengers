@@ -35,7 +35,7 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
     String name = info.getName();
     String email = info.getEmail();
     logger.info("Authentication success of user: " + name);
-    req.getSession().setAttribute("Username", name);
+    req.getSession().setAttribute("username", name);
     req.getSession().setAttribute("email", email);
     resp.sendRedirect("/home");
   }

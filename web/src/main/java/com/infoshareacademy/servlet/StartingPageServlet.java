@@ -44,13 +44,16 @@ public class StartingPageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String[] allCheckedCategoriesList = categoryService.getCategoryIds();
-
+        String[] allCheckedTypesList = {"Alcoholic", "non-Alcoholic", "Optional"};
 
         resp.setContentType("text/html;charset=UTF-8");
         List<String> pageNumber = Arrays.asList(getParametersList(req, "page", new String[]{"1"}));
         List<String> checkedCategoriesList = Arrays.asList(getParametersList(req, "categories[]", allCheckedCategoriesList));
+        List<String> checkedTypesList = Arrays.asList(getParametersList(req, "types[]", allCheckedTypesList));
         List<String> checkedIngredientsList = Arrays.asList(getParametersList(req, "ingredients[]", new String[]{}));
 
+        String active = req.getParameter("active");
+        String pU = req.getParameter("pU");
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
 
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo, recipeService.getRecipiesList());
@@ -78,6 +81,8 @@ public class StartingPageServlet extends HttpServlet {
         Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredients != null || checkedCategoriesAndIngredients.isEmpty()) {
+            model.put("pU", pU);
+            model.put("isActive", active);
             model.put("recipeListPerPage", recipeListPerPage);
             model.put("pageNumber", pageNo);
             model.put("lastPageNumber", lastPageNumber);
@@ -86,6 +91,7 @@ public class StartingPageServlet extends HttpServlet {
             model.put("ingredientList", ingredientList);
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("typeListChecked", checkedTypesList);
         }
         try {
             template.process(model, resp.getWriter());
