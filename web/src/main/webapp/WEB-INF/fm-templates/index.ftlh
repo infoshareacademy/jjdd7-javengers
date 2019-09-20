@@ -75,9 +75,7 @@
             <br/>
             <img class="rounded" src="/img/kwachuMeme.jpeg" alt="kwachu" style="width: 100%">
             <br/>
-            <br/>
             <img class="rounded" src="/img/bondMeme.jpg" alt="bond" style="width: 100%">
-
         </div>
 
         <div class="card col-sm-7">
@@ -93,8 +91,8 @@
             <div class="card" style="padding-left: 55%; margin: 5%">
                 <br/>
                 <h4 class="title" style="text-align: left;"> by javengers</h4>
-                <p style="text-align: left; font-size: larger; padding-top: 10%">
-                    Daria Lubobska <br/>
+                <p style="text-align: left; font-size: larger; padding-top: 9%">
+                    Daria Lubomska <br/>
                     Klaudia Zarychta <br/>
                     Andrzej Szypulski <br/>
                 </p>

@@ -113,8 +113,12 @@
 
             <div class="row ">
                 <div class="col-md-6" ; style="margin:0px">
-                    <img src="${responseRecipeId.imageUrl}"
-                         style="max-width: 100%;" class="card-img" alt="...">
+                    <#if responseRecipeId.imageUrl??>
+                        <img src="${responseRecipeId.imageUrl}" style="max-width: 100%;" class="card-img" alt="...">
+                    <#else>
+                        <img src="http://placekitten.com/g/700/700" style="max-width: 100%;" class="card-img"
+                             alt="...">
+                    </#if>
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">

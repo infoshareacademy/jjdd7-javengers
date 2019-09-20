@@ -54,4 +54,12 @@ public class IngredientService {
         logger.info("ingredients with name contains " + nameChars + " found in database");
         return ingredientDaoBean.findIngredientsByLiveSearch(nameChars);
     }
+
+    public List<String> findIngredientsByLiveSearch(String nameChars) {
+        return ingredientDaoBean.findIngredientsByLiveSearch(nameChars);
+    }
+
+    public List<Ingredient> getIngredientsByName(List<String> names) {
+        return ingredientDaoBean.getIngredientsByName(names);
+    }
 }
