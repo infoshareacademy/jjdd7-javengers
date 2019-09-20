@@ -43,8 +43,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
-            model.put("email", req.getSession().getAttribute("email"));
             model.put("pU", pU);
+            model.put("email", req.getSession().getAttribute("email"));
         }
 
         try {

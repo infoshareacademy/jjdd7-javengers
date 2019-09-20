@@ -2,11 +2,12 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.CategoryDaoBean;
 import com.infoshareacademy.domain.entity.Category;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class CategoryService {
@@ -41,4 +42,7 @@ public class CategoryService {
         return categoryDaoBean.getCategoryIds();
     }
 
+    public List<Category> getCategoriesById(List<Long> ids) {
+        return categoryDaoBean.getCategoriesById(ids);
+    }
 }
