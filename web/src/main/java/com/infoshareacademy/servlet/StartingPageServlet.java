@@ -45,7 +45,7 @@ public class StartingPageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String[] allCheckedCategoriesList = categoryService.getCategoryIds();
-        //zahardcodowana ilosc roznych typow drinkow
+        
         String[] allCheckedTypesList = recipeService.getRecipeTypes().toArray(new String[recipeService.getRecipeTypes().size()]);
 
         resp.setContentType("text/html;charset=UTF-8");
