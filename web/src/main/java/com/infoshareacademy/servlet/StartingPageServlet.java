@@ -3,10 +3,7 @@ package com.infoshareacademy.servlet;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.CategoryService;
-import com.infoshareacademy.service.IngredientService;
-import com.infoshareacademy.service.RecipeService;
-import com.infoshareacademy.service.StartingPageService;
+import com.infoshareacademy.service.*;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -36,6 +33,9 @@ public class StartingPageServlet extends HttpServlet {
     private RecipeService recipeService;
     @Inject
     private IngredientService ingredientService;
+
+    @Inject
+    private FilteringService filteringService;
 
     @Inject
     TemplateProvider templateProvider;
@@ -71,9 +71,9 @@ public class StartingPageServlet extends HttpServlet {
                 .collect(Collectors.toList());
         List<Recipe> checkedCategoriesAndIngredientsAndTypes;
         if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
-            checkedCategoriesAndIngredientsAndTypes = recipeService.findRecipeByCategoryIdAndType(paredToLongCategoriesList, checkedTypesList);
+            checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
         } else {
-            checkedCategoriesAndIngredientsAndTypes = recipeService.findRecipeByCategoryIdAndIngredientAndType(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+            checkedCategoriesAndIngredientsAndTypes = filteringService.getAllFiltersQuery(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
         }
 
         List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredientsAndTypes);
