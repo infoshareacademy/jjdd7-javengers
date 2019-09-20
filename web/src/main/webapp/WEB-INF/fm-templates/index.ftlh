@@ -36,16 +36,7 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Main</a>
-            </li>
-            <li class="nav-item">
-                <#include "login.ftlh">
-            </li>
-        </ul>
-    </div>
+    <#include "navbar.ftlh">
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>

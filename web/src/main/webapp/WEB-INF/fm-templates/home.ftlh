@@ -26,18 +26,10 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Main</a>
-            <li class="nav-item">
-                <#include "login.ftlh">
-            </li>
-            </li>
-        </ul>
-    </div>
+    <div class="jumbotron jumbotron-fluid ">
+        <#include "navbar.ftlh">
 
-    <div class="container">
+        <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>

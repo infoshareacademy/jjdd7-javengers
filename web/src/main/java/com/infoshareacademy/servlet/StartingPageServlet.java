@@ -73,6 +73,7 @@ public class StartingPageServlet extends HttpServlet {
 
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredients);
+        req.getSession().getAttribute("email");
 
         Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
@@ -84,6 +85,7 @@ public class StartingPageServlet extends HttpServlet {
             model.put("categoryListChecked", checkedCategoriesList);
             model.put("ingredientList", ingredientList);
             model.put("ingredientListChecked", checkedIngredientsList);
+            model.put("email", req.getSession().getAttribute("email"));
         }
         try {
             template.process(model, resp.getWriter());

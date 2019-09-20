@@ -20,21 +20,21 @@ import org.slf4j.LoggerFactory;
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(StartingPageServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(WelcomeServlet.class.getName());
 
     @Inject
     private TemplateProvider templateProvider;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) //why doGet not works?
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         Map<String, Object> model = new HashMap<>();
         try {
             template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
             logger.error(e.getMessage());
         }
     }

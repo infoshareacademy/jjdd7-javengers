@@ -1,30 +1,11 @@
-<#if UserEmail??>
-  <a href="#" onclick="signOut();">Sign out</a>
+<#if email??>
+  <li class="nav-item">
+    <a class="nav-link " href="#" onclick="window.location.href = '/logout';" >Log out</a>
+  </li>
+
 <#else>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <li class="nav-item">
+    <a class="nav-link " href="#"  onclick="window.location.href = '/login';" >Log in</a>
+  </li>
 </#if>
 
-<script>
-  function onSignIn(googleUser) {
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/login');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function () {
-      console.log('Signed in as: ' + xhr.responseText);
-      window.location.replace("/home")
-    };
-    xhr.send("idToken=" + id_token);
-
-  }
-
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-    window.location.href = '/logout';
-
-  }
-</script>
