@@ -2,9 +2,7 @@ package com.infoshareacademy.servlet;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.infoshareacademy.service.TokenVerifierService;
-import java.io.IOException;
 import javax.ejb.EJB;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/authentication")
-public class AuthenticationService extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 
   private static final Logger logger = LoggerFactory
-      .getLogger(AuthenticationService.class.getName());
+      .getLogger(LoginServlet.class.getName());
 
   @EJB
   private TokenVerifierService tokenVerifierService;
@@ -37,9 +35,11 @@ public class AuthenticationService extends HttpServlet {
       logger.info("User email: " + email);
 
       HttpSession session = req.getSession(true);
-      session.setAttribute("User email", email); //TODO take id and @ from database
-      req.getServletContext()
-          .getRequestDispatcher("/welcome").forward(req, resp);
+      session.setAttribute("User email", email);
+      session.setAttribute("isAuthenticated", true);//TODO take id and @ from database
+//      req.getServletContext()
+//          .getRequestDispatcher("/home").forward(req, resp);
+      resp.sendRedirect("/home"); //TODO
 
     } catch (Exception e) {
       logger.error(e.getMessage());

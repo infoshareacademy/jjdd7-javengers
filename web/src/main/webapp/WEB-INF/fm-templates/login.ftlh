@@ -1,7 +1,7 @@
 <#if UserEmail??>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-<#else>
   <a href="#" onclick="signOut();">Sign out</a>
+<#else>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
 </#if>
 
 <script>
@@ -9,10 +9,11 @@
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8080/authentication');
+    xhr.open('POST', '/login');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
       console.log('Signed in as: ' + xhr.responseText);
+      window.location.replace("/home")
     };
     xhr.send("idToken=" + id_token);
 
@@ -23,5 +24,7 @@
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
+    window.location.href = '/logout';
+
   }
 </script>
