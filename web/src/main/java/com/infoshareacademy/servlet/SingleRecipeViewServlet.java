@@ -1,8 +1,8 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
-import freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -39,13 +39,12 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
 
-
-
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
             model.put("pU", pU);
+            model.put("email", req.getSession().getAttribute("email"));
         }
 
         try {

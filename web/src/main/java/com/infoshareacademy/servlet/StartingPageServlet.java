@@ -45,7 +45,7 @@ public class StartingPageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String[] allCheckedCategoriesList = categoryService.getCategoryIds();
-        
+
         String[] allCheckedTypesList = recipeService.getRecipeTypes().toArray(new String[recipeService.getRecipeTypes().size()]);
 
         resp.setContentType("text/html;charset=UTF-8");
@@ -80,6 +80,7 @@ public class StartingPageServlet extends HttpServlet {
 
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
+        req.getSession().getAttribute("email");
 
         Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
         Map<String, Object> model = new HashMap<>();
@@ -94,6 +95,7 @@ public class StartingPageServlet extends HttpServlet {
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("typeListChecked", checkedTypesList);
             model.put("typeList", typeList);
+            model.put("email", req.getSession().getAttribute("email"));
 
         }
         try {
