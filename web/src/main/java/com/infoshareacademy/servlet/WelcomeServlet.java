@@ -1,6 +1,6 @@
 package com.infoshareacademy.servlet;
 
-import freemarker.TemplateProvider;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;

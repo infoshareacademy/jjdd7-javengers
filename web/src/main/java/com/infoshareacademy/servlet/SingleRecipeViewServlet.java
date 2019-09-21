@@ -1,8 +1,8 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
-import freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
