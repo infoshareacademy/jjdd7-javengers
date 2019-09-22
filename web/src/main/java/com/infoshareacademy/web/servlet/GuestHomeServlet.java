@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @WebServlet("/home")
-public class StartingPageServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(StartingPageServlet.class.getName());
+public class GuestHomeServlet extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(GuestHomeServlet.class.getName());
     @Inject
     private StartingPageService startingPageService;
     @Inject
@@ -81,8 +81,14 @@ public class StartingPageServlet extends HttpServlet {
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
         req.getSession().getAttribute("email");
+        String userType;
+        if (req.getSession().getAttribute("userType") == null) {
+            userType = "guest";
+        } else {
+            userType = String.valueOf(req.getSession().getAttribute("userType"));
+        }
 
-        Template template = templateProvider.getTemplate(getServletContext(), "home.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "guestHome.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredientsAndTypes != null || checkedCategoriesAndIngredientsAndTypes.isEmpty()) {
             model.put("isActive", active);
@@ -95,7 +101,8 @@ public class StartingPageServlet extends HttpServlet {
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("typeListChecked", checkedTypesList);
             model.put("typeList", typeList);
-            model.put("email", req.getSession().getAttribute("email"));
+            model.put("email",req.getSession().getAttribute("email"));
+            model.put("userType", userType); //check
 
         }
         try {

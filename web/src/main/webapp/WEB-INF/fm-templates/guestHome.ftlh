@@ -94,7 +94,7 @@
         </div>
         <div class="card col-sm-6">
             <#--content fm templates-->
-            <#include "content.ftlh">
+            <#include "guestContent.ftlh">
         </div>
         <div class="card col-sm-3" style="margin-top: 10%">
             <#--list-options fm templates-->

@@ -32,13 +32,13 @@ public class UserDaoBean {
             entityManager.remove(recipe);
         }
     }
-    public List<User> getUsersList() {
-        Query query = entityManager.createNamedQuery("User.getUserList");
+    public List<User> getUsersListWithoutSuperAdmin() {
+        Query query = entityManager.createNamedQuery("User.getUserListWithoutSuperAdmin");
         return query.getResultList();
     }
-    public User findUserByName(String name) {
-        Query query = entityManager.createNamedQuery("User.findUserByName");
-        query.setParameter("name", name);
+    public User findUserByEmail(String email) {
+        Query query = entityManager.createNamedQuery("User.findUserByEmail");
+        query.setParameter("email", email);
         return (User) query.getResultList().stream().findFirst().orElse(null);
     }
 }

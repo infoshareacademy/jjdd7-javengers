@@ -9,9 +9,12 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
+import com.infoshareacademy.domain.entity.User;
+import com.infoshareacademy.service.UserService;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbackServlet {
 
   private static final Logger logger = Logger.getLogger(GoogleLoginCallbackServlet.class.getName());
+
+  @EJB
+  private UserService userService;
 
 
   @Override
@@ -33,11 +39,30 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
         gCredential).setApplicationName("Drinkopedia").build();
     Userinfoplus info = oauth2.userinfo().get().execute();
     String name = info.getName();
+    String surname = info.getGivenName();
     String email = info.getEmail();
+
+    if (userService.findUserByEmail(email) == null){
+      User user = new User();
+      user.setName(name);
+      user.setSurname(surname);
+      user.setEmail(email);
+      user.setUserType("user");
+      userService.save(user);
+    }
+
     logger.info("Authentication success of user: " + name);
-    req.getSession().setAttribute("username", name);
-    req.getSession().setAttribute("email", email);
-    resp.sendRedirect("/home");
+
+    User verifiedUser = userService.findUserByEmail(email);
+
+    req.getSession().setAttribute("userId", verifiedUser.getId());
+    req.getSession().setAttribute("email", verifiedUser.getEmail());
+    req.getSession().setAttribute("userType", verifiedUser.getUserType());
+
+    if (email.isEmpty() || email == null){
+      resp.sendRedirect("/home");
+    }
+    resp.sendRedirect("/user");
   }
 
   @Override

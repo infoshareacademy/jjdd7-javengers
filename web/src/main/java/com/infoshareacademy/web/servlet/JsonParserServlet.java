@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.exception.RecipeUploadedFileNotFound;

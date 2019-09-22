@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
 @Transactional
 @WebServlet("/recipe-view")
 public class SingleRecipeViewServlet extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(StartingPageServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(GuestHomeServlet.class.getName());
     @Inject
     private TemplateProvider templateProvider;
     @Inject
