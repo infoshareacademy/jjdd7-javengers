@@ -80,6 +80,7 @@ public class GuestHomeServlet extends HttpServlet {
 
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
+
         req.getSession().getAttribute("email");
         String userType;
         if (req.getSession().getAttribute("userType") == null) {
