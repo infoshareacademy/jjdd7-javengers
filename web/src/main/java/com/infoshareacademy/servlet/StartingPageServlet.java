@@ -70,6 +70,8 @@ public class StartingPageServlet extends HttpServlet {
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
         List<Recipe> checkedCategoriesAndIngredientsAndTypes;
+
+
         if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
             checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
         } else {

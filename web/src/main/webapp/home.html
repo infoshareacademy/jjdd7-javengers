@@ -27,6 +27,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- fav button -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <style>
@@ -172,7 +175,7 @@
                     </a>
                 </div>
                 <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    <button class="favorite btn btn-light btn-sm" type="button" value='edit'>FAVS
                     </button>
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
@@ -196,8 +199,13 @@
                     </a>
                 </div>
                 <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
-                    </button>
+                    <label for="id-of-input" class="custom-checkbox">
+                        <input type="checkbox" id="id-of-input"/>
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <span>Favorite</span>
+                    </label>
+
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
                     <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
                 </div>
