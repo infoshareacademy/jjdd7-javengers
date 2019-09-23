@@ -225,8 +225,6 @@ $(".favorite").click(function () {
 });
 
 //TODO to make popup
-/*
-$(window).on('load', function () {
-    $('.myModal').modal('show');
+$(window).load(function(){
+    $('#myModal').modal('show');
 });
-*/

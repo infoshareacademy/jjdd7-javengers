@@ -17,12 +17,12 @@ import org.slf4j.LoggerFactory;
 
 @WebFilter(
     filterName = "AdminAuthorizationFilter",
-    urlPatterns = {"/admin-view/*","/*", "/home/*"},
+    urlPatterns = {"/superHero/*","/*", "/home/*"},
     initParams = {
         @WebInitParam(name = "userType", value = "admin"),
     }
 )
-public class AdminAuthorisationFilter implements Filter {
+public class AuthorisationFilter implements Filter {
 
   private String admin;
 
@@ -52,7 +52,7 @@ public class AdminAuthorisationFilter implements Filter {
     //TODO popup with message "An unauthorized attempt to the admin panel has occurred!"
     req.getSession().setAttribute("authorization", "authorizedAttempt");
 
-    if ((path.equals("/admin-view")) && !(userType.equals(admin))) {
+    if ((path.equals("/superHero")) && !(userType.equals(admin))) {
       req.getSession().setAttribute("authorization", "unauthorizedAttempt" );
       resp.sendRedirect("/home");
       logger.warn("An unauthorized attempt to the admin panel has occurred!");

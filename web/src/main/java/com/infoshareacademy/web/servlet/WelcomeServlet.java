@@ -31,7 +31,7 @@ public class WelcomeServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType == null || userType.isEmpty()) {
+        if (userType.isEmpty()) {
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -40,6 +40,7 @@ public class WelcomeServlet extends HttpServlet {
         try {
             model.put("userType", userType);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("authorization", req.getSession().getAttribute("authorization"));
             template.process(model, resp.getWriter());
         } catch (IOException | TemplateException e) {
             logger.error(e.getMessage());

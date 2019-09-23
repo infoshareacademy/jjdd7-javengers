@@ -30,6 +30,7 @@
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>
+    <#include "unauthorizeAttempt.ftlh">
 </div>
 
 <div class="container">

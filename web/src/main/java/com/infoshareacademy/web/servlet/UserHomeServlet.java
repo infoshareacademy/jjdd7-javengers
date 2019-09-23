@@ -88,7 +88,7 @@ public class UserHomeServlet extends HttpServlet {
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
 
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType == null || userType.isEmpty()) {
+        if (userType.isEmpty()) {
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -109,6 +109,7 @@ public class UserHomeServlet extends HttpServlet {
             model.put("email",req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
             model.put("typeList", typeList);
+            model.put("authorization", req.getSession().getAttribute("authorization"));
         }
         try {
             template.process(model, resp.getWriter());

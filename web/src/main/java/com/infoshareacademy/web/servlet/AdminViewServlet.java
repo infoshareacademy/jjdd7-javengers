@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/admin-view")
+@WebServlet("/superHero")
 public class AdminViewServlet extends HttpServlet {
 
     @Inject

@@ -7,7 +7,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,9 +40,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
-
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType ==null ||userType.isEmpty()){
+        if (userType.isEmpty()){
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -54,6 +52,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
+            model.put("authorization", req.getSession().getAttribute("authorization"));
         }
 
         try {

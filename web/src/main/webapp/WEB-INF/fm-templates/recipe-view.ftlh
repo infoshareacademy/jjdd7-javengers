@@ -54,6 +54,7 @@
         <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
+            <#include "unauthorizeAttempt.ftlh">
     </div>
 </div>
 
