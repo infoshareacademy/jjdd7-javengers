@@ -17,21 +17,18 @@ import org.slf4j.LoggerFactory;
 
 @WebFilter(
     filterName = "AdminAuthorizationFilter",
-    urlPatterns = {"/admin-view/*","/*", "/user/*"},
+    urlPatterns = {"/admin-view/*","/*", "/home/*"},
     initParams = {
-        @WebInitParam(name = "adminType", value = "admin"),
-        @WebInitParam(name = "userType", value = "user")
+        @WebInitParam(name = "userType", value = "admin"),
     }
 )
 public class AdminAuthorisationFilter implements Filter {
 
   private String admin;
-  private String user;
 
   @Override
   public void init(FilterConfig filterConfig) {
-    admin = filterConfig.getInitParameter("adminType");
-    user = filterConfig.getInitParameter("userType");
+    admin = filterConfig.getInitParameter("userType");
   }
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
@@ -40,24 +37,25 @@ public class AdminAuthorisationFilter implements Filter {
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
       FilterChain filterChain) throws IOException, ServletException {
 
-    HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-    HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+    HttpServletRequest req = (HttpServletRequest) servletRequest;
+    HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-    String path = httpServletRequest.getServletPath();
+    String path = req.getServletPath();
     logger.info("logger{}", path);
 
-    String authorisationType = (String) httpServletRequest.getSession().getAttribute("userType");
-    logger.info("logger{}", authorisationType);
-    if (authorisationType == null || authorisationType.isEmpty()) {
-      authorisationType = "guest";
+    String userType = (String) req.getSession().getAttribute("userType");
+    logger.info("logger{}", userType);
+    if (userType == null || userType.isEmpty()) {
+      userType = "guest";
     }
 
-    if ((path.equals("/admin-view")) && !(authorisationType.equals(admin))) {
-      httpServletResponse.sendRedirect("/home"); // add error message
-      logger.warn("An unauthorized attempt to access the admin panel has occurred!");
-    }else if((path.equals("/user")) && !(authorisationType.equals(user))){
-      httpServletResponse.sendRedirect("/home"); // add error message
-      logger.warn("An unauthorized attempt to access the user panel has occurred!");
+    //TODO popup with message "An unauthorized attempt to the admin panel has occurred!"
+    req.getSession().setAttribute("authorization", "authorizedAttempt");
+
+    if ((path.equals("/admin-view")) && !(userType.equals(admin))) {
+      req.getSession().setAttribute("authorization", "unauthorizedAttempt" );
+      resp.sendRedirect("/home");
+      logger.warn("An unauthorized attempt to the admin panel has occurred!");
     }
     filterChain.doFilter(servletRequest, servletResponse);
   }

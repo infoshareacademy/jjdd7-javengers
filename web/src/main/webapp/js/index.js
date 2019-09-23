@@ -223,3 +223,10 @@ $(".favorite").click(function () {
      })*/
     window.location = '/home?' + queryParams;
 });
+
+//TODO to make popup
+/*
+$(window).on('load', function () {
+    $('.myModal').modal('show');
+});
+*/

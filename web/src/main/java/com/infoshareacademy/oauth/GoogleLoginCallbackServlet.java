@@ -37,6 +37,7 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
         new NetHttpTransport(),
         JacksonFactory.getDefaultInstance(),
         gCredential).setApplicationName("Drinkopedia").build();
+
     Userinfoplus info = oauth2.userinfo().get().execute();
     String name = info.getName();
     String surname = info.getGivenName();
@@ -55,18 +56,13 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
 
     User verifiedUser = userService.findUserByEmail(email);
 
-    req.getSession().setAttribute("userId", verifiedUser.getId());
     req.getSession().setAttribute("email", verifiedUser.getEmail());
     req.getSession().setAttribute("userType", verifiedUser.getUserType());
 
     if (req.getSession().getAttribute("userType") == null){
       req.getSession().setAttribute("userType", "guest");
     }
-
-    if (email.isEmpty()){
-      resp.sendRedirect("/home");
-    }
-    resp.sendRedirect("/user");
+    resp.sendRedirect("/home");
   }
 
   @Override

@@ -24,7 +24,6 @@
 
 </head>
 <body>
-
 <div class="jumbotron jumbotron-fluid ">
     <#include "login.ftlh">
     <div class="container">

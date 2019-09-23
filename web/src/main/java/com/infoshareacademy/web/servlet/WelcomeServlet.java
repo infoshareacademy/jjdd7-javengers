@@ -30,9 +30,16 @@ public class WelcomeServlet extends HttpServlet {
         throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
+        String userType = (String) req.getSession().getAttribute("userType");
+        if (userType == null || userType.isEmpty()) {
+            req.getSession().setAttribute("userType", "guest");
+        }
+
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         Map<String, Object> model = new HashMap<>();
         try {
+            model.put("userType", userType);
+            model.put("email", req.getSession().getAttribute("email"));
             template.process(model, resp.getWriter());
         } catch (IOException | TemplateException e) {
             logger.error(e.getMessage());

@@ -36,6 +36,5 @@ public class JsonParserServlet extends HttpServlet {
         Recipe drinkRecipe = new Recipe();
         drinkRecipe.setImageUrl(fileUrl);
         resp.getWriter().println(fileUrl + " successful uploaded!");
-
     }
 }

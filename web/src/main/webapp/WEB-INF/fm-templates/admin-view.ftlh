@@ -18,12 +18,12 @@
     <h2 class="display-3">Admin Panel</h2>
 </div>
 
-<div><a class="btn btn-secondary btn-lg active" href="#" onclick="window.location.href = '/user';">
+<div><a class="btn btn-secondary btn-lg active" href="#" onclick="window.location.href = '/home';">
     Main Page </a></div>
 <div class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
   <form id="form-upload" action="/upload-data" method="post"enctype="multipart/form-data">
     <input type ="file" name="drinks">
-    <button type="submit" class="btn btn-secondary">Upload</button>
+    <button type="submit" cla="btn btn-secondary">Upload</button>
   </form>
 </div>
 

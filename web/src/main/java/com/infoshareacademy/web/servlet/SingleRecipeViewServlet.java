@@ -23,9 +23,12 @@ import javax.transaction.Transactional;
 @Transactional
 @WebServlet("/recipe-view")
 public class SingleRecipeViewServlet extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(GuestHomeServlet.class.getName());
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @Inject
     private TemplateProvider templateProvider;
+
     @Inject
     private RecipeService recipeService;
 
@@ -39,12 +42,18 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
 
+        String userType = (String) req.getSession().getAttribute("userType");
+        if (userType ==null ||userType.isEmpty()){
+            req.getSession().setAttribute("userType", "guest");
+        }
+
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("userType", req.getSession().getAttribute("userType"));
         }
 
         try {

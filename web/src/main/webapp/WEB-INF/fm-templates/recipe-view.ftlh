@@ -45,11 +45,11 @@
 
     </style>
 </head>
-<body>no bo to było
+<body>
 
 <div class="jumbotron jumbotron-fluid ">
     <div class="jumbotron jumbotron-fluid ">
-        <#include "admin-panel.ftlh">
+        <#include "login.ftlh">
 
         <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
@@ -166,12 +166,16 @@
         </div>
 
     </div>
-    <div class="col-sm-6" id="edit-buttons-single-view">
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM</button>
-    </div>
+    <#if userType!="guest">
+        <div class="col-sm-6" id="edit-buttons-single-view">
+            <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS</button>
+            <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
+            <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE
+            </button>
+            <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM
+            </button>
+        </div>
+    </#if>
 </div>
 
 
