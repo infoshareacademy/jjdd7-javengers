@@ -41,9 +41,4 @@ public class UserService {
     userDaoBean.deleteUserById(id);
     logger.info("User has been deleted");
   }
-
-  public List<User> getUsersListWithoutSuperAdmin() {
-    logger.info("Get users list");
-    return userDaoBean.getUsersListWithoutSuperAdmin();
-  }
 }

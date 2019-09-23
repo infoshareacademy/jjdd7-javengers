@@ -84,9 +84,6 @@ public class UserHomeServlet extends HttpServlet {
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
 
-
-
-
         Template template = templateProvider.getTemplate(getServletContext(), "userHome.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredientsAndTypes != null || checkedCategoriesAndIngredientsAndTypes.isEmpty()) {
@@ -100,6 +97,7 @@ public class UserHomeServlet extends HttpServlet {
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("typeListChecked", checkedTypesList);
             model.put("email",req.getSession().getAttribute("email"));
+            model.put("userType", req.getSession().getAttribute("userType")); //check
             model.put("typeList", typeList);
 
         }

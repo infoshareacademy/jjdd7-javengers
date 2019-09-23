@@ -81,14 +81,6 @@ public class GuestHomeServlet extends HttpServlet {
 
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
 
-        req.getSession().getAttribute("email");
-        String userType;
-        if (req.getSession().getAttribute("userType") == null) {
-            userType = "guest";
-        } else {
-            userType = String.valueOf(req.getSession().getAttribute("userType"));
-        }
-
         Template template = templateProvider.getTemplate(getServletContext(), "guestHome.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (recipesList != null || recipesList.isEmpty() || categoriesList != null || categoriesList.isEmpty() || checkedCategoriesAndIngredientsAndTypes != null || checkedCategoriesAndIngredientsAndTypes.isEmpty()) {
@@ -103,7 +95,7 @@ public class GuestHomeServlet extends HttpServlet {
             model.put("typeListChecked", checkedTypesList);
             model.put("typeList", typeList);
             model.put("email",req.getSession().getAttribute("email"));
-            model.put("userType", userType); //check
+            model.put("userType", req.getSession().getAttribute("userType")); //check
 
         }
         try {

@@ -14,9 +14,10 @@
 </head>
 <body>
 
-<div class="jumbotron jumbotron-fluid ">
-    <h3 class="display-3">Admin Panel</h3>
+<div class="container-fluid ">
+    <h2 class="display-3">Admin Panel</h2>
 </div>
+
 <div><a class="btn btn-secondary btn-lg active" href="#" onclick="window.location.href = '/user';">
     Main Page </a></div>
 <div class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
@@ -25,6 +26,7 @@
     <button type="submit" class="btn btn-secondary">Upload</button>
   </form>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

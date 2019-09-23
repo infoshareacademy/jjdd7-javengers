@@ -32,10 +32,7 @@ public class UserDaoBean {
             entityManager.remove(recipe);
         }
     }
-    public List<User> getUsersListWithoutSuperAdmin() {
-        Query query = entityManager.createNamedQuery("User.getUserListWithoutSuperAdmin");
-        return query.getResultList();
-    }
+
     public User findUserByEmail(String email) {
         Query query = entityManager.createNamedQuery("User.findUserByEmail");
         query.setParameter("email", email);

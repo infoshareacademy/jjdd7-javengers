@@ -1,6 +1,4 @@
 
-
-
     <#list recipeListPerPage>
         <#items as recipe>
 
