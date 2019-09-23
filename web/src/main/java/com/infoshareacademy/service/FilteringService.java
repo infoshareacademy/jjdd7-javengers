@@ -1,8 +1,9 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.CategoryDaoBean;
-import com.infoshareacademy.dao.FavouritesDaoBean;
 import com.infoshareacademy.dao.IngredientDaoBean;
+import com.infoshareacademy.dao.RecipeDaoBean;
+import com.infoshareacademy.dao.UserDaoBean;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
@@ -13,19 +14,39 @@ import java.util.List;
 
 @Stateless
 public class FilteringService {
-
+    @Inject
+    private RecipeDaoBean recipeDaoBean;
     @Inject
     private CategoryDaoBean categoryDaoBean;
     @Inject
-   private IngredientDaoBean ingredientDaoBean;
+    private IngredientDaoBean ingredientDaoBean;
     @Inject
-    private FavouritesDaoBean favouritesDaoBean;
+    private RecipeService recipeService;
+    @Inject
+    private StartingPageService startingPageService;
+    @Inject
+    private UserDaoBean userDaoBean;
 
-    public void getFiltersQuery(List<Long> ids, List<String> names, Long favouriteId List <String> type){
+    public List<Recipe> getAllFiltersQuery(List<Long> ids, List<String> names, List<String> types) {
         List<Category> categories = categoryDaoBean.getCategoriesById(ids);
-        List<Ingredient> ingredients = ingredientDaoBean.getIngredientsListByName( names);
+        List<Ingredient> ingredients = ingredientDaoBean.getIngredientsByName(names);
+        List<String> drinkTypes = recipeDaoBean.getRecipeTypeByName(types);
         long namesLength = (names).size();
-        List <Recipe> favourites = favouritesDaoBean.getFavouritesList(favouriteId);
+        return recipeService.findRecipeByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes);
+    }
 
+    public List<Recipe> getFiltersQueryByCategoryAndType(List<Long> ids, List<String> types) {
+        List<Category> categories = categoryDaoBean.getCategoriesById(ids);
+        List<String> drinkTypes = recipeDaoBean.getRecipeTypeByName(types);
+        return recipeService.findRecipeByCategoryIdAndType(categories, drinkTypes);
+    }
+
+    public List<Recipe> getFavouritesFiltersQuery(List<Long> ids, List<String> names, List<String> types, List<Long> favouriteIds) {
+        List<Category> categories = categoryDaoBean.getCategoriesById(ids);
+        List<Ingredient> ingredients = ingredientDaoBean.getIngredientsByName(names);
+        List<String> drinkTypes = recipeDaoBean.getRecipeTypeByName(types);
+     //   List<Long> favourites = userDaoBean.
+        long namesLength = (names).size();
+        return recipeService.findFavouriteByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes,favourites);
     }
 }

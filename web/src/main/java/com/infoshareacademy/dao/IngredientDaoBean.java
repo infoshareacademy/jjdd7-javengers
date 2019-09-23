@@ -52,7 +52,7 @@ public class IngredientDaoBean {
         return query.getResultList();
     }
 
-    public List<Ingredient> getIngredientsListByName( List<String> names){
+    public List<Ingredient> getIngredientsByName( List<String> names){
         Query queryIngredient = entityManager.createNamedQuery("Ingredient.findIngredientByName");
         queryIngredient.setParameter("names", names);
         return queryIngredient.getResultList();

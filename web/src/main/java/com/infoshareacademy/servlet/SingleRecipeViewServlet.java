@@ -1,8 +1,8 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
-import freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -33,7 +33,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-
+        String pU =  req.getHeader("referer");
+       /* String pU = req.getParameter("pU");*/
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
@@ -42,6 +43,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
             model.put("responseRecipeId", responseRecipeId);
+            model.put("pU", pU);
+            model.put("email", req.getSession().getAttribute("email"));
         }
 
         try {

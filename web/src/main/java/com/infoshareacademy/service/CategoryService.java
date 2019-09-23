@@ -36,6 +36,7 @@ public class CategoryService {
         logger.info("ingredients with name contains " + name + " found in database");
         return categoryDaoBean.findCategoryByName(name);
     }
+
     public String[] getCategoryIds() {
         return categoryDaoBean.getCategoryIds();
     }

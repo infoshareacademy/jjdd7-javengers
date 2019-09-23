@@ -1,29 +1,20 @@
 package com.infoshareacademy.domain.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @NamedQueries({
-    @NamedQuery(
-        name = "User.findUserByName",
-        query = "SELECT u FROM User u WHERE u.name like :name"),
-    @NamedQuery(
-        name = "User.getUserList",
-        query = "SELECT u FROM User u")
+        @NamedQuery(
+                name = "User.findUserByName",
+                query = "SELECT u FROM User u WHERE u.name like :name"),
+        @NamedQuery(
+                name = "User.getUserList",
+                query = "SELECT u FROM User u"),
+        @NamedQuery(
+                name = "User.getFavouritesList",
+                query = "SELECT u.recipies FROM User u JOIN u.recipies r WHERE r.id=u.id")
 })
 
 @Entity
@@ -57,9 +48,9 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-        name = "user_favourite_recipe",
-        joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")})
+            name = "user_favourite_recipe",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")})
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {

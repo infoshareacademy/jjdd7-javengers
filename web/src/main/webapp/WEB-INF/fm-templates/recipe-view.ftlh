@@ -45,24 +45,13 @@
 
     </style>
 </head>
-<body>
+<body>no bo to było
 
 <div class="jumbotron jumbotron-fluid ">
-    <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Main</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">sign in</a>
-            </li>
-        </ul>
-    </div>
+    <div class="jumbotron jumbotron-fluid ">
+        <#include "navbar.ftlh">
 
-    <div class="container">
+        <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>
@@ -78,7 +67,12 @@
                                     aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a>
             </li>
             <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
-                                    href="/home"><h4><strong>Back to list</strong></h4></a></li>
+                        <#if pU??>
+                                    href="${pU}"
+                        <#else >
+                                    href="/home">
+                        </#if>
+                    <h4><strong>Back to list</strong></h4></a></li>
         </ul>
 
         <div class="tab-content col-sm-12 " id="navTabA">
@@ -108,8 +102,12 @@
 
             <div class="row ">
                 <div class="col-md-6" ; style="margin:0px">
-                    <img src="${responseRecipeId.imageUrl}"
-                         style="max-width: 100%;" class="card-img" alt="...">
+                    <#if responseRecipeId.imageUrl??>
+                        <img src="${responseRecipeId.imageUrl}" style="max-width: 100%;" class="card-img" alt="...">
+                    <#else>
+                        <img src="http://placekitten.com/g/700/700" style="max-width: 100%;" class="card-img"
+                             alt="...">
+                    </#if>
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">

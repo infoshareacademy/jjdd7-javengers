@@ -59,7 +59,7 @@ public class IngredientService {
         return ingredientDaoBean.findIngredientsByLiveSearch(nameChars);
     }
 
-    public List<Ingredient> getIngredientsListByName(List<String> names) {
-        return ingredientDaoBean.getIngredientsListByName(names);
+    public List<Ingredient> getIngredientsByName(List<String> names) {
+        return ingredientDaoBean.getIngredientsByName(names);
     }
 }

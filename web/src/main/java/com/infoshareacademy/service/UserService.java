@@ -1,6 +1,7 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.UserDaoBean;
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -44,5 +45,9 @@ public class UserService {
   public List<User> getUsersList() {
     logger.info("Get users list");
     return userDaoBean.getUsersList();
+  }
+
+  public List<Recipe> getFavouritesList() {
+    return userDaoBean.getFavouritesList();
   }
 }

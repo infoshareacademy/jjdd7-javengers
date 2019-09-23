@@ -1,5 +1,6 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 
 import javax.ejb.Stateless;
@@ -40,5 +41,10 @@ public class UserDaoBean {
         Query query = entityManager.createNamedQuery("User.findUserByName");
         query.setParameter("name", name);
         return (User) query.getResultList().stream().findFirst().orElse(null);
+    }
+
+    public List<Recipe> getFavouritesList(){
+        Query query = entityManager.createNamedQuery("User.getFavouritesList");
+        return query.getResultList();
     }
 }

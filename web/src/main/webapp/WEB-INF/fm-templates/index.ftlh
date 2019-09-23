@@ -7,22 +7,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta name="google-signin-client_id"
+          content="1037530492027-j033lgm76kc63lrkqpaus0sn25q00vj2.apps.googleusercontent.com">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-            crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -37,19 +36,7 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Main</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">sign in</a>
-            </li>
-        </ul>
-    </div>
+    <#include "navbar.ftlh">
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
@@ -75,9 +62,7 @@
             <br/>
             <img class="rounded" src="/img/kwachuMeme.jpeg" alt="kwachu" style="width: 100%">
             <br/>
-            <br/>
             <img class="rounded" src="/img/bondMeme.jpg" alt="bond" style="width: 100%">
-
         </div>
 
         <div class="card col-sm-7">
@@ -93,14 +78,12 @@
             <div class="card" style="padding-left: 55%; margin: 5%">
                 <br/>
                 <h4 class="title" style="text-align: left;"> by javengers</h4>
-                <p style="text-align: left; font-size: larger; padding-top: 10%">
-                    Daria Lubobska <br/>
+                <p style="text-align: left; font-size: larger; padding-top: 9%">
+                    Daria Lubomska <br/>
                     Klaudia Zarychta <br/>
                     Andrzej Szypulski <br/>
                 </p>
             </div>
-
-
 
         </div>
 
