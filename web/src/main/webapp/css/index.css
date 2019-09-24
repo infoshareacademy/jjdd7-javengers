@@ -78,10 +78,10 @@ height: 50px;
 }
 
 #search-container{
-    width: 50%;
-    margin: auto;
-
-
+    /*width: 50%;*/
+  /*  margin: auto;*/
+margin-bottom: auto;
+margin-top: auto;
 }
 
 .form-control{

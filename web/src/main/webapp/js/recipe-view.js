@@ -52,19 +52,3 @@ $(".x-favourite").click(function () {
     window.location = '/recipe-view?' + queryParams;
 
 });
-
-
-/*
-
-$(".edition").click(function () {
-    var edit_button = $(this).val();
-    console.log(edit_button);
-
-    const queryParams = $.param({
-        edition: edit_button,
-    });
-
-/!*$('#back-button').href*!/
-
-    window.location = '/recipe-view?' + queryParams;
-});*/
