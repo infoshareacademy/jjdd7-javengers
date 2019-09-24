@@ -66,7 +66,7 @@
                                     data-secondary="#panel_a_name" href="#panel_a_name" data-toggle="tab" role="tab"
                                     aria-controls="name" aria-selected="true"><h4><strong>Recipe Name</strong></h4></a>
             </li>
-            <li class="nav-item"><a class="col-md text-sm-center nav-link" id="ingredient-tab"
+            <li class="nav-item"><a class="col-md text-sm-center nav-link" id="back-button"
                         <#if pU??>
                                     href="${pU}"
                         <#else >
@@ -126,7 +126,13 @@
                                 <ul>
                                     <#list responseRecipeId.ingredients>
                                         <#items as ingredient>
-                                            <li>${ingredient.measure}</li>
+                                            <li>
+                                            <#if ingredient.measure != "">
+                                                ${ingredient.measure}
+                                               <#else>
+                                                -
+                                            </#if>
+                                            </li>
                                         </#items>
                                     </#list>
                                 </ul>
@@ -167,15 +173,15 @@
 
     </div>
     <div class="col-sm-6" id="edit-buttons-single-view">
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM</button>
+        <label class="btn btn-primary-primary btn-sm">
+            <input class="x-favourite" type="checkbox" value="gowno">
+            <span class="form-check-label">FAV</span>
+        </label>
     </div>
 </div>
 
 
-<script src="js/index.js"></script>
+<script src="js/recipe-view.js"></script>
 
 
 </body>

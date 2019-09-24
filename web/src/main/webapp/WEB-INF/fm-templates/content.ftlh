@@ -1,40 +1,38 @@
+<#list recipeListPerPage>
+    <#items as recipe>
 
 
-
-    <#list recipeListPerPage>
-        <#items as recipe>
-
-            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
-                <div class="col-sm-8" style="padding: 0px">
-                    <#--podmienic link na ftlh -->
-                    <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
-                        <div class="col-sm-3" style="padding: 0px">
-                            <#if recipe.imageUrl??>
-                                <img src="${recipe.imageUrl}"
-                            <#else>  <img src="http://placekitten.com/500/500"
-                            </#if>
+        <div class="row" Style="border: ghostwhite solid; border-radius: .5rem; margin-bottom: 5px;">
+            <div class="col-sm-10" style="padding: 0px">
+                <#--podmienic link na ftlh -->
+                <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link">
+                    <div class="col-sm-3" style="padding: 0px">
+                        <#if recipe.imageUrl??>
                             <img src="${recipe.imageUrl}"
-                                 style="max-width: 100%;" class="card-img" alt="...">
+                        <#else>  <img src="http://placekitten.com/500/500"
+                        </#if>
+                        <img src="${recipe.imageUrl}"
+                             style="max-width: 90%;" class="card-img" alt="...">
+                    </div>
+                    <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                        <div class="card-body" style="padding: 0px">
+                            <h4 class="card-title">${recipe.name}</h4>
                         </div>
-                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
-                            <div class="card-body" style="padding: 0px">
-                                <br/>
-                                <h4 class="card-title">${recipe.name}</h4>
-                                <br/>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
+                </a>
             </div>
-            <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
-                </button>
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
+
+            <div class="col-md-2" style="padding:0; padding-top: 7%">
+                <label class="btn btn-primary btn-sm" title="add to favourites">
+                    <input class="x-favourite" type="checkbox" value="gowno" >
+                    <span class="form-check-label" style="padding-left: 2px"><img
+                                src="https://img.icons8.com/metro/26/000000/like.png"></span>
+                </label>
             </div>
         </div>
+
     </#items>
 </#list>
-
 
 <div class="row paginator">
     <div class="col-sm-3 paginator">

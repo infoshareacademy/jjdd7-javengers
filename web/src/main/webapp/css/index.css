@@ -134,25 +134,32 @@ ul {
 }
 
 
+.x-favourite {
 
-
-
-
-/* Favorite star */
-
-label {
-    /* Presentation */
-    font-size: 48px
-}
-
-/* Required Styling */
-
-label input[type="checkbox"] {
+    padding-left: 5px;
     display: none;
 }
 
+
+#new-drink{
+    cursor: pointer;
+
+}
+/*
+
+
+!* Favorite star *!
+
+label {
+    !* Presentation *!
+    font-size: 40px
+}
+
+!* Required Styling *!
+
+
 .custom-checkbox {
-    margin-left: 2em;
+    !*margin-left: 2em;*!
     position: relative;
     cursor: pointer;
 }
@@ -160,8 +167,8 @@ label input[type="checkbox"] {
 .custom-checkbox .glyphicon {
     color: gold;
     position: absolute;
-    top: 0.4em;
-    left: -1.25em;
+    top: -0.4em;
+    left: -0.6em;
     font-size: 0.75em;
 }
 
@@ -181,3 +188,5 @@ label input[type="checkbox"] {
 .custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
     opacity: 1;
 }
+
+*/

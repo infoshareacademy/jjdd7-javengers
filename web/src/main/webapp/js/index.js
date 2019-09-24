@@ -223,3 +223,50 @@ $(".favorite").click(function () {
      })*/
     window.location = '/home?' + queryParams;
 });
+
+    $(".x-favourite").click(function () {
+        const favToChangeId = this;
+        /*if (favToChangeId.checked) {
+            console.log(favToChangeId.value);
+        }*/
+        console.log(favToChangeId.value);
+
+        listSelectedCategories();
+        listSelectedOptions();
+        listSelectedIngredients();
+        listSelectedTypes();
+        whatIsActive();
+
+        const queryParams = $.param({
+            categories: selectedCategories,
+            listOptions: selectedListOptions,
+            ingredients: selectedIngredients,
+            types: selectedTypes,
+            favToChangeId: favToChangeId.value,
+            active: paramActive
+        });
+
+        window.location = '/home?' + queryParams;
+
+    });
+
+$(".edition").click(function () {
+    var edit_button = $(this).val();
+    console.log(edit_button);
+
+    listSelectedCategories();
+    listSelectedOptions();
+    listSelectedIngredients();
+    listSelectedTypes();
+    whatIsActive();
+
+    const queryParams = $.param({
+        categories: selectedCategories,
+        listOptions: selectedListOptions,
+        ingredients: selectedIngredients,
+        types: selectedTypes,
+        edition: edit_button,
+        active: paramActive
+    });
+    window.location = '/home?' + queryParams;
+});

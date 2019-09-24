@@ -26,8 +26,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- fav button -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <style>
 
         #left {
@@ -174,10 +176,21 @@
 
     </div>
     <div class="col-sm-6" id="edit-buttons-single-view">
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DELETE</button>
-        <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>RANDOM</button>
+        <div class="col-md-4">
+            <label for="id-of-input-1" class="custom-checkbox">
+                <input class="x-favourite" type="checkbox" id="id-of-input-1" value="gowno"/>
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <i class="glyphicon glyphicon-star"></i>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <button class="edition btn btn-outline btn-sm" type="button" value='edit'><span
+                    class="glyphicon glyphicon-edit"></span></button>
+        </div>
+        <div class="col-md-4">
+            <button class="edition btn btn-outline btn-sm" type="button" value='remove'><span
+                    class="glyphicon glyphicon-remove"></span></button>
+        </div>
     </div>
 </div>
 
