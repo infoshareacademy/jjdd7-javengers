@@ -9,7 +9,7 @@
         </li>
           <#if userType=="admin">
             <li class="nav-item">
-              <a class="nav-link active" href="#" onclick="window.location.href = '/admin-view';">Admin
+              <a class="nav-link active" href="#" onclick="window.location.href = '/superHero';">Admin
                 Panel</a>
             </li>
           </#if>
