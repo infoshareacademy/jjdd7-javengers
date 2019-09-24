@@ -1,5 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
+import com.google.common.base.Strings;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -31,7 +32,8 @@ public class WelcomeServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType.isEmpty()) {
+
+        if (Strings.isNullOrEmpty(userType)) {
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -40,7 +42,6 @@ public class WelcomeServlet extends HttpServlet {
         try {
             model.put("userType", userType);
             model.put("email", req.getSession().getAttribute("email"));
-            model.put("authorization", req.getSession().getAttribute("authorization"));
             template.process(model, resp.getWriter());
         } catch (IOException | TemplateException e) {
             logger.error(e.getMessage());

@@ -1,6 +1,7 @@
 package com.infoshareacademy.web.filter;
 
 
+import com.google.common.base.Strings;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -50,10 +51,10 @@ public class AuthorisationFilter implements Filter {
     }
 
     //TODO popup with message "An unauthorized attempt to the admin panel has occurred!"
-    req.getSession().setAttribute("authorization", "authorizedAttempt");
 
     if ((path.equals("/superHero")) && !(userType.equals(admin))) {
-      req.getSession().setAttribute("authorization", "unauthorizedAttempt" );
+      req.getSession().setAttribute("authorization", "unauthorizedAttempt");
+//      resp.sendRedirect("/home?failed=true");
       resp.sendRedirect("/home");
       logger.warn("An unauthorized attempt to the admin panel has occurred!");
     }

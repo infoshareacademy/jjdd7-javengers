@@ -1,5 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
+import com.google.common.base.Strings;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
@@ -41,7 +42,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType.isEmpty()){
+        if (Strings.isNullOrEmpty(userType)){
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -52,7 +53,6 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
-            model.put("authorization", req.getSession().getAttribute("authorization"));
         }
 
         try {

@@ -1,6 +1,5 @@
 <#list recipeListPerPage>
     <#items as recipe>
-
         <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;">
                 <div class="col-sm-8" style="padding: 0px">
                     <#--podmienic link na ftlh -->

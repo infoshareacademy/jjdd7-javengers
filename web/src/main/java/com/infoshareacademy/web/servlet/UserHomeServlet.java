@@ -1,5 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
+import com.google.common.base.Strings;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
@@ -88,8 +89,12 @@ public class UserHomeServlet extends HttpServlet {
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
 
         String userType = (String) req.getSession().getAttribute("userType");
-        if (userType.isEmpty()) {
+        if (Strings.isNullOrEmpty(userType)) {
             req.getSession().setAttribute("userType", "guest");
+        }
+        String authorization = (String) req.getSession().getAttribute("authorization");
+        if (Strings.isNullOrEmpty(authorization)) {
+            req.getSession().setAttribute("authorization", "authorizedAttempt");
         }
 
         Template template = templateProvider.getTemplate(getServletContext(), "userHome.ftlh");
