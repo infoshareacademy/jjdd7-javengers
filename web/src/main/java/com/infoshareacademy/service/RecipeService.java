@@ -77,7 +77,7 @@ public class RecipeService {
         return recipeDaoBean.findRecipeByCategoryIdAndType(categories, drinkTypes);
     }
 
-    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Long> favourites) {
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Recipe> favourites) {
         return recipeDaoBean.findFavouriteByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes, favourites);
     }
 }

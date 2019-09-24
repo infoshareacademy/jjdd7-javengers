@@ -14,7 +14,10 @@ import java.util.List;
                 query = "SELECT u FROM User u"),
         @NamedQuery(
                 name = "User.getFavouritesList",
-                query = "SELECT u.recipies FROM User u JOIN u.recipies r WHERE r.id=u.id")
+                query = "SELECT u.recipies FROM User u JOIN u.recipies r WHERE r.id=u.id"),
+        @NamedQuery(
+                name = "User.getFavouriteRecipeById",
+                query = "SELECT r FROM User u JOIN u.recipies r WHERE r.id= :id")
 })
 
 @Entity

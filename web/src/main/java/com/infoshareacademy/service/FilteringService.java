@@ -11,6 +11,7 @@ import com.infoshareacademy.domain.entity.Recipe;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class FilteringService {
@@ -45,7 +46,7 @@ public class FilteringService {
         List<Category> categories = categoryDaoBean.getCategoriesById(ids);
         List<Ingredient> ingredients = ingredientDaoBean.getIngredientsByName(names);
         List<String> drinkTypes = recipeDaoBean.getRecipeTypeByName(types);
-     //   List<Long> favourites = userDaoBean.
+        List<Recipe> favourites = userDaoBean.getFavouritesList();
         long namesLength = (names).size();
         return recipeService.findFavouriteByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes,favourites);
     }

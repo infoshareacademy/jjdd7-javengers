@@ -38,6 +38,9 @@ public class StartingPageServlet extends HttpServlet {
     private FilteringService filteringService;
 
     @Inject
+    private UserService userService;
+
+    @Inject
     TemplateProvider templateProvider;
 
     @Override
@@ -60,7 +63,7 @@ public class StartingPageServlet extends HttpServlet {
         List<String> favouriteIdList =  Arrays.asList(getParametersList(req,"favrt[]",new String[]{"-1"}));
 
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
-
+        Long favouriteId = Long.parseLong(favouriteIdList.get(0));
 
 
         List<Recipe> recipesList = startingPageService.getRecipesPerPage(pageNo, recipeService.getRecipiesList());
@@ -70,19 +73,29 @@ public class StartingPageServlet extends HttpServlet {
         List<String> ingredientList = ingredientService.getIngredientsList();
 
         List<String> typeList = recipeService.getRecipeTypes();
+        List<Long> favouriteIdsFromUser = startingPageService.getListOfFavouritesIds(userService.getFavouritesList());
+        List<Recipe> checkedFavouriteRecipe = startingPageService.getFavouritesFromUser(userService.getFavouritesList(),favouriteId);
 
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
         List<Recipe> checkedCategoriesAndIngredientsAndTypes;
 
+        if(checkedOptionList.contains("All Drinks")) {
 
-
-        if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
-            checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
+                if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
+                checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
+            } else {
+                checkedCategoriesAndIngredientsAndTypes = filteringService.getAllFiltersQuery(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+            }
         }
         else {
-            checkedCategoriesAndIngredientsAndTypes = filteringService.getAllFiltersQuery(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+
+            if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
+                checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
+            } else {
+                checkedCategoriesAndIngredientsAndTypes = filteringService.getAllFiltersQuery(paredToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+            }
         }
 
         List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredientsAndTypes);
@@ -104,6 +117,8 @@ public class StartingPageServlet extends HttpServlet {
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("typeListChecked", checkedTypesList);
             model.put("typeList", typeList);
+            model.put("favouriteFromUserList", favouriteIdsFromUser);
+            model.put("checkedFavouriteRecipe",checkedFavouriteRecipe);
             model.put("email", req.getSession().getAttribute("email"));
 
         }

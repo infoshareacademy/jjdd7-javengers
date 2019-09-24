@@ -94,7 +94,7 @@ public class RecipeDaoBean {
     }
 
 
-    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Long> favourites) {
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Recipe> favourites) {
         Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites");
         recipeQuery.setParameter("categories", categories);
         recipeQuery.setParameter("ingredients", ingredients);

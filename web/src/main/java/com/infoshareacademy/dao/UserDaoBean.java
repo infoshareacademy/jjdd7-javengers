@@ -47,4 +47,10 @@ public class UserDaoBean {
         Query query = entityManager.createNamedQuery("User.getFavouritesList");
         return query.getResultList();
     }
+
+    public Recipe getFavouriteRecipeById(Long favouriteId ){
+        Query query = entityManager.createNamedQuery("User.getFavouriteRecipeById");
+        query.setParameter("id", favouriteId);
+        return (Recipe) query.getSingleResult();
+    }
 }

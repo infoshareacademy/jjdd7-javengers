@@ -1,5 +1,6 @@
 package com.infoshareacademy.service;
 
+import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,7 +15,7 @@ public class StartingPageService {
     @Inject
     private RecipeService recipeService;
     @Inject
-   private UserService userService;
+    private UserService userService;
     @Inject
     private FilteringService filteringService;
 
@@ -36,21 +37,50 @@ public class StartingPageService {
         return (recipeList.size() + pageSize - 1) / pageSize;
     }
 
-    public List<Long> getFavouritesFromUser(Long favouriteId) {
-        List<Recipe> listFromUser = userService.getFavouritesList();
-        List<Long> favouritesIds = listFromUser.stream().map(r -> r.getId()).collect(Collectors.toList());
 
-        if (favouritesIds.contains(favouriteId)) {
-            favouritesIds.remove(favouriteId);
+    public List<Long> getListOfFavouritesIds() {
+        return userService.getFavouritesList().stream().map(r -> r.getId()).collect(Collectors.toList());
+    }
+
+    public List<Recipe> getFavouritesFromUser(List<Recipe> listFromUser, Long id) {
+
+        Recipe favouriteRecipe = userService.getFavouriteRecipeById(id);
+
+        if (listFromUser.contains(favouriteRecipe)) {
+            listFromUser.remove(favouriteRecipe);
         } else {
-            favouritesIds.add(favouriteId);
+            listFromUser.add(favouriteRecipe);
         }
-        return favouritesIds;
+        return listFromUser;
     }
 
 
 
+
+    public List<Recipe> filteredContentList(List <String> checkedOptionList, List<String> checkedIngredientsList, List<Long> parsedToLongCategoriesList, List<String> checkedTypesList, List<Long> favouritesList) {
+
+
+        List<Recipe> listWithFilters;
+
+        if (checkedOptionList.contains("All Drinks")) {
+
+            if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
+                listWithFilters = filteringService.getFiltersQueryByCategoryAndType(parsedToLongCategoriesList, checkedTypesList);
+            } else {
+                listWithFilters = filteringService.getAllFiltersQuery(parsedToLongCategoriesList, checkedIngredientsList, checkedTypesList);
+            }
+        } else {
+
+            if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
+                listWithFilters = filteringService.getFiltersQueryByCategoryAndType(parsedToLongCategoriesList, checkedTypesList);
+            } else {
+                listWithFilters = filteringService.getFavouritesFiltersQuery(parsedToLongCategoriesList, checkedIngredientsList, checkedTypesList,favouritesList);
+            }
+        }
+        return listWithFilters;
     }
+
+}
 
 
 

@@ -50,4 +50,8 @@ public class UserService {
   public List<Recipe> getFavouritesList() {
     return userDaoBean.getFavouritesList();
   }
+
+  public Recipe getFavouriteRecipeById(Long favouriteId) {
+    return userDaoBean.getFavouriteRecipeById(favouriteId);
+  }
 }
