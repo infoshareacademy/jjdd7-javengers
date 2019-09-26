@@ -23,8 +23,11 @@ public class AdminViewServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
+
+        resp.setContentType("text/html;charset=UTF-8");
 
         Template template = templateProvider.getTemplate(getServletContext(),
                 "admin-view.ftlh");

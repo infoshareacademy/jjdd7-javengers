@@ -13,15 +13,28 @@
   <link rel="stylesheet" href="../../css/index.css"/>
 </head>
 <body>
-
-<div class="container-fluid ">
-    <h2 class="display-3">Admin Panel</h2>
-</div>
+<header class="header">
+  <div class="container-fluid">
+    <div class="navbar-holder d-flex align-items-center justify-content-between">
+      <!-- Navbar Header-->
+      <div class="navbar-header">
+        <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+          <div class="brand-text d-none d-lg-inline-block"><span>Bootstrap </span><strong>Admin
+              Panel</strong></div>
+          <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
+        </a>
+        <!-- Toggle Button--><a id="toggle-btn" href="#"
+                                class="menu-btn active"><span></span><span></span><span></span></a>
+      </div>
+    </div>
+  </div>
+</header>
 
 <div><a class="btn btn-secondary btn-lg active" href="#" onclick="window.location.href = '/home';">
     Main Page </a></div>
+
 <div class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-  <form id="form-upload" action="/upload-data" method="post"enctype="multipart/form-data">
+  <form id="form-upload" action="/superHero/upload-data" method="post"enctype="multipart/form-data">
     <input type ="file" name="drinks">
     <button type="submit" cla="btn btn-secondary">Upload</button>
   </form>
