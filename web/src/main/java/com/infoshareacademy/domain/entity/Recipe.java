@@ -18,14 +18,13 @@ import java.util.List;
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories ORDER BY r.name ASC"),
 
         @NamedQuery(
-                name = "Recipe.findRecipeByCategoryIdAndIngredientNameAndType",
-
-                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+                name = "Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites",
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i JOIN r.users u WHERE  u.id=:id AND r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+                //query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
 
         @NamedQuery(
-                name = "Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites",
-
-                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.id IN :favourites AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+                name = "Recipe.findRecipeByCategoryIdAndIngredientNameAndType",
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories  AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
 
 
         @NamedQuery(
@@ -42,6 +41,9 @@ import java.util.List;
                 name = "Recipe.findRecipeByCategoryIdAndType",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
 
+        @NamedQuery(
+                name="Recipe.findRecipeByCategoryIdAndTypeAndFavourites",
+                query = "SELECT r FROM Recipe r JOIN r.users u WHERE u.id=:id AND r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
         @NamedQuery(
                 name = "Recipe.getFavouritesListIdsForUser",
                 query = "SELECT r.id FROM Recipe r JOIN r.users u WHERE  u.id=:id"),

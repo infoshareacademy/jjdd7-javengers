@@ -37,32 +37,9 @@ public class StartingPageService {
         return (recipeList.size() + pageSize - 1) / pageSize;
     }
 
-//jakby nie pyklo
-    public List<Long> getListOfFavouritesIds(List<Recipe> favouritesListIds) {
-        return userService.getFavouritesList().stream().map(r -> r.getId()).collect(Collectors.toList());
-    }
-//to nie moze pyknac:o
-   /* public List<Recipe> getFavouritesFromUser(List<Recipe> listFromUser, Long id) {
-
-        Recipe favouriteRecipe = userService.getFavouriteRecipeById(id);
-
-        if (listFromUser.contains(favouriteRecipe)) {
-            listFromUser.remove(favouriteRecipe);
-        } else {
-            listFromUser.add(favouriteRecipe);
-        }
-        return listFromUser;
-    }
-*/
-  /* public void editFavouriteListForUser( Long recipeId, Long userId){
-
-         (userService.editFavouritesByIdForUSer(recipeId, userId));
-
-    }
-*/
 
 
-    public List<Recipe> filteredContentList(List <String> checkedOptionList, List<String> checkedIngredientsList, List<Long> parsedToLongCategoriesList, List<String> checkedTypesList, List<Long> favouritesList) {
+    public List<Recipe> filterContentList(List <String> checkedOptionList, List<String> checkedIngredientsList, List<Long> parsedToLongCategoriesList, List<String> checkedTypesList, Long userId) {
 
 
         List<Recipe> listWithFilters;
@@ -77,18 +54,15 @@ public class StartingPageService {
         } else {
 
             if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
-                listWithFilters = filteringService.getFiltersQueryByCategoryAndType(parsedToLongCategoriesList, checkedTypesList);
+                listWithFilters = filteringService.getFavouritesFiltersQueryByCategoryAndType(parsedToLongCategoriesList, checkedTypesList, userId);
             } else {
-                listWithFilters = filteringService.getFavouritesFiltersQuery(parsedToLongCategoriesList, checkedIngredientsList, checkedTypesList,favouritesList);
+                listWithFilters = filteringService.getFavouritesFiltersQuery(parsedToLongCategoriesList, checkedIngredientsList, checkedTypesList, userId);
             }
         }
         return listWithFilters;
     }
 
 }
-
-
-
 
 
 

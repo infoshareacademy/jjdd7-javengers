@@ -94,15 +94,25 @@ public class RecipeDaoBean {
     }
 
 
-    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Recipe> favourites) {
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, Long userId) {
         Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites");
         recipeQuery.setParameter("categories", categories);
         recipeQuery.setParameter("ingredients", ingredients);
         recipeQuery.setParameter("namesLength", namesLength);
         recipeQuery.setParameter("drinkTypes", drinkTypes);
-        recipeQuery.setParameter("favourites", favourites);
+        recipeQuery.setParameter("id", userId);
         return recipeQuery.getResultList();
     }
+
+    public List<Recipe> findFavouriteRecipeByCategoryIdAndType(List<Category> categories, List<String> drinkTypes, Long userId) {
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndTypeAndFavourites");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
+        recipeQuery.setParameter("id", userId);
+        return recipeQuery.getResultList();
+    }
+
+
     @Transactional
     public List<Long> getFavouritesListIds(Long userId) {
         Query query = entityManager.createNamedQuery("Recipe.getFavouritesListIdsForUser");
