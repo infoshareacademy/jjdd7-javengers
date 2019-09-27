@@ -4,7 +4,6 @@ import com.infoshareacademy.dao.UserDaoBean;
 import com.infoshareacademy.domain.entity.User;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,13 +31,17 @@ public class UserService {
     return userDaoBean.findUserByEmail(email);
   }
 
-  public User getUserById(Integer id) {
+  public User getUserById(Long id) {
     logger.info("Get user by id");
     return userDaoBean.getUserById(id);
   }
 
-  public void deleteUserById(Integer id) {
+  public void deleteUserById(Long id) {
     userDaoBean.deleteUserById(id);
     logger.info("User has been deleted");
+  }
+
+  public List<User> getUsersList(){
+    return userDaoBean.getUsersList();
   }
 }

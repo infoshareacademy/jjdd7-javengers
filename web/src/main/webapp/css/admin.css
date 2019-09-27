@@ -1,0 +1,47 @@
+.gray {
+  background-color: #5b807d;
+  color: #fffac9;
+  font-family: "Source Code Pro", serif;
+  font-size: xx-large;
+  text-align: center;
+  height: 100vh;
+
+}
+
+.links {
+  font-size: x-large;
+  text-align: center;
+  color: black;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.row {
+  background-color: #5b807d;
+  color: #fffac9;
+  font-family: "Source Code Pro", serif;
+  box-shadow: gray;
+  font-size: xx-large;
+  text-align: center;
+  padding-left: 15px;
+}
+
+.col-sm-2 a:link {
+  color: #fffac9;
+  font-size: x-large;
+}
+.white{
+  padding-top: 150px;
+  background-color: white;
+  text-align: center;
+}
+
+.update-button-make-user{
+  background-color: darkolivegreen;
+  border-color: olivedrab;
+}
+
+update-button-make-admin{
+  background-color: #9fa83a;
+  border-color: #4e5520;
+}

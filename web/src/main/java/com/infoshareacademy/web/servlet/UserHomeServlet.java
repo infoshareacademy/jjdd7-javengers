@@ -114,6 +114,7 @@ public class UserHomeServlet extends HttpServlet {
             model.put("userType", req.getSession().getAttribute("userType"));
             model.put("typeList", typeList);
             model.put("authorization", req.getSession().getAttribute("authorization"));
+            model.put("name", req.getSession().getAttribute("name"));
         }
         try {
             template.process(model, resp.getWriter());

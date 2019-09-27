@@ -1,6 +1,7 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,11 +21,11 @@ public class UserDaoBean {
         return entityManager.merge(user);
     }
 
-    public User getUserById(Integer id) {
+    public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
-    public void deleteUserById(Integer id) {
+    public void deleteUserById(Long id) {
         User recipe = getUserById(id);
         if (recipe != null) {
             entityManager.remove(recipe);
@@ -35,5 +36,10 @@ public class UserDaoBean {
         Query query = entityManager.createNamedQuery("User.findUserByEmail");
         query.setParameter("email", email);
         return (User) query.getResultList().stream().findFirst().orElse(null);
+    }
+
+    public List<User> getUsersList() {
+        Query query = entityManager.createNamedQuery("User.getUsersList");
+        return query.getResultList();
     }
 }

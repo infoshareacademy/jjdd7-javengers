@@ -20,7 +20,10 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(
         name = "User.findUserByEmail",
-        query = "SELECT u FROM User u WHERE u.email like :email")
+        query = "SELECT u FROM User u WHERE u.email like :email"),
+    @NamedQuery(
+        name = "User.getUsersList",
+        query = "SELECT u FROM User u")
 })
 
 @Entity

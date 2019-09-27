@@ -33,6 +33,7 @@ public class AdminViewServlet extends HttpServlet {
                 "admin-view.ftlh");
 
         Map<String, Object> dataModel = new HashMap<>();
+        dataModel.put("name",req.getSession().getAttribute("name"));
 
         PrintWriter writer = resp.getWriter();
         try {

@@ -58,6 +58,8 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
 
     req.getSession().setAttribute("email", verifiedUser.getEmail());
     req.getSession().setAttribute("userType", verifiedUser.getUserType());
+    req.getSession().setAttribute("name", verifiedUser.getName());
+
 
     if (req.getSession().getAttribute("userType") == null){
       req.getSession().setAttribute("userType", "guest");
