@@ -276,9 +276,3 @@ $(".edition").click(function () {
     });
     window.location = '/home?' + queryParams;
 });
-
-/*
-function getpageNo() {
-    pageNo = document.getElementById("#page-number").value;
-    console.log("cycki");
-}*/

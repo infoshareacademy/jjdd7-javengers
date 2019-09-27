@@ -63,7 +63,7 @@
 
                     <label class="btn btn-primary btn-sm" title="add to favourites">
                         <input class="x-favourite" type="checkbox" value="${responseRecipeId.id?c}">
-                        <span class="form-check-label" style="padding-left: 2px"><img
+                        <span class="form-check-label" style="padding-left: 2px"><img id="fav"
                                     src="https://img.icons8.com/dotty/80/000000/hearts.png"></span>
                     </label>
 
