@@ -1,5 +1,4 @@
 package com.infoshareacademy.dao;
-
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
@@ -22,15 +21,12 @@ public class RecipeDaoBean {
             entityManager.persist(recipe);
         }
     }
-
     public void addRecipe(Recipe recipe) {
         entityManager.persist(recipe);
     }
-
     public Recipe editRecipe(Recipe recipe) {
         return entityManager.merge(recipe);
     }
-
     public Recipe getRecipeByName(String name) {
         return entityManager.find(Recipe.class, name);
     }
@@ -39,19 +35,16 @@ public class RecipeDaoBean {
     public Recipe getRecipeById(Long id) {
         return entityManager.find(Recipe.class, id);
     }
-
     public void deleteRecipeById(Long id) {
         Recipe recipe = getRecipeById(id);
         if (recipe != null) {
             entityManager.remove(recipe);
         }
     }
-
     public List<Recipe> getRecipiesList() {
         Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
     }
-
     public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
@@ -61,13 +54,11 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("categories", categories);
         return recipeQuery.getResultList();
     }
-
     public List<String> findRecipeByIngredientId(List<String> names) {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByIngredientName");
         query.setParameter("names", names);
         return query.getResultList();
     }
-
     public List findRecipeByLiveSearch(String nameChars) {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByLiveSearch");
         query.setParameter("nameChars", "%" + nameChars + "%");
@@ -101,4 +92,22 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("drinkTypes", drinkTypes);
         return recipeQuery.getResultList();
     }
+
+
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, List<Recipe> favourites) {
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("ingredients", ingredients);
+        recipeQuery.setParameter("namesLength", namesLength);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
+        recipeQuery.setParameter("favourites", favourites);
+        return recipeQuery.getResultList();
+    }
+    @Transactional
+    public List<Long> getFavouritesListIds(Long userId) {
+        Query query = entityManager.createNamedQuery("Recipe.getFavouritesListIdsForUser");
+        query.setParameter("id", userId);
+        return query.getResultList();
+    }
+
 }

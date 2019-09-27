@@ -48,5 +48,4 @@ public class CategoryDaoBean {
         query.setParameter("ids", ids);
         return query.getResultList();
     }
-
 }

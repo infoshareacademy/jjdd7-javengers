@@ -23,11 +23,19 @@
             </div>
 
             <div class="col-md-2" style="padding:0; padding-top: 7%">
-                <label class="btn btn-primary btn-sm" title="add to favourites">
-                    <input class="x-favourite" type="checkbox" value="gowno" >
-                    <span class="form-check-label" style="padding-left: 2px"><img
-                                src="https://img.icons8.com/metro/26/000000/like.png"></span>
-                </label>
+                <#if favouritesIdsChecked?seq_contains(recipe.id)>
+                    <label class="btn btn-primary btn-sm" title="remove from favourites">
+                        <input class="x-favourite" type="checkbox" value="${recipe.id?c}">
+                        <span class="form-check-label" style="padding-left: 2px"><img
+                                    src="https://img.icons8.com/metro/26/000000/hearts.png"></span>
+                    </label>
+                <#else>
+                    <label class="btn btn-primary btn-sm" title="add to favourites">
+                        <input class="x-favourite" type="checkbox" value="${recipe.id?c}">
+                        <span class="form-check-label" style="padding-left: 2px"><img
+                                    src="https://img.icons8.com/metro/26/000000/like.png"></span>
+                    </label>
+                </#if>
             </div>
         </div>
 
@@ -51,7 +59,7 @@
             <button class="favorite btn btn-primary btn-sm" type="button"
                     value='${pageNumber-1}'>${pageNumber-1}</button>
         </#if>
-        <button class="favorite btn btn-light btn-sm" type="button" value='${pageNumber}'><strong>${pageNumber}</strong>
+        <button class="favorite btn btn-light btn-sm" id="page-number" type="button" value='${pageNumber}'><strong>${pageNumber}</strong>
         </button>
         <#if  (lastPageNumber-1) gte pageNumber>
             <button class="favorite btn btn-primary btn-sm" type="button"

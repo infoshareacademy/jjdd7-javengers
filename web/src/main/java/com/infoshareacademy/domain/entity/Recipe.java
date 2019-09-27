@@ -11,6 +11,9 @@ import java.util.List;
                 name = "Recipe.getRecipiesList",
                 query = "SELECT r FROM Recipe r"),
         @NamedQuery(
+                name = "Recipe.getFavouritesListById",
+                query = "SELECT r FROM Recipe r WHERE r.id IN :favourites"),
+        @NamedQuery(
                 name = "Recipe.findRecipeByCategory",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories ORDER BY r.name ASC"),
 
@@ -18,6 +21,12 @@ import java.util.List;
                 name = "Recipe.findRecipeByCategoryIdAndIngredientNameAndType",
 
                 query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+
+        @NamedQuery(
+                name = "Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites",
+
+                query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.id IN :favourites AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
+
 
         @NamedQuery(
                 name = "Recipe.findRecipeByLiveSearch",
@@ -31,7 +40,14 @@ import java.util.List;
                 query = "SELECT distinct r.drinkType FROM Recipe r WHERE r.drinkType in :types"),
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryIdAndType",
-                query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC")
+                query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
+
+        @NamedQuery(
+                name = "Recipe.getFavouritesListIdsForUser",
+                query = "SELECT r.id FROM Recipe r JOIN r.users u WHERE  u.id=:id"),
+        //query = "SELECT r.recipe_id FROM User u JOIN u.recipes r WHERE r.id=u.id AND u.id=:id"),
+// query = "SELECT r.id FROM Recipe r JOIN fetch r.users u WHERE r.id=u.id AND u.id=:id"),
+        //SELECT r.id FROM recipe r JOIN user_favourite_recipe u WHERE r.id=u.recipe_id AND u.recipe_id=:id
 })
 
 public class Recipe {

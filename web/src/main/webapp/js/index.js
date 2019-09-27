@@ -9,6 +9,7 @@ let selectedTypes = [];
 let listOfNames = [];
 let ingredientList = [];
 let paramActive;
+/*let pageNo;*/
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -205,6 +206,8 @@ $(".favorite").click(function () {
     listSelectedTypes();
     whatIsActive();
 
+
+
     const queryParams = $.param({
         categories: selectedCategories,
         listOptions: selectedListOptions,
@@ -236,6 +239,8 @@ $(".favorite").click(function () {
         listSelectedIngredients();
         listSelectedTypes();
         whatIsActive();
+        let pageNo = $("#page-number").prop("value");
+            /*$("#page-number").value;*/
 
         const queryParams = $.param({
             categories: selectedCategories,
@@ -243,7 +248,8 @@ $(".favorite").click(function () {
             ingredients: selectedIngredients,
             types: selectedTypes,
             favToChangeId: favToChangeId.value,
-            active: paramActive
+            active: paramActive,
+            page: pageNo
         });
 
         window.location = '/home?' + queryParams;
@@ -270,3 +276,9 @@ $(".edition").click(function () {
     });
     window.location = '/home?' + queryParams;
 });
+
+/*
+function getpageNo() {
+    pageNo = document.getElementById("#page-number").value;
+    console.log("cycki");
+}*/

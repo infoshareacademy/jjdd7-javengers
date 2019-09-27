@@ -1,5 +1,6 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 
 import javax.ejb.Stateless;
@@ -22,23 +23,60 @@ public class UserDaoBean {
         return entityManager.merge(user);
     }
 
-    public User getUserById(Integer id) {
+    public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
-    public void deleteUserById(Integer id) {
+    //wtf???
+    public void deleteUserById(Long id) {
         User recipe = getUserById(id);
         if (recipe != null) {
             entityManager.remove(recipe);
         }
     }
+
     public List<User> getUsersList() {
         Query query = entityManager.createNamedQuery("User.getUserList");
         return query.getResultList();
     }
+
     public User findUserByName(String name) {
         Query query = entityManager.createNamedQuery("User.findUserByName");
         query.setParameter("name", name);
         return (User) query.getResultList().stream().findFirst().orElse(null);
     }
+
+    public List<Recipe> getFavouritesList() {
+        Query query = entityManager.createNamedQuery("User.getFavouritesList");
+        return query.getResultList();
+    }
+
+    public Recipe getFavouriteRecipeByIdForUser(Long favouriteId, Long userId) {
+        Query query = entityManager.createNamedQuery("User.getFavouriteRecipeByIdForUser");
+        query.setParameter("id", favouriteId);
+        query.setParameter("idu", userId);
+        return (Recipe) query.getSingleResult();
+    }
+
+    public List<Long> getFavouritesListIds(Long userId) {
+        Query query = entityManager.createNamedQuery("User.getFavouritesListIdsForUser");
+        query.setParameter("id", userId);
+        return query.getResultList();
+    }
+
+    public void editFavouritesByIdForUSer(Long recipeId, Long userId) {
+        User userById = getUserById(userId);
+
+        List<Recipe> recipes1 = userById.getRecipes();
+        Recipe toAddRecipe = entityManager.find(Recipe.class, recipeId);
+
+        if (recipes1.stream().anyMatch(r -> recipeId.equals(r.getId()))) {
+            recipes1.remove(toAddRecipe);
+        } else {
+
+            recipes1.add(toAddRecipe);
+        }
+        userById.setRecipes(recipes1);
+    }
+
 }
