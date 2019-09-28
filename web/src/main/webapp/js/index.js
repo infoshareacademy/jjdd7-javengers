@@ -10,6 +10,14 @@ let listOfNames = [];
 let ingredientList = [];
 let paramActive;
 
+//TODO to make popup
+$(function () {
+    $(document).ready(function () {
+        console.log("test")
+        $('#unauthorizedAccess').modal('show');
+    })
+});
+
 $formName.on('submit', () => {
     const $input = $("#input-name");
     message = $input.val();
@@ -223,3 +231,4 @@ $(".favorite").click(function () {
      })*/
     window.location = '/home?' + queryParams;
 });
+

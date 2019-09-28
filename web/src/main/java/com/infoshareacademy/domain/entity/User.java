@@ -19,15 +19,15 @@ import javax.validation.constraints.NotNull;
 
 @NamedQueries({
     @NamedQuery(
-        name = "User.findUserByName",
-        query = "SELECT u FROM User u WHERE u.name like :name"),
+        name = "User.findUserByEmail",
+        query = "SELECT u FROM User u WHERE u.email like :email"),
     @NamedQuery(
-        name = "User.getUserList",
+        name = "User.getUsersList",
         query = "SELECT u FROM User u")
 })
 
 @Entity
-@Table(name = "user", indexes = {@Index(name = "user_name", columnList = "name")})
+@Table(name = "user", indexes = {@Index(name = "user_email", columnList = "email")})
 public class User {
 
     @Id
@@ -39,21 +39,14 @@ public class User {
     @NotNull
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "email")
     @NotNull
-    private String surname;
+    private String email;
 
     @Column(name = "user_type")
     @NotNull
     private String userType;
 
-    @Column(name = "login")
-    @NotNull
-    private String login;
-
-    @Column(name = "password")
-    @NotNull
-    private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -78,12 +71,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserType() {
@@ -92,22 +85,6 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Recipe> getRecipes() {

@@ -6,13 +6,15 @@
         <span class="form-check-label">All Drinks </span>
     </label>
     <label class="btn btn-outline-light">
-        <input class="x-list-options" type="radio" name="myradio" value="Favourites"
-               onclick="checkFilters()">
-        <span class="form-check-label">Favourites</span>
-    </label>
-    <label class="btn btn-outline-light">
         <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
                onclick="checkFilters()">
         <span class="form-check-label">Most Popular</span>
     </label>
+    <#if userType !="guest">
+        <label class="btn btn-outline-light">
+            <input class="x-list-options" type="radio" name="myradio" value="Favourites"
+                   onclick="checkFilters()">
+            <span class="form-check-label">Favourites</span>
+        </label>
+    </#if>
 </div>

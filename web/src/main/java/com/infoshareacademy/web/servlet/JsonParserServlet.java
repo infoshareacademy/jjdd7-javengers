@@ -1,9 +1,14 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.exception.RecipeUploadedFileNotFound;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.FileDataHandler;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,12 +21,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @MultipartConfig
-@WebServlet("/upload-data")
+@WebServlet("/superHero/upload-data")
 public class JsonParserServlet extends HttpServlet {
 
     @Inject
     private FileDataHandler fileDataHandler;
-    Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
+
+    @Inject
+    private TemplateProvider templateProvider;
+    private Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+        resp.setContentType("text/html;charset=UTF-8");
+        Template template = templateProvider.getTemplate(getServletContext(), "admin-file-upload.ftlh");
+        Map<String, Object> model = new HashMap<>();
+        try {
+            template.process(model, resp.getWriter());
+        } catch (IOException | TemplateException e) {
+            logger.error(e.getMessage());
+        }
+    }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws
@@ -35,7 +57,7 @@ public class JsonParserServlet extends HttpServlet {
         }
         Recipe drinkRecipe = new Recipe();
         drinkRecipe.setImageUrl(fileUrl);
-        resp.getWriter().println(fileUrl + " successful uploaded!");
-
+        req.getSession().setAttribute("fileUpload",true);
+        logger.info("Data from {} successfully uploaded", fileUrl);
     }
 }

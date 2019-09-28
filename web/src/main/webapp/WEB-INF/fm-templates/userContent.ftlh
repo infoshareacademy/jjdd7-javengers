@@ -1,10 +1,6 @@
-
-
-
-    <#list recipeListPerPage>
-        <#items as recipe>
-
-            <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;" >
+<#list recipeListPerPage>
+    <#items as recipe>
+        <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;">
                 <div class="col-sm-8" style="padding: 0px">
                     <#--podmienic link na ftlh -->
                     <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
@@ -24,13 +20,20 @@
                             </div>
                         </div>
                     </a>
-            </div>
-            <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
-                </button>
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>EDIT</button>
-                <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL</button>
-            </div>
+                </div>
+            <#if userType !="guest">
+                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>
+                        EDIT
+                    </button>
+                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL
+                    </button>
+
+                </div>
+            </#if>
         </div>
     </#items>
 </#list>

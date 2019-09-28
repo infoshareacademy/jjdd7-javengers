@@ -36,7 +36,8 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <#include "navbar.ftlh">
+    <div class="jumbotron jumbotron-fluid ">
+        <#include "login.ftlh">
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
