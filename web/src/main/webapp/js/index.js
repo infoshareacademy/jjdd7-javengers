@@ -10,7 +10,6 @@ let listOfNames = [];
 let ingredientList = [];
 let paramActive;
 
-//TODO to make popup
 $(function () {
     $(document).ready(function () {
         console.log("test")
@@ -222,13 +221,47 @@ $(".favorite").click(function () {
         active: paramActive
     });
 
-    /*do JSowych rozwiazan*/
-
-    /* fetch('http://localhost:8080/home?' + queryParams, {
-         headers: {
-             'Content-Type': 'application/json'
-         }
-     })*/
     window.location = '/home?' + queryParams;
 });
 
+$(".edition").click(function () {
+    var edit_button = $(this).val();
+    console.log(edit_button);
+
+    listSelectedCategories();
+    listSelectedOptions();
+    listSelectedIngredients();
+    listSelectedTypes();
+    whatIsActive();
+
+    const queryParams = $.param({
+        categories: selectedCategories,
+        listOptions: selectedListOptions,
+        ingredients: selectedIngredients,
+        types: selectedTypes,
+        edition: edit_button,
+        active: paramActive
+    });
+    window.location = '/home?' + queryParams;
+});
+
+
+function clickedFav(string, id) {
+    console.log("jestem tu");
+    if ( $(string).attr("src") == "https://img.icons8.com/metro/26/000000/like.png") {
+        $(string).attr("src", "https://img.icons8.com/metro/26/000000/hearts.png");
+        $(this).attr('title', "remove from favourites")
+    } else {
+        $(string).attr("src", "https://img.icons8.com/metro/26/000000/like.png");
+        $(this).attr('title', "add to favourites")
+    }
+
+    $.ajax({
+        url: '/api/favourites/' + $(id).attr('id'),
+        type: 'GET',
+        success: function () {
+            console.log("favourite list edited");
+        }
+
+    })
+};

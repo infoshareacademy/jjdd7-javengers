@@ -1,7 +1,9 @@
 package com.infoshareacademy.web.servlet;
 
 import com.google.common.base.Strings;
+import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.freemarker.TemplateProvider;
+import com.infoshareacademy.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class WelcomeServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

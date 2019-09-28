@@ -2,19 +2,28 @@
 <div class="btn-group-vertical">
     <label class="btn btn-outline-light">
         <input class="x-list-options" type="radio" name="myradio" value="All Drinks"
-               onclick="checkFilters()" checked>
+               onclick="checkFilters()"
+                <#if checkedListOption == "All Drinks">
+                    checked
+                </#if>
+        >
         <span class="form-check-label">All Drinks </span>
     </label>
+    <#if userType !="guest">
     <label class="btn btn-outline-light">
+        <input class="x-list-options" type="radio" name="myradio" value="Favourites"
+               onclick="checkFilters()"
+
+                <#if checkedListOption == "Favourites">
+                    checked
+                </#if>
+        >
+        <span class="form-check-label">Favourites</span>
+    </label>
+    </#if>
+    <#--<label class="btn btn-outline-light">
         <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
                onclick="checkFilters()">
         <span class="form-check-label">Most Popular</span>
-    </label>
-    <#if userType !="guest">
-        <label class="btn btn-outline-light">
-            <input class="x-list-options" type="radio" name="myradio" value="Favourites"
-                   onclick="checkFilters()">
-            <span class="form-check-label">Favourites</span>
-        </label>
-    </#if>
+    </label>-->
 </div>

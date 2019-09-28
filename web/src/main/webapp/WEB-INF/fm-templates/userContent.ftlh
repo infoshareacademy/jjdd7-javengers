@@ -1,43 +1,50 @@
 <#list recipeListPerPage>
     <#items as recipe>
-        <div class="row" Style="border: white solid; border-radius: .5rem; margin-bottom: 5px;">
-                <div class="col-sm-8" style="padding: 0px">
-                    <#--podmienic link na ftlh -->
-                    <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link" >
-                        <div class="col-sm-3" style="padding: 0px">
-                            <#if recipe.imageUrl??>
-                                <img src="${recipe.imageUrl}"
-                            <#else>  <img src="http://placekitten.com/500/500"
-                            </#if>
+
+
+        <div class="row" Style="border: ghostwhite solid; border-width: thin; border-radius: .5rem; margin-bottom: 5px;">
+            <div class="col-sm-10" style="padding: 0px">
+                <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link">
+                    <div class="col-sm-3" style="padding: 0px">
+                        <#if recipe.imageUrl??>
                             <img src="${recipe.imageUrl}"
-                                 style="max-width: 100%;" class="card-img" alt="...">
+                        <#else>  <img src="http://placekitten.com/500/500"
+                        </#if>
+                        <img src="${recipe.imageUrl}"
+                             style="max-width: 90%;" class="card-img" alt="...">
+                    </div>
+                    <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
+                        <div class="card-body" style="padding: 0px">
+                            <h4 class="card-title">${recipe.name}</h4>
                         </div>
-                        <div class="col-sm-9" style="padding: 0px; padding-top:4% ">
-                            <div class="card-body" style="padding: 0px">
-                                <br/>
-                                <h4 class="card-title">${recipe.name}</h4>
-                                <br/>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <#if userType !="guest">
-                <div class="col-sm-4" style="padding: 0px; padding-top: 7%">
+                    </div>
+                </a>
+            </div>
 
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>FAVS
-                    </button>
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>
-                        EDIT
-                    </button>
-                    <button class="favorite btn btn-primary btn-sm" type="button" value='edit'>DEL
-                    </button>
+<#if userType !="guest">
+            <div class="col-md-2" style="padding:0; padding-top: 7%">
+                <#if favouritesIdsChecked?seq_contains(recipe.id)>
 
-                </div>
-            </#if>
+                    <button class="btn btn-primary btn-sm x-fav" id="${recipe.id?c}" title="remove from favourites"  onclick="clickedFav('#fav-image-${recipe.id?c}', '#${recipe.id?c}')">
+                        <img id="fav-image-${recipe.id?c}"
+                             src="https://img.icons8.com/metro/26/000000/hearts.png">
+                    </button>
+                <#else>
+                    <button class="btn btn-primary btn-sm x-fav" id="${recipe.id?c}" title="add to favourites"  onclick="clickedFav('#fav-image-${recipe.id?c}', '#${recipe.id?c}')">
+                        <img id="fav-image-${recipe.id?c}"
+                             src="https://img.icons8.com/metro/26/000000/like.png">
+                    </button>
+                </#if>
+
+                <button class="btn btn-primary btn-sm x-fav" title="delete"  onclick="#">
+                    <img id="del-image"
+                         src="https://img.icons8.com/dotty/26/000000/delete-forever.png">
+                </button>
+            </div>
+</#if>
         </div>
     </#items>
 </#list>
-
 
 <div class="row paginator">
     <div class="col-sm-3 paginator">
@@ -56,7 +63,7 @@
             <button class="favorite btn btn-primary btn-sm" type="button"
                     value='${pageNumber-1}'>${pageNumber-1}</button>
         </#if>
-        <button class="favorite btn btn-light btn-sm" type="button" value='${pageNumber}'><strong>${pageNumber}</strong>
+        <button class="favorite btn btn-light btn-sm" id="page-number" type="button" value='${pageNumber}'><strong>${pageNumber}</strong>
         </button>
         <#if  (lastPageNumber-1) gte pageNumber>
             <button class="favorite btn btn-primary btn-sm" type="button"

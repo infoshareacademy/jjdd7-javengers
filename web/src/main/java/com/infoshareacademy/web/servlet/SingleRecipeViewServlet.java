@@ -35,7 +35,17 @@ public class SingleRecipeViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String pU = req.getHeader("referer");
+
+        String pU;
+        if (req.getParameter("pU") == null || req.getParameter("pU").isEmpty()) {
+            pU = req.getHeader("referer");
+        } else {
+            pU = req.getParameter("pU");
+        }
+
+        //do zmiany na razie zamockowane zeby dzialaly favourites
+        Long userId = Long.parseLong("2");
+
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
@@ -44,6 +54,9 @@ public class SingleRecipeViewServlet extends HttpServlet {
             req.getSession().setAttribute("userType", "guest");
         }
 
+        boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
+
+
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {
@@ -51,6 +64,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
+            model.put("isFavourite", isFavourite);
         }
 
         try {
