@@ -65,7 +65,7 @@ public class StartingPageServlet extends HttpServlet {
         String checkedListOption = checkedOptionList.get(0);
         Long favouriteId = Long.parseLong(favouriteIdList.get(0));
 
-        //do zmiany
+        //do zmiany na razie zamockowane zeby dzialaly favourites
         Long userId = Long.parseLong("2");
 
         List<Category> categoriesList = categoryService.getCategoriesList();
@@ -85,11 +85,11 @@ public class StartingPageServlet extends HttpServlet {
 
         List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredientsAndTypes);
 
-        if (favouriteId > 0) {
+        /*if (favouriteId > 0) {
             if (recipeListPerPage.stream().map(r -> r.getId()).collect(Collectors.toList()).contains(favouriteId)) {
                 userService.editFavouritesByIdForUSer(favouriteId, userId);
             }
-        }
+        }*/
 
 
         List<Long> favouriteRecipeIdsFromUser = recipeService.getFavouritesListIdsForUser(userId);

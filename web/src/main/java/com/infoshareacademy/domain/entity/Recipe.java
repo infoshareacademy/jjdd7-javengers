@@ -40,13 +40,16 @@ import java.util.List;
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryIdAndType",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
-
         @NamedQuery(
                 name="Recipe.findRecipeByCategoryIdAndTypeAndFavourites",
                 query = "SELECT r FROM Recipe r JOIN r.users u WHERE u.id=:id AND r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
         @NamedQuery(
                 name = "Recipe.getFavouritesListIdsForUser",
                 query = "SELECT r.id FROM Recipe r JOIN r.users u WHERE  u.id=:id"),
+        @NamedQuery(
+                name = "Recipe.getFavouriteRecipeForUser",
+                query = "SELECT r FROM Recipe r JOIN r.users u WHERE  u.id=:id AND r.id=:recipeId")
+
         //query = "SELECT r.recipe_id FROM User u JOIN u.recipes r WHERE r.id=u.id AND u.id=:id"),
 // query = "SELECT r.id FROM Recipe r JOIN fetch r.users u WHERE r.id=u.id AND u.id=:id"),
         //SELECT r.id FROM recipe r JOIN user_favourite_recipe u WHERE r.id=u.recipe_id AND u.recipe_id=:id

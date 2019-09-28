@@ -67,16 +67,17 @@ public class UserDaoBean {
     public void editFavouritesByIdForUSer(Long recipeId, Long userId) {
         User userById = getUserById(userId);
 
-        List<Recipe> recipes1 = userById.getRecipes();
-        Recipe toAddRecipe = entityManager.find(Recipe.class, recipeId);
+        List<Recipe> favouriteRecipiecListForUser = userById.getRecipes();
+        Recipe toEditRecipe = entityManager.find(Recipe.class, recipeId);
 
-        if (recipes1.stream().anyMatch(r -> recipeId.equals(r.getId()))) {
-            recipes1.remove(toAddRecipe);
+        if (favouriteRecipiecListForUser.stream().anyMatch(r -> recipeId.equals(r.getId()))) {
+            favouriteRecipiecListForUser.remove(toEditRecipe);
         } else {
 
-            recipes1.add(toAddRecipe);
+            favouriteRecipiecListForUser.add(toEditRecipe);
         }
-        userById.setRecipes(recipes1);
+        userById.setRecipes(favouriteRecipiecListForUser);
     }
 
 }
+

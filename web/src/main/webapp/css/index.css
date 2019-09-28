@@ -1,27 +1,20 @@
 body, html {
     background-image: url(../img/wp2172683.jpg);
-    /* Full height */
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-size: cover;
     margin: 0;
 }
 
-
-
 .container {
     background: transparent;
     text-align: center;
-   /* border: solid;*/
 }
 
 .jumbotron {
     color: white;
     background: transparent;
     text-align: center;
-    /*border: solid;*/
     padding-top: 0px;
     padding-bottom: 0px;
 }
@@ -30,26 +23,23 @@ body, html {
 .jumbotron.jumbotron-fluid{
     padding-top: 0px;
     padding-bottom: 0px;
-
 }
+
 .card {
     background: transparent;
-    /*border: solid;*/
-
 }
+
 .card-header{
     background: transparent;
     color: olivedrab;
 }
 
 .btn-group-vertical{
-
     color: white;
     border: white;
-    border-width: 1px;
+    border-width: 0.1px;
     outline: white;
     align-content: baseline;
-    /*border: solid;*/
 }
 
 .btn {
@@ -78,8 +68,6 @@ height: 50px;
 }
 
 #search-container{
-    /*width: 50%;*/
-  /*  margin: auto;*/
 margin-bottom: auto;
 margin-top: auto;
 }
@@ -92,7 +80,6 @@ margin-top: auto;
 .content-container{
     border: 1px solid white;
     border-radius: .25rem;
-
 
 }
 
@@ -136,57 +123,17 @@ ul {
 
 .x-favourite {
 
+     padding-left: 5px;
+     display: none;
+ }
+
+.x-delete {
+
     padding-left: 5px;
     display: none;
 }
-
 
 #new-drink{
     cursor: pointer;
 
 }
-/*
-
-
-!* Favorite star *!
-
-label {
-    !* Presentation *!
-    font-size: 40px
-}
-
-!* Required Styling *!
-
-
-.custom-checkbox {
-    !*margin-left: 2em;*!
-    position: relative;
-    cursor: pointer;
-}
-
-.custom-checkbox .glyphicon {
-    color: gold;
-    position: absolute;
-    top: -0.4em;
-    left: -0.6em;
-    font-size: 0.75em;
-}
-
-.custom-checkbox .glyphicon-star-empty {
-    color: gray;
-}
-
-.custom-checkbox .glyphicon-star {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.custom-checkbox:hover .glyphicon-star{
-    opacity: 0.5;
-}
-
-.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
-    opacity: 1;
-}
-
-*/

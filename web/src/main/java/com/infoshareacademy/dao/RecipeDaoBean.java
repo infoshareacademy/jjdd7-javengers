@@ -120,4 +120,12 @@ public class RecipeDaoBean {
         return query.getResultList();
     }
 
+    public Recipe getFavouriteRecipeForUser(Long recipeId, Long userId){
+        Query query = entityManager.createNamedQuery("Recipe.getFavouriteRecipeForUser");
+        query.setParameter("id", userId);
+        query.setParameter("recipeId", recipeId);
+        return (Recipe) query.getSingleResult();
+
+    }
+
 }

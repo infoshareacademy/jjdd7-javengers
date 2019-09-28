@@ -9,7 +9,7 @@ let selectedTypes = [];
 let listOfNames = [];
 let ingredientList = [];
 let paramActive;
-/*let pageNo;*/
+
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -217,44 +217,8 @@ $(".favorite").click(function () {
         active: paramActive
     });
 
-    /*do JSowych rozwiazan*/
-
-    /* fetch('http://localhost:8080/home?' + queryParams, {
-         headers: {
-             'Content-Type': 'application/json'
-         }
-     })*/
     window.location = '/home?' + queryParams;
 });
-
-    $(".x-favourite").click(function () {
-        const favToChangeId = this;
-        /*if (favToChangeId.checked) {
-            console.log(favToChangeId.value);
-        }*/
-        console.log(favToChangeId.value);
-
-        listSelectedCategories();
-        listSelectedOptions();
-        listSelectedIngredients();
-        listSelectedTypes();
-        whatIsActive();
-        let pageNo = $("#page-number").prop("value");
-            /*$("#page-number").value;*/
-
-        const queryParams = $.param({
-            categories: selectedCategories,
-            listOptions: selectedListOptions,
-            ingredients: selectedIngredients,
-            types: selectedTypes,
-            favToChangeId: favToChangeId.value,
-            active: paramActive,
-            page: pageNo
-        });
-
-        window.location = '/home?' + queryParams;
-
-    });
 
 $(".edition").click(function () {
     var edit_button = $(this).val();
@@ -276,3 +240,24 @@ $(".edition").click(function () {
     });
     window.location = '/home?' + queryParams;
 });
+
+
+function clickedFav(string, id) {
+    console.log("jestem tu");
+    if ( $(string).attr("src") == "https://img.icons8.com/metro/26/000000/like.png") {
+        $(string).attr("src", "https://img.icons8.com/metro/26/000000/hearts.png");
+        $(this).attr('title', "remove from favourites")
+    } else {
+        $(string).attr("src", "https://img.icons8.com/metro/26/000000/like.png");
+        $(this).attr('title', "add to favourites")
+    }
+
+    $.ajax({
+        url: '/api/favourites/' + $(id).attr('id'),
+        type: 'GET',
+        success: function () {
+            console.log("favourite list edited");
+        }
+
+    })
+};

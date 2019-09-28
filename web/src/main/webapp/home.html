@@ -159,7 +159,7 @@
         <div class="card col-sm-6">
             <header class="card-header"><h4 class="title">Content</h4></header>
 
-            <div class="row" Style="border: azure solid; border-radius: .5rem; margin-bottom: 5px;">
+            <div class="row" Style="border: azure solid; border-width: thin; border-radius: .5rem; margin-bottom: 5px;">
                 <div class="col-sm-10" style="padding: 0px">
                     <a href="recipe-view.html" class="list-group-item recipe-link">
                         <div class="col-sm-3" style="padding: 0px">
@@ -176,16 +176,21 @@
                     </a>
                 </div>
                 <div class="col-md-2" style="padding:0; padding-top: 7%">
-                    <label class="btn btn-primary btn-sm" title="add to favourites">
-                        <input class="x-favourite" type="checkbox" value="gowno" >
-                        <span class="form-check-label" style="padding-left: 2px"><img
-                                src="https://img.icons8.com/metro/26/000000/like.png"></span>
-                    </label>
+                        <button class="btn btn-primary btn-sm x-fav" title="remove from favourites" value="1" title="add to favourites" onclick="clickedFav(gowno)">
+                        <img id="gowno"
+                                src="https://img.icons8.com/metro/26/000000/like.png">
+                    </button>
+
+                    <button class="btn btn-primary btn-sm" type="button" title="Go back to home view"
+                            value="new-drink" style="padding-left:5%; margin:auto"
+                            onclick="clickedFav()">
+                        <img src="https://img.icons8.com/metro/80/000000/return.png" >
+                    </button>
 
                 </div>
             </div>
 
-            <div class="row" Style="border: azure solid; border-radius: .5rem; margin-bottom: 5px;">
+            <div class="row" Style="border: azure solid; border-width: 0.1px; border-radius: .5rem; margin-bottom: 5px;">
                 <div class="col-sm-10" style="padding: 0px">
                     <a href="recipe-view.html" class="list-group-item recipe-link">
                         <div class="col-sm-3" style="padding: 0px">

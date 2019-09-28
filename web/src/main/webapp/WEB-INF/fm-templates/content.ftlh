@@ -2,9 +2,8 @@
     <#items as recipe>
 
 
-        <div class="row" Style="border: ghostwhite solid; border-radius: .5rem; margin-bottom: 5px;">
+        <div class="row" Style="border: ghostwhite solid; border-width: thin; border-radius: .5rem; margin-bottom: 5px;">
             <div class="col-sm-10" style="padding: 0px">
-                <#--podmienic link na ftlh -->
                 <a href="/recipe-view?recipeId=${recipe.id?c}" class="list-group-item recipe-link">
                     <div class="col-sm-3" style="padding: 0px">
                         <#if recipe.imageUrl??>
@@ -22,20 +21,25 @@
                 </a>
             </div>
 
+
             <div class="col-md-2" style="padding:0; padding-top: 7%">
                 <#if favouritesIdsChecked?seq_contains(recipe.id)>
-                    <label class="btn btn-primary btn-sm" title="remove from favourites">
-                        <input class="x-favourite" type="checkbox" value="${recipe.id?c}">
-                        <span class="form-check-label" style="padding-left: 2px"><img
-                                    src="https://img.icons8.com/metro/26/000000/hearts.png"></span>
-                    </label>
+
+                    <button class="btn btn-primary btn-sm x-fav" id="${recipe.id?c}" title="remove from favourites"  onclick="clickedFav('#fav-image-${recipe.id?c}', '#${recipe.id?c}')">
+                        <img id="fav-image-${recipe.id?c}"
+                             src="https://img.icons8.com/metro/26/000000/hearts.png">
+                    </button>
                 <#else>
-                    <label class="btn btn-primary btn-sm" title="add to favourites">
-                        <input class="x-favourite" type="checkbox" value="${recipe.id?c}">
-                        <span class="form-check-label" style="padding-left: 2px"><img
-                                    src="https://img.icons8.com/metro/26/000000/like.png"></span>
-                    </label>
+                    <button class="btn btn-primary btn-sm x-fav" id="${recipe.id?c}" title="add to favourites"  onclick="clickedFav('#fav-image-${recipe.id?c}', '#${recipe.id?c}')">
+                        <img id="fav-image-${recipe.id?c}"
+                             src="https://img.icons8.com/metro/26/000000/like.png">
+                    </button>
                 </#if>
+
+                <button class="btn btn-primary btn-sm x-fav" title="delete"  onclick="#">
+                    <img id="del-image"
+                         src="https://img.icons8.com/dotty/26/000000/delete-forever.png">
+                </button>
             </div>
         </div>
 

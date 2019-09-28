@@ -38,61 +38,28 @@ $('#input-name').keyup(function () {
 });
 
 
-var wasClicked = false;
 
+$("#fav").click(function () {
 
-    $("#fav").click(function () {
-        if (!wasClicked) 
-            wasClicked = true;
-            /*return;*/
-        }
-        if ($(this).attr("src") == "https://img.icons8.com/metro/80/000000/like.png") {
-            $(this).attr("src", "https://img.icons8.com/metro/80/000000/hearts.png");
-            $("#fav-input").attr("title", "dupa cyce")
-        } else {
-            $(this).attr("src", "https://img.icons8.com/metro/80/000000/like.png");
-            $("#fav-input").attr("title", " dupa dupa")
-        }
-    });
+    if ($(this).attr("src") == "https://img.icons8.com/metro/80/000000/like.png") {
+        $(this).attr("src", "https://img.icons8.com/metro/80/000000/hearts.png");
+        $("#fav-description").attr('title', "remove from favourites")
+    } else {
+        $(this).attr("src", "https://img.icons8.com/metro/80/000000/like.png");
+        $("#fav-description").attr('title', "add to favourites")
+    }
 
-    /*var favToBeChangedId =
+    var favToBeChangedId = $('.x-favourite').val();
+    console.log(favToBeChangedId);
+
     $.ajax({
-        url: '/api/favourites/idToBeChanged/' + favToBeChangedId,
+        url: '/api/favourites/' + favToBeChangedId,
         type: 'GET',
         success: function () {
-            Console.out("dsffg");
+            console.log("dsffg");
         }
 
+    })
+});
 
-*/
 
-
-    /*
-
-    let image_tracker = document.getElementById('fav');
-    image_tracker.param(')
-
-    $('.x-favourite').onclick(function () {
-        var favToBeChangedId = $(this).param("value");
-        Console.out(favToBeChangedId);
-
-        var image = document.getElementById(('fav'));
-        if (image_tracker === 'https://img.icons8.com/dotty/80/000000/hearts.png') {
-            image.src = 'https://img.icons8.com/dotty/80/000000/like.png';
-            image_tracker = 'https://img.icons8.com/dotty/80/000000/like.png';
-        } else {
-            image.src = 'https://img.icons8.com/dotty/80/000000/hearts.png';
-            image_tracker = 'https://img.icons8.com/dotty/80/000000/hearts.png';
-        }
-    */
-
-    /*
-        //wyslij request
-        $.ajax({
-            url: '/api/favourites/idToBeChanged/' + favToBeChangedId,
-            type: 'GET',
-            success: function () {
-                Console.out("dsffg");
-            }
-
-        });*/

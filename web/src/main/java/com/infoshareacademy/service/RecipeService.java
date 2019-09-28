@@ -50,7 +50,6 @@ public class RecipeService {
     }
     public List<Recipe> getRecipiesList() {
         logger.info("Get recipies list");
-        /*return recipeDaoBean.getrecipieslist();*/
         return recipeDaoBean.getRecipiesList();
     }
     public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
@@ -91,5 +90,11 @@ public class RecipeService {
         return recipeDaoBean.getFavouritesListIds(userId);
     }
 
+    public boolean isFavourite(Long recipeId, Long userId){
+        if (recipeDaoBean.getFavouritesListIds(userId).contains(recipeId)){
+            return true;
+        }
+        return false;
+    }
 
 }

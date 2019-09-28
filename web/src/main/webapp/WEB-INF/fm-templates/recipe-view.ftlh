@@ -23,12 +23,10 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <style>
-
         #left {
             margin-top: 20%;
 
         }
-
         #right {
             margin-top: 20%;
         }
@@ -39,7 +37,7 @@
 
     </style>
 </head>
-<body>no bo to było
+<body>
 
 <div class="jumbotron jumbotron-fluid ">
     <div class="jumbotron jumbotron-fluid ">
@@ -55,17 +53,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-                    <button class="btn btn-primary btn-sm" id="new-drink2" type="button" title="Go back to home view"
-                            value="new-drink" style="padding-left:5%; margin:auto"
-                            onclick="window.location.href='www.google.com'">
-                        <img src="https://img.icons8.com/dotty/80/000000/return.png">
+                    <button class="btn btn-primary btn-sm" id="go-back" type="button" title="Go back to home view"
+                            style="padding-left:5%; margin:auto"
+                            onclick="window.location.href=
+                            <#if pU??>
+                                    '${pU}'">
+                        <#else >
+                            '/home'">
+                        </#if>
+                        <img src="https://img.icons8.com/metro/80/000000/return.png">
                     </button>
 
-                    <label class="btn btn-primary btn-sm" title="add to favourites">
-                        <input class="x-favourite" type="checkbox" value="${responseRecipeId.id?c}">
-                        <span class="form-check-label" style="padding-left: 2px"><img id="fav"
-                                    src="https://img.icons8.com/dotty/80/000000/hearts.png"></span>
-                    </label>
+                    <#if isFavourite == true>
+                        <label class="btn btn-primary btn-sm" id="fav-description" title="remove from favourites"
+                               style="margin-bottom: 0">
+                            <input class="x-favourite" type="checkbox" value="${responseRecipeId.id?c}">
+                            <span class="form-check-label" style="padding-left: 2px"><img id="fav"
+                                                                                          src="https://img.icons8.com/metro/80/000000/hearts.png"></span>
+                        </label>
+                    <#else>
+                        <label class="btn btn-primary btn-sm" id="fav-description" title="add to favourites"
+                               style="margin-bottom: 0">
+                            <input class="x-favourite" type="checkbox" value="${responseRecipeId.id?c}">
+                            <span class="form-check-label" style="padding-left: 2px"><img id="fav"
+                                                                                          src="https://img.icons8.com/metro/80/000000/like.png"></span>
+                        </label>
+                    </#if>
+
 
                 </div>
 
@@ -78,13 +92,7 @@
                                                 aria-controls="name" aria-selected="true"><h4><strong>Recipe
                                         Name</strong></h4></a>
                         </li>
-                        <li class="nav-item"><a class="col-md text-sm-center nav-link" id="back-button"
-                                    <#if pU??>
-                                                href="${pU}"
-                                    <#else >
-                                                href="/home">
-                                </#if>
-                                <h4><strong>Back to list</strong></h4></a></li>
+
                     </ul>
 
                     <div class="tab-content col-sm-12 " id="navTabA">
@@ -96,6 +104,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-1">
+                    <label class="btn btn-primary btn-sm" id="del-description" title="delete" style="margin-bottom: 0">
+                        <input class="x-delete" type="checkbox" value="${responseRecipeId.id?c}">
+                        <span class="form-check-label" style="padding-left: 2px"><img id="fav"
+                                                                                      src="https://img.icons8.com/dotty/80/000000/delete-forever.png"></span>
+                    </label>
+                </div>
+
             </div>
 
         </div>
@@ -157,7 +173,7 @@
                                 <p class="card-text">${responseRecipeId.category.name}</p>
                             </div>
                             <div class="col-md-4">
-                                <h5 class="card-title">strAlcoholic</h5>
+                                <h5 class="card-title">Type</h5>
                                 <p class="card-text">${responseRecipeId.drinkType}</p>
                             </div>
                             <div class="col-md-4">

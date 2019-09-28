@@ -41,10 +41,15 @@ public class SingleRecipeViewServlet extends HttpServlet {
             pU = req.getParameter("pU");
         }
 
+        //do zmiany na razie zamockowane zeby dzialaly favourites
+        Long userId = Long.parseLong("2");
 
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
+
+        boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
+
 
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
@@ -52,6 +57,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("responseRecipeId", responseRecipeId);
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("isFavourite", isFavourite);
         }
 
 
