@@ -20,7 +20,6 @@ public class UserRestService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
   @DELETE
   @Path("/deleteUser/{id}")
   public Response deleteUser(@PathParam("id") String userId) {
@@ -42,5 +41,4 @@ public class UserRestService {
     logger.info("user removed");
     return Response.ok().build();
   }
-
 }

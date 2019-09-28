@@ -5,12 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 
-
 @RequestScoped
 public class UsersPageService {
 
-  public List<User> getUsersPerPage(int pageNumber, List<User> filterList) {
-    int pageSize = 5;
+  public List<User> getUsersPerPage(int pageSize, int pageNumber, List<User> filterList) {
 
     if (pageSize <= 0 || pageNumber <= 0) {
       throw new IllegalArgumentException("invalid page size: " + pageSize);
@@ -22,11 +20,9 @@ public class UsersPageService {
     return filterList.subList(fromIndex, Math.min(fromIndex + pageSize, filterList.size()));
   }
 
-  public Integer getLastNumberPage(List<User> userList) {
-    int pageSize = 5;
+  public Integer getLastNumberPage(int pageSize, List<User> userList) {
     return (userList.size() + pageSize - 1) / pageSize;
   }
-
 }
 
 

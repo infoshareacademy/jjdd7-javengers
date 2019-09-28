@@ -32,7 +32,7 @@
 <div class="row">
   <div class="col-sm-2 gray">
     <div>
-     <a class="links" href="#" onclick="window.location.href = '/home';">
+      <a class="links" href="#" onclick="window.location.href = '/home';">
         Main Page </a>
     </div>
     <div>
@@ -40,11 +40,11 @@
         Data Upload </a>
     </div>
     <div>
-      <a  class="links" href="#" onclick="window.location.href = '/superHero/recipes';">
+      <a class="links" href="#" onclick="window.location.href = '/superHero/recipes';">
         Recipes </a>
     </div>
     <div>
-      <a  class="links" href="#" onclick="window.location.href = '/superHero/users';">
+      <a class="links" href="#" onclick="window.location.href = '/superHero/users';">
         Users </a>
     </div>
     <div>

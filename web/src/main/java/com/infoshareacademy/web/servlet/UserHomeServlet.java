@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 public class UserHomeServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(UserHomeServlet.class.getName());
-    ;
     @Inject
     private StartingPageService startingPageService;
     @Inject
@@ -123,14 +122,14 @@ public class UserHomeServlet extends HttpServlet {
         }
     }
 
-    public static String[] getParametersList(ServletRequest request, String paramName, String[] defaultValue) {
+    private static String[] getParametersList(ServletRequest request, String paramName,
+        String[] defaultValue) {
         if (request.getParameterValues(paramName) != null) {
             return request.getParameterValues(paramName);
         } else {
             return defaultValue;
         }
     }
-
 }
 
 

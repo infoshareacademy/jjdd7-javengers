@@ -1,5 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
+import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.UserService;
 import com.infoshareacademy.service.UsersPageService;
@@ -17,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.infoshareacademy.domain.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,11 +39,14 @@ public class UsersManageServlet extends HttpServlet {
       throws IOException {
 
     resp.setContentType("text/html;charset=UTF-8");
-    List<String> pageNumber = Arrays.asList(getParametersList(req, "page", new String[]{"1"}));
-    Integer pageNo = Integer.parseInt(pageNumber.get(0));
+    List<String> pageNumber = Arrays.asList(getParametersList(req, new String[]{"1"}));
+    int pageNo = Integer.parseInt(pageNumber.get(0));
+    int usersPerSite = 5;
 
-    List<User> usersPerPage = usersPageService.getUsersPerPage(pageNo,userService.getUsersList());
-    Integer lastPageNo = usersPageService.getLastNumberPage(userService.getUsersList());
+    List<User> usersPerPage = usersPageService.getUsersPerPage(usersPerSite,
+        pageNo, userService.getUsersList());
+    Integer lastPageNo = usersPageService
+        .getLastNumberPage(usersPerSite, userService.getUsersList());
 
 
     Template template = templateProvider.getTemplate(getServletContext(),
@@ -62,12 +65,12 @@ public class UsersManageServlet extends HttpServlet {
     }
   }
 
-  public static String[] getParametersList(ServletRequest request, String paramName, String[] defaultValue) {
-    if (request.getParameterValues(paramName) != null) {
-      return request.getParameterValues(paramName);
+  private static String[] getParametersList(ServletRequest request,
+      String[] defaultValue) {
+    if (request.getParameterValues("page") != null) {
+      return request.getParameterValues("page");
     } else {
       return defaultValue;
     }
   }
-
 }

@@ -23,7 +23,6 @@ public class AdminViewServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 

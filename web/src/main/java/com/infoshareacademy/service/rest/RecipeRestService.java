@@ -1,5 +1,7 @@
 package com.infoshareacademy.service.rest;
 
+import com.infoshareacademy.domain.view.RecipeLiveSearchView;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -8,12 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import com.infoshareacademy.domain.view.RecipeLiveSearchView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 @Path("/recipes")
 @Stateless

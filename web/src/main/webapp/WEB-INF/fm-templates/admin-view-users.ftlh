@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="col-sm-10 white">
-    <table class="table ">
+    <table class="table white ">
       <thead>
       <tr>
         <th scope="col">Id</th>
@@ -74,24 +74,27 @@
           <td>${user.name}</td>
           <td>${user.email}</td>
           <td>${user.userType}</td>
-          <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" data-id="${user.id}" class="btn btn-success give">
-                GIVE
-              </button>
-              <button type="button" data-id="${user.id}"
-                      class="btn btn-danger revoke">
-                REVOKE
-              </button>
-            </div>
-          </td>
-          <td>
-            <div>
-              <button type="button" data-id="${user.id}" class="btn btn-success delete">
-                DELETE
-              </button>
-            </div>
-          </td>
+            <#if user.id != 1>
+
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" data-id="${user.id}" class="btn btn-success give">
+                    GIVE
+                  </button>
+                  <button type="button" data-id="${user.id}"
+                          class="btn btn-danger revoke">
+                    REVOKE
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <button type="button" data-id="${user.id}" class="btn btn-success delete">
+                    DELETE
+                  </button>
+                </div>
+              </td>
+            </#if>
         </tr>
       </#list>
       </tbody>

@@ -29,7 +29,7 @@ public class JsonParserServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
-    Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
+    private Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -58,6 +58,6 @@ public class JsonParserServlet extends HttpServlet {
         Recipe drinkRecipe = new Recipe();
         drinkRecipe.setImageUrl(fileUrl);
         req.getSession().setAttribute("fileUpload",true);
-        resp.getWriter().println(fileUrl + " successful uploaded!");
+        logger.info("Data from {} successfully uploaded", fileUrl);
     }
 }
