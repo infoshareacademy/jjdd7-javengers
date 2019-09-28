@@ -1,31 +1,33 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
+import com.google.common.base.Strings;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Transactional
 @WebServlet("/recipe-view")
 public class SingleRecipeViewServlet extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(StartingPageServlet.class.getName());
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @Inject
     private TemplateProvider templateProvider;
+
     @Inject
     private RecipeService recipeService;
 
@@ -47,6 +49,10 @@ public class SingleRecipeViewServlet extends HttpServlet {
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
+        String userType = (String) req.getSession().getAttribute("userType");
+        if (Strings.isNullOrEmpty(userType)){
+            req.getSession().setAttribute("userType", "guest");
+        }
 
         boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
 
@@ -57,10 +63,9 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("responseRecipeId", responseRecipeId);
             model.put("pU", pU);
             model.put("email", req.getSession().getAttribute("email"));
+            model.put("userType", req.getSession().getAttribute("userType"));
             model.put("isFavourite", isFavourite);
         }
-
-
 
         try {
             template.process(model, resp.getWriter());

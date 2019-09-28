@@ -10,6 +10,12 @@ let listOfNames = [];
 let ingredientList = [];
 let paramActive;
 
+$(function () {
+    $(document).ready(function () {
+        console.log("test")
+        $('#unauthorizedAccess').modal('show');
+    })
+});
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
@@ -205,8 +211,6 @@ $(".favorite").click(function () {
     listSelectedIngredients();
     listSelectedTypes();
     whatIsActive();
-
-
 
     const queryParams = $.param({
         categories: selectedCategories,

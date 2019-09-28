@@ -41,7 +41,7 @@
 
 <div class="jumbotron jumbotron-fluid ">
     <div class="jumbotron jumbotron-fluid ">
-        <#include "navbar.ftlh">
+        <#include "login.ftlh">
 
         <div class="container">
             <h1 class="display-3">Drinkopedia</h1>
@@ -63,7 +63,7 @@
                         </#if>
                         <img src="https://img.icons8.com/metro/80/000000/return.png">
                     </button>
-
+                    <#if userType!="guest">
                     <#if isFavourite == true>
                         <label class="btn btn-primary btn-sm" id="fav-description" title="remove from favourites"
                                style="margin-bottom: 0">
@@ -79,7 +79,7 @@
                                                                                           src="https://img.icons8.com/metro/80/000000/like.png"></span>
                         </label>
                     </#if>
-
+</#if>
 
                 </div>
 
@@ -104,6 +104,8 @@
                         </div>
                     </div>
                 </div>
+
+                <#if userType!="guest">
                 <div class="col-sm-1">
                     <label class="btn btn-primary btn-sm" id="del-description" title="delete" style="margin-bottom: 0">
                         <input class="x-delete" type="checkbox" value="${responseRecipeId.id?c}">
@@ -111,6 +113,7 @@
                                                                                       src="https://img.icons8.com/dotty/80/000000/delete-forever.png"></span>
                     </label>
                 </div>
+                </#if>
 
             </div>
 
@@ -119,7 +122,6 @@
         <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
             <h2 class="card-title" style="color: olivedrab">${responseRecipeId.name}</h2>
         </div>
-
 
         <div class="col-sm-10">
 

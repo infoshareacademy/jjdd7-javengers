@@ -21,7 +21,7 @@
                 </a>
             </div>
 
-
+<#if userType !="guest">
             <div class="col-md-2" style="padding:0; padding-top: 7%">
                 <#if favouritesIdsChecked?seq_contains(recipe.id)>
 
@@ -41,8 +41,8 @@
                          src="https://img.icons8.com/dotty/26/000000/delete-forever.png">
                 </button>
             </div>
+</#if>
         </div>
-
     </#items>
 </#list>
 

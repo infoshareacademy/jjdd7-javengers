@@ -31,16 +31,14 @@
 
 </head>
 <body>
-
 <div class="jumbotron jumbotron-fluid ">
-    <div class="jumbotron jumbotron-fluid ">
-        <#include "navbar.ftlh">
-
-        <div class="container">
-            <h1 class="display-3">Drinkopedia</h1>
-            <p class="lead">Read, mix, enjoy...</p>
-        </div>
+    <#include "login.ftlh">
+    <div class="container">
+        <h1 class="display-3">Drinkopedia</h1>
+        <p class="lead">Read, mix, enjoy...</p>
     </div>
+    <#include "unauthorizeAttempt.ftlh">
+</div>
 
     <div class="container">
         <div class="container">
@@ -111,7 +109,7 @@
             </div>
             <div class="card col-sm-6">
                 <#--content fm templates-->
-                <#include "content.ftlh">
+                <#include "userContent.ftlh">
             </div>
             <div class="card col-sm-3" style="margin-top: 10%">
                 <#--list-options fm templates-->

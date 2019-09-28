@@ -4,12 +4,12 @@ import com.infoshareacademy.dao.UserDaoBean;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RequestScoped
+@Stateless
 public class UserService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
@@ -27,9 +27,9 @@ public class UserService {
     return userDaoBean.updateUser(user);
   }
 
-  public User findUserByName(String name) {
+  public User findUserByEmail(String email) {
     logger.info("Get user by name");
-    return userDaoBean.findUserByName(name);
+    return userDaoBean.findUserByEmail(email);
   }
 
   public User getUserById(Long id) {
@@ -42,8 +42,7 @@ public class UserService {
     logger.info("User has been deleted");
   }
 
-  public List<User> getUsersList() {
-    logger.info("Get users list");
+  public List<User> getUsersList(){
     return userDaoBean.getUsersList();
   }
 
