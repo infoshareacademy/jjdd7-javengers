@@ -30,6 +30,6 @@ public class FavouritesRecipeViewRestService {
 
         return Response.ok().build();
     }
-    
+
 
 }

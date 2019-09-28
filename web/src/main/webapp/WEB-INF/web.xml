@@ -13,11 +13,11 @@
   <data-source>
     <name>java:ds/demoDS</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-    <url>jdbc:mysql://0.0.0.0:3307/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-<!--<url>jdbc:mysql://mysql/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+    <!--<url>jdbc:mysql://0.0.0.0:3307/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+<url>jdbc:mysql://mysql/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
     <user>root</user>
-<!--    <password>pass123</password>-->
-    <password>root</password>
+    <password>pass123</password>
+    <!--<password>root</password>-->
   </data-source>
 
 </web-app>
