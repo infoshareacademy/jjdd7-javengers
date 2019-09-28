@@ -32,6 +32,10 @@
 <div class="row">
   <div class="col-sm-2 gray">
     <div>
+      <a class="links" href="#" onclick="window.location.href = '/logout';">
+        Log out </a>
+    </div>
+    <div>
       <a class="links" href="#" onclick="window.location.href = '/home';">
         Main Page </a>
     </div>
