@@ -30,32 +30,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-2 gray">
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/logout';">
-        Log out </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/home';">
-        Main Page </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/upload-data';">
-        Data Upload </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/recipes';">
-        Recipes </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/users';">
-        Users </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/statistics';">
-        Statistics </a>
-    </div>
-  </div>
+    <#include "admin-options.ftlh">
   <div class="col-sm-10 white">
     <h1>Welcome ${name} !</h1>
   </div>

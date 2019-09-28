@@ -1,6 +1,6 @@
 .gray {
 background-color: #747a76;
-  color: #fffac9;
+  color: white;
   font-family: "Source Code Pro", serif;
   font-size: xx-large;
   text-align: center;
@@ -11,14 +11,14 @@ background-color: #747a76;
 .links {
   font-size: xx-large;
   text-align: center;
-  color: #fffac9;
+  color: white;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 
 .row {
   background-color: #4a4f4b;
-  color: #fffac9;
+  color: white;
   font-family: "Source Code Pro", serif;
   font-size: xx-large;
   text-align: center;
@@ -47,7 +47,7 @@ background-color: #747a76;
 .container-fluid {
   background-color: lightgray;
   font-size: xx-large;
-  color: #fffac9;
+  color: white;
   height: 95px;
 }
 
@@ -55,3 +55,21 @@ background-color: #747a76;
   text-align: left;
 }
 
+.btn-delete {
+  color: white;
+  background-color: brown;
+}
+
+td{
+  text-align: left;
+}
+
+.btn-dark{
+  color: white;
+  background-color: #4a4f4b;
+}
+
+.btn-light{
+  color: white;
+  background-color: darkslategrey;
+}

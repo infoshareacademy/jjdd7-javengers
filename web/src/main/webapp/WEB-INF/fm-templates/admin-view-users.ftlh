@@ -33,33 +33,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-2 gray">
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/home';">
-        Main Page </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/upload-data';">
-        Data Upload </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/recipes';">
-        Recipes </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/users';">
-        Users </a>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/statistics';">
-        Statistics </a>
-    </div>
-  </div>
+    <#include "admin-options.ftlh">
   <div class="col-sm-10 white">
     <table class="table white ">
       <thead>
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">User Type</th>
@@ -70,7 +48,6 @@
       <tbody>
       <#list  usersPerPage as user>
         <tr>
-          <th scope="row">${user.id}</th>
           <td>${user.name}</td>
           <td>${user.email}</td>
           <td>${user.userType}</td>
@@ -89,7 +66,7 @@
               </td>
               <td>
                 <div>
-                  <button type="button" data-id="${user.id}" class="btn btn-success delete">
+                  <button type="button" data-id="${user.id}" class=" btn btn-delete delete">
                     DELETE
                   </button>
                 </div>
@@ -99,45 +76,45 @@
       </#list>
       </tbody>
     </table>
-    <div class="row paginator white">
-      <div class="col-sm-3 paginator">
-        <button class="favorite btn btn-primary btn-sm" type="button" value="1">First(1)
+    <div class="row white">
+      <div class="col-sm-3">
+        <button class="btn btn-dark" type="button" value="1">First(1)
         </button>
-        <button class="favorite btn btn-primary btn-sm" type="button"
+        <button class="btn btn-dark" type="button"
                 <#if pageNumber gt 1> value="${pageNumber-1}" <#else> value="1" </#if>>
           &leftarrow;
         </button>
       </div>
-      <div class="col-sm-6 paginator">
+      <div class="col-sm-6">
           <#if pageNumber gte 3>
             ...
-            <button class="favorite btn btn-primary btn-sm" type="button"
+            <button class="btn btn-secondary" type="button"
                     value='${pageNumber-2}'>${pageNumber-2}</button>
           </#if>
           <#if pageNumber gte 2>
-            <button class="favorite btn btn-primary btn-sm" type="button"
+            <button class="btn btn-secondary" type="button"
                     value='${pageNumber-1}'>${pageNumber-1}</button>
           </#if>
-        <button class="favorite btn btn-light btn-sm" type="button" value='${pageNumber}'>
+        <button class="btn btn-light" type="button" value='${pageNumber}'>
           <strong>${pageNumber}</strong>
         </button>
           <#if  (lastPageNumber-1) gte pageNumber>
-            <button class="favorite btn btn-primary btn-sm" type="button"
+            <button class="btn btn-dark" type="button"
                     value='${pageNumber+1}'>${pageNumber+1}</button>
           </#if>
           <#if (lastPageNumber-2) gte pageNumber>
-            <button class="favorite btn btn-primary btn-sm" type="button"
+            <button class="btn btn-dark" type="button"
                     value='${pageNumber+2}'>${pageNumber+2}</button>
             ...
           </#if>
       </div>
-      <div class="col-sm-3 paginator">
-        <button class="favorite btn btn-primary btn-sm" type="button"
+      <div class="col-sm-3">
+        <button class="btn btn-dark" type="button"
                 <#if (lastPageNumber-1) gte pageNumber> value="${pageNumber+1}" <#else>
           value="${lastPageNumber}" </#if>>
           &rightarrow;
         </button>
-        <button class="favorite btn btn-primary btn-sm" type="button"
+        <button class=" btn btn-dark" type="button"
                 value="${lastPageNumber}">
           Last(${lastPageNumber})
         </button>

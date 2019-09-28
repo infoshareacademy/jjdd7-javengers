@@ -34,28 +34,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-2 gray">
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/home';">
-        Main Page </a><br/>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/upload-data';">
-        Data Upload </a><br/>
-    </div>
-    <div>
-      <a  class="links" href="#" onclick="window.location.href = '/superHero/recipes';">
-        Recipes </a><br/>
-    </div>
-    <div>
-      <a  class="links" href="#" onclick="window.location.href = '/superHero/users';">
-        Users </a><br/>
-    </div>
-    <div>
-      <a class="links" href="#" onclick="window.location.href = '/superHero/statistics';">
-        Statistics </a><br/>
-    </div>
-  </div>
+  <#include "admin-options.ftlh">
   <div class="col-sm-10 white">
     <div class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
       <form id="form-upload" action="/superHero/upload-data" method="post" enctype="multipart/form-data">
