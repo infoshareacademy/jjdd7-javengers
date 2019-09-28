@@ -25,21 +25,18 @@ public class PrivilegesRestService {
   @PATCH
   @Path("/addAdminPermissions/{id}")
   public Response getAdminPrivileges(@PathParam("id") String userId) {
-
     if (!NumberUtils.isDigits(userId)) {
       return Response.status(Status.BAD_REQUEST).build();
     }
-
     Long id = Long.parseLong(userId);
 
     if (userService.getUserById(id) == null) {
       logger.info("User not found user with id {}", id);
       return Response.status(Status.NOT_FOUND).build();
     }
-
     User user = userService.getUserById(id);
 
-    if (id == 1) {
+    if (user.getEmail().equals("javengers.team@gmail.com")) {
       return Response.status(Status.NOT_MODIFIED).build();
     } else if (user.getUserType().equals("user")) {
       user.setUserType("admin");
@@ -55,18 +52,15 @@ public class PrivilegesRestService {
   @PATCH
   @Path("/revokeAdminPermissions/{id}")
   public Response revokeAdminPrivilege(@PathParam("id") String userId) {
-
     if (!NumberUtils.isDigits(userId)) {
       return Response.status(Status.BAD_REQUEST).build();
     }
-
     Long id = Long.parseLong(userId);
 
     if (userService.getUserById(id) == null) {
       logger.info("User not found user with id {}", id);
       return Response.status(Status.NOT_FOUND).build();
     }
-
     User user = userService.getUserById(id);
 
     if (id == 1) {
@@ -80,5 +74,4 @@ public class PrivilegesRestService {
     }
     return Response.ok().build();
   }
-
 }

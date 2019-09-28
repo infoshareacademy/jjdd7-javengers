@@ -1,5 +1,6 @@
 package com.infoshareacademy.service.rest;
 
+import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.service.UserService;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,15 +24,15 @@ public class UserRestService {
   @DELETE
   @Path("/deleteUser/{id}")
   public Response deleteUser(@PathParam("id") String userId) {
-
     Long id = Long.parseLong(userId);
 
     if (userService.getUserById(id) == null) {
       logger.info("User not found user with id {}", id);
       return Response.status(Status.NOT_FOUND).build();
     }
+    User user = userService.getUserById(id);
 
-    if (id == 1) {
+    if (user.getEmail().equals("javengers.team@gmail.com")) {
       logger.info("There was an attempt to delete super admin");
       return Response.status(Status.NOT_MODIFIED).build();
     } else {
