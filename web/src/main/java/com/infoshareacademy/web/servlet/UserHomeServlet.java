@@ -66,13 +66,14 @@ public class UserHomeServlet extends HttpServlet {
         String active = req.getParameter("active");
         List<String> checkedOptionList = Arrays.asList(getParametersList(req, "listOptions[]", new String[]{"All Drinks"}));
         List<String> favouriteIdList = Arrays.asList(getParametersList(req, "favToChangeId", new String[]{"0"}));
+        Long userId = (Long) req.getSession().getAttribute("userId");
 
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
         String checkedListOption = checkedOptionList.get(0);
         Long favouriteId = Long.parseLong(favouriteIdList.get(0));
 
         //do zmiany na razie zamockowane zeby dzialaly favourites
-        Long userId = Long.parseLong("2");
+        /*Long userId = Long.parseLong();*/
 
         List<Category> categoriesList = categoryService.getCategoriesList();
 
