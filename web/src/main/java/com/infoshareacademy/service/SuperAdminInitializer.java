@@ -27,7 +27,6 @@ public class SuperAdminInitializer {
   protected void init() {
     User user = new User();
     user.setName(getProperty("user.name"));
-    user.setSurname(getProperty("user.surname"));
     user.setEmail(getProperty("user.email"));
     user.setUserType("admin");
     userService.save(user);

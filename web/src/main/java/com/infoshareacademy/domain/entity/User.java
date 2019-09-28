@@ -39,10 +39,6 @@ public class User {
     @NotNull
     private String name;
 
-    @Column(name = "surname")
-    @NotNull
-    private String surname;
-
     @Column(name = "email")
     @NotNull
     private String email;
@@ -73,14 +69,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getEmail() {

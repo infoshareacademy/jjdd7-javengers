@@ -46,7 +46,6 @@ public class GoogleLoginCallbackServlet extends AbstractAuthorizationCodeCallbac
     if (userService.findUserByEmail(email) == null){
       User user = new User();
       user.setName(name);
-      user.setSurname(surname);
       user.setEmail(email);
       user.setUserType("user");
       userService.save(user);

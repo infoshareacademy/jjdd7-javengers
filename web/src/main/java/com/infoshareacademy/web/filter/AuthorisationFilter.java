@@ -1,7 +1,6 @@
 package com.infoshareacademy.web.filter;
 
 
-import com.google.common.base.Strings;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,7 +17,9 @@ import org.slf4j.LoggerFactory;
 
 @WebFilter(
     filterName = "AdminAuthorizationFilter",
-    urlPatterns = {"/superHero/*","/*", "/home/*"},
+    urlPatterns = {"/superHero/*", "/*",
+        "/home/*", "/api/superHero/*",
+        "/api/superHero/users/*"},
     initParams = {
         @WebInitParam(name = "userType", value = "admin"),
     }
@@ -50,15 +51,11 @@ public class AuthorisationFilter implements Filter {
       userType = "guest";
     }
 
-    //TODO popup with message "An unauthorized attempt to the admin panel has occurred!"
-
     if ((path.equals("/superHero")) && !(userType.equals(admin))) {
       req.getSession().setAttribute("authorization", "unauthorizedAttempt");
-//      resp.sendRedirect("/home?failed=true");
       resp.sendRedirect("/home");
       logger.warn("An unauthorized attempt to the admin panel has occurred!");
     }
     filterChain.doFilter(servletRequest, servletResponse);
   }
-
 }

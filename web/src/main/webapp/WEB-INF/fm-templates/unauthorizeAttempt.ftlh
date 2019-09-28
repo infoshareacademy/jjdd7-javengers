@@ -1,4 +1,3 @@
-<div> ${authorization} </div>
 <#if authorization=="unauthorizedAttempt">
   <div class="modal fade" id="unauthorizedAccess" tabindex="-1" role="dialog"
        aria-labelledby="unauthorizedAccess" aria-hidden="true">

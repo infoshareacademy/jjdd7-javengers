@@ -36,7 +36,7 @@ public class JsonParserServlet extends HttpServlet {
         throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
-        Template template = templateProvider.getTemplate(getServletContext(),"admin-view");
+        Template template = templateProvider.getTemplate(getServletContext(), "admin-file-upload.ftlh");
         Map<String, Object> model = new HashMap<>();
         try {
             template.process(model, resp.getWriter());

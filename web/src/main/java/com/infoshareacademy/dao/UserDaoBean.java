@@ -26,9 +26,9 @@ public class UserDaoBean {
     }
 
     public void deleteUserById(Long id) {
-        User recipe = getUserById(id);
-        if (recipe != null) {
-            entityManager.remove(recipe);
+        User user = getUserById(id);
+        if (user != null) {
+            entityManager.remove(user);
         }
     }
 
