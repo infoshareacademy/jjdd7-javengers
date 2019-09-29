@@ -111,7 +111,7 @@ public class RecipeService {
     public Long getMaxId() {
         return recipeDaoBean.getMaxId();
     }
-
+    @Transactional
     public List<Recipe> getUnauthorizedRecipes(){
         return  recipeDaoBean.getUnauthorizedRecipes();
     }

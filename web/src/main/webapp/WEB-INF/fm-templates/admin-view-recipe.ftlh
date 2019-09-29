@@ -42,6 +42,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Category</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Measures</th>
                 <th scope="col">Add to Drinkopedia</th>
             </tr>
             </thead>
@@ -52,6 +54,16 @@
                     <td>${recipe.name}</td>
                     <td>${recipe.drinkType}</td>
                     <td>${recipe.category.name}</td>
+                    <td><#list recipe.ingredients>
+                            <#items as ingredient>
+                                <li>${ingredient.name}:</li>
+                            </#items>
+                        </#list></td>
+                    <td><#list recipe.ingredients>
+                            <#items as ingredient>
+                                <li>${ingredient.measure}:</li>
+                            </#items>
+                        </#list></td>
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
