@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <button class="btn btn-primary" id="new-drink2" type="button" title="Create a new recipe!"
-                            value="new-drink" style="padding-left:14%; margin:auto" onclick="window.location.href='www.google.com'">
+                            value="new-drink" style="padding-left:14%; margin:auto" onclick="window.location.href='/add-recipe-view'">
                         <img src="https://img.icons8.com/dotty/100/000000/cocktail.png" style="width:75%">
                     </button>
                 </div>

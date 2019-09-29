@@ -1,6 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.freemarker.TemplateProvider;
+import com.infoshareacademy.service.RecipeService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -20,6 +21,9 @@ public class AdminViewServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+
+    @Inject
+    RecipeService recipeService;
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 

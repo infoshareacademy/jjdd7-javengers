@@ -45,3 +45,33 @@ $(function () {
     });
   });
 });
+
+$(function () {
+  $(document).ready(function () {
+
+    $(".no").click(function () {
+      $.ajax({
+        url: '/api/superHero/recipes/deleteRecipe/' + $(this).attr('data-id'),
+        type: 'DELETE',
+        success: function () {
+          location.reload();
+        }
+      });
+    });
+  });
+});
+
+$(function () {
+  $(document).ready(function () {
+
+    $(".yes").click(function () {
+      $.ajax({
+        url: '/api/superHero/recipes/authorizeRecipe/' + $(this).attr('data-id'),
+        type: 'GET',
+        success: function () {
+          location.reload();
+        }
+      });
+    });
+  });
+});

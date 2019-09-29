@@ -1,0 +1,162 @@
+* {
+.border-radius(0) !important;
+}
+
+#field {
+    margin-bottom:20px;
+}
+
+body, html {
+    background-image: url(../img/wp2172683.jpg);
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+}
+
+.container {
+    background: transparent;
+    text-align: center;
+}
+
+.jumbotron {
+    color: white;
+    background: transparent;
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+.jumbotron.jumbotron-fluid{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.card {
+    background: transparent;
+}
+
+.card-header{
+    background: transparent;
+    color: olivedrab;
+}
+
+.btn-group-vertical{
+    color: white;
+    border: white;
+    border-width: 0.1px;
+    outline: white;
+    align-content: baseline;
+}
+
+.btn {
+    outline: white;
+    text-align: start;
+    padding-left: 20%;
+    font-size: larger;
+}
+
+.btn-sm{
+
+    outline: white;
+    text-align: center;
+    padding-left: 5px;
+    font-size: medium;
+}
+
+#navTabA{
+    padding: 0;
+
+}
+
+#list-ingredient{
+    padding: 10px;
+    height: 50px;
+}
+
+#search-container{
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.form-control{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border: 1px white;
+}
+.content-container{
+    border: 1px solid white;
+    border-radius: .25rem;
+
+}
+
+a:-webkit-any-link {
+
+    color: olivedrab;
+    cursor: pointer;
+}
+
+
+.list-group-item{
+    background: transparent;
+}
+
+.btn-primary{
+    background-color: darkolivegreen;
+    border-color: olivedrab;
+}
+.btn-primary:hover {
+    background-color: olivedrab !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.list-group-item{
+
+    padding:0;
+
+}
+
+.title{
+    margin-bottom: 0;
+}
+
+#edit-buttons-single-view{
+    margin: auto; padding-top: 24px; padding-bottom: 24px;
+}
+
+.modal-content{
+    background-color: lightpink;
+    border: ridge red;
+    color: black;
+}
+
+
+
+.x-favourite {
+
+    padding-left: 5px;
+    display: none;
+}
+
+.x-delete {
+
+    padding-left: 5px;
+    display: none;
+}
+
+#new-drink{
+    cursor: pointer;
+
+}
+
+.remove-me{
+    width: 50px;
+}
+
+.add-more{
+    width: 50px;
+}
