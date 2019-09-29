@@ -36,8 +36,8 @@
                     </button>
                 </#if>
 
-                <button class="btn btn-primary btn-sm x-fav" title="delete"  onclick="#">
-                    <img id="del-image"
+                <button class="btn btn-primary btn-sm x-fav del" data-id="${recipe.id?c}" title="delete">
+                    <img
                          src="https://img.icons8.com/dotty/26/000000/delete-forever.png">
                 </button>
             </div>
