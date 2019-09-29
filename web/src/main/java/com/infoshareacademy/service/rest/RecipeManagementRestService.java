@@ -1,6 +1,6 @@
 package com.infoshareacademy.service.rest;
 
-import com.infoshareacademy.domain.entity.User;
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.service.RecipeService;
 import javax.ejb.EJB;
 import javax.ws.rs.DELETE;
@@ -37,33 +37,23 @@ public class RecipeManagementRestService {
   }
 
   @PATCH
-  @Path("/addRecipe/{id}")
-  public Response revokeAdminPrivilege(@PathParam("id") String userId) {
+  @Path("/updateRecipe/{id}")
+  public Response updateRecipe(@PathParam("id") String userId) {
 
     if (!NumberUtils.isDigits(userId)) {
       return Response.status(Status.BAD_REQUEST).build();
     }
-
     Long id = Long.parseLong(userId);
-
     if (recipeService.getRecipeById(id) == null) {
       logger.info("User not found user with id {}", id);
       return Response.status(Status.NOT_FOUND).build();
-    }
-    User user = userService.getUserById(id);
-
-    if (id == 1) {
-      return Response.status(Status.NOT_MODIFIED).build();
-    } else if (user.getUserType().equals("admin")) {
-      user.setUserType("user");
-      userService.updateUser(user);
-      logger.info("User with id {} revoke admin privileges", id);
     } else {
-      return Response.status(Status.NOT_MODIFIED).build();
+
+      Recipe recipe = recipeService.getRecipeById(id);
+      recipe.setApproved(true);
+      recipeService.editRecipe(recipe);
+      logger.info("Recipe with id {} was updated",id);
     }
     return Response.ok().build();
   }
-
-
-
 }

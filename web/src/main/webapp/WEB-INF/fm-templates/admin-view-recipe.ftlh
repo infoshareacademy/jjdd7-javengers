@@ -57,12 +57,10 @@
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" data-id="${recipe.id?c}" class="btn btn-success yes">
-                                    Yes
-                                </button>
-                                <button type="button" data-id=${recipe.id?c}"
+                                    Yes</button>
+                                <button type="button" data-id="${recipe.id?c}"
                                         class="btn btn-danger no">
-                                    No
-                                </button>
+                                    No</button>
                             </div>
                         </td>
                     <#--</#if>-->

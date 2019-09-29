@@ -66,8 +66,8 @@ $(function () {
 
     $(".yes").click(function () {
       $.ajax({
-        url: '/api/superHero/recipes/authorizeRecipe/' + $(this).attr('data-id'),
-        type: 'GET',
+        url: '/api/superHero/recipes/updateRecipe/' + $(this).attr('data-id'),
+        type: 'PATCH',
         success: function () {
           location.reload();
         }
