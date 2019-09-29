@@ -18,7 +18,8 @@ import org.slf4j.LoggerFactory;
     filterName = "AdminAuthorizationFilter",
     urlPatterns = {"/superHero/*", "/*",
         "/home/*", "/api/superHero/*",
-        "/api/superHero/users/*"},
+        "/api/superHero/users/*",
+        "/add-recipe-view/*"},
     initParams = {
         @WebInitParam(name = "userType", value = "admin"),
     }
@@ -48,6 +49,11 @@ public class AuthorisationFilter implements Filter {
     logger.info("logger{}", userType);
     if (userType == null || userType.isEmpty()) {
       userType = "guest";
+    }
+
+    if ((path.equals("/add-recipe-view")) && (userType.equals("guest"))) {
+      resp.sendRedirect("/home");
+      logger.warn("An unauthorized attempt to recipe edition panel has occurred!");
     }
 
     if ((path.equals("/superHero")) && !(userType.equals(admin))) {

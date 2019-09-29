@@ -1,14 +1,9 @@
 package com.infoshareacademy.web.servlet;
 
-
 import com.infoshareacademy.FileUpload.FileUploadProcessor;
 import com.infoshareacademy.FileUpload.UserImageNotFound;
 import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Category;
-import com.infoshareacademy.domain.entity.Recipe;
-import com.infoshareacademy.dto.CategoryDto;
-import com.infoshareacademy.dto.IngredientDto;
-import com.infoshareacademy.dto.RecipeDto;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.mapper.CategoryMapper;
 import com.infoshareacademy.mapper.RecipeToAddDtoToEntityMapper;
@@ -16,11 +11,16 @@ import com.infoshareacademy.service.CategoryService;
 import com.infoshareacademy.service.RecipeService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
-import java.util.logging.Logger;
-
 
 @Transactional
 @WebServlet("/add-recipe-view")
@@ -69,11 +64,11 @@ public class AddRecipeServlet extends HttpServlet {
         List<Category> categoriesList = categoryService.getCategoriesList();
         List<String> typeList = recipeService.getRecipeTypes();
 
-
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("categoryList", categoriesList);
         dataModel.put("typeList", typeList);
-
+        dataModel.put("userType", req.getSession().getAttribute("userType"));
+        dataModel.put("email", req.getSession().getAttribute("email"));
 
         PrintWriter writer = resp.getWriter();
         try {
@@ -83,11 +78,9 @@ public class AddRecipeServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
-
 
         String name = req.getParameter("name");
         String type = req.getParameter("type");
@@ -128,7 +121,6 @@ public class AddRecipeServlet extends HttpServlet {
 
         recipe.setImageUrl(imageUrl);
 
-
         Category category = Optional
                 .ofNullable(categoryService.findCategoryByName(recipe.getRecipeCategory()))
                 .orElseGet(() -> categoryMapper.mapCategory(recipe));
@@ -139,6 +131,4 @@ public class AddRecipeServlet extends HttpServlet {
 
         resp.getWriter().println("User has been added.");
     }
-
-
 }

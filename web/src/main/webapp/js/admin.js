@@ -75,18 +75,3 @@ $(function () {
     });
   });
 });
-
-$(function () {
-  $(document).ready(function () {
-
-    $(".deleteRecipe").click(function () {
-      $.ajax({
-        url: '/api/superHero/recipes/deleteRecipe/' + $(this).attr('data-id'),
-        type: 'DELETE',
-        success: function () {
-          location.reload();
-        }
-      });
-    });
-  });
-});
