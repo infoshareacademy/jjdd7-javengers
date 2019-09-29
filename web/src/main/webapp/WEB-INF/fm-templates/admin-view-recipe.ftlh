@@ -48,24 +48,21 @@
             <tbody>
             <#list  recipesList as recipe>
                 <tr>
-                   <#-- <td><img src="${recipe.imageUrl}" style="width: 80px"></td>-->
-                    <td>${recipe.imageUrl}</td>
+                    <td><img src="${recipe.imageUrl}" style="width: 80px" title="${recipe.instruction}"></td>
                     <td>${recipe.name}</td>
                     <td>${recipe.drinkType}</td>
                     <td>${recipe.category.name}</td>
-                    <#--<#if user.id != 1>-->
+
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" data-id="${recipe.id?c}" class="btn btn-success yes">
                                     Yes
                                 </button>
-                                <button type="button" data-id=${recipe.id?c}"
-                                        class="btn btn-danger no">
+                                <button type="button" data-id="${recipe.id?c}" class="btn btn-danger no">
                                     No
                                 </button>
                             </div>
                         </td>
-                    <#--</#if>-->
                 </tr>
             </#list>
             </tbody>
