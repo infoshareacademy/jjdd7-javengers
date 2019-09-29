@@ -2,6 +2,30 @@ const $formName = $('#form-name');
 
 let listOfNames = [];
 
+$(function () {
+    $(document).ready(function () {
+        console.log("test")
+        $('#isOfAge').modal('show');
+    })
+});
+
+$("#yes").click(function () {
+    const d = new Date();
+    d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = "isAdult=true" + ";" + expires + ";path=/";
+    console.log("yes")
+    location.reload()
+});
+
+$("#no").click(function () {
+    const d = new Date();
+    d.setTime(d.getTime() + (1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = "isAdult=false" + ";" + expires + ";path=/";
+    console.log("no")
+    window.location = document.referrer
+});
 
 $formName.on('submit', () => {
     const $input = $("#input-name");
