@@ -1,7 +1,5 @@
 <#list recipeListPerPage>
     <#items as recipe>
-
-
         <div class="row"
              Style="border: ghostwhite solid; border-width: thin; border-radius: .5rem; margin-bottom: 5px;">
             <div class="col-sm-10" style="padding: 0px">
@@ -21,8 +19,6 @@
                     </div>
                 </a>
             </div>
-
-
             <div class="col-md-2" style="padding:0; padding-top: 7%">
                 <#if userType !="guest">
                     <#if favouritesIdsChecked?seq_contains(recipe.id)>
@@ -47,7 +43,6 @@
                     </button>
                 </#if>
             </div>
-
         </div>
     </#items>
 </#list>

@@ -20,17 +20,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 
     <style>
-        #left {
-            margin-top: 20%;
-
-        }
-        #right {
-            margin-top: 20%;
-        }
-
         .container {
             color: white;
         }
@@ -80,7 +72,6 @@
                         </label>
                     </#if>
 </#if>
-
                 </div>
 
                 <div class="col-sm-6" id="search-container">
@@ -123,84 +114,82 @@
             <h2 class="card-title" style="color: olivedrab">${responseRecipeId.name}</h2>
         </div>
 
-        <div class="col-sm-10">
+        <#include "age-verifier.ftlh">
+        <#if isAdult == "true">
+            <div class="col-sm-10">
 
-            <div class="row ">
-                <div class="col-md-6" ; style="margin:0px">
-                    <#if responseRecipeId.imageUrl??>
-                        <img src="${responseRecipeId.imageUrl}" style="max-width: 100%;" class="card-img"
-                             alt="...">
-                    <#else>
-                        <img src="http://placekitten.com/g/700/700" style="max-width: 100%;"
-                             class="card-img"
-                             alt="...">
-                    </#if>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h5 class="card-title">Ingredients</h5>
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <ul>
-                                    <#list responseRecipeId.ingredients>
-                                        <#items as ingredient>
-                                            <li>${ingredient.name}:</li>
-                                        </#items>
-                                    </#list>
-                                </ul>
+                <div class="row ">
+                    <div class="col-md-6" ; style="margin:0px">
+                        <#if responseRecipeId.imageUrl??>
+                            <img src="${responseRecipeId.imageUrl}" style="max-width: 100%;"
+                                 class="card-img"
+                                 alt="...">
+                        <#else>
+                            <img src="http://placekitten.com/g/700/700" style="max-width: 100%;"
+                                 class="card-img"
+                                 alt="...">
+                        </#if>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Ingredients</h5>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <#list responseRecipeId.ingredients>
+                                            <#items as ingredient>
+                                                <li>${ingredient.name}:</li>
+                                            </#items>
+                                        </#list>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <#list responseRecipeId.ingredients>
+                                            <#items as ingredient>
+                                                <li>
+                                                    <#if ingredient.measure != "">
+                                                        ${ingredient.measure}
+                                                    <#else>
+                                                        -
+                                                    </#if>
+                                                </li>
+                                            </#items>
+                                        </#list>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <ul>
-                                    <#list responseRecipeId.ingredients>
-                                        <#items as ingredient>
-                                            <li>
-                                                <#if ingredient.measure != "">
-                                                    ${ingredient.measure}
-                                                <#else>
-                                                    -
-                                                </#if>
-                                            </li>
-                                        </#items>
-                                    </#list>
-                                </ul>
+                            <br/>
+                            <h5 class="card-title">Instructions</h5>
+                            <p class="card-text">${responseRecipeId.instruction}</p>
+                            <br/>
+                            <div class="row ">
+                                <div class="col-md-4">
+                                    <h5 class="card-title">Category</h5>
+                                    <p class="card-text">${responseRecipeId.category.name}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="card-title">Type</h5>
+                                    <p class="card-text">${responseRecipeId.drinkType}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="card-title">Glass</h5>
+                                    <p class="card-text">${responseRecipeId.glassType}</p>
+                                </div>
                             </div>
+                            <br/>
+                            <p class="card-text">
+                                <small class="text-muted">Date of
+                                    modification: ${responseRecipeId.modificationDate}</small>
+                            </p>
+                            <br/>
                         </div>
-                        <br/>
-                        <h5 class="card-title">Instructions</h5>
-                        <p class="card-text">${responseRecipeId.instruction}</p>
-                        <br/>
-                        <div class="row ">
-                            <div class="col-md-4">
-                                <h5 class="card-title">Category</h5>
-                                <p class="card-text">${responseRecipeId.category.name}</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="card-title">Type</h5>
-                                <p class="card-text">${responseRecipeId.drinkType}</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="card-title">Glass</h5>
-                                <p class="card-text">${responseRecipeId.glassType}</p>
-                            </div>
-                        </div>
-                        <br/>
-                        <p class="card-text">
-                            <small class="text-muted">Date of
-                                modification: ${responseRecipeId.modificationDate}</small>
-                        </p>
-                        <br/>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-
+        </#if>
     </div>
-
-
-    <script src="js/recipe-view.js"></script>
-
-
+</div>
+    <script src="/js/recipe-view.js"></script>
 </body>
 </html>
