@@ -127,8 +127,7 @@ public class AddRecipeServlet extends HttpServlet {
         category.getRecipes().add(recipeToAddDtoToEntityMapper.mapRecipe(recipe, category));
         categoryService.updateCategory(category);
 
-        //recipeService.addRecipe(recipeToAddDtoToEntityMapper.mapRecipe(recipe, category));
 
-        resp.getWriter().println("User has been added.");
+        resp.sendRedirect("/home");
     }
 }

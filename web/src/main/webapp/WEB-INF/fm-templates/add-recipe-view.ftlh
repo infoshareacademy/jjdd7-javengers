@@ -37,21 +37,18 @@
         <h1 class="display-3">Drinkopedia</h1>
         <p class="lead">Read, mix, enjoy...</p>
     </div>
-    <#--  <#include "unauthorizeAttempt.ftlh">-->
 
-    <#--  <div class="container-fluid">
-          <ul class="nav">
-              <li class="nav-item">
-                  <a class="nav-link active" href="#">Main</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Log in</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link disabled" href="#">sign in</a>
-              </li>
-          </ul>
-      </div>-->
+    <div class="modal fade" id="success" tabindex="-1" role="dialog"
+         aria-labelledby="success" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h3>Your Recipe was sent to the Admin for authorization</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -153,11 +150,17 @@
 
         </div>
 
-        <button class="btn btn-primary btn-lg" type="submit" style="text-align:left">Add Recipe</button>
+        <button class="btn btn-primary btn-lg" id="sub" type="submit" style="text-align:left">Add Recipe</button>
 
 
     </form>
 </div>
+
+
+
+
+
+
 
 <script src="js/add-recipe-view.js"></script>
 

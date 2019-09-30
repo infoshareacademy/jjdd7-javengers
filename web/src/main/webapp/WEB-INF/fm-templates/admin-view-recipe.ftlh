@@ -56,12 +56,12 @@
                     <td>${recipe.category.name}</td>
                     <td><#list recipe.ingredients>
                             <#items as ingredient>
-                                <li>${ingredient.name}:</li>
+                                <li>${ingredient.name}</li>
                             </#items>
                         </#list></td>
                     <td><#list recipe.ingredients>
                             <#items as ingredient>
-                                <li>${ingredient.measure}:</li>
+                                <li>${ingredient.measure}</li>
                             </#items>
                         </#list></td>
 

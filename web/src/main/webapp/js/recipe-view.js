@@ -56,10 +56,21 @@ $("#fav").click(function () {
         url: '/api/favourites/' + favToBeChangedId,
         type: 'GET',
         success: function () {
-            console.log("dsffg");
+            console.log("favourites changed");
         }
 
     })
 });
 
+$("#del-description").click(function () {
+    var favToBeChangedId = $('.x-delete').val();
+    console.log(favToBeChangedId);
 
+    $.ajax({
+        url: '/api/superHero/recipes/deleteRecipe/' + favToBeChangedId,
+        type: 'DELETE',
+        success: function () {
+            window.location = document.referrer;
+        }
+    })
+});

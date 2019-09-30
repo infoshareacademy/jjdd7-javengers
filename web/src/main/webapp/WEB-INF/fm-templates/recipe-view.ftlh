@@ -105,7 +105,7 @@
                     </div>
                 </div>
 
-                <#if userType!="guest">
+                <#if userType == "admin">
                 <div class="col-sm-1">
                     <label class="btn btn-primary btn-sm" id="del-description" title="delete" style="margin-bottom: 0">
                         <input class="x-delete" type="checkbox" value="${responseRecipeId.id?c}">
