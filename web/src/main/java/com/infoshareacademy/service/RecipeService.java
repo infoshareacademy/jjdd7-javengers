@@ -1,4 +1,5 @@
 package com.infoshareacademy.service;
+
 import com.infoshareacademy.dao.RecipeDaoBean;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
@@ -27,37 +28,46 @@ public class RecipeService {
         recipeDaoBean.loadRecipe(recipes);
         logger.info("Recipes list has been loaded");
     }
+
     public void addRecipe(Recipe recipe) {
         recipeDaoBean.addRecipe(recipe);
         logger.info("Recipe has been saved");
     }
+
     public Recipe editRecipe(Recipe recipe) {
         logger.info("Recipe update");
         return recipeDaoBean.editRecipe(recipe);
     }
+
     public Recipe getRecipeByName(String name) {
         logger.info("Get recipe by name");
         return recipeDaoBean.getRecipeByName(name);
     }
+
     @Transactional
     public Recipe getRecipeById(Long id) {
         logger.info("Get recipe by id");
         return recipeDaoBean.getRecipeById(id);
     }
+
     public void deleteRecipeById(Long id) {
         recipeDaoBean.deleteRecipeById(id);
         logger.info("Category has been deleted");
     }
+
     public List<Recipe> getRecipiesList() {
         logger.info("Get recipies list");
         return recipeDaoBean.getRecipiesList();
     }
+
     public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
         return recipeDaoBean.findRecipeByCategoryId(ids);
     }
+
     public List<String> findRecipeByIngredientId(List<String> names) {
         return recipeDaoBean.findRecipeByIngredientId(names);
     }
+
     public List<Recipe> findRecipeForLiveSearch(String nameChars) {
         logger.info("recipes with name contains {} found in database", nameChars);
         return recipeDaoBean.findRecipeByLiveSearch(nameChars);
@@ -80,21 +90,30 @@ public class RecipeService {
         return recipeDaoBean.findFavouriteByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes, userId);
     }
 
-    public List<Recipe> findFavouriteRecipeByCategoryIdAndType( List<Category> categories, List<String> drinkTypes, Long userId) {
+    public List<Recipe> findFavouriteRecipeByCategoryIdAndType(List<Category> categories, List<String> drinkTypes, Long userId) {
         return recipeDaoBean.findFavouriteRecipeByCategoryIdAndType(categories, drinkTypes, userId);
 
 
     }
+
     @Transactional
-    public  List<Long> getFavouritesListIdsForUser(Long userId) {
+    public List<Long> getFavouritesListIdsForUser(Long userId) {
         return recipeDaoBean.getFavouritesListIds(userId);
     }
 
-    public boolean isFavourite(Long recipeId, Long userId){
-        if (recipeDaoBean.getFavouritesListIds(userId).contains(recipeId)){
+    public boolean isFavourite(Long recipeId, Long userId) {
+        if (recipeDaoBean.getFavouritesListIds(userId).contains(recipeId)) {
             return true;
         }
         return false;
+    }
+
+    public Long getMaxId() {
+        return recipeDaoBean.getMaxId();
+    }
+    @Transactional
+    public List<Recipe> getUnauthorizedRecipes(){
+        return  recipeDaoBean.getUnauthorizedRecipes();
     }
 
 }

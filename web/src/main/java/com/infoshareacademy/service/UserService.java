@@ -61,4 +61,5 @@ public class UserService {
     userDaoBean.editFavouritesByIdForUSer(recipeId, userId);
     logger.info("Recipe changed its favourites status");
   }
+
 }

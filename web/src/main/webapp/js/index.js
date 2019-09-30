@@ -265,3 +265,19 @@ function clickedFav(string, id) {
 
     })
 };
+
+$(function () {
+    $(document).ready(function () {
+
+        $(".del").click(function () {
+            console.log("in in");
+            $.ajax({
+                url: '/api/superHero/recipes/deleteRecipe/' + $(this).attr('data-id'),
+                type: 'DELETE',
+                success: function () {
+                    location.reload();
+                }
+            });
+        });
+    });
+});

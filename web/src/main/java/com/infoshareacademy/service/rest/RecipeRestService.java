@@ -1,15 +1,18 @@
 package com.infoshareacademy.service.rest;
 
 import com.infoshareacademy.domain.view.RecipeLiveSearchView;
+import com.infoshareacademy.service.RecipeService;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +22,9 @@ public class RecipeRestService {
 
   @EJB
   private ApiRecipeService apiRecipeService;
+
+  @EJB
+  private RecipeService recipeService;
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 

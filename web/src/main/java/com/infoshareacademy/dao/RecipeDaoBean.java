@@ -1,4 +1,5 @@
 package com.infoshareacademy.dao;
+
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
@@ -21,12 +22,15 @@ public class RecipeDaoBean {
             entityManager.persist(recipe);
         }
     }
+
     public void addRecipe(Recipe recipe) {
         entityManager.persist(recipe);
     }
+
     public Recipe editRecipe(Recipe recipe) {
         return entityManager.merge(recipe);
     }
+
     public Recipe getRecipeByName(String name) {
         return entityManager.find(Recipe.class, name);
     }
@@ -35,16 +39,19 @@ public class RecipeDaoBean {
     public Recipe getRecipeById(Long id) {
         return entityManager.find(Recipe.class, id);
     }
+
     public void deleteRecipeById(Long id) {
         Recipe recipe = getRecipeById(id);
         if (recipe != null) {
             entityManager.remove(recipe);
         }
     }
+
     public List<Recipe> getRecipiesList() {
         Query query = entityManager.createNamedQuery("Recipe.getRecipiesList");
         return query.getResultList();
     }
+
     public List<Recipe> findRecipeByCategoryId(List<Long> ids) {
         Query query = entityManager.createNamedQuery("Category.findCategoryById");
         query.setParameter("ids", ids);
@@ -54,11 +61,13 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("categories", categories);
         return recipeQuery.getResultList();
     }
+
     public List<String> findRecipeByIngredientId(List<String> names) {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByIngredientName");
         query.setParameter("names", names);
         return query.getResultList();
     }
+
     public List findRecipeByLiveSearch(String nameChars) {
         Query query = entityManager.createNamedQuery("Recipe.findRecipeByLiveSearch");
         query.setParameter("nameChars", "%" + nameChars + "%");
@@ -120,11 +129,22 @@ public class RecipeDaoBean {
         return query.getResultList();
     }
 
-    public Recipe getFavouriteRecipeForUser(Long recipeId, Long userId){
+    public Recipe getFavouriteRecipeForUser(Long recipeId, Long userId) {
         Query query = entityManager.createNamedQuery("Recipe.getFavouriteRecipeForUser");
         query.setParameter("id", userId);
         query.setParameter("recipeId", recipeId);
         return (Recipe) query.getSingleResult();
+
+    }
+
+    public Long getMaxId() {
+        Query query = entityManager.createNamedQuery("Recipe.getTheBiggestId");
+        return (Long) query.getSingleResult();
+    }
+
+    public List<Recipe> getUnauthorizedRecipes(){
+        Query query = entityManager.createNamedQuery("Recipe.getUnauthorizedRecipes");
+        return query.getResultList();
 
     }
 

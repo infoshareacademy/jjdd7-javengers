@@ -58,7 +58,7 @@ public class User {
     private String userType;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "user_favourite_recipe",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

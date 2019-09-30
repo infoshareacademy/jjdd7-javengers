@@ -27,7 +27,7 @@ public class UserRestService {
     Long id = Long.parseLong(userId);
 
     if (userService.getUserById(id) == null) {
-      logger.info("User not found user with id {}", id);
+      logger.info("User with id {} not found ", id);
       return Response.status(Status.NOT_FOUND).build();
     }
     User user = userService.getUserById(id);
@@ -39,7 +39,7 @@ public class UserRestService {
       userService.deleteUserById(id);
       logger.info("User with id {} was deleted", id);
     }
-    logger.info("user removed");
+    logger.info("user with id {} removed",id);
     return Response.ok().build();
   }
 }
