@@ -1,4 +1,6 @@
 package com.infoshareacademy.domain.entity;
+import com.infoshareacademy.domain.entity.statistics.RecipeStatistics;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -31,8 +33,12 @@ import java.util.List;
                 query = "SELECT distinct r.drinkType FROM Recipe r WHERE r.drinkType in :types"),
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryIdAndType",
-                query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC")
-})
+                query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes ORDER BY r.name ASC"),
+        @NamedQuery(
+                name = "Recipe.getRecipiePerCategoryRank",
+                query = "SELECT c.name, count (r.name) as quantity  FROM Recipe r JOIN r.category c group by c.id order by quantity DESC")
+
+        })
 
 public class Recipe {
 
@@ -85,6 +91,7 @@ public class Recipe {
 
     @ManyToMany(mappedBy = "recipes")
     private List<User> users = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -181,4 +188,6 @@ public class Recipe {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+
 }

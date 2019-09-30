@@ -4,6 +4,7 @@ import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.*;
+import com.infoshareacademy.service.statistics.StatisticsService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -38,7 +39,9 @@ public class StartingPageServlet extends HttpServlet {
     private FilteringService filteringService;
 
     @Inject
-    TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
+    @Inject
+    private StatisticsService statisticsService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -69,6 +72,9 @@ public class StartingPageServlet extends HttpServlet {
         List<Long> paredToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
+
+        Long recipie = 0L;
+        statisticsService.saveToDB(recipie,paredToLongCategoriesList);
         List<Recipe> checkedCategoriesAndIngredientsAndTypes;
         if (checkedIngredientsList.size() == 0 || checkedIngredientsList == null || checkedIngredientsList.isEmpty()) {
             checkedCategoriesAndIngredientsAndTypes = filteringService.getFiltersQueryByCategoryAndType(paredToLongCategoriesList, checkedTypesList);
