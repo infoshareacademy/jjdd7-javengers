@@ -61,8 +61,6 @@
         <div class="card col-sm-5" style="padding-top: 0%">
             <header class="card-header"><h4 class="title">References:</h4></header>
             <br/>
-            <img class="rounded" src="/img/kwachuMeme.jpeg" alt="kwachu" style="width: 100%">
-            <br/>
             <img class="rounded" src="/img/bondMeme.jpg" alt="bond" style="width: 100%">
         </div>
 

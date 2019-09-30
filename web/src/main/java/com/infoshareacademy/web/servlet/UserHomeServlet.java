@@ -5,14 +5,12 @@ import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.*;
+import com.infoshareacademy.service.statistics.StatisticsService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -20,15 +18,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.stream.Collectors;
 
 @WebServlet("/home")
@@ -48,7 +42,9 @@ public class UserHomeServlet extends HttpServlet {
     @Inject
     private UserService userService;
     @Inject
-    TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
+    @Inject
+    private StatisticsService statisticsService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -72,33 +68,22 @@ public class UserHomeServlet extends HttpServlet {
         String checkedListOption = checkedOptionList.get(0);
         Long favouriteId = Long.parseLong(favouriteIdList.get(0));
 
-        //do zmiany na razie zamockowane zeby dzialaly favourites
-        /*Long userId = Long.parseLong();*/
-
         List<Category> categoriesList = categoryService.getCategoriesList();
 
         List<String> ingredientList = ingredientService.getIngredientsList();
         List<String> typeList = recipeService.getRecipeTypes();
 
-
-
         List<Long> parsedToLongCategoriesList = checkedCategoriesList.stream()
                 .map(s -> Long.parseLong(s))
                 .collect(Collectors.toList());
+
+        Long recipie = 0L;
+        statisticsService.saveToDB(recipie, parsedToLongCategoriesList);
         List<Recipe> checkedCategoriesAndIngredientsAndTypes;
-
-
         checkedCategoriesAndIngredientsAndTypes = startingPageService.filterContentList(checkedOptionList, checkedIngredientsList, parsedToLongCategoriesList, checkedTypesList, userId);
-
-
         List<Recipe> recipeListPerPage = startingPageService.getRecipesPerPage(pageNo, checkedCategoriesAndIngredientsAndTypes);
-
-
         List<Long> favouriteRecipeIdsFromUser = recipeService.getFavouritesListIdsForUser(userId);
-
-
         Integer lastPageNumber = startingPageService.getLastNumberPage(checkedCategoriesAndIngredientsAndTypes);
-
         String userType = (String) req.getSession().getAttribute("userType");
         if (Strings.isNullOrEmpty(userType)) {
             req.getSession().setAttribute("userType", "guest");
@@ -120,7 +105,7 @@ public class UserHomeServlet extends HttpServlet {
             model.put("ingredientList", ingredientList);
             model.put("ingredientListChecked", checkedIngredientsList);
             model.put("typeListChecked", checkedTypesList);
-            model.put("email",req.getSession().getAttribute("email"));
+            model.put("email", req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
             model.put("typeList", typeList);
             model.put("checkedListOption", checkedListOption);
@@ -136,7 +121,7 @@ public class UserHomeServlet extends HttpServlet {
     }
 
     private static String[] getParametersList(ServletRequest request, String paramName,
-        String[] defaultValue) {
+                                              String[] defaultValue) {
         if (request.getParameterValues(paramName) != null) {
             return request.getParameterValues(paramName);
         } else {

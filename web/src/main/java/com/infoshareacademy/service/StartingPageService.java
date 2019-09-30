@@ -5,8 +5,11 @@ import com.infoshareacademy.domain.entity.Recipe;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 
 @RequestScoped
@@ -37,8 +40,6 @@ public class StartingPageService {
         return (recipeList.size() + pageSize - 1) / pageSize;
     }
 
-
-
     public List<Recipe> filterContentList(List <String> checkedOptionList, List<String> checkedIngredientsList, List<Long> parsedToLongCategoriesList, List<String> checkedTypesList, Long userId) {
 
 
@@ -60,6 +61,14 @@ public class StartingPageService {
             }
         }
         return listWithFilters;
+    }
+    public List<Recipe> getRecipeByFilterOption(String filterOption) {
+        List<Recipe> result = new ArrayList<>();
+        String allRecipies = "All Drinks";
+        if (filterOption == allRecipies) {
+            result = recipeService.getRecipiesList();
+        }
+        return result;
     }
 
 }

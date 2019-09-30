@@ -1,4 +1,5 @@
 package com.infoshareacademy.domain.entity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -16,21 +17,15 @@ import java.util.List;
         @NamedQuery(
                 name = "Recipe.findRecipeByCategory",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.isApproved = true ORDER BY r.name ASC"),
-
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites",
                 query = "SELECT r FROM Recipe r  JOIN r.ingredients i JOIN r.users u WHERE  u.id=:id AND r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) AND r.isApproved = true GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
-                //query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength ORDER BY r.name ASC "),
-
         @NamedQuery(
                 name = "Recipe.findRecipeByCategoryIdAndIngredientNameAndType",
                 query = "SELECT r FROM Recipe r  JOIN r.ingredients i WHERE r.category IN :categories  AND r.drinkType IN :drinkTypes AND (i.name IN :ingredients) GROUP BY r HAVING COUNT(DISTINCT i.name)=:namesLength AND r.isApproved = true ORDER BY r.name ASC "),
-
-
         @NamedQuery(
                 name = "Recipe.findRecipeByLiveSearch",
                 query = "SELECT r FROM Recipe as r WHERE r.name LIKE :nameChars AND r.isApproved = true"),
-
         @NamedQuery(
                 name = "Recipe.getRecipeTypes",
                 query = "Select distinct r.drinkType from Recipe r"),
@@ -41,7 +36,7 @@ import java.util.List;
                 name = "Recipe.findRecipeByCategoryIdAndType",
                 query = "SELECT r FROM Recipe r  WHERE r.category IN :categories AND r.drinkType IN :drinkTypes AND r.isApproved = true ORDER BY r.name ASC"),
         @NamedQuery(
-                name="Recipe.findRecipeByCategoryIdAndTypeAndFavourites",
+                name = "Recipe.findRecipeByCategoryIdAndTypeAndFavourites",
                 query = "SELECT r FROM Recipe r JOIN r.users u WHERE u.id=:id AND r.category IN :categories AND r.drinkType IN :drinkTypes AND r.isApproved = true ORDER BY r.name ASC"),
         @NamedQuery(
                 name = "Recipe.getFavouritesListIdsForUser",
@@ -55,11 +50,10 @@ import java.util.List;
         @NamedQuery(
                 name = "Recipe.getUnauthorizedRecipes",
                 query = "SELECT r FROM Recipe r WHERE r.isApproved = false"),
+        @NamedQuery(
+                name = "Recipe.getRecipiePerCategoryRank",
+                query = "SELECT c.name, count (r.name) as quantity  FROM Recipe r JOIN r.category c group by c.id order by quantity DESC")
 
-
-        //query = "SELECT r.recipe_id FROM User u JOIN u.recipes r WHERE r.id=u.id AND u.id=:id"),
-// query = "SELECT r.id FROM Recipe r JOIN fetch r.users u WHERE r.id=u.id AND u.id=:id"),
-        //SELECT r.id FROM recipe r JOIN user_favourite_recipe u WHERE r.id=u.recipe_id AND u.recipe_id=:id
 })
 
 public class Recipe {

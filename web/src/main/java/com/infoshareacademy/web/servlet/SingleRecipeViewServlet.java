@@ -4,11 +4,12 @@ import com.google.common.base.Strings;
 import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.RecipeService;
+import com.infoshareacademy.service.statistics.StatisticsService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 @Transactional
 @WebServlet("/recipe-view")
@@ -31,6 +36,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
 
     @Inject
     private RecipeService recipeService;
+    @Inject
+    private StatisticsService statisticsService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -44,28 +51,27 @@ public class SingleRecipeViewServlet extends HttpServlet {
             pU = req.getParameter("pU");
         }
 
-//        String isAdult = req.getParameter("isAdu")
-
-        //do zmiany na razie zamockowane zeby dzialaly favourites
         Long userId = Long.parseLong("2");
-
-        //ToDo how to take paramter and save it for some time
 
         String isAdult = "false";
 
         for (Cookie c : req.getCookies()) {
-            if (c.getName().equals("isAdult")){
+            if (c.getName().equals("isAdult")) {
                 logger.info("cokie {}", c.getName());
                 isAdult = c.getValue();
             }
         }
 
-
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
+        resp.getWriter().println("Recipe has been added");
+
+        List<Long> longList = new ArrayList<>();
+        statisticsService.saveToDB(parseToLongRecipeId, longList);
+
         String userType = (String) req.getSession().getAttribute("userType");
-        if (Strings.isNullOrEmpty(userType)){
+        if (Strings.isNullOrEmpty(userType)) {
             req.getSession().setAttribute("userType", "guest");
         }
 
@@ -82,7 +88,7 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("userType", req.getSession().getAttribute("userType"));
             model.put("isFavourite", isFavourite);
             model.put("recipeType", req.getSession().getAttribute("recipeType"));
-            model.put("isAdult",isAdult);
+            model.put("isAdult", isAdult);
         }
 
         try {
