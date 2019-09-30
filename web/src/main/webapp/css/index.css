@@ -1,27 +1,20 @@
 body, html {
     background-image: url(../img/wp2172683.jpg);
-    /* Full height */
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-size: cover;
     margin: 0;
 }
 
-
-
 .container {
     background: transparent;
     text-align: center;
-   /* border: solid;*/
 }
 
 .jumbotron {
     color: white;
     background: transparent;
     text-align: center;
-    /*border: solid;*/
     padding-top: 0px;
     padding-bottom: 0px;
 }
@@ -30,26 +23,23 @@ body, html {
 .jumbotron.jumbotron-fluid{
     padding-top: 0px;
     padding-bottom: 0px;
-
 }
+
 .card {
     background: transparent;
-    /*border: solid;*/
-
 }
+
 .card-header{
     background: transparent;
     color: olivedrab;
 }
 
 .btn-group-vertical{
-
     color: white;
     border: white;
-    border-width: 1px;
+    border-width: 0.1px;
     outline: white;
     align-content: baseline;
-    /*border: solid;*/
 }
 
 .btn {
@@ -78,10 +68,8 @@ height: 50px;
 }
 
 #search-container{
-    width: 50%;
-    margin: auto;
-
-
+margin-bottom: auto;
+margin-top: auto;
 }
 
 .form-control{
@@ -92,7 +80,6 @@ height: 50px;
 .content-container{
     border: 1px solid white;
     border-radius: .25rem;
-
 
 }
 
@@ -131,4 +118,29 @@ ul {
 
 #edit-buttons-single-view{
     margin: auto; padding-top: 24px; padding-bottom: 24px;
+}
+
+.modal-content{
+    background-color: lightpink;
+    border: ridge red;
+    color: black;
+}
+
+
+
+.x-favourite {
+
+     padding-left: 5px;
+     display: none;
+ }
+
+.x-delete {
+
+    padding-left: 5px;
+    display: none;
+}
+
+#new-drink{
+    cursor: pointer;
+
 }

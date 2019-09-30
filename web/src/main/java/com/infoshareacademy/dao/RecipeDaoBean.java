@@ -101,4 +101,51 @@ public class RecipeDaoBean {
         recipeQuery.setParameter("drinkTypes", drinkTypes);
         return recipeQuery.getResultList();
     }
+
+
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, Long userId) {
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryAndIngredientAndTypeAndFavourites");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("ingredients", ingredients);
+        recipeQuery.setParameter("namesLength", namesLength);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
+        recipeQuery.setParameter("id", userId);
+        return recipeQuery.getResultList();
+    }
+
+    public List<Recipe> findFavouriteRecipeByCategoryIdAndType(List<Category> categories, List<String> drinkTypes, Long userId) {
+        Query recipeQuery = entityManager.createNamedQuery("Recipe.findRecipeByCategoryIdAndTypeAndFavourites");
+        recipeQuery.setParameter("categories", categories);
+        recipeQuery.setParameter("drinkTypes", drinkTypes);
+        recipeQuery.setParameter("id", userId);
+        return recipeQuery.getResultList();
+    }
+
+
+    @Transactional
+    public List<Long> getFavouritesListIds(Long userId) {
+        Query query = entityManager.createNamedQuery("Recipe.getFavouritesListIdsForUser");
+        query.setParameter("id", userId);
+        return query.getResultList();
+    }
+
+    public Recipe getFavouriteRecipeForUser(Long recipeId, Long userId) {
+        Query query = entityManager.createNamedQuery("Recipe.getFavouriteRecipeForUser");
+        query.setParameter("id", userId);
+        query.setParameter("recipeId", recipeId);
+        return (Recipe) query.getSingleResult();
+
+    }
+
+    public Long getMaxId() {
+        Query query = entityManager.createNamedQuery("Recipe.getTheBiggestId");
+        return (Long) query.getSingleResult();
+    }
+
+    public List<Recipe> getUnauthorizedRecipes(){
+        Query query = entityManager.createNamedQuery("Recipe.getUnauthorizedRecipes");
+        return query.getResultList();
+
+    }
+
 }

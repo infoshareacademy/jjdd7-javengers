@@ -132,3 +132,9 @@ ul {
 #edit-buttons-single-view{
     margin: auto; padding-top: 24px; padding-bottom: 24px;
 }
+
+.modal-content{
+    background-color: lightpink;
+    border: ridge red;
+    color: black;
+}

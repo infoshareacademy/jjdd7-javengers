@@ -85,4 +85,35 @@ public class RecipeService {
     public List<Recipe> findRecipeByCategoryIdAndType(List<Category> categories, List<String> drinkTypes) {
         return recipeDaoBean.findRecipeByCategoryIdAndType(categories, drinkTypes);
     }
+
+    public List<Recipe> findFavouriteByCategoryIdAndIngredientAndType(List<Category> categories, List<Ingredient> ingredients, long namesLength, List<String> drinkTypes, Long userId) {
+        return recipeDaoBean.findFavouriteByCategoryIdAndIngredientAndType(categories, ingredients, namesLength, drinkTypes, userId);
+    }
+
+    public List<Recipe> findFavouriteRecipeByCategoryIdAndType(List<Category> categories, List<String> drinkTypes, Long userId) {
+        return recipeDaoBean.findFavouriteRecipeByCategoryIdAndType(categories, drinkTypes, userId);
+
+
+    }
+
+    @Transactional
+    public List<Long> getFavouritesListIdsForUser(Long userId) {
+        return recipeDaoBean.getFavouritesListIds(userId);
+    }
+
+    public boolean isFavourite(Long recipeId, Long userId) {
+        if (recipeDaoBean.getFavouritesListIds(userId).contains(recipeId)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Long getMaxId() {
+        return recipeDaoBean.getMaxId();
+    }
+    @Transactional
+    public List<Recipe> getUnauthorizedRecipes(){
+        return  recipeDaoBean.getUnauthorizedRecipes();
+    }
+
 }

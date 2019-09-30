@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.statistics.StatisticsService;
@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/statistics")
+@WebServlet("/superHero/statistics")
 public class StatisticsServlet extends HttpServlet {
 
     @Inject
@@ -47,39 +47,5 @@ public class StatisticsServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-
-        RecipieStatistics recipieStatistics = new RecipieStatistics();
-        Set<Long> longSet = Stream.of(1L,2L).collect(Collectors.toSet());
-
-
-       // recipieStatistics.setId(Long.parseLong("1"));
-        recipieStatistics.setRecipieId(Long.parseLong("111"));
-        recipieStatistics.setType(Type.SINGLE_VIEW);
-        recipieStatistics.setUserId(Long.parseLong("123"));
-        recipieStatistics.setCategories(longSet);
-
-        statisticsService.addRecipieId(recipieStatistics);
-
-        resp.getWriter().println("Recipe has been added");
-
-
-    }*/
 
 }

@@ -41,7 +41,7 @@ public class Category {
     @OneToOne(mappedBy = "category")
     private RecipeStatistics recipeStatistics;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {

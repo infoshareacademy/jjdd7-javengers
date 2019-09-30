@@ -1,14 +1,15 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.UserDaoBean;
+import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RequestScoped
+@Stateless
 public class UserService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
@@ -26,23 +27,39 @@ public class UserService {
     return userDaoBean.updateUser(user);
   }
 
-  public User findUserByName(String name) {
+  public User findUserByEmail(String email) {
     logger.info("Get user by name");
-    return userDaoBean.findUserByName(name);
+    return userDaoBean.findUserByEmail(email);
   }
 
-  public User getUserById(Integer id) {
+  public User getUserById(Long id) {
     logger.info("Get user by id");
     return userDaoBean.getUserById(id);
   }
 
-  public void deleteUserById(Integer id) {
+  public void deleteUserById(Long id) {
     userDaoBean.deleteUserById(id);
     logger.info("User has been deleted");
   }
 
-  public List<User> getUsersList() {
-    logger.info("Get users list");
+  public List<User> getUsersList(){
     return userDaoBean.getUsersList();
   }
+
+  public List<Recipe> getFavouritesList() {
+    return userDaoBean.getFavouritesList();
+  }
+
+  public  List<Long> getFavouritesListIdsForUser(Long userId) {
+    return userDaoBean.getFavouritesListIds(userId);
+  }
+  public Recipe getFavouriteRecipeByIdForUser(Long favouriteId, Long userId) {
+    return userDaoBean.getFavouriteRecipeByIdForUser(favouriteId, userId);
+  }
+
+  public void editFavouritesByIdForUSer( Long recipeId, Long userId) {
+    userDaoBean.editFavouritesByIdForUSer(recipeId, userId);
+    logger.info("Recipe changed its favourites status");
+  }
+
 }

@@ -1,33 +1,43 @@
 package com.infoshareacademy.domain.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @NamedQueries({
+        @NamedQuery(
+                name = "User.findUserByName",
+                query = "SELECT u FROM User u WHERE u.name like :name"),
+        @NamedQuery(
+                name = "User.getUserList",
+                query = "SELECT u FROM User u"),
+        @NamedQuery(
+                name = "User.getFavouritesList",
+                query = "SELECT u.recipes FROM User u JOIN u.recipes r WHERE r.id=u.id"),
+        @NamedQuery(
+                name = "User.getFavouriteRecipeById",
+                query = "SELECT r FROM User u JOIN u.recipes r WHERE r.id= :id"),
+        @NamedQuery(
+                name = "User.getFavouritesListIdsForUser",
+                query = "SELECT r.id FROM Recipe r JOIN r.users u WHERE r.id=u.id AND u.id=:id"),
+                //query = "SELECT r.recipe_id FROM User u JOIN u.recipes r WHERE r.id=u.id AND u.id=:id"),
+
+        @NamedQuery(
+                name = "User.getFavouriteRecipeByIdForUser",
+                query = "SELECT r FROM User u JOIN u.recipes r WHERE r.id= :id AND u.id=:idu"),
+
+
     @NamedQuery(
-        name = "User.findUserByName",
-        query = "SELECT u FROM User u WHERE u.name like :name"),
+        name = "User.findUserByEmail",
+        query = "SELECT u FROM User u WHERE u.email like :email"),
     @NamedQuery(
-        name = "User.getUserList",
+        name = "User.getUsersList",
         query = "SELECT u FROM User u")
 })
 
 @Entity
-@Table(name = "user", indexes = {@Index(name = "user_name", columnList = "name")})
+@Table(name = "user", indexes = {@Index(name = "user_email", columnList = "email")})
 public class User {
 
     @Id
@@ -39,27 +49,22 @@ public class User {
     @NotNull
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "email")
     @NotNull
-    private String surname;
+    private String email;
 
     @Column(name = "user_type")
     @NotNull
     private String userType;
 
-    @Column(name = "login")
-    @NotNull
-    private String login;
 
-    @Column(name = "password")
-    @NotNull
-    private String password;
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-        name = "user_favourite_recipe",
-        joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")})
+            name = "user_favourite_recipe",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")})
+
+
     private List<Recipe> recipes = new ArrayList<>();
 
     public Long getId() {
@@ -78,12 +83,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserType() {
@@ -92,22 +97,6 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Recipe> getRecipes() {

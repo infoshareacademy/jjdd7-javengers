@@ -36,7 +36,8 @@
 <body>
 
 <div class="jumbotron jumbotron-fluid ">
-    <#include "navbar.ftlh">
+    <div class="jumbotron jumbotron-fluid ">
+        <#include "login.ftlh">
 
     <div class="container">
         <h1 class="display-3">Drinkopedia</h1>
@@ -59,8 +60,6 @@
     <div class="row" style="padding-top: 0%">
         <div class="card col-sm-5" style="padding-top: 0%">
             <header class="card-header"><h4 class="title">References:</h4></header>
-            <br/>
-            <img class="rounded" src="/img/kwachuMeme.jpeg" alt="kwachu" style="width: 100%">
             <br/>
             <img class="rounded" src="/img/bondMeme.jpg" alt="bond" style="width: 100%">
         </div>

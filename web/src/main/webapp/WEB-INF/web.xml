@@ -7,17 +7,35 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1">
   <display-name>Drinkopedia Web Application</display-name>
+
   <welcome-file-list>
     <welcome-file>/welcome</welcome-file>
   </welcome-file-list>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/notFound</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errors</location>
+  </error-page>
+
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/errors</location>
+  </error-page>
+
   <data-source>
     <name>java:ds/demoDS</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-    <url>jdbc:mysql://0.0.0.0:3307/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-<!--<url>jdbc:mysql://mysql/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+<!--    <url>jdbc:mysql://0.0.0.0:3307/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+<url>jdbc:mysql://mysql/javengersdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+
     <user>root</user>
-<!--    <password>pass123</password>-->
-    <password>root</password>
+    <password>pass123</password>
+<!--    <password>root</password>-->
   </data-source>
 
 </web-app>
