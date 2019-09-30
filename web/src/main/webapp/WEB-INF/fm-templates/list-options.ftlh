@@ -21,9 +21,4 @@
         <span class="form-check-label">Favourites</span>
     </label>
     </#if>
-    <#--<label class="btn btn-outline-light">
-        <input class="x-list-options" type="radio" name="myradio" value="Most Popular"
-               onclick="checkFilters()">
-        <span class="form-check-label">Most Popular</span>
-    </label>-->
 </div>

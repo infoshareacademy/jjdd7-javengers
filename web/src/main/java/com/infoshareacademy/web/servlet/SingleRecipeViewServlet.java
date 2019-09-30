@@ -65,7 +65,6 @@ public class SingleRecipeViewServlet extends HttpServlet {
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
-        resp.getWriter().println("Recipe has been added");
 
         List<Long> longList = new ArrayList<>();
         statisticsService.saveToDB(parseToLongRecipeId, longList);

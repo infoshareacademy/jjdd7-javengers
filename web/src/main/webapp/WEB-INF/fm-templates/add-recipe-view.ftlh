@@ -151,18 +151,10 @@
         </div>
 
         <button class="btn btn-primary btn-lg" id="sub" type="submit" style="text-align:left">Add Recipe</button>
-
-
     </form>
 </div>
 
-
-
-
-
-
-
-<script src="js/add-recipe-view.js"></script>
+<script src="/js/add-recipe-view.js"></script>
 
 </body>
 </html>
