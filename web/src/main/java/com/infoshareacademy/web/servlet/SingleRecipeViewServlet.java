@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +44,22 @@ public class SingleRecipeViewServlet extends HttpServlet {
             pU = req.getParameter("pU");
         }
 
+//        String isAdult = req.getParameter("isAdu")
+
         //do zmiany na razie zamockowane zeby dzialaly favourites
         Long userId = Long.parseLong("2");
+
+        //ToDo how to take paramter and save it for some time
+
+        String isAdult = "false";
+
+        for (Cookie c : req.getCookies()) {
+            if (c.getName().equals("isAdult")){
+                logger.info("cokie {}", c.getName());
+                isAdult = c.getValue();
+            }
+        }
+
 
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
@@ -54,8 +69,9 @@ public class SingleRecipeViewServlet extends HttpServlet {
             req.getSession().setAttribute("userType", "guest");
         }
 
-        boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
+        req.getSession().setAttribute("recipeType", responseRecipeId.getDrinkType());
 
+        boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
 
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
@@ -65,6 +81,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
             model.put("email", req.getSession().getAttribute("email"));
             model.put("userType", req.getSession().getAttribute("userType"));
             model.put("isFavourite", isFavourite);
+            model.put("recipeType", req.getSession().getAttribute("recipeType"));
+            model.put("isAdult",isAdult);
         }
 
         try {
