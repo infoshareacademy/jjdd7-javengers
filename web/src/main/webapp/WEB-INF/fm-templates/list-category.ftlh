@@ -9,5 +9,4 @@
             </label>
         </#items>
     </#list>
-
 </div>

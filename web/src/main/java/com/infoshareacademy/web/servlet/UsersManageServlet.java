@@ -26,13 +26,10 @@ public class UsersManageServlet extends HttpServlet {
 
   @Inject
   private TemplateProvider templateProvider;
-
   @Inject
   private UsersPageService usersPageService;
-
   @Inject
   private UserService userService;
-
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -42,16 +39,12 @@ public class UsersManageServlet extends HttpServlet {
     List<String> pageNumber = Arrays.asList(getParametersList(req, new String[]{"1"}));
     int pageNo = Integer.parseInt(pageNumber.get(0));
     int usersPerSite = 5;
-
     List<User> usersPerPage = usersPageService.getUsersPerPage(usersPerSite,
         pageNo, userService.getUsersList());
     Integer lastPageNo = usersPageService
         .getLastNumberPage(usersPerSite, userService.getUsersList());
-
-
     Template template = templateProvider.getTemplate(getServletContext(),
         "admin-view-users.ftlh");
-
     Map<String, Object> dataModel = new HashMap<>();
     dataModel.put("lastPageNumber", lastPageNo);
     dataModel.put("pageNumber", pageNo);

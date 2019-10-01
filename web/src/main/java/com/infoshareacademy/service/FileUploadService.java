@@ -18,17 +18,17 @@ public class FileUploadService {
     private static String UPLOAD_KEY = "Upload.Path";
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    public File uploadFile(Part filePart) throws IOException {
+    File uploadFile(Part filePart) throws IOException {
         String filename = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File file = new File(getUploadFilesPath() + filename);
         Files.deleteIfExists(file.toPath());
         InputStream fileContent = filePart.getInputStream();
         Files.copy(fileContent, file.toPath());
-        logger.info("Json file " + filePart.toString() + " upload");
+        logger.info("Json file {} upload", filePart.toString());
         return file;
     }
 
-    public String getUploadFilesPath() throws IOException {
+    private String getUploadFilesPath() throws IOException {
         Properties settings = new Properties();
         settings.load(Thread.currentThread().getContextClassLoader()
             .getResource(SETTINGS_FILE).openStream());

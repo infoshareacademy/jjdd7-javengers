@@ -3,17 +3,17 @@ package com.infoshareacademy.dao;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.domain.entity.Ingredient;
 import com.infoshareacademy.domain.entity.Recipe;
-
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Transactional
 @Stateless
 public class RecipeDaoBean {
+
     @PersistenceContext
     EntityManager entityManager;
 

@@ -1,9 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
 import com.google.common.base.Strings;
-import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -24,16 +22,14 @@ import org.slf4j.LoggerFactory;
 public class WelcomeServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(WelcomeServlet.class.getName());
-
     @Inject
     private TemplateProvider templateProvider;
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
 
+        resp.setContentType("text/html;charset=UTF-8");
         String userType = (String) req.getSession().getAttribute("userType");
 
         if (Strings.isNullOrEmpty(userType)) {

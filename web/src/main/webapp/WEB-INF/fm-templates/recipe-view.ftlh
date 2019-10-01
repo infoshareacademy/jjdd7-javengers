@@ -30,7 +30,6 @@
     </style>
 </head>
 <body>
-
 <div class="jumbotron jumbotron-fluid ">
     <div class="jumbotron jumbotron-fluid ">
         <#include "login.ftlh">
@@ -40,7 +39,6 @@
             <p class="lead">Read, mix, enjoy...</p>
         </div>
     </div>
-
     <div class="container">
         <div class="container">
             <div class="row">
@@ -83,9 +81,7 @@
                                                 aria-controls="name" aria-selected="true"><h4><strong>Recipe
                                         Name</strong></h4></a>
                         </li>
-
                     </ul>
-
                     <div class="tab-content col-sm-12 " id="navTabA">
 
                         <div class="tab-pane active" id="panel_a_name" role="tabpanel" aria-labelledby="name-tab">
@@ -95,7 +91,6 @@
                         </div>
                     </div>
                 </div>
-
                 <#if userType == "admin">
                 <div class="col-sm-1">
                     <label class="btn btn-primary btn-sm" id="del-description" title="delete" style="margin-bottom: 0">
@@ -105,15 +100,11 @@
                     </label>
                 </div>
                 </#if>
-
             </div>
-
         </div>
-
         <div class="col-sm-6" STYLE="margin: auto; padding-top: 24px; padding-bottom: 24px;">
             <h2 class="card-title" style="color: olivedrab">${responseRecipeId.name}</h2>
         </div>
-
         <#include "age-verifier.ftlh">
         <#if isAdult == "true">
             <div class="col-sm-10">

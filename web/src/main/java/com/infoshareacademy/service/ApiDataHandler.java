@@ -11,21 +11,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Stateless
-public class ApiDataHandler {
+class ApiDataHandler {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   private static final String NULL_JSON_CONTENT = "{\"drinks\":null}";
-
   @Inject
   private FileParserService fileParserService;
-
   @Inject
   private ParserService parserService;
-
   @EJB
   private ApiConsumer apiConsumer;
 
-  public void parseAndLoadDataFormApi(String uri) {
+  void parseAndLoadDataFormApi(String uri) {
     String jsonContent = apiConsumer.fetchBody(uri);
     try {
       if (!jsonContent.equals(NULL_JSON_CONTENT)) {
@@ -34,8 +31,8 @@ public class ApiDataHandler {
         fileParserService.loadDataToDatabase(recipes);
       }
     } catch (IOException e) {
-      logger.error("Load data from: " + uri + " failed", e);
+      logger.error("Load data from: {} failed", uri, e);
     }
-    logger.info("data form" + uri + " was saved successfully");
+    logger.info("data form {} was saved successfully", uri);
   }
 }

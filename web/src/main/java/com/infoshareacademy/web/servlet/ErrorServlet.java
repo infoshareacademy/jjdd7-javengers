@@ -20,7 +20,6 @@ public class ErrorServlet extends HttpServlet {
 
   @Inject
   private TemplateProvider templateProvider;
-
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @Override

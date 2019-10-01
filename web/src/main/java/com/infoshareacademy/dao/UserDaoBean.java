@@ -84,6 +84,5 @@ public class UserDaoBean {
         }
         userById.setRecipes(favouriteRecipiecListForUser);
     }
-
 }
 

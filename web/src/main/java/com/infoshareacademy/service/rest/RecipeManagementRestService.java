@@ -18,7 +18,6 @@ public class RecipeManagementRestService {
 
   @EJB
   private RecipeService recipeService;
-
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @DELETE
@@ -35,8 +34,6 @@ public class RecipeManagementRestService {
     }
     return Response.ok().build();
   }
-
-
 
   @PATCH
   @Path("/updateRecipe/{id}")

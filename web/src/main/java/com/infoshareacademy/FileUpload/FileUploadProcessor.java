@@ -1,10 +1,8 @@
 package com.infoshareacademy.FileUpload;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -27,22 +25,9 @@ public class FileUploadProcessor {
 
         File file = new File(getUploadImageFilesPath() + fileName);
         Files.deleteIfExists(file.toPath());
-
         InputStream fileContent = filePart.getInputStream();
-//    OutputStream os = new FileOutputStream(file);
-
         Files.copy(fileContent, file.toPath());
-
-//    byte[] buffer = new byte[1024];
-//    int bytesRead;
-//    while ((bytesRead = fileContent.read(buffer)) != -1) {
-//      os.write(buffer, 0, bytesRead);
-//    }
-
         fileContent.close();
-//    os.flush();
-//    os.close();
-
         return file;
     }
 

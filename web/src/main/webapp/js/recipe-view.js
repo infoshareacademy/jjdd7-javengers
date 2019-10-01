@@ -44,7 +44,6 @@ $formName.on('submit', () => {
 $('#input-name').keyup(function () {
     if (this.value.length < 3) return;
     var substring = $(this).val();
-    //wyslij request
     $.ajax({
         url: '/api/recipes/nameChars/' + substring,
         type: 'GET',
@@ -54,14 +53,11 @@ $('#input-name').keyup(function () {
             let result = data.map(r => r.name);
             $("#input-name").autocomplete({
                 source: result,
-                /*minLength: 3*/
             });
         }
 
     });
 });
-
-
 
 $("#fav").click(function () {
 

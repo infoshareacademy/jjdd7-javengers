@@ -3,7 +3,6 @@ package com.infoshareacademy.mapper;
 import com.infoshareacademy.domain.entity.Category;
 import com.infoshareacademy.dto.CategoryDto;
 import javax.ejb.Stateless;
-import javax.transaction.Transactional;
 
 @Stateless
 public class CategoryEntityToDtoMapper {

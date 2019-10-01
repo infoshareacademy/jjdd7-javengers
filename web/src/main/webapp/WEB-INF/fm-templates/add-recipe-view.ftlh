@@ -3,7 +3,6 @@
 <head>
 
     <title>Add Recipe Form</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -12,19 +11,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-            crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>-->
-
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/add-recipe-view.css">
@@ -64,10 +56,7 @@
                                             aria-controls="name" aria-selected="true"><h4><strong>Add Recipe
                                     Form</strong></h4></a>
                     </li>
-
                 </ul>
-
-
             </div>
         </div>
     </div>
@@ -75,8 +64,6 @@
         <#--<form class="add-recipe-form" method="POST" action="#" enctype="form-data">-->
         <div class="row">
             <div class="card col-sm-3">
-
-
                 <header class="card-header"><h4 class="title">Category</h4></header>
                 <div class="btn-group-vertical">
                     <#list categoryList>
@@ -91,15 +78,12 @@
                 </div>
             </div>
             <div class="card col-sm-6">
-
-
                 <header class="card-header"><h4 class="title">Name of Drink</h4></header>
                 <div class="container">
                     <!--<label for="textInput">name</label>-->
                     <input type="text" id="name" class="input" placeholder="input name" name="name" required
                            maxlength="30">
                 </div>
-
                 <header class="card-header"><h4 class="title">Ingredients</h4></header>
                 <div class="container">
                     <div class="container row" style="margin: auto; align-content: center">
@@ -112,25 +96,19 @@
                         <button id="b1" class="btn btn-sm add-more" type="button">+</button>
                     </div>
                 </div>
-
                 <header class="card-header"><h4 class="title">Type of Glass</h4></header>
                 <div class="container">
-                    <!--<label for="textInput">Type of glass</label>-->
                     <input type="text" id="glass" class="input" placeholder="type of glass" name="glass" required
                            maxlength="30">
                 </div>
 
                 <header class="card-header"><h4 class="title">Instructions</h4></header>
                 <div class="container">
-                    <!--<label for="textInput">Type of glass</label>-->
                     <input type="text" id="instructions" class="input" placeholder="input instructions"
                            name="instructions" required maxlength="1000">
                 </div>
-
-
             </div>
             <div class="card col-sm-3" style="margin-top: 30%">
-
                 <header class="card-header"><h4 class="title">Type</h4></header>
                 <div class="btn-group-vertical">
                     <#list typeList>
@@ -141,20 +119,14 @@
                             </label>
                         </#items>
                     </#list>
-
                 </div>
-
                 <header class="card-header"><h4 class="title">Image</h4></header>
                 <input type="file" name="image" style="margin: auto"/>
             </div>
-
         </div>
-
         <button class="btn btn-primary btn-lg" id="sub" type="submit" style="text-align:left">Add Recipe</button>
     </form>
 </div>
-
 <script src="/js/add-recipe-view.js"></script>
-
 </body>
 </html>

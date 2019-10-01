@@ -32,42 +32,29 @@ public class AdminRecipesServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     RecipeService recipeService;
-
     @Inject
     StartingPageService startingPageService;
-
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-
         resp.setContentType("text/html;charset=UTF-8");
         List<String> pageNumber = Arrays.asList(getParametersList(req, new String[]{"1"}));
         Integer pageNo = Integer.parseInt(pageNumber.get(0));
-
         List<Recipe> recipesPerPage = startingPageService.getRecipesPerPage(
                 pageNo, recipeService.getUnauthorizedRecipes());
-
         Integer lastPageNo = startingPageService
                 .getLastNumberPage(recipeService.getUnauthorizedRecipes());
-
         Template template = templateProvider.getTemplate(getServletContext(),
                 "admin-view-recipe.ftlh");
-
-
-
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name",req.getSession().getAttribute("name"));
         dataModel.put("recipesList",recipesPerPage);
         dataModel.put("pageNumber", pageNo);
         dataModel.put("lastPageNumber", lastPageNo);
-
-
-
         PrintWriter writer = resp.getWriter();
         try {
             template.process(dataModel, writer);
@@ -76,9 +63,7 @@ public class AdminRecipesServlet extends HttpServlet {
         }
     }
 
-
-    private static String[] getParametersList(ServletRequest request,
-                                              String[] defaultValue) {
+    private static String[] getParametersList(ServletRequest request, String[] defaultValue) {
         if (request.getParameterValues("page") != null) {
             return request.getParameterValues("page");
         } else {

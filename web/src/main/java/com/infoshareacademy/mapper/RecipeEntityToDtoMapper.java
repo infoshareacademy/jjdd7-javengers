@@ -14,7 +14,6 @@ public class RecipeEntityToDtoMapper {
 
   @EJB
   private CategoryEntityToDtoMapper categoryEntityToDtoMapper;
-
   @EJB
   private IngredientEntityToDtoMapper ingredientEntityToDtoMapper;
 

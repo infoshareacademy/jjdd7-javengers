@@ -19,15 +19,15 @@ public class ParserService implements Serializable {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   private ObjectMapper mapper = new ObjectMapper();
 
-  public JsonNode getJsonNodeForApiParsing(String recipes) throws IOException {
+  JsonNode getJsonNodeForApiParsing(String recipes) throws IOException {
     return mapper.readTree(recipes);
   }
 
-  public JsonNode getJsonNodeForFileParsing(File file) throws IOException {
+  JsonNode getJsonNodeForFileParsing(File file) throws IOException {
     return mapper.readTree(file);
   }
 
-  public <T> Object parse(JsonNode jsonNode) throws IOException {
+  <T> Object parse(JsonNode jsonNode) throws IOException {
     logger.info("Parse data from file");
     return mapper.readValue(jsonNode.get(JSON_ROOT).toString(),
         new TypeReference<List<RecipeResponse>>() {

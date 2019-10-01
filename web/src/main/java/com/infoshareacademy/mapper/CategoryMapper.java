@@ -4,7 +4,6 @@ import com.infoshareacademy.domain.api.RecipeResponse;
 import com.infoshareacademy.domain.entity.Category;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

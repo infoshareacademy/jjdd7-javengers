@@ -14,10 +14,8 @@ import org.slf4j.LoggerFactory;
 public class ApiCategoryService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
   @EJB
   private CategoryService categoryService;
-
   @EJB
   private CategoryEntityToDtoMapper mapper;
 

@@ -21,9 +21,7 @@ import javax.validation.constraints.NotNull;
 
         @NamedQuery(
                 name = "Category.getCategoryIds",
-                query = "SELECT c.id FROM Category c")
-
-})
+                query = "SELECT c.id FROM Category c")})
 
 @Entity
 @Table(name = "category", indexes = {@Index(name = "category_name", columnList = "name")})

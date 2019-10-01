@@ -1,8 +1,6 @@
 package com.infoshareacademy.service.rest;
 
-
 import com.infoshareacademy.service.UserService;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -20,16 +18,11 @@ public class FavouritesRecipeViewRestService {
     UserService userService;
 
     @GET
-    public Response editFavouritesListForUser(@PathParam("recipeId") String n, @Context HttpServletRequest req) {
+    public Response editFavouritesListForUser(@PathParam("recipeId") String n,
+        @Context HttpServletRequest req) {
         Long favouriteId = Long.parseLong(n);
-        //zamockowany - trzeba przekazac parametr sesji
-        //Long userId = 2L;
         Long userId = (Long) req.getSession().getAttribute("userId");
-
         userService.editFavouritesByIdForUSer(favouriteId, userId);
-
         return Response.ok().build();
     }
-
-
 }

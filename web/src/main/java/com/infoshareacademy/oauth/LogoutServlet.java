@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
 
     HttpSession session = req.getSession();
     String userEmail = (String) session.getAttribute("email");
-    logger.info("User " + userEmail + " log out successfully");
+    logger.info("User {} log out successfully", userEmail);
     session.invalidate();
     try {
       resp.sendRedirect("/home");

@@ -34,7 +34,6 @@ $formName.on('submit', () => {
 $('#input-name').keyup(function () {
     if (this.value.length < 3) return;
     var substring = $(this).val();
-    //wyslij request
     $.ajax({
         url: '/api/recipes/nameChars/' + substring,
         type: 'GET',
@@ -102,7 +101,6 @@ $(document).on('click', '#list-ingredient label', function (event) {
 
 
 function makeIngredientListHtml(message) {
-    /*tutaj value jest do zmiany na nr id z listy dostepnych drinkow*/
     return `
     <label class="btn btn-primary btn-sm form-group">
      <input class="x-ingredient" id="${message}" type="checkbox" name="myradio" value="${message}" onclick="checkFilters()" checked>
@@ -127,16 +125,6 @@ function checkFilters() {
         types: selectedTypes,
         active: paramActive
     });
-
-    /*do JSowych rozwiazan*/
-
-    /*fetch('http://localhost:8080/home?' + queryParams, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })*/
-
-    /* do przeladowania strony*/
     window.location = '/home?' + queryParams;
 }
 

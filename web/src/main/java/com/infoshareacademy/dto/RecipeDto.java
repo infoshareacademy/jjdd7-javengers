@@ -2,7 +2,7 @@ package com.infoshareacademy.dto;
 
 import java.util.Map;
 import javax.transaction.Transactional;
-import javax.xml.bind.annotation.XmlRootElement;
+
 @Transactional
 public class RecipeDto {
 

@@ -1,18 +1,28 @@
 package com.infoshareacademy.domain.entity.statistics;
 
 import com.infoshareacademy.domain.entity.Category;
-
-import javax.persistence.*;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "statistics")
 @NamedQueries({
         @NamedQuery(
                 name = "Recipe.findTop10Recipies",
-                query = "SELECT rs.recipieName, count (rs.recipieName) as quantity FROM RecipeStatistics rs  WHERE rs.type =1 GROUP BY rs.recipieName ORDER BY quantity DESC")
-
-})
+            query = "SELECT rs.recipieName, count (rs.recipieName) as quantity "
+                + "FROM RecipeStatistics rs  WHERE rs.type =1 GROUP BY rs.recipieName "
+                + "ORDER BY quantity DESC")})
 
 public class RecipeStatistics {
 
@@ -84,7 +94,4 @@ public class RecipeStatistics {
     public void setCategories(Set<Long> categories) {
         this.categories = categories;
     }
-
-
-
 }

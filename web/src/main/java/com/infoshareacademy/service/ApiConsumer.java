@@ -7,11 +7,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 @Stateless
-public class ApiConsumer {
+class ApiConsumer {
 
   private WebTarget webTarget;
 
-  public String fetchBody(String uri) {
+  String fetchBody(String uri) {
     configureClient(uri);
     Response response = webTarget.request().get();
     return response.readEntity(String.class);

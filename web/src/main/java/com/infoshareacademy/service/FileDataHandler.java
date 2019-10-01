@@ -16,13 +16,10 @@ import org.slf4j.LoggerFactory;
 public class FileDataHandler {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
   @Inject
   private FileUploadService fileUploadService;
-
   @Inject
   private FileParserService fileParserService;
-
   @Inject
   private ParserService parserService;
 
@@ -34,9 +31,9 @@ public class FileDataHandler {
       List<RecipeResponse> recipes = (List<RecipeResponse>) parserService.parse(jsonNode);
       outputObject =  fileParserService.loadDataToDatabase(recipes);
     } catch (IOException e) {
-      logger.error("Upload file: " + partFile.toString() + " failed");
+      logger.error("Upload file: {} failed", partFile.toString());
     }
-    logger.info("file " + partFile.toString() + " was uploaded successfully");
+    logger.info("file {} was uploaded successfully", partFile.toString());
     return outputObject;
   }
 }

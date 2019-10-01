@@ -26,7 +26,6 @@ public class JsonParserServlet extends HttpServlet {
 
     @Inject
     private FileDataHandler fileDataHandler;
-
     @Inject
     private TemplateProvider templateProvider;
     private Logger logger = LoggerFactory.getLogger(JsonParserServlet.class);

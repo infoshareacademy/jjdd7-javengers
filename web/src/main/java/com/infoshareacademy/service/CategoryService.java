@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,20 +13,16 @@ import org.slf4j.LoggerFactory;
 public class CategoryService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
     @EJB
     private CategoryDaoBean categoryDaoBean;
 
     public void save(Category category) {
         categoryDaoBean.save(category);
     }
+
     @Transactional
     public Category updateCategory(Category category) {
         return categoryDaoBean.updateCategory(category);
-    }
-
-    public Category getCategoryById(Long id) {
-        return categoryDaoBean.getCategoryById(id);
     }
 
     public List<Category> getCategoriesList() {
@@ -36,17 +31,11 @@ public class CategoryService {
 
     @Transactional
     public Category findCategoryByName(String name) {
-        logger.info("ingredients with name contains " + name + " found in database");
+        logger.info("ingredients with name contains {} found in database", name);
         return categoryDaoBean.findCategoryByName(name);
     }
 
     public String[] getCategoryIds() {
         return categoryDaoBean.getCategoryIds();
     }
-
-    public List<Category> getCategoriesById(List<Long> ids) {
-        return categoryDaoBean.getCategoriesById(ids);
-    }
-
-
 }

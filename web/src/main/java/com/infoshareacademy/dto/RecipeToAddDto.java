@@ -1,9 +1,7 @@
 package com.infoshareacademy.dto;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
-
+import javax.transaction.Transactional;
 
 @Transactional
 public class RecipeToAddDto {

@@ -19,7 +19,6 @@ public class PrivilegesRestService {
 
   @EJB
   private UserService userService;
-
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @PATCH

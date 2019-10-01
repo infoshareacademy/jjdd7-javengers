@@ -53,13 +53,6 @@ function drawChart() {
     chart2.draw(dataChart2, optionsChart2);
   });
 
-/*    let dataset4 = [
-      {"recipieName": "mojito", "quantity": 45},
-      {"recipieName": "margarita", "quantity": 24},
-      {"recipieName": "cuba libra", "quantity": 17},
-      {"recipieName": "jamaica kiss", "quantity": 5}
-    ];*/
-
   $.getJSON('/api/superHero/statistics/recipeCategoryRank', function (dataset3) {
     let recipeNamesAndQuantitiesArrayChart4 = [['Category Name', 'Quantity',
       {role: 'style'}],];

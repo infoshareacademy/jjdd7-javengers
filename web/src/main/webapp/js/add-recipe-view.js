@@ -1,8 +1,3 @@
-
-const $formIngredient = $('#form-ingredient');
-const $ingredientListButtons = $('#list-ingredient');
-
-
 $(function () {
     $(document).ready(function () {
         console.log("test")
@@ -40,17 +35,14 @@ $(document).ready(function(){
             $(fieldID).remove();
         });
     });
-
-
-
 });
 
 
-    $('#sub').on('submit', function () {
-        console.log("test")
-        $('#success').modal('show');
-        alert("your recipe has been sent to the admin for authorization");
-    })
+$('#sub').on('submit', function () {
+    console.log("test")
+    $('#success').modal('show');
+    alert("your recipe has been sent to the admin for authorization");
+})
 
 
 

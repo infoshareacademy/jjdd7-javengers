@@ -11,10 +11,9 @@ import org.slf4j.LoggerFactory;
 @Stateless
 public class RecipeMapper {
 
-  private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
   @EJB
   private IngredientMapper ingredientMapper;
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   public Recipe mapRecipes(RecipeResponse recipe, Category category) {
 
@@ -30,7 +29,7 @@ public class RecipeMapper {
     drinkRecipe.setCategory(category);
     drinkRecipe.setCustom(false);
     drinkRecipe.setApproved(true);
-    logger.info("Recipe " + drinkRecipe.getName() + " was mapped");
+    logger.info("Recipe {} was mapped", drinkRecipe.getName());
     return drinkRecipe;
   }
 }

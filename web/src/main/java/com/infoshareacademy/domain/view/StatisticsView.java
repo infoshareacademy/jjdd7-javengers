@@ -5,7 +5,6 @@ public class StatisticsView {
     private String recipieName;
     private Long quantity;
 
-
     public String getRecipieName() {
         return recipieName;
     }

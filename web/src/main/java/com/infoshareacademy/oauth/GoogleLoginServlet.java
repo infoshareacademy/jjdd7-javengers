@@ -12,7 +12,6 @@ public class GoogleLoginServlet extends AbstractAuthorizationCodeServlet {
 
   private static final Logger logger = Logger.getLogger(GoogleLoginServlet.class.getName());
 
-
   @Override
   protected String getRedirectUri(HttpServletRequest req) {
     return GoogleLoginCommons.buildRedirectUri(req);

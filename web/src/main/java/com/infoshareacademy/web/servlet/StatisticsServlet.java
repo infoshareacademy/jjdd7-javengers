@@ -21,12 +21,7 @@ import java.util.Map;
 public class StatisticsServlet extends HttpServlet {
 
     @Inject
-    private StatisticsService statisticsService;
-
-    @Inject
     private TemplateProvider templateProvider;
-
-
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Override
@@ -35,11 +30,8 @@ public class StatisticsServlet extends HttpServlet {
 
         PrintWriter printWriter = resp.getWriter();
         Template template = templateProvider.getTemplate(getServletContext(), "contentStatistics.ftlh");
-
         Map<String, Object> dataModel = new HashMap<>();
-
         dataModel.put("userType", req.getSession().getAttribute("userType"));
-
 
         try {
             template.process(dataModel, printWriter);
@@ -47,5 +39,4 @@ public class StatisticsServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
-
 }

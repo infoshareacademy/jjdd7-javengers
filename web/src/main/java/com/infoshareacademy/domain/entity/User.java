@@ -1,9 +1,21 @@
 package com.infoshareacademy.domain.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @NamedQueries({
         @NamedQuery(
@@ -21,20 +33,15 @@ import java.util.List;
         @NamedQuery(
                 name = "User.getFavouritesListIdsForUser",
                 query = "SELECT r.id FROM Recipe r JOIN r.users u WHERE r.id=u.id AND u.id=:id"),
-                //query = "SELECT r.recipe_id FROM User u JOIN u.recipes r WHERE r.id=u.id AND u.id=:id"),
-
         @NamedQuery(
-                name = "User.getFavouriteRecipeByIdForUser",
+            name = "User.getFavouriteRecipeByIdForUser",
                 query = "SELECT r FROM User u JOIN u.recipes r WHERE r.id= :id AND u.id=:idu"),
-
-
-    @NamedQuery(
-        name = "User.findUserByEmail",
-        query = "SELECT u FROM User u WHERE u.email like :email"),
-    @NamedQuery(
-        name = "User.getUsersList",
-        query = "SELECT u FROM User u")
-})
+        @NamedQuery(
+            name = "User.findUserByEmail",
+            query = "SELECT u FROM User u WHERE u.email like :email"),
+        @NamedQuery(
+            name = "User.getUsersList",
+            query = "SELECT u FROM User u")})
 
 @Entity
 @Table(name = "user", indexes = {@Index(name = "user_email", columnList = "email")})

@@ -9,7 +9,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,16 +23,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Transactional
 @WebServlet("/recipe-view")
 public class SingleRecipeViewServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private RecipeService recipeService;
     @Inject
@@ -42,8 +38,8 @@ public class SingleRecipeViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
 
+        resp.setContentType("text/html;charset=UTF-8");
         String pU;
         if (req.getParameter("pU") == null || req.getParameter("pU").isEmpty()) {
             pU = req.getHeader("referer");
@@ -52,7 +48,6 @@ public class SingleRecipeViewServlet extends HttpServlet {
         }
 
         Long userId = Long.parseLong("2");
-
         String isAdult = "false";
 
         for (Cookie c : req.getCookies()) {
@@ -65,19 +60,15 @@ public class SingleRecipeViewServlet extends HttpServlet {
         String recipeId = req.getParameter("recipeId");
         Long parseToLongRecipeId = Long.parseLong(recipeId);
         Recipe responseRecipeId = recipeService.getRecipeById(parseToLongRecipeId);
-
         List<Long> longList = new ArrayList<>();
         statisticsService.saveToDB(parseToLongRecipeId, longList);
-
         String userType = (String) req.getSession().getAttribute("userType");
         if (Strings.isNullOrEmpty(userType)) {
             req.getSession().setAttribute("userType", "guest");
         }
 
         req.getSession().setAttribute("recipeType", responseRecipeId.getDrinkType());
-
         boolean isFavourite = recipeService.isFavourite(parseToLongRecipeId, userId);
-
         Template template = templateProvider.getTemplate(getServletContext(), "recipe-view.ftlh");
         Map<String, Object> model = new HashMap<>();
         if (responseRecipeId != null) {

@@ -1,7 +1,6 @@
 package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.UserDaoBean;
-import com.infoshareacademy.domain.entity.Recipe;
 import com.infoshareacademy.domain.entity.User;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -46,20 +45,8 @@ public class UserService {
     return userDaoBean.getUsersList();
   }
 
-  public List<Recipe> getFavouritesList() {
-    return userDaoBean.getFavouritesList();
-  }
-
-  public  List<Long> getFavouritesListIdsForUser(Long userId) {
-    return userDaoBean.getFavouritesListIds(userId);
-  }
-  public Recipe getFavouriteRecipeByIdForUser(Long favouriteId, Long userId) {
-    return userDaoBean.getFavouriteRecipeByIdForUser(favouriteId, userId);
-  }
-
   public void editFavouritesByIdForUSer( Long recipeId, Long userId) {
     userDaoBean.editFavouritesByIdForUSer(recipeId, userId);
     logger.info("Recipe changed its favourites status");
   }
-
 }

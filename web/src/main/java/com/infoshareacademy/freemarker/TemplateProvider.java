@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 @RequestScoped
 public class TemplateProvider {
 
-  private final String TEMPLATE_DIRECTORY_PATH = "WEB-INF/fm-templates";
-  private Configuration configuration;
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @Inject
@@ -22,7 +20,8 @@ public class TemplateProvider {
   public Template getTemplate(ServletContext servletContext, String templateName)
       throws IOException {
 
-    configuration = configLoader.loadConfiguration();
+    Configuration configuration = configLoader.loadConfiguration();
+    String TEMPLATE_DIRECTORY_PATH = "WEB-INF/fm-templates";
     configuration.setServletContextForTemplateLoading(servletContext, TEMPLATE_DIRECTORY_PATH);
     logger.info("Getting freemarker template");
     return configuration.getTemplate(templateName);
